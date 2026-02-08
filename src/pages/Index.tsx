@@ -114,10 +114,13 @@ const Index = () => {
                 <Clock size={14} className="text-muted-foreground" />
                 <span className="text-xs font-medium text-foreground">24/7 Support</span>
               </div>
-              <div className="bg-accent rounded-full px-4 py-2">
-                <span className="text-lg font-bold text-foreground">40%</span>
-                <span className="text-xs text-muted-foreground ml-1">Off</span>
-              </div>
+              <button
+                onClick={() => navigate("/services")}
+                className="bg-primary text-primary-foreground text-xs font-medium px-5 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity"
+              >
+                <ShoppingCart size={14} />
+                Book Now
+              </button>
             </div>
 
             {/* Hero Card */}
@@ -140,7 +143,7 @@ const Index = () => {
                   Quick Appliance<br />Repair Service
                 </h2>
                 <p className="hidden md:block text-sm text-white/70 max-w-xs">
-                  Professional appliance repair services at your doorstep. Get 40% off on your first booking!
+                  Professional appliance repair services at your doorstep. Book your service now!
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button
@@ -156,10 +159,6 @@ const Index = () => {
                   <div className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2">
                     <Clock size={14} className="text-white/70" />
                     <span className="text-xs font-medium text-white">24/7 Support</span>
-                  </div>
-                  <div className="hidden md:block bg-white/20 backdrop-blur rounded-full px-4 py-2">
-                    <span className="text-lg font-bold text-white">40%</span>
-                    <span className="text-xs text-white/70 ml-1">Off</span>
                   </div>
                 </div>
               </div>
