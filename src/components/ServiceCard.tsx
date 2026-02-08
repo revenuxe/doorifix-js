@@ -1,4 +1,4 @@
-import { Sparkles, Star, Clock } from "lucide-react";
+import { Star, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface ServiceCardProps {
@@ -27,10 +27,7 @@ const ServiceCard = ({ title, description, image, color, id, rating = 4.8, durat
       onClick={() => navigate(`/service/${id}`)}
     >
       <div className="flex-1 space-y-2">
-        <div className="flex items-center gap-2">
-          <Sparkles size={16} className="text-primary" />
-          <h3 className="font-semibold text-base text-foreground">{title}</h3>
-        </div>
+        <h3 className="font-semibold text-base text-foreground">{title}</h3>
         <p className="text-sm text-muted-foreground leading-snug">{description}</p>
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
