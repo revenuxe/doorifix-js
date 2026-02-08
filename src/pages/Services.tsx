@@ -1,21 +1,9 @@
-import { ChevronLeft, ShoppingCart, Search, SlidersHorizontal } from "lucide-react";
+import { ChevronLeft, Search, SlidersHorizontal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ServiceCard from "@/components/ServiceCard";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
-import washingMachine from "@/assets/washing-machine.png";
-import refrigerator from "@/assets/refrigerator.png";
-import acUnit from "@/assets/ac-unit.png";
-import microwave from "@/assets/microwave.png";
-import dryer from "@/assets/dryer.png";
-
-const services = [
-  { id: 1, title: "Washing Machine", description: "Expert repair & servicing, 20% off today!", image: washingMachine, color: "blue" as const, rating: 4.9, duration: "1-2 hrs" },
-  { id: 2, title: "Refrigerator", description: "Cooling issues? Get 20% off repairs today!", image: refrigerator, color: "green" as const, rating: 4.8, duration: "1-3 hrs" },
-  { id: 3, title: "AC Service", description: "AC repair & gas refill — 15% off!", image: acUnit, color: "yellow" as const, rating: 4.7, duration: "1-2 hrs" },
-  { id: 4, title: "Microwave", description: "Microwave not heating? 10% off repairs!", image: microwave, color: "pink" as const, rating: 4.9, duration: "1 hr" },
-  { id: 5, title: "Dryer", description: "Dryer not drying? Complete repair service", image: dryer, color: "blue" as const, rating: 4.9, duration: "1-2 hrs" },
-];
+import { services } from "@/data/services";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -34,9 +22,7 @@ const Services = () => {
             <ChevronLeft size={18} />
           </button>
           <h1 className="font-semibold text-lg text-foreground">Services</h1>
-          <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-            <ShoppingCart size={16} />
-          </button>
+          <div className="w-9" />
         </div>
 
         {/* Desktop Title & Search */}
