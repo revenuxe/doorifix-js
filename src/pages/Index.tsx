@@ -1,10 +1,11 @@
-import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award } from "lucide-react";
+import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import cleanerHero from "@/assets/cleaner-hero.png";
+import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 import homeCleaning from "@/assets/home-cleaning.png";
 import bathroomCleaning from "@/assets/bathroom-cleaning.png";
 import carpetCleaning from "@/assets/carpet-cleaning.png";
@@ -38,23 +39,12 @@ const Index = () => {
 
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-muted overflow-hidden">
-                  <img src={cleanerHero} alt="Avatar" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Welcome</p>
-                  <p className="font-semibold text-sm text-foreground">Anna Grace</p>
-                </div>
+              <div className="flex items-center gap-2">
+                <img src={arrowmindLogo} alt="Arrowmind" className="h-8 object-contain" />
               </div>
-              <div className="flex gap-2">
-                <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-                  <MapPin size={16} />
-                </button>
-                <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-                  <ShoppingCart size={16} />
-                </button>
-              </div>
+              <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
+                <Menu size={18} />
+              </button>
             </div>
 
             {/* Title */}

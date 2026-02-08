@@ -1,6 +1,5 @@
-import { Search, MapPin, ShoppingCart, Bell, LogIn, Home, Briefcase, ChevronRight } from "lucide-react";
+import { Search } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-import cleanerHero from "@/assets/cleaner-hero.png";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
 const navLinks = [
@@ -34,31 +33,13 @@ const DesktopHeader = () => {
       </nav>
 
       {/* Search */}
-      <div className="hidden lg:flex items-center gap-2 bg-muted rounded-full px-4 py-2 w-64">
+      <div className="flex items-center gap-2 bg-muted rounded-full px-4 py-2 w-64">
         <Search size={16} className="text-muted-foreground" />
         <input
           type="text"
           placeholder="Search services..."
           className="bg-transparent text-sm outline-none flex-1 text-foreground placeholder:text-muted-foreground"
         />
-      </div>
-
-      {/* Right Actions */}
-      <div className="flex items-center gap-3">
-        <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors relative">
-          <Bell size={16} />
-          <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-primary rounded-full border-2 border-card" />
-        </button>
-        <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-          <ShoppingCart size={16} />
-        </button>
-        <div className="w-9 h-9 rounded-full bg-muted overflow-hidden">
-          <img src={cleanerHero} alt="Avatar" className="w-full h-full object-cover" />
-        </div>
-        <button className="bg-primary text-primary-foreground text-sm font-medium px-5 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity">
-          <LogIn size={14} />
-          Login
-        </button>
       </div>
     </header>
   );
