@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ServiceCard from "@/components/ServiceCard";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
+import Footer from "@/components/Footer";
 import { services } from "@/data/services";
 
 const Services = () => {
@@ -56,6 +57,7 @@ const Services = () => {
         </div>
       </div>
 
+      <Footer />
       <BottomNav />
     </div>
   );
