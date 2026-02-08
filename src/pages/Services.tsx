@@ -1,13 +1,40 @@
-import { ChevronLeft, Search, SlidersHorizontal } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { ChevronLeft, Search } from "lucide-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ServiceCard from "@/components/ServiceCard";
+import CategoryPills from "@/components/CategoryPills";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import { services } from "@/data/services";
 
+const categoryToTitle: Record<string, string[]> = {
+  "Washing Machine": ["Washing Machine"],
+  "Refrigerator": ["Refrigerator"],
+  "AC": ["AC Service"],
+  "Microwave": ["Microwave"],
+  "Dryer": ["Dryer"],
+  "Dishwasher": ["Dishwasher"],
+};
+
 const Services = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("q") || "");
+  const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "All");
+
+  const filtered = useMemo(() => {
+    return services.filter((s) => {
+      const matchesCategory =
+        activeCategory === "All" ||
+        (categoryToTitle[activeCategory]?.some((t) => s.title.includes(t)) ?? false);
+      const matchesSearch =
+        !search ||
+        s.title.toLowerCase().includes(search.toLowerCase()) ||
+        s.description.toLowerCase().includes(search.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [search, activeCategory]);
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -26,6 +53,20 @@ const Services = () => {
           <div className="w-9" />
         </div>
 
+        {/* Mobile Search */}
+        <div className="px-5 pb-3 md:hidden">
+          <div className="flex items-center gap-2 bg-card rounded-2xl px-4 py-3 border border-border">
+            <Search size={16} className="text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search services..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="bg-transparent text-sm outline-none flex-1 text-foreground placeholder:text-muted-foreground"
+            />
+          </div>
+        </div>
+
         {/* Desktop Title & Search */}
         <div className="hidden md:flex items-center justify-between px-8 lg:px-12 pt-8 pb-2">
           <div>
@@ -38,22 +79,33 @@ const Services = () => {
               <input
                 type="text"
                 placeholder="Search services..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className="bg-transparent text-sm outline-none flex-1 text-foreground placeholder:text-muted-foreground"
               />
             </div>
-            <button className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-              <SlidersHorizontal size={16} />
-            </button>
           </div>
+        </div>
+
+        {/* Category Filter */}
+        <div className="px-5 md:px-8 lg:px-12 py-3">
+          <CategoryPills active={activeCategory} onSelect={setActiveCategory} />
         </div>
 
         {/* Service List */}
         <div className="flex-1 px-5 md:px-8 lg:px-12 pb-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {services.map((service) => (
-              <ServiceCard key={service.id} {...service} />
-            ))}
-          </div>
+          {filtered.length === 0 ? (
+            <div className="text-center py-12 text-muted-foreground">
+              <p className="text-lg font-medium">No services found</p>
+              <p className="text-sm mt-1">Try a different search or category</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {filtered.map((service) => (
+                <ServiceCard key={service.id} {...service} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

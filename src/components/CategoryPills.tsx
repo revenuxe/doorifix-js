@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Sparkles, Zap, Wind, Snowflake, Box, Waves } from "lucide-react";
 
 const categories = [
@@ -11,15 +10,18 @@ const categories = [
   { label: "Dishwasher", icon: Waves },
 ];
 
-const CategoryPills = () => {
-  const [active, setActive] = useState("All");
+interface CategoryPillsProps {
+  active?: string;
+  onSelect?: (category: string) => void;
+}
 
+const CategoryPills = ({ active = "All", onSelect }: CategoryPillsProps) => {
   return (
     <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
       {categories.map((cat) => (
         <button
           key={cat.label}
-          onClick={() => setActive(cat.label)}
+          onClick={() => onSelect?.(cat.label)}
           className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
             active === cat.label
               ? "bg-foreground text-card shadow-md"
