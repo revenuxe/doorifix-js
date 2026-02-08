@@ -2,16 +2,12 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
-const serviceAreas = [
-  "Chennai", "Coimbatore", "Madurai", "Trichy", "Salem",
-  "Erode", "Tirunelveli", "Vellore", "Thanjavur", "Dindigul",
-];
 
 const Footer = () => {
   return (
     <footer className="bg-foreground text-card mt-8">
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-10 object-contain brightness-0 invert" />
@@ -55,17 +51,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Service Areas */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-base">Service Areas</h3>
-            <div className="flex flex-wrap gap-2">
-              {serviceAreas.map((area) => (
-                <span key={area} className="text-xs bg-card/10 text-card/80 rounded-full px-3 py-1">
-                  {area}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
         <div className="border-t border-card/15 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">

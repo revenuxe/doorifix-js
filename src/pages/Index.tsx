@@ -192,6 +192,46 @@ const Index = () => {
               </div>
             </div>
 
+            {/* CTA Section */}
+            <div className="relative rounded-3xl overflow-hidden bg-primary p-6 md:p-10">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+                      <Clock size={20} className="text-primary-foreground" />
+                    </div>
+                    <span className="text-sm font-medium text-primary-foreground/80">Quick Turnaround</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground leading-tight">
+                    Book in 10 Minutes,<br />Service Done in 1–2 Hours
+                  </h2>
+                  <p className="text-sm text-primary-foreground/70 max-w-md">
+                    Our certified technicians arrive at your doorstep fully equipped. No waiting, no hassle — just fast, reliable repairs.
+                  </p>
+                </div>
+                <div className="flex flex-col items-start md:items-center gap-3">
+                  <div className="flex items-center gap-4 bg-primary-foreground/10 backdrop-blur rounded-2xl px-5 py-3">
+                    <div className="text-center">
+                      <span className="text-2xl font-bold text-primary-foreground">10</span>
+                      <p className="text-[10px] text-primary-foreground/60 uppercase">Min</p>
+                    </div>
+                    <div className="w-px h-8 bg-primary-foreground/20" />
+                    <div className="text-center">
+                      <span className="text-2xl font-bold text-primary-foreground">1–2</span>
+                      <p className="text-[10px] text-primary-foreground/60 uppercase">Hours</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => navigate("/services")}
+                    className="bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full text-sm hover:opacity-90 transition-opacity flex items-center gap-2 w-full md:w-auto justify-center"
+                  >
+                    <ShoppingCart size={16} />
+                    Book Now
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* FAQ Section */}
             <div className="pb-8">
               <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Frequently Asked Questions</h2>
