@@ -16,7 +16,7 @@ const DesktopHeader = () => {
     <header className="hidden md:flex items-center justify-between px-8 lg:px-12 py-4 bg-card border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-card/90">
       {/* Logo */}
       <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-        <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-10 object-contain" />
+        <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-14 object-contain" />
       </div>
 
       {/* Nav Links */}
