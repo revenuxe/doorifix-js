@@ -38,7 +38,7 @@ const Index = () => {
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
               <div className="flex items-center gap-2">
-                <img src={arrowmindLogo} alt="Arrowmind" className="h-8 object-contain" />
+                <img src={arrowmindLogo} alt="Arrowmind" className="h-10 object-contain" />
               </div>
               <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
                 <Menu size={18} />
@@ -166,17 +166,42 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Desktop: Why Choose Us */}
-            <div className="hidden md:block pb-8">
-              <h2 className="font-semibold text-xl text-foreground mb-4">Why Choose Arrowmind?</h2>
-              <div className="grid grid-cols-3 gap-4">
+            {/* Expert Services SEO Cards */}
+            <div>
+              <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Expert Appliance Repair Near You</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
+                {[
+                  { title: "Washing Machine Repair", subtitle: "Expert Technician", emoji: "🔧", keywords: "drum repair, water leak fix, motor service" },
+                  { title: "Refrigerator Repair", subtitle: "Certified Expert", emoji: "❄️", keywords: "cooling issue, gas refill, compressor fix" },
+                  { title: "AC Repair & Service", subtitle: "Trained Specialist", emoji: "🌀", keywords: "gas charging, deep clean, installation" },
+                  { title: "Microwave Repair", subtitle: "Quick Fix Expert", emoji: "📡", keywords: "not heating, turntable, display fix" },
+                  { title: "Dryer Repair", subtitle: "Skilled Technician", emoji: "💨", keywords: "not drying, drum noise, heating issue" },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    onClick={() => navigate("/services")}
+                    className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30"
+                  >
+                    <span className="text-2xl mb-2 block">{item.emoji}</span>
+                    <h3 className="font-semibold text-sm text-foreground leading-tight">{item.title}</h3>
+                    <p className="text-xs text-primary font-medium mt-1">{item.subtitle}</p>
+                    <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{item.keywords}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Why Choose Us */}
+            <div className="pb-8">
+              <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Why Choose Arrowmind?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {[
                   { title: "Certified Technicians", desc: "All our technicians are trained, certified and background-checked.", icon: "✅" },
                   { title: "Affordable Pricing", desc: "Transparent pricing with no hidden charges. Save up to 40%.", icon: "💰" },
                   { title: "Warranty on Repairs", desc: "Not satisfied? We offer warranty on all repairs. 100% guarantee.", icon: "⭐" },
                 ].map((item) => (
-                  <div key={item.title} className="bg-card rounded-2xl p-6 border border-border hover:shadow-md transition-shadow">
-                    <span className="text-2xl mb-3 block">{item.icon}</span>
+                  <div key={item.title} className="bg-card rounded-2xl p-5 border border-border hover:shadow-md transition-shadow">
+                    <span className="text-2xl mb-2 block">{item.icon}</span>
                     <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
                   </div>
