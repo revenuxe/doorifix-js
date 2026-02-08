@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, Star, Clock, CheckCircle, MapPin } from "lucide-react";
+import { ChevronLeft, Star, Clock, CheckCircle, MapPin, Phone } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
@@ -104,11 +104,13 @@ const ServiceDetail = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-accent rounded-xl px-3 py-2 text-center">
-                <p className="text-[10px] text-muted-foreground">Up to</p>
-                <p className="text-lg font-bold text-foreground leading-none">30%</p>
-                <p className="text-[10px] text-muted-foreground">Off</p>
-              </div>
+              <a
+                href="tel:+919999999999"
+                className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0"
+              >
+                <Phone size={14} />
+                Call Now
+              </a>
             </div>
 
             {/* Quick Info */}
