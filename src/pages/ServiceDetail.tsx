@@ -4,18 +4,18 @@ import DesktopHeader from "@/components/DesktopHeader";
 import serviceMan from "@/assets/service-man.png";
 
 const tiers = [
-  { name: "Classic", price: "$2499", old: "$2799" },
-  { name: "Premium", price: "$2899", old: "$3099" },
-  { name: "Platinum", price: "$3099", old: "$3299" },
+  { name: "Basic", price: "$499", old: "$699" },
+  { name: "Standard", price: "$899", old: "$1099" },
+  { name: "Premium", price: "$1299", old: "$1499" },
 ];
 
 const includes = [
-  "Full home dusting & wiping",
-  "Floor mopping & vacuuming",
-  "Bathroom deep clean",
-  "Kitchen degreasing",
-  "Window & mirror cleaning",
-  "Trash removal & organizing",
+  "Full appliance inspection",
+  "Component testing & diagnosis",
+  "Repair or part replacement",
+  "Performance calibration",
+  "Safety check & testing",
+  "90-day service warranty",
 ];
 
 const ServiceDetail = () => {
@@ -80,14 +80,14 @@ const ServiceDetail = () => {
               <span>/</span>
               <button onClick={() => navigate("/services")} className="hover:text-foreground">Services</button>
               <span>/</span>
-              <span className="text-foreground">Home Deep Cleaning</span>
+              <span className="text-foreground">Appliance Repair</span>
             </div>
 
             {/* Title & Discount */}
             <div className="flex items-start justify-between">
               <div>
-                <h1 className="text-xl md:text-2xl font-bold text-foreground">Home Deep Cleaning</h1>
-                <p className="text-sm text-muted-foreground mt-0.5">thorough care, spotless home.</p>
+                <h1 className="text-xl md:text-2xl font-bold text-foreground">Appliance Repair</h1>
+                <p className="text-sm text-muted-foreground mt-0.5">Expert diagnosis & reliable repair.</p>
                 {/* Rating */}
                 <div className="flex items-center gap-3 mt-2">
                   <div className="flex items-center gap-1">
@@ -107,8 +107,8 @@ const ServiceDetail = () => {
 
             {/* Price */}
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-foreground">$2499</span>
-              <span className="text-sm text-muted-foreground line-through">$2799</span>
+              <span className="text-2xl font-bold text-foreground">$499</span>
+              <span className="text-sm text-muted-foreground line-through">$699</span>
             </div>
 
             {/* Tiers */}
@@ -139,7 +139,7 @@ const ServiceDetail = () => {
                 <img src={serviceMan} alt="Marcus Mane" className="w-11 h-11 rounded-full object-cover" />
                 <div>
                   <p className="font-semibold text-sm text-foreground">Marcus Mane</p>
-                  <p className="text-xs text-muted-foreground">Service Man • 5 yrs exp</p>
+                  <p className="text-xs text-muted-foreground">Technician • 5 yrs exp</p>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -156,7 +156,7 @@ const ServiceDetail = () => {
             <div className="flex gap-3">
               <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
                 <Clock size={16} className="text-primary mx-auto mb-1" />
-                <p className="text-xs font-medium text-foreground">2-3 Hours</p>
+                <p className="text-xs font-medium text-foreground">1-2 Hours</p>
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
               <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
@@ -173,12 +173,12 @@ const ServiceDetail = () => {
 
             {/* Description */}
             <div>
-              <h2 className="font-semibold text-base text-foreground mb-2">Home Description</h2>
+              <h2 className="font-semibold text-base text-foreground mb-2">Service Description</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Our Home Deep Cleaning service delivers a thorough,
-                spotless clean for every corner of your house. Enjoy a
-                fresh, hygienic, and comfortable living space with
-                professional care you can trust. Our trained experts use eco-friendly products and modern equipment.
+                Our expert technicians diagnose and repair all major appliance
+                brands. We use genuine parts and offer a 90-day warranty on
+                all repairs. Fast, reliable service at your doorstep with
+                transparent pricing and no hidden charges.
               </p>
             </div>
 
@@ -198,7 +198,7 @@ const ServiceDetail = () => {
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4 pt-4">
               <div className="bg-card border border-border rounded-full px-6 py-3">
-                <span className="font-bold text-foreground text-lg">$2499</span>
+                <span className="font-bold text-foreground text-lg">$499</span>
               </div>
               <button className="flex-1 bg-primary text-primary-foreground font-semibold py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
                 Book Now
@@ -211,7 +211,7 @@ const ServiceDetail = () => {
       {/* Mobile Bottom CTA */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 flex items-center gap-4 z-50">
         <div className="bg-card border border-border rounded-full px-5 py-3">
-          <span className="font-bold text-foreground">$2499</span>
+          <span className="font-bold text-foreground">$499</span>
         </div>
         <button className="flex-1 bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm">
           Book Now
