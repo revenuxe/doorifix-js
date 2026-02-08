@@ -3,18 +3,18 @@ import { useNavigate } from "react-router-dom";
 import ServiceCard from "@/components/ServiceCard";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
-import homeCleaning from "@/assets/home-cleaning.png";
-import bathroomCleaning from "@/assets/bathroom-cleaning.png";
-import carpetCleaning from "@/assets/carpet-cleaning.png";
-import kitchenCleaning from "@/assets/kitchen-cleaning.png";
+import washingMachine from "@/assets/washing-machine.png";
+import refrigerator from "@/assets/refrigerator.png";
+import acUnit from "@/assets/ac-unit.png";
+import microwave from "@/assets/microwave.png";
+import dryer from "@/assets/dryer.png";
 
 const services = [
-  { id: 1, title: "Home Cleaning", description: "Get 20% Off Our Best Services Today", image: homeCleaning, color: "pink" as const, rating: 4.9, duration: "2-3 hrs" },
-  { id: 2, title: "Bathroom Cleaning", description: "Sparkling bathrooms, enjoy 20% off today!", image: bathroomCleaning, color: "green" as const, rating: 4.8, duration: "1-2 hrs" },
-  { id: 3, title: "Sofa Carpet Clean", description: "Fresh sofas, carpets— get 15% off!", image: carpetCleaning, color: "yellow" as const, rating: 4.7, duration: "2-4 hrs" },
-  { id: 4, title: "Kitchen Cleaning", description: "Spotless kitchens, enjoy 10% off!", image: kitchenCleaning, color: "blue" as const, rating: 4.9, duration: "1-2 hrs" },
-  { id: 5, title: "Deep Home Cleaning", description: "Complete deep clean for your entire home", image: homeCleaning, color: "pink" as const, rating: 4.9, duration: "4-6 hrs" },
-  { id: 6, title: "Office Cleaning", description: "Professional office & workspace cleaning", image: kitchenCleaning, color: "green" as const, rating: 4.8, duration: "3-5 hrs" },
+  { id: 1, title: "Washing Machine", description: "Expert repair & servicing, 20% off today!", image: washingMachine, color: "blue" as const, rating: 4.9, duration: "1-2 hrs" },
+  { id: 2, title: "Refrigerator", description: "Cooling issues? Get 20% off repairs today!", image: refrigerator, color: "green" as const, rating: 4.8, duration: "1-3 hrs" },
+  { id: 3, title: "AC Service", description: "AC repair & gas refill — 15% off!", image: acUnit, color: "yellow" as const, rating: 4.7, duration: "1-2 hrs" },
+  { id: 4, title: "Microwave", description: "Microwave not heating? 10% off repairs!", image: microwave, color: "pink" as const, rating: 4.9, duration: "1 hr" },
+  { id: 5, title: "Dryer", description: "Dryer not drying? Complete repair service", image: dryer, color: "blue" as const, rating: 4.9, duration: "1-2 hrs" },
 ];
 
 const Services = () => {
@@ -33,7 +33,7 @@ const Services = () => {
           >
             <ChevronLeft size={18} />
           </button>
-          <h1 className="font-semibold text-lg text-foreground">Cleaning</h1>
+          <h1 className="font-semibold text-lg text-foreground">Services</h1>
           <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
             <ShoppingCart size={16} />
           </button>
@@ -42,8 +42,8 @@ const Services = () => {
         {/* Desktop Title & Search */}
         <div className="hidden md:flex items-center justify-between px-8 lg:px-12 pt-8 pb-2">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Cleaning Services</h1>
-            <p className="text-muted-foreground mt-1">Browse our professional cleaning services</p>
+            <h1 className="text-3xl font-bold text-foreground">Appliance Services</h1>
+            <p className="text-muted-foreground mt-1">Browse our professional repair & servicing</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 bg-card rounded-full px-4 py-2.5 border border-border w-72">

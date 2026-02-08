@@ -6,22 +6,23 @@ import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import cleanerHero from "@/assets/cleaner-hero.png";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
-import homeCleaning from "@/assets/home-cleaning.png";
-import bathroomCleaning from "@/assets/bathroom-cleaning.png";
-import carpetCleaning from "@/assets/carpet-cleaning.png";
-import kitchenCleaning from "@/assets/kitchen-cleaning.png";
+import washingMachine from "@/assets/washing-machine.png";
+import refrigerator from "@/assets/refrigerator.png";
+import acUnit from "@/assets/ac-unit.png";
+import microwave from "@/assets/microwave.png";
+import dryer from "@/assets/dryer.png";
 
 const featuredServices = [
-  { id: 1, title: "Home Cleaning", description: "Get 20% Off Our Best Services Today", image: homeCleaning, color: "pink" as const },
-  { id: 2, title: "Bathroom Cleaning", description: "Sparkling bathrooms, enjoy 20% off today!", image: bathroomCleaning, color: "green" as const },
-  { id: 3, title: "Sofa Carpet Clean", description: "Fresh sofas, carpets— get 15% off!", image: carpetCleaning, color: "yellow" as const },
-  { id: 4, title: "Kitchen Cleaning", description: "Spotless kitchens, enjoy 10% off!", image: kitchenCleaning, color: "blue" as const },
+  { id: 1, title: "Washing Machine", description: "Expert repair & servicing, 20% off today!", image: washingMachine, color: "blue" as const },
+  { id: 2, title: "Refrigerator", description: "Cooling issues? Get 20% off repairs today!", image: refrigerator, color: "green" as const },
+  { id: 3, title: "AC Service", description: "Stay cool — AC repair & gas refill, 15% off!", image: acUnit, color: "yellow" as const },
+  { id: 4, title: "Microwave", description: "Microwave not heating? 10% off repairs!", image: microwave, color: "pink" as const },
 ];
 
 const stats = [
   { icon: Users, value: "10K+", label: "Happy Clients" },
-  { icon: Award, value: "500+", label: "Expert Cleaners" },
-  { icon: CheckCircle, value: "15K+", label: "Jobs Done" },
+  { icon: Award, value: "500+", label: "Expert Technicians" },
+  { icon: CheckCircle, value: "15K+", label: "Repairs Done" },
   { icon: Star, value: "4.9", label: "Avg Rating" },
 ];
 
@@ -51,11 +52,11 @@ const Index = () => {
             <div className="md:flex md:items-center md:justify-between md:gap-8">
               <div>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground italic">
-                  Smart Home,<br />
-                  Smooth Services
+                  Smart Repairs,<br />
+                  Trusted Service
                 </h1>
                 <p className="hidden md:block text-muted-foreground mt-3 text-lg max-w-lg">
-                  Professional cleaning & home services at your fingertips. Book trusted experts with just a tap.
+                  Professional appliance repair & servicing at your fingertips. Book trusted technicians with just a tap.
                 </p>
               </div>
 
@@ -113,13 +114,13 @@ const Index = () => {
               <div className="relative z-10 space-y-2 max-w-sm">
                 <div className="flex items-center gap-1 text-muted-foreground">
                   <Sparkle />
-                  <span className="text-xs">Fresh, Fast Cleaning</span>
+                  <span className="text-xs">Fast, Reliable Repairs</span>
                 </div>
                 <h2 className="text-xl md:text-3xl font-bold text-foreground leading-snug">
-                  Quick Home<br />Cleaning Service
+                  Quick Appliance<br />Repair Service
                 </h2>
                 <p className="hidden md:block text-sm text-muted-foreground max-w-xs">
-                  Professional cleaning services for your home. Get 40% off on your first booking!
+                  Professional appliance repair services at your doorstep. Get 40% off on your first booking!
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button
@@ -172,9 +173,9 @@ const Index = () => {
               <h2 className="font-semibold text-xl text-foreground mb-4">Why Choose Arrowmind?</h2>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { title: "Verified Professionals", desc: "All our service providers are background-checked and trained.", icon: "✅" },
+                  { title: "Certified Technicians", desc: "All our technicians are trained, certified and background-checked.", icon: "✅" },
                   { title: "Affordable Pricing", desc: "Transparent pricing with no hidden charges. Save up to 40%.", icon: "💰" },
-                  { title: "Satisfaction Guaranteed", desc: "Not happy? We'll redo it for free. 100% satisfaction guarantee.", icon: "⭐" },
+                  { title: "Warranty on Repairs", desc: "Not satisfied? We offer warranty on all repairs. 100% guarantee.", icon: "⭐" },
                 ].map((item) => (
                   <div key={item.title} className="bg-card rounded-2xl p-6 border border-border hover:shadow-md transition-shadow">
                     <span className="text-2xl mb-3 block">{item.icon}</span>
