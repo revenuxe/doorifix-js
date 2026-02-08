@@ -1,6 +1,7 @@
 import { Search, MapPin, ShoppingCart, Bell, LogIn, Home, Briefcase, ChevronRight } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import cleanerHero from "@/assets/cleaner-hero.png";
+import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -16,10 +17,7 @@ const DesktopHeader = () => {
     <header className="hidden md:flex items-center justify-between px-8 lg:px-12 py-4 bg-card border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-card/90">
       {/* Logo */}
       <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-        <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
-          <Home size={18} className="text-primary-foreground" />
-        </div>
-        <span className="font-bold text-lg text-foreground">CleanPro</span>
+        <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-10 object-contain" />
       </div>
 
       {/* Nav Links */}
