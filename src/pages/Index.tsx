@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu } from "lucide-react";
+import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
@@ -68,7 +68,7 @@ const Index = () => {
 
               {/* Desktop Stats */}
               <div className="hidden md:grid grid-cols-2 gap-4">
-                {stats.map(stat => {})}
+                {stats.map(stat => <div key={stat.label} className="bg-card rounded-2xl p-4 border border-border text-center"><stat.icon size={20} className="mx-auto text-primary mb-1" /><span className="text-xl font-bold text-foreground">{stat.value}</span><p className="text-xs text-muted-foreground">{stat.label}</p></div>)}
               </div>
             </div>
 
@@ -150,31 +150,40 @@ const Index = () => {
             <div>
               <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Expert Appliance Repair Near You</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
-                {[{
+              {[{
                 title: "Washing Machine Repair",
                 subtitle: "Expert Technician",
-                keywords: "drum repair, water leak fix, motor service"
+                keywords: "drum repair, water leak fix, motor service",
+                icon: <WashingMachine size={24} className="text-primary" />
               }, {
                 title: "Refrigerator Repair",
                 subtitle: "Certified Expert",
-                keywords: "cooling issue, gas refill, compressor fix"
+                keywords: "cooling issue, gas refill, compressor fix",
+                icon: <Refrigerator size={24} className="text-primary" />
               }, {
                 title: "AC Repair & Service",
                 subtitle: "Trained Specialist",
-                keywords: "gas charging, deep clean, installation"
+                keywords: "gas charging, deep clean, installation",
+                icon: <AirVent size={24} className="text-primary" />
               }, {
                 title: "Microwave Repair",
                 subtitle: "Quick Fix Expert",
-                keywords: "not heating, turntable, display fix"
+                keywords: "not heating, turntable, display fix",
+                icon: <Microwave size={24} className="text-primary" />
               }, {
                 title: "Dryer Repair",
                 subtitle: "Skilled Technician",
-                keywords: "not drying, drum noise, heating issue"
+                keywords: "not drying, drum noise, heating issue",
+                icon: <Fan size={24} className="text-primary" />
               }, {
                 title: "Dishwasher Repair",
                 subtitle: "Certified Technician",
-                keywords: "not draining, spray arm, leak fix"
+                keywords: "not draining, spray arm, leak fix",
+                icon: <Droplets size={24} className="text-primary" />
               }].map(item => <div key={item.title} onClick={() => navigate("/services")} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+                      {item.icon}
+                    </div>
                     <h3 className="font-semibold text-sm text-foreground leading-tight">{item.title}</h3>
                     <p className="text-xs text-primary font-medium mt-1">{item.subtitle}</p>
                     <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{item.keywords}</p>
