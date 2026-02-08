@@ -4,6 +4,7 @@ import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
+import Footer from "@/components/Footer";
 import cleanerHero from "@/assets/cleaner-hero.png";
 import repairHero from "@/assets/repair-hero.png";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
@@ -217,6 +218,7 @@ const Index = () => {
         </div>
       </div>
 
+      <Footer />
       <BottomNav />
     </div>
   );
