@@ -15,24 +15,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 10%;
 
-    --primary: 265 45% 55%;
+    --primary: 207 70% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 240 10% 10%;
+    --secondary: 200 50% 95%;
+    --secondary-foreground: 210 60% 25%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 210 15% 46%;
 
-    --accent: 265 30% 94%;
-    --accent-foreground: 265 45% 35%;
+    --accent: 200 45% 92%;
+    --accent-foreground: 207 70% 30%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 15% 90%;
     --input: 220 15% 90%;
-    --ring: 265 45% 55%;
+    --ring: 207 70% 40%;
 
     --radius: 1rem;
 
@@ -43,19 +43,19 @@
     --card-blue: 195 70% 90%;
 
     /* Pill / badge */
-    --pill-bg: 220 15% 94%;
-    --pill-active-bg: 240 10% 10%;
+    --pill-bg: 210 20% 94%;
+    --pill-active-bg: 210 60% 25%;
     --pill-active-fg: 0 0% 100%;
 
     /* Bottom nav */
-    --nav-active: 265 45% 55%;
-    --nav-inactive: 220 10% 60%;
+    --nav-active: 207 70% 40%;
+    --nav-inactive: 210 15% 60%;
 
     /* Hero pink for detail page */
-    --hero-pink: 310 80% 85%;
+    --hero-pink: 200 45% 85%;
 
     /* Book button */
-    --book-btn: 265 45% 55%;
+    --book-btn: 207 70% 40%;
     --book-btn-fg: 0 0% 100%;
 
     --sidebar-background: 0 0% 98%;

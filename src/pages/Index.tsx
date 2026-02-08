@@ -179,7 +179,7 @@ const Index = () => {
 
             {/* Desktop: Why Choose Us */}
             <div className="hidden md:block pb-8">
-              <h2 className="font-semibold text-xl text-foreground mb-4">Why Choose CleanPro?</h2>
+              <h2 className="font-semibold text-xl text-foreground mb-4">Why Choose Arrowmind?</h2>
               <div className="grid grid-cols-3 gap-4">
                 {[
                   { title: "Verified Professionals", desc: "All our service providers are background-checked and trained.", icon: "✅" },
