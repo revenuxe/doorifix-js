@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CategoryPills from "@/components/CategoryPills";
@@ -26,6 +27,7 @@ const stats = [
 
 const Index = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -75,21 +77,35 @@ const Index = () => {
             </div>
 
             {/* Search - mobile */}
-            <div className="flex items-center gap-3 bg-card rounded-2xl px-4 py-3 border border-border md:hidden">
+            <form
+              className="flex items-center gap-3 bg-card rounded-2xl px-4 py-3 border border-border md:hidden"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchQuery.trim()) navigate(`/services?q=${encodeURIComponent(searchQuery.trim())}`);
+              }}
+            >
               <Search size={18} className="text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="bg-transparent text-sm outline-none flex-1 text-foreground placeholder:text-muted-foreground"
               />
-            </div>
+            </form>
 
             {/* Categories */}
             <div>
               <div className="hidden md:flex items-center justify-between mb-3">
                 <h2 className="font-semibold text-lg text-foreground">Categories</h2>
               </div>
-              <CategoryPills />
+              <CategoryPills
+                active="All"
+                onSelect={(cat) => {
+                  if (cat === "All") navigate("/services");
+                  else navigate(`/services?category=${encodeURIComponent(cat)}`);
+                }}
+              />
             </div>
 
             {/* Badges - mobile */}
