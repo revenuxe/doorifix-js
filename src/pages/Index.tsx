@@ -171,23 +171,45 @@ const Index = () => {
               <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Expert Appliance Repair Near You</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
                 {[
-                  { title: "Washing Machine Repair", subtitle: "Expert Technician", emoji: "🔧", keywords: "drum repair, water leak fix, motor service" },
-                  { title: "Refrigerator Repair", subtitle: "Certified Expert", emoji: "❄️", keywords: "cooling issue, gas refill, compressor fix" },
-                  { title: "AC Repair & Service", subtitle: "Trained Specialist", emoji: "🌀", keywords: "gas charging, deep clean, installation" },
-                  { title: "Microwave Repair", subtitle: "Quick Fix Expert", emoji: "📡", keywords: "not heating, turntable, display fix" },
-                  { title: "Dryer Repair", subtitle: "Skilled Technician", emoji: "💨", keywords: "not drying, drum noise, heating issue" },
-                  { title: "Dishwasher Repair", subtitle: "Certified Technician", emoji: "🍽️", keywords: "not draining, spray arm, leak fix" },
+                  { title: "Washing Machine Repair", subtitle: "Expert Technician", keywords: "drum repair, water leak fix, motor service" },
+                  { title: "Refrigerator Repair", subtitle: "Certified Expert", keywords: "cooling issue, gas refill, compressor fix" },
+                  { title: "AC Repair & Service", subtitle: "Trained Specialist", keywords: "gas charging, deep clean, installation" },
+                  { title: "Microwave Repair", subtitle: "Quick Fix Expert", keywords: "not heating, turntable, display fix" },
+                  { title: "Dryer Repair", subtitle: "Skilled Technician", keywords: "not drying, drum noise, heating issue" },
+                  { title: "Dishwasher Repair", subtitle: "Certified Technician", keywords: "not draining, spray arm, leak fix" },
                 ].map((item) => (
                   <div
                     key={item.title}
                     onClick={() => navigate("/services")}
                     className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30"
                   >
-                    <span className="text-2xl mb-2 block">{item.emoji}</span>
                     <h3 className="font-semibold text-sm text-foreground leading-tight">{item.title}</h3>
                     <p className="text-xs text-primary font-medium mt-1">{item.subtitle}</p>
                     <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{item.keywords}</p>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="pb-8">
+              <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Frequently Asked Questions</h2>
+              <div className="space-y-3">
+                {[
+                  { q: "How long does an appliance repair take?", a: "Most repairs are completed within 1-3 hours depending on the appliance and issue. Our technicians carry common spare parts to ensure quick fixes." },
+                  { q: "Do you provide warranty on repairs?", a: "Yes, we offer a 90-day warranty on all repairs and replaced parts. If the same issue reoccurs, we'll fix it free of charge." },
+                  { q: "What brands do you service?", a: "We service all major brands including Samsung, LG, Whirlpool, Bosch, IFB, Haier, Godrej, Voltas, Daikin, and many more." },
+                  { q: "How much does a typical repair cost?", a: "Repair costs vary by appliance and issue. We provide a free diagnosis and transparent quote before starting any work — no hidden charges." },
+                  { q: "Do you offer doorstep service?", a: "Yes, all our repairs are done at your doorstep. Our certified technicians come fully equipped with tools and common spare parts." },
+                  { q: "How do I book a service?", a: "You can book through our app by tapping the calendar icon, calling us directly, or filling out the booking form on any service page." },
+                ].map((faq) => (
+                  <details key={faq.q} className="bg-card rounded-2xl border border-border group">
+                    <summary className="px-4 py-3 cursor-pointer font-medium text-sm text-foreground list-none flex items-center justify-between">
+                      {faq.q}
+                      <span className="text-muted-foreground text-lg group-open:rotate-45 transition-transform">+</span>
+                    </summary>
+                    <p className="px-4 pb-3 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                  </details>
                 ))}
               </div>
             </div>

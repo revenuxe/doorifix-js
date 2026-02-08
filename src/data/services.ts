@@ -72,4 +72,15 @@ export const services: ServiceData[] = [
     detailDescription: "Professional dryer repair service covering heating element failures, drum issues, ventilation problems, and more. Fast and reliable service at your doorstep.",
     includes: ["Heating element check", "Drum & belt inspection", "Vent cleaning", "Thermostat repair", "Motor diagnosis", "90-day service warranty"],
   },
+  {
+    id: 6,
+    title: "Dishwasher",
+    description: "Dishwasher not draining? Expert repair service!",
+    image: washingMachine,
+    color: "green",
+    rating: 4.8,
+    duration: "1-2 hrs",
+    detailDescription: "Professional dishwasher repair for all brands. We fix drainage issues, spray arm problems, leaks, and electrical faults with genuine parts and a 90-day warranty.",
+    includes: ["Drainage system check", "Spray arm repair", "Door latch fix", "Pump & motor diagnosis", "Leak detection & repair", "90-day service warranty"],
+  },
 ];
