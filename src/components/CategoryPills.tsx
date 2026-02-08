@@ -28,7 +28,6 @@ const CategoryPills = ({ active = "All", onSelect }: CategoryPillsProps) => {
               : "bg-muted text-foreground hover:bg-accent"
           }`}
         >
-          <cat.icon size={14} />
           {cat.label}
         </button>
       ))}
