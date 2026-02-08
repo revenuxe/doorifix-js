@@ -5,6 +5,7 @@ import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import cleanerHero from "@/assets/cleaner-hero.png";
+import repairHero from "@/assets/repair-hero.png";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 import washingMachine from "@/assets/washing-machine.png";
 import refrigerator from "@/assets/refrigerator.png";
@@ -144,9 +145,9 @@ const Index = () => {
                 </div>
               </div>
               <img
-                src={cleanerHero}
-                alt="Cleaner"
-                className="absolute bottom-0 right-0 md:right-8 w-[200px] md:w-[280px] lg:w-[320px] h-[260px] md:h-[320px] object-cover object-top"
+                src={repairHero}
+                alt="Technician repairing washing machine"
+                className="absolute bottom-0 right-0 md:right-8 w-[200px] md:w-[280px] lg:w-[320px] h-[260px] md:h-[320px] object-cover object-top rounded-2xl"
               />
             </div>
 
