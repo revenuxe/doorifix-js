@@ -8,6 +8,7 @@ const categories = [
   { label: "AC", icon: Wind },
   { label: "Microwave", icon: Box },
   { label: "Dryer", icon: Zap },
+  { label: "Dishwasher", icon: Waves },
 ];
 
 const CategoryPills = () => {

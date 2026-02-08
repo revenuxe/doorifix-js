@@ -10,6 +10,7 @@ const applianceTypes = [
   "AC",
   "Microwave",
   "Dryer",
+  "Dishwasher",
 ];
 
 const warrantyTypes = [
