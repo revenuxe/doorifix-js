@@ -3,6 +3,7 @@ import refrigerator from "@/assets/refrigerator.png";
 import acUnit from "@/assets/ac-unit.png";
 import microwave from "@/assets/microwave.png";
 import dryer from "@/assets/dryer.png";
+import dishwasher from "@/assets/dishwasher.png";
 
 export interface ServiceData {
   id: number;
@@ -20,7 +21,7 @@ export const services: ServiceData[] = [
   {
     id: 1,
     title: "Washing Machine",
-    description: "Expert repair & servicing, 20% off today!",
+    description: "Expert washing machine repair & servicing",
     image: washingMachine,
     color: "blue",
     rating: 4.9,
@@ -31,7 +32,7 @@ export const services: ServiceData[] = [
   {
     id: 2,
     title: "Refrigerator",
-    description: "Cooling issues? Get 20% off repairs today!",
+    description: "Cooling issues? Expert refrigerator repair",
     image: refrigerator,
     color: "green",
     rating: 4.8,
@@ -42,7 +43,7 @@ export const services: ServiceData[] = [
   {
     id: 3,
     title: "AC Service",
-    description: "AC repair & gas refill — 15% off!",
+    description: "AC repair, gas refill & deep cleaning",
     image: acUnit,
     color: "yellow",
     rating: 4.7,
@@ -53,7 +54,7 @@ export const services: ServiceData[] = [
   {
     id: 4,
     title: "Microwave",
-    description: "Microwave not heating? 10% off repairs!",
+    description: "Microwave not heating? Quick expert repair",
     image: microwave,
     color: "pink",
     rating: 4.9,
@@ -76,7 +77,7 @@ export const services: ServiceData[] = [
     id: 6,
     title: "Dishwasher",
     description: "Dishwasher not draining? Expert repair service!",
-    image: washingMachine,
+    image: dishwasher,
     color: "green",
     rating: 4.8,
     duration: "1-2 hrs",
