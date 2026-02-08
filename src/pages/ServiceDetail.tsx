@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { ChevronLeft, Star, Clock, CheckCircle, MapPin } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
+import BookingForm from "@/components/BookingForm";
 import { services } from "@/data/services";
 
 const ServiceDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const service = services.find((s) => s.id === Number(id));
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   if (!service) {
     return (
@@ -16,38 +19,50 @@ const ServiceDetail = () => {
     );
   }
 
+  // Map service title to the appliance type used in the booking form
+  const applianceMap: Record<string, string> = {
+    "Washing Machine": "Washing Machine",
+    "Refrigerator": "Refrigerator",
+    "AC Service": "AC",
+    "Microwave": "Microwave",
+    "Dryer": "Dryer",
+  };
+  const defaultAppliance = applianceMap[service.title] || service.title;
+
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-5xl mx-auto flex-1 w-full">
-        {/* Mobile Hero */}
-        <div className="md:hidden relative bg-hero-pink rounded-b-[2rem] overflow-hidden px-5 pt-6 pb-8 min-h-[280px]">
-          <div className="flex items-center justify-between relative z-10">
+        {/* Mobile Hero - full image with dark overlay */}
+        <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
+          <img
+            src={service.image}
+            alt={service.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative z-10 px-5 pt-6 pb-8">
             <button
               onClick={() => navigate(-1)}
-              className="w-9 h-9 rounded-full bg-card/60 backdrop-blur flex items-center justify-center text-foreground"
+              className="w-9 h-9 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
             >
               <ChevronLeft size={18} />
             </button>
           </div>
-          <img
-            src={service.image}
-            alt={service.title}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[200px] object-contain"
-          />
         </div>
 
         {/* Desktop Layout */}
         <div className="md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:px-0 md:pt-8">
-          {/* Desktop Hero Image */}
+          {/* Desktop Hero Image - full with overlay */}
           <div className="hidden md:block">
-            <div className="bg-hero-pink rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px] flex items-center justify-center">
+            <div className="rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px]">
               <img
                 src={service.image}
                 alt={service.title}
-                className="h-[300px] lg:h-[380px] object-contain"
+                className="absolute inset-0 w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-black/30 rounded-3xl" />
             </div>
 
             {/* What's Included - Desktop */}
@@ -138,7 +153,10 @@ const ServiceDetail = () => {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex pt-4">
-              <button className="flex-1 bg-primary text-primary-foreground font-semibold py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
+              <button
+                onClick={() => setBookingOpen(true)}
+                className="flex-1 bg-primary text-primary-foreground font-semibold py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
+              >
                 Book Now
               </button>
             </div>
@@ -148,10 +166,15 @@ const ServiceDetail = () => {
 
       {/* Mobile Bottom CTA */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 z-50">
-        <button className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm">
+        <button
+          onClick={() => setBookingOpen(true)}
+          className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm"
+        >
           Book Now
         </button>
       </div>
+
+      <BookingForm open={bookingOpen} onOpenChange={setBookingOpen} defaultAppliance={defaultAppliance} />
     </div>
   );
 };
