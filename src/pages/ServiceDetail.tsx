@@ -1,19 +1,20 @@
 import { ChevronLeft, Star, Clock, CheckCircle, MapPin } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
-import serviceMan from "@/assets/service-man.png";
-
-const includes = [
-  "Full appliance inspection",
-  "Component testing & diagnosis",
-  "Repair or part replacement",
-  "Performance calibration",
-  "Safety check & testing",
-  "90-day service warranty",
-];
+import { services } from "@/data/services";
 
 const ServiceDetail = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const service = services.find((s) => s.id === Number(id));
+
+  if (!service) {
+    return (
+      <div className="bg-background min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Service not found.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -31,9 +32,9 @@ const ServiceDetail = () => {
             </button>
           </div>
           <img
-            src={serviceMan}
-            alt="Service Man"
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[240px] object-contain"
+            src={service.image}
+            alt={service.title}
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[200px] object-contain"
           />
         </div>
 
@@ -41,11 +42,11 @@ const ServiceDetail = () => {
         <div className="md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:px-0 md:pt-8">
           {/* Desktop Hero Image */}
           <div className="hidden md:block">
-            <div className="bg-hero-pink rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px]">
+            <div className="bg-hero-pink rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px] flex items-center justify-center">
               <img
-                src={serviceMan}
-                alt="Service Man"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[380px] lg:h-[460px] object-contain"
+                src={service.image}
+                alt={service.title}
+                className="h-[300px] lg:h-[380px] object-contain"
               />
             </div>
 
@@ -53,7 +54,7 @@ const ServiceDetail = () => {
             <div className="mt-6 bg-card rounded-2xl p-6 border border-border">
               <h2 className="font-semibold text-base text-foreground mb-4">What's Included</h2>
               <div className="grid grid-cols-2 gap-3">
-                {includes.map((item) => (
+                {service.includes.map((item) => (
                   <div key={item} className="flex items-start gap-2">
                     <CheckCircle size={16} className="text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">{item}</span>
@@ -71,21 +72,20 @@ const ServiceDetail = () => {
               <span>/</span>
               <button onClick={() => navigate("/services")} className="hover:text-foreground">Services</button>
               <span>/</span>
-              <span className="text-foreground">Appliance Repair</span>
+              <span className="text-foreground">{service.title}</span>
             </div>
 
             {/* Title & Discount */}
             <div className="flex items-start justify-between">
               <div>
-                <h1 className="text-xl md:text-2xl font-bold text-foreground">Appliance Repair</h1>
-                <p className="text-sm text-muted-foreground mt-0.5">Expert diagnosis & reliable repair.</p>
-                {/* Rating */}
+                <h1 className="text-xl md:text-2xl font-bold text-foreground">{service.title}</h1>
+                <p className="text-sm text-muted-foreground mt-0.5">{service.description}</p>
                 <div className="flex items-center gap-3 mt-2">
                   <div className="flex items-center gap-1">
                     {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={14} className={s <= 4 ? "text-amber-500 fill-amber-500" : "text-amber-500"} />
+                      <Star key={s} size={14} className={s <= Math.floor(service.rating) ? "text-amber-500 fill-amber-500" : "text-amber-500"} />
                     ))}
-                    <span className="text-xs text-muted-foreground ml-1">4.8 (256 reviews)</span>
+                    <span className="text-xs text-muted-foreground ml-1">{service.rating} (256 reviews)</span>
                   </div>
                 </div>
               </div>
@@ -96,12 +96,11 @@ const ServiceDetail = () => {
               </div>
             </div>
 
-
             {/* Quick Info */}
             <div className="flex gap-3">
               <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
                 <Clock size={16} className="text-primary mx-auto mb-1" />
-                <p className="text-xs font-medium text-foreground">1-2 Hours</p>
+                <p className="text-xs font-medium text-foreground">{service.duration}</p>
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
               <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
@@ -111,7 +110,7 @@ const ServiceDetail = () => {
               </div>
               <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
                 <Star size={16} className="text-primary mx-auto mb-1" />
-                <p className="text-xs font-medium text-foreground">4.8</p>
+                <p className="text-xs font-medium text-foreground">{service.rating}</p>
                 <p className="text-[10px] text-muted-foreground">Rating</p>
               </div>
             </div>
@@ -120,10 +119,7 @@ const ServiceDetail = () => {
             <div>
               <h2 className="font-semibold text-base text-foreground mb-2">Service Description</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Our expert technicians diagnose and repair all major appliance
-                brands. We use genuine parts and offer a 90-day warranty on
-                all repairs. Fast, reliable service at your doorstep with
-                transparent pricing and no hidden charges.
+                {service.detailDescription}
               </p>
             </div>
 
@@ -131,7 +127,7 @@ const ServiceDetail = () => {
             <div className="md:hidden">
               <h2 className="font-semibold text-base text-foreground mb-3">What's Included</h2>
               <div className="space-y-2">
-                {includes.map((item) => (
+                {service.includes.map((item) => (
                   <div key={item} className="flex items-center gap-2">
                     <CheckCircle size={14} className="text-primary flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">{item}</span>

@@ -12,13 +12,9 @@ import refrigerator from "@/assets/refrigerator.png";
 import acUnit from "@/assets/ac-unit.png";
 import microwave from "@/assets/microwave.png";
 import dryer from "@/assets/dryer.png";
+import { services } from "@/data/services";
 
-const featuredServices = [
-  { id: 1, title: "Washing Machine", description: "Expert repair & servicing, 20% off today!", image: washingMachine, color: "blue" as const },
-  { id: 2, title: "Refrigerator", description: "Cooling issues? Get 20% off repairs today!", image: refrigerator, color: "green" as const },
-  { id: 3, title: "AC Service", description: "Stay cool — AC repair & gas refill, 15% off!", image: acUnit, color: "yellow" as const },
-  { id: 4, title: "Microwave", description: "Microwave not heating? 10% off repairs!", image: microwave, color: "pink" as const },
-];
+const featuredServices = services.slice(0, 4);
 
 const stats = [
   { icon: Users, value: "10K+", label: "Happy Clients" },
@@ -109,23 +105,29 @@ const Index = () => {
 
             {/* Hero Card */}
             <div
-              className="relative bg-accent rounded-3xl overflow-hidden p-5 md:p-8 min-h-[280px] md:min-h-[320px] cursor-pointer"
+              className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer"
               onClick={() => navigate("/services")}
             >
-              <div className="relative z-10 space-y-2 max-w-sm">
-                <div className="flex items-center gap-1 text-muted-foreground">
+              <img
+                src={repairHero}
+                alt="Technician repairing washing machine"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
+                <div className="flex items-center gap-1 text-white/70">
                   <Sparkle />
                   <span className="text-xs">Fast, Reliable Repairs</span>
                 </div>
-                <h2 className="text-xl md:text-3xl font-bold text-foreground leading-snug">
+                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
                   Quick Appliance<br />Repair Service
                 </h2>
-                <p className="hidden md:block text-sm text-muted-foreground max-w-xs">
+                <p className="hidden md:block text-sm text-white/70 max-w-xs">
                   Professional appliance repair services at your doorstep. Get 40% off on your first booking!
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button
-                    className="bg-foreground text-card text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity"
+                    className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate("/services");
@@ -134,21 +136,16 @@ const Index = () => {
                     <ShoppingCart size={14} />
                     Book Now
                   </button>
-                  <div className="hidden md:flex items-center gap-2 bg-card/60 backdrop-blur rounded-full px-4 py-2">
-                    <Clock size={14} className="text-muted-foreground" />
-                    <span className="text-xs font-medium text-foreground">24/7 Support</span>
+                  <div className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2">
+                    <Clock size={14} className="text-white/70" />
+                    <span className="text-xs font-medium text-white">24/7 Support</span>
                   </div>
-                  <div className="hidden md:block bg-card/60 backdrop-blur rounded-full px-4 py-2">
-                    <span className="text-lg font-bold text-foreground">40%</span>
-                    <span className="text-xs text-muted-foreground ml-1">Off</span>
+                  <div className="hidden md:block bg-white/20 backdrop-blur rounded-full px-4 py-2">
+                    <span className="text-lg font-bold text-white">40%</span>
+                    <span className="text-xs text-white/70 ml-1">Off</span>
                   </div>
                 </div>
               </div>
-              <img
-                src={repairHero}
-                alt="Technician repairing washing machine"
-                className="absolute bottom-0 right-0 md:right-8 w-[200px] md:w-[280px] lg:w-[320px] h-[260px] md:h-[320px] object-cover object-top rounded-2xl"
-              />
             </div>
 
             {/* Featured Services Section */}
