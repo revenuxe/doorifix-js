@@ -1,13 +1,7 @@
-import { ChevronLeft, ShoppingCart, Phone, MessageCircle, Star, Clock, CheckCircle, MapPin } from "lucide-react";
+import { ChevronLeft, Star, Clock, CheckCircle, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import serviceMan from "@/assets/service-man.png";
-
-const tiers = [
-  { name: "Basic", price: "$499", old: "$699" },
-  { name: "Standard", price: "$899", old: "$1099" },
-  { name: "Premium", price: "$1299", old: "$1499" },
-];
 
 const includes = [
   "Full appliance inspection",
@@ -34,9 +28,6 @@ const ServiceDetail = () => {
               className="w-9 h-9 rounded-full bg-card/60 backdrop-blur flex items-center justify-center text-foreground"
             >
               <ChevronLeft size={18} />
-            </button>
-            <button className="w-9 h-9 rounded-full bg-card/60 backdrop-blur flex items-center justify-center text-foreground">
-              <ShoppingCart size={16} />
             </button>
           </div>
           <img
@@ -105,52 +96,6 @@ const ServiceDetail = () => {
               </div>
             </div>
 
-            {/* Price */}
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-foreground">$499</span>
-              <span className="text-sm text-muted-foreground line-through">$699</span>
-            </div>
-
-            {/* Tiers */}
-            <div className="flex gap-3">
-              {tiers.map((tier, i) => (
-                <div
-                  key={tier.name}
-                  className={`flex-1 rounded-2xl p-3 text-center border cursor-pointer transition-all hover:shadow-md ${
-                    i === 0
-                      ? "bg-foreground text-card border-foreground"
-                      : "bg-card text-foreground border-border"
-                  }`}
-                >
-                  <p className={`text-xs font-medium ${i === 0 ? "text-card/70" : "text-muted-foreground"}`}>
-                    {tier.name}
-                  </p>
-                  <p className="font-bold text-sm mt-0.5">{tier.price}</p>
-                  <p className={`text-[10px] line-through ${i === 0 ? "text-card/50" : "text-muted-foreground"}`}>
-                    {tier.old}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Service Man */}
-            <div className="flex items-center justify-between bg-card rounded-2xl p-4 border border-border">
-              <div className="flex items-center gap-3">
-                <img src={serviceMan} alt="Marcus Mane" className="w-11 h-11 rounded-full object-cover" />
-                <div>
-                  <p className="font-semibold text-sm text-foreground">Marcus Mane</p>
-                  <p className="text-xs text-muted-foreground">Technician • 5 yrs exp</p>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <button className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-                  <Phone size={16} />
-                </button>
-                <button className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
-                  <MessageCircle size={16} />
-                </button>
-              </div>
-            </div>
 
             {/* Quick Info */}
             <div className="flex gap-3">
@@ -196,10 +141,7 @@ const ServiceDetail = () => {
             </div>
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-4 pt-4">
-              <div className="bg-card border border-border rounded-full px-6 py-3">
-                <span className="font-bold text-foreground text-lg">$499</span>
-              </div>
+            <div className="hidden md:flex pt-4">
               <button className="flex-1 bg-primary text-primary-foreground font-semibold py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity">
                 Book Now
               </button>
@@ -209,11 +151,8 @@ const ServiceDetail = () => {
       </div>
 
       {/* Mobile Bottom CTA */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 flex items-center gap-4 z-50">
-        <div className="bg-card border border-border rounded-full px-5 py-3">
-          <span className="font-bold text-foreground">$499</span>
-        </div>
-        <button className="flex-1 bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 z-50">
+        <button className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm">
           Book Now
         </button>
       </div>
