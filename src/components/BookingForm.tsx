@@ -3,6 +3,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const applianceTypes = [
   "Washing Machine",
@@ -43,14 +44,31 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
     setForm((prev) => ({ ...prev, appliance: defaultAppliance }));
   }
 
-  const handleSubmit = () => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
     if (!form.name || !form.phone || !form.location || !form.appliance || !form.warranty) {
       toast({ title: "Please fill all fields", variant: "destructive" });
       return;
     }
-    toast({ title: "Booking submitted!", description: "We'll contact you shortly." });
-    setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
-    onOpenChange(false);
+
+    setSubmitting(true);
+    const { error } = await supabase.from("bookings").insert({
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      location: form.location.trim(),
+      appliance: form.appliance,
+      warranty: form.warranty,
+    });
+
+    if (error) {
+      toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Booking submitted!", description: "We'll contact you shortly." });
+      setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
+      onOpenChange(false);
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -101,9 +119,10 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
           </Select>
           <button
             onClick={handleSubmit}
-            className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm hover:opacity-90 transition-opacity mt-2"
+            disabled={submitting}
+            className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm hover:opacity-90 transition-opacity mt-2 disabled:opacity-50"
           >
-            Submit Booking
+            {submitting ? "Submitting..." : "Submit Booking"}
           </button>
         </div>
       </SheetContent>
