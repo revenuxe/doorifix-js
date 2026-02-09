@@ -6,6 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { services } from "@/data/services";
 
 const categoryToTitle: Record<string, string[]> = {
@@ -38,6 +39,23 @@ const Services = () => {
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
+      <SEO
+        title="All Services"
+        description="Browse all appliance repair services — washing machine, refrigerator, AC, microwave, dryer & dishwasher repair by certified technicians at your doorstep."
+        canonical="/services"
+        keywords="appliance repair services, book appliance repair, washing machine service, fridge repair, AC repair near me"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Appliance Repair Services",
+          "itemListElement": services.map((s, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": s.title,
+            "description": s.description,
+          })),
+        }}
+      />
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-none mx-auto flex-1 w-full">
