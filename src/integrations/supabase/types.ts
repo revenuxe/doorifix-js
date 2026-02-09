@@ -70,6 +70,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_booking: {
+        Args: {
+          _appliance: string
+          _location: string
+          _name: string
+          _phone: string
+          _warranty: string
+        }
+        Returns: string
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

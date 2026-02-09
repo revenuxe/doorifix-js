@@ -56,21 +56,22 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
     }
 
     setSubmitting(true);
-    const { data, error } = await supabase.from("bookings").insert({
-      name: form.name.trim(),
-      phone: form.phone.trim(),
-      location: form.location.trim(),
-      appliance: form.appliance,
-      warranty: form.warranty,
-    }).select("case_number").single();
+    const { data, error } = await supabase.rpc("create_booking", {
+      _name: form.name.trim(),
+      _phone: form.phone.trim(),
+      _location: form.location.trim(),
+      _appliance: form.appliance,
+      _warranty: form.warranty,
+    });
 
     if (error) {
       toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
       setSubmitting(false);
     } else {
+      const caseNumber = data as string;
       setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
       onOpenChange(false);
-      navigate(`/thank-you?case=${encodeURIComponent(data.case_number)}&name=${encodeURIComponent(form.name.trim())}`);
+      navigate(`/thank-you?case=${encodeURIComponent(caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
     }
   };
 
