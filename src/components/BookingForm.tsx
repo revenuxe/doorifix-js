@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { Loader2 } from "lucide-react";
 
 const applianceTypes = [
   "Washing Machine",
@@ -29,6 +31,7 @@ interface BookingFormProps {
 
 const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormProps) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -53,22 +56,22 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
     }
 
     setSubmitting(true);
-    const { error } = await supabase.from("bookings").insert({
+    const { data, error } = await supabase.from("bookings").insert({
       name: form.name.trim(),
       phone: form.phone.trim(),
       location: form.location.trim(),
       appliance: form.appliance,
       warranty: form.warranty,
-    });
+    }).select("case_number").single();
 
     if (error) {
       toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
+      setSubmitting(false);
     } else {
-      toast({ title: "Booking submitted!", description: "We'll contact you shortly." });
       setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
       onOpenChange(false);
+      navigate(`/thank-you?case=${encodeURIComponent(data.case_number)}&name=${encodeURIComponent(form.name.trim())}`);
     }
-    setSubmitting(false);
   };
 
   return (
@@ -120,9 +123,16 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm hover:opacity-90 transition-opacity mt-2 disabled:opacity-50"
+            className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm hover:opacity-90 transition-opacity mt-2 disabled:opacity-50 flex items-center justify-center gap-2"
           >
-            {submitting ? "Submitting..." : "Submit Booking"}
+            {submitting ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                Booking...
+              </>
+            ) : (
+              "Submit Booking"
+            )}
           </button>
         </div>
       </SheetContent>
