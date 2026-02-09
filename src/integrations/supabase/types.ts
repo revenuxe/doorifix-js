@@ -17,6 +17,7 @@ export type Database = {
       bookings: {
         Row: {
           appliance: string
+          case_number: string | null
           created_at: string
           id: string
           location: string
@@ -26,6 +27,7 @@ export type Database = {
         }
         Insert: {
           appliance: string
+          case_number?: string | null
           created_at?: string
           id?: string
           location: string
@@ -35,6 +37,7 @@ export type Database = {
         }
         Update: {
           appliance?: string
+          case_number?: string | null
           created_at?: string
           id?: string
           location?: string
