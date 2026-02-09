@@ -6,6 +6,7 @@ import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import cleanerHero from "@/assets/cleaner-hero.png";
 import repairHero from "@/assets/repair-hero.png";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
@@ -37,6 +38,22 @@ const Index = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   return <div className="bg-background min-h-screen flex flex-col">
+      <SEO
+        canonical="/"
+        keywords="appliance repair near me, washing machine repair, refrigerator repair, AC service, microwave repair, dryer repair, dishwasher repair, home appliance service, doorstep repair, Arrowmind"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Arrowmind Service Center",
+          "description": "Professional appliance repair & servicing at your doorstep",
+          "telephone": "+919999999999",
+          "email": "support@arrowmind.com",
+          "address": { "@type": "PostalAddress", "streetAddress": "123 Service Street, Anna Nagar", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "postalCode": "600040", "addressCountry": "IN" },
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
+          "openingHours": "Mo-Su 08:00-21:00",
+          "priceRange": "$$"
+        }}
+      />
       <DesktopHeader />
 
       <div className="flex-1">

@@ -3,6 +3,7 @@ import { ChevronLeft, Star, Clock, CheckCircle, MapPin, Phone } from "lucide-rea
 import { useNavigate, useParams } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
+import SEO from "@/components/SEO";
 import { services } from "@/data/services";
 
 const ServiceDetail = () => {
@@ -31,6 +32,21 @@ const ServiceDetail = () => {
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
+      <SEO
+        title={`${service.title} Repair`}
+        description={service.detailDescription}
+        canonical={`/service/${service.id}`}
+        keywords={`${service.title} repair, ${service.title} service, fix ${service.title}, ${service.title} technician near me`}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": `${service.title} Repair & Service`,
+          "description": service.detailDescription,
+          "provider": { "@type": "LocalBusiness", "name": "Arrowmind Service Center" },
+          "areaServed": "Chennai, Tamil Nadu",
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": String(service.rating), "reviewCount": "256" },
+        }}
+      />
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-5xl mx-auto flex-1 w-full">
