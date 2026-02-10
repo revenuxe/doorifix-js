@@ -30,7 +30,7 @@ const ThankYou = () => {
 
         {/* Case Number Card */}
         <div className="bg-card rounded-2xl border border-border p-5 space-y-1">
-          <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">Your Case Number</p>
+          <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">Your Service Request Number</p>
           <p className="text-3xl font-bold text-primary tracking-wider">{caseNumber}</p>
           <p className="text-xs text-muted-foreground">Save this for future reference</p>
         </div>
