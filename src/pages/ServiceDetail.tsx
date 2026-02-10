@@ -43,7 +43,7 @@ const ServiceDetail = () => {
           "name": `${service.title} Repair & Service`,
           "description": service.detailDescription,
           "provider": { "@type": "LocalBusiness", "name": "Arrowmind Service Center" },
-          "areaServed": "Chennai, Tamil Nadu",
+          "areaServed": "Bangalore, Karnataka",
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": String(service.rating), "reviewCount": "256" },
         }}
       />
