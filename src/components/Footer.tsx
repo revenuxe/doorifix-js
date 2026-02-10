@@ -43,9 +43,16 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Our Services</h3>
             <div className="space-y-2">
-              {["Washing Machine Repair", "Refrigerator Repair", "AC Repair & Service", "Microwave Repair", "Dryer Repair", "Dishwasher Repair"].map((s) => (
-                <Link key={s} to="/services" className="block text-sm text-card/70 hover:text-card transition-colors">
-                  {s}
+              {[
+                { name: "Washing Machine Repair", id: 1 },
+                { name: "Refrigerator Repair", id: 2 },
+                { name: "AC Repair & Service", id: 3 },
+                { name: "Microwave Repair", id: 4 },
+                { name: "Dryer Repair", id: 5 },
+                { name: "Dishwasher Repair", id: 6 },
+              ].map((s) => (
+                <Link key={s.id} to={`/service/${s.id}`} className="block text-sm text-card/70 hover:text-card transition-colors">
+                  {s.name}
                 </Link>
               ))}
             </div>

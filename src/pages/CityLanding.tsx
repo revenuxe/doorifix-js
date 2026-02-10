@@ -178,7 +178,7 @@ const CityLanding = () => {
               <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Expert Appliance Repair in {cityData.name}</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
                 {cityData.appliances.map((item, i) => (
-                  <div key={item.title} onClick={() => navigate("/services")} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
+                  <div key={item.title} onClick={() => navigate(`/service/${i + 1}`)} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
                       {applianceIcons[i]}
                     </div>
