@@ -7,6 +7,7 @@ import dishwasher from "@/assets/dishwasher.png";
 
 export interface ServiceData {
   id: number;
+  slug: string;
   title: string;
   description: string;
   image: string;
@@ -17,9 +18,12 @@ export interface ServiceData {
   includes: string[];
 }
 
+export const getServiceBySlug = (slug: string) => services.find((s) => s.slug === slug);
+
 export const services: ServiceData[] = [
   {
     id: 1,
+    slug: "washing-machine-repair",
     title: "Washing Machine",
     description: "Expert washing machine repair & servicing",
     image: washingMachine,
@@ -31,6 +35,7 @@ export const services: ServiceData[] = [
   },
   {
     id: 2,
+    slug: "refrigerator-repair",
     title: "Refrigerator",
     description: "Cooling issues? Expert refrigerator repair",
     image: refrigerator,
@@ -42,6 +47,7 @@ export const services: ServiceData[] = [
   },
   {
     id: 3,
+    slug: "ac-repair-service",
     title: "AC Service",
     description: "AC repair, gas refill & deep cleaning",
     image: acUnit,
@@ -53,6 +59,7 @@ export const services: ServiceData[] = [
   },
   {
     id: 4,
+    slug: "microwave-repair",
     title: "Microwave",
     description: "Microwave not heating? Quick expert repair",
     image: microwave,
@@ -64,6 +71,7 @@ export const services: ServiceData[] = [
   },
   {
     id: 5,
+    slug: "dryer-repair",
     title: "Dryer",
     description: "Dryer not drying? Complete repair service",
     image: dryer,
@@ -75,6 +83,7 @@ export const services: ServiceData[] = [
   },
   {
     id: 6,
+    slug: "dishwasher-repair",
     title: "Dishwasher",
     description: "Dishwasher not draining? Expert repair service!",
     image: dishwasher,
