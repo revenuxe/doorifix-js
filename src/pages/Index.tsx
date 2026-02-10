@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
+import MobileMenu from "@/components/MobileMenu";
 import { useNavigate } from "react-router-dom";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
@@ -41,18 +42,32 @@ const Index = () => {
       <SEO
         canonical="/"
         keywords="appliance repair near me, washing machine repair, refrigerator repair, AC service, microwave repair, dryer repair, dishwasher repair, home appliance service, doorstep repair, Arrowmind"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "Arrowmind Service Center",
-          "description": "Professional appliance repair & servicing at your doorstep",
-          "telephone": "+918095000510",
-          "email": "arrowmind.in@gmail.com",
-          "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
-          "openingHours": "Mo-Su 08:00-21:00",
-          "priceRange": "$$"
-        }}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Arrowmind Service Center",
+            "description": "Professional appliance repair & servicing at your doorstep",
+            "telephone": "+918095000510",
+            "email": "arrowmind.in@gmail.com",
+            "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
+            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
+            "openingHours": "Mo-Su 08:00-21:00",
+            "priceRange": "$$",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "How long does an appliance repair take?", "acceptedAnswer": { "@type": "Answer", "text": "Most repairs are completed within 1-3 hours depending on the appliance and issue. Our technicians carry common spare parts to ensure quick fixes." } },
+              { "@type": "Question", "name": "Do you provide warranty on repairs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer a 90-day warranty on all repairs and replaced parts. If the same issue reoccurs, we'll fix it free of charge." } },
+              { "@type": "Question", "name": "What brands do you service?", "acceptedAnswer": { "@type": "Answer", "text": "We service all major brands including Samsung, LG, Whirlpool, Bosch, IFB, Haier, Godrej, Voltas, Daikin, and many more." } },
+              { "@type": "Question", "name": "How much does a typical repair cost?", "acceptedAnswer": { "@type": "Answer", "text": "Repair costs vary by appliance and issue. We provide a free diagnosis and transparent quote before starting any work — no hidden charges." } },
+              { "@type": "Question", "name": "Do you offer doorstep service?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all our repairs are done at your doorstep. Our certified technicians come fully equipped with tools and common spare parts." } },
+              { "@type": "Question", "name": "How do I book a service?", "acceptedAnswer": { "@type": "Answer", "text": "You can book through our app by tapping the calendar icon, calling us directly, or filling out the booking form on any service page." } },
+            ],
+          },
+        ]}
       />
       <DesktopHeader />
 
@@ -66,9 +81,7 @@ const Index = () => {
               <div className="flex items-center gap-2">
                 <img src={arrowmindLogo} alt="Arrowmind" className="h-10 object-contain" />
               </div>
-              <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-                <Menu size={18} />
-              </button>
+              <MobileMenu />
             </div>
 
             {/* Title */}

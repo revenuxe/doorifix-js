@@ -44,6 +44,10 @@ const Services = () => {
         description="Browse all appliance repair services — washing machine, refrigerator, AC, microwave, dryer & dishwasher repair by certified technicians at your doorstep."
         canonical="/services"
         keywords="appliance repair services, book appliance repair, washing machine service, fridge repair, AC repair near me"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+        ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ItemList",

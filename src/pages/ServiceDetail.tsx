@@ -37,6 +37,11 @@ const ServiceDetail = () => {
         description={service.detailDescription}
         canonical={`/service/${service.id}`}
         keywords={`${service.title} repair, ${service.title} service, fix ${service.title}, ${service.title} technician near me`}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: `${service.title} Repair`, url: `/service/${service.id}` },
+        ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",

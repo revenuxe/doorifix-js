@@ -24,6 +24,10 @@ const About = () => {
         description="Arrowmind Service Center has been providing expert appliance repair since 2019. From Bangalore to Kerala, we've served thousands of happy customers across India."
         canonical="/about"
         keywords="about arrowmind, appliance repair company, arrowmind history, home service company india"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "About Us", url: "/about" },
+        ]}
       />
       <DesktopHeader />
 
