@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-card mt-8">
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-10 object-contain brightness-0 invert" />
@@ -46,6 +46,24 @@ const Footer = () => {
               {["Washing Machine Repair", "Refrigerator Repair", "AC Repair & Service", "Microwave Repair", "Dryer Repair", "Dishwasher Repair"].map((s) => (
                 <Link key={s} to="/services" className="block text-sm text-card/70 hover:text-card transition-colors">
                   {s}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Kerala Locations */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-base">Kerala</h3>
+            <div className="space-y-2">
+              {[
+                { name: "Kochi", slug: "kochi" },
+                { name: "Trivandrum", slug: "trivandrum" },
+                { name: "Kozhikode", slug: "kozhikode" },
+                { name: "Thrissur", slug: "thrissur" },
+                { name: "Kollam", slug: "kollam" },
+              ].map((loc) => (
+                <Link key={loc.slug} to={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
+                  Appliance Repair {loc.name}
                 </Link>
               ))}
             </div>
