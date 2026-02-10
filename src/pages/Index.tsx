@@ -48,7 +48,7 @@ const Index = () => {
           "description": "Professional appliance repair & servicing at your doorstep",
           "telephone": "+918095000510",
           "email": "arrowmind.in@gmail.com",
-          "address": { "@type": "PostalAddress", "streetAddress": "123 Service Street, Anna Nagar", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "postalCode": "600040", "addressCountry": "IN" },
+          "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
           "openingHours": "Mo-Su 08:00-21:00",
           "priceRange": "$$"

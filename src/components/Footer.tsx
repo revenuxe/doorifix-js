@@ -34,7 +34,7 @@ const Footer = () => {
               </a>
               <div className="flex items-start gap-2 text-sm text-card/70">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0" />
-                <span>123 Service Street, Anna Nagar,<br />Chennai, Tamil Nadu 600040</span>
+                <span>HBR Layout, Bangalore,<br />Karnataka 560043</span>
               </div>
             </div>
           </div>
