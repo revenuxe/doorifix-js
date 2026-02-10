@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { Search, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
+import MobileMenu from "@/components/MobileMenu";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -45,6 +46,10 @@ const CityLanding = () => {
         description={cityData.metaDescription}
         canonical={`/${cityData.slug}`}
         keywords={cityData.keywords}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: cityData.name, url: `/${cityData.slug}` },
+        ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
@@ -69,9 +74,7 @@ const CityLanding = () => {
               <div className="flex items-center gap-2">
                 <img src={arrowmindLogo} alt="Arrowmind" className="h-10 object-contain" />
               </div>
-              <button className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
-                <Menu size={18} />
-              </button>
+              <MobileMenu />
             </div>
 
             {/* Title */}

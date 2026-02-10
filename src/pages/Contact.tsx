@@ -24,6 +24,10 @@ const Contact = () => {
         description="Get in touch with Arrowmind Service Center for appliance repair queries, bookings, and support. Call, email, or visit us."
         canonical="/contact"
         keywords="contact arrowmind, appliance repair contact, customer support, service center phone number"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
       />
       <DesktopHeader />
 
