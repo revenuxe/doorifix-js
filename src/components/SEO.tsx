@@ -17,7 +17,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Arrowmind Service Center";
-const BASE_URL = "https://arrowmind.com";
+const BASE_URL = "https://arrowmind.in";
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.ico`;
 
 const SEO = ({

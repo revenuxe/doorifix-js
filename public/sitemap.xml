@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arrowmind.com/</loc>
+    <loc>https://arrowmind.in/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/services</loc>
+    <loc>https://arrowmind.in/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/service/1</loc>
+    <loc>https://arrowmind.in/service/1</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/service/2</loc>
+    <loc>https://arrowmind.in/service/2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/service/3</loc>
+    <loc>https://arrowmind.in/service/3</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/service/4</loc>
+    <loc>https://arrowmind.in/service/4</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/service/5</loc>
+    <loc>https://arrowmind.in/service/5</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/service/6</loc>
+    <loc>https://arrowmind.in/service/6</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://arrowmind.com/contact</loc>
+    <loc>https://arrowmind.in/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/kochi</loc>
+    <loc>https://arrowmind.in/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://arrowmind.in/kochi</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/trivandrum</loc>
+    <loc>https://arrowmind.in/trivandrum</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/kozhikode</loc>
+    <loc>https://arrowmind.in/kozhikode</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/thrissur</loc>
+    <loc>https://arrowmind.in/thrissur</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/kollam</loc>
+    <loc>https://arrowmind.in/kollam</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/terms</loc>
+    <loc>https://arrowmind.in/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://arrowmind.com/privacy</loc>
+    <loc>https://arrowmind.in/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
