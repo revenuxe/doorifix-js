@@ -29,7 +29,7 @@ const BottomNav = () => {
       </button>
 
       <a
-        href="tel:+919999999999"
+        href="tel:+918095000510"
         className="flex-1 bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
       >
         <Phone size={16} />
