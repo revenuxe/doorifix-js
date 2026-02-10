@@ -121,7 +121,7 @@ const ServiceDetail = () => {
                 </div>
               </div>
               <a
-                href="tel:+919999999999"
+                href="tel:+918095000510"
                 className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0"
               >
                 <Phone size={14} />

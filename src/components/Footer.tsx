@@ -24,13 +24,13 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Contact Us</h3>
             <div className="space-y-3">
-              <a href="tel:+919999999999" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="tel:+918095000510" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Phone size={14} className="mt-0.5 flex-shrink-0" />
-                +91 99999 99999
+                +91 80950 00510
               </a>
-              <a href="mailto:support@arrowmind.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="mailto:arrowmind.in@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Mail size={14} className="mt-0.5 flex-shrink-0" />
-                support@arrowmind.com
+                arrowmind.in@gmail.com
               </a>
               <div className="flex items-start gap-2 text-sm text-card/70">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0" />
@@ -76,8 +76,10 @@ const Footer = () => {
             © {new Date().getFullYear()} Arrowmind Service Center. All rights reserved.
           </p>
           <div className="flex gap-4 text-xs text-card/50">
-            <span className="hover:text-card/80 cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="hover:text-card/80 cursor-pointer transition-colors">Terms of Service</span>
+            <Link to="/privacy" className="hover:text-card/80 transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-card/80 transition-colors">Terms of Service</Link>
+            <Link to="/about" className="hover:text-card/80 transition-colors">About Us</Link>
+            <Link to="/contact" className="hover:text-card/80 transition-colors">Contact</Link>
           </div>
         </div>
       </div>
