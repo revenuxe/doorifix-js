@@ -19,15 +19,15 @@ import { services } from "@/data/services";
 const featuredServices = services.slice(0, 4);
 const stats = [{
   icon: Users,
-  value: "10K+",
+  value: "1000+",
   label: "Happy Clients"
 }, {
   icon: Award,
-  value: "500+",
+  value: "100+",
   label: "Expert Technicians"
 }, {
   icon: CheckCircle,
-  value: "15K+",
+  value: "2000+",
   label: "Repairs Done"
 }, {
   icon: Star,
