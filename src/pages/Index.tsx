@@ -171,33 +171,39 @@ const Index = () => {
                 title: "Washing Machine Repair",
                 subtitle: "Expert Technician",
                 keywords: "drum repair, water leak fix, motor service",
-                icon: <WashingMachine size={24} className="text-primary" />
+                icon: <WashingMachine size={24} className="text-primary" />,
+                serviceId: 1
               }, {
                 title: "Refrigerator Repair",
                 subtitle: "Certified Expert",
                 keywords: "cooling issue, gas refill, compressor fix",
-                icon: <Refrigerator size={24} className="text-primary" />
+                icon: <Refrigerator size={24} className="text-primary" />,
+                serviceId: 2
               }, {
                 title: "AC Repair & Service",
                 subtitle: "Trained Specialist",
                 keywords: "gas charging, deep clean, installation",
-                icon: <AirVent size={24} className="text-primary" />
+                icon: <AirVent size={24} className="text-primary" />,
+                serviceId: 3
               }, {
                 title: "Microwave Repair",
                 subtitle: "Quick Fix Expert",
                 keywords: "not heating, turntable, display fix",
-                icon: <Microwave size={24} className="text-primary" />
+                icon: <Microwave size={24} className="text-primary" />,
+                serviceId: 4
               }, {
                 title: "Dryer Repair",
                 subtitle: "Skilled Technician",
                 keywords: "not drying, drum noise, heating issue",
-                icon: <Fan size={24} className="text-primary" />
+                icon: <Fan size={24} className="text-primary" />,
+                serviceId: 5
               }, {
                 title: "Dishwasher Repair",
                 subtitle: "Certified Technician",
                 keywords: "not draining, spray arm, leak fix",
-                icon: <Droplets size={24} className="text-primary" />
-              }].map(item => <div key={item.title} onClick={() => navigate("/services")} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
+                icon: <Droplets size={24} className="text-primary" />,
+                serviceId: 6
+              }].map(item => <div key={item.title} onClick={() => navigate(`/service/${item.serviceId}`)} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
                       {item.icon}
                     </div>
