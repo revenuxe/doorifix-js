@@ -11,12 +11,12 @@ const mainLinks = [
 ];
 
 const serviceLinks = [
-  { label: "Washing Machine Repair", path: "/service/1" },
-  { label: "Refrigerator Repair", path: "/service/2" },
-  { label: "AC Repair & Service", path: "/service/3" },
-  { label: "Microwave Repair", path: "/service/4" },
-  { label: "Dryer Repair", path: "/service/5" },
-  { label: "Dishwasher Repair", path: "/service/6" },
+  { label: "Washing Machine Repair", path: "/service/washing-machine-repair" },
+  { label: "Refrigerator Repair", path: "/service/refrigerator-repair" },
+  { label: "AC Repair & Service", path: "/service/ac-repair-service" },
+  { label: "Microwave Repair", path: "/service/microwave-repair" },
+  { label: "Dryer Repair", path: "/service/dryer-repair" },
+  { label: "Dishwasher Repair", path: "/service/dishwasher-repair" },
 ];
 
 const cityLinks = [

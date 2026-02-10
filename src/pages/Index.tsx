@@ -185,38 +185,38 @@ const Index = () => {
                 subtitle: "Expert Technician",
                 keywords: "drum repair, water leak fix, motor service",
                 icon: <WashingMachine size={24} className="text-primary" />,
-                serviceId: 1
+                slug: "washing-machine-repair"
               }, {
                 title: "Refrigerator Repair",
                 subtitle: "Certified Expert",
                 keywords: "cooling issue, gas refill, compressor fix",
                 icon: <Refrigerator size={24} className="text-primary" />,
-                serviceId: 2
+                slug: "refrigerator-repair"
               }, {
                 title: "AC Repair & Service",
                 subtitle: "Trained Specialist",
                 keywords: "gas charging, deep clean, installation",
                 icon: <AirVent size={24} className="text-primary" />,
-                serviceId: 3
+                slug: "ac-repair-service"
               }, {
                 title: "Microwave Repair",
                 subtitle: "Quick Fix Expert",
                 keywords: "not heating, turntable, display fix",
                 icon: <Microwave size={24} className="text-primary" />,
-                serviceId: 4
+                slug: "microwave-repair"
               }, {
                 title: "Dryer Repair",
                 subtitle: "Skilled Technician",
                 keywords: "not drying, drum noise, heating issue",
                 icon: <Fan size={24} className="text-primary" />,
-                serviceId: 5
+                slug: "dryer-repair"
               }, {
                 title: "Dishwasher Repair",
                 subtitle: "Certified Technician",
                 keywords: "not draining, spray arm, leak fix",
                 icon: <Droplets size={24} className="text-primary" />,
-                serviceId: 6
-              }].map(item => <div key={item.title} onClick={() => navigate(`/service/${item.serviceId}`)} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
+                slug: "dishwasher-repair"
+              }].map(item => <div key={item.title} onClick={() => navigate(`/service/${item.slug}`)} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
                       {item.icon}
                     </div>

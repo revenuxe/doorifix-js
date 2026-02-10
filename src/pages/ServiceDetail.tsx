@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
 import SEO from "@/components/SEO";
-import { services } from "@/data/services";
+import { services, getServiceBySlug } from "@/data/services";
 
 const ServiceDetail = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const service = services.find((s) => s.id === Number(id));
+  const { slug } = useParams();
+  const service = getServiceBySlug(slug || "");
   const [bookingOpen, setBookingOpen] = useState(false);
 
   if (!service) {
@@ -35,12 +35,12 @@ const ServiceDetail = () => {
       <SEO
         title={`${service.title} Repair`}
         description={service.detailDescription}
-        canonical={`/service/${service.id}`}
+        canonical={`/service/${service.slug}`}
         keywords={`${service.title} repair, ${service.title} service, fix ${service.title}, ${service.title} technician near me`}
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Services", url: "/services" },
-          { name: `${service.title} Repair`, url: `/service/${service.id}` },
+          { name: `${service.title} Repair`, url: `/service/${service.slug}` },
         ]}
         structuredData={{
           "@context": "https://schema.org",
