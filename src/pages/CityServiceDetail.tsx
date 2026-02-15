@@ -51,7 +51,7 @@ const CityServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": `Arrowmind Service Center – ${cityData.name}`,
-            "telephone": "+918095000510",
+            "telephone": "+918884647100",
             "areaServed": { "@type": "City", "name": cityData.name },
           },
           "areaServed": { "@type": "City", "name": cityData.name },
@@ -116,7 +116,7 @@ const CityServiceDetail = () => {
                   </div>
                 </div>
               </div>
-              <a href="tel:+918095000510" className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0">
+              <a href="tel:+918884647100" className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0">
                 <Phone size={14} />
                 Call Now
               </a>
