@@ -58,9 +58,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Kerala Locations */}
+          {/* Locations */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-base">Kerala</h3>
+            <h3 className="font-semibold text-base">Locations</h3>
             <div className="space-y-2">
               {[
                 { name: "Kochi", slug: "kochi" },
@@ -68,6 +68,8 @@ const Footer = () => {
                 { name: "Kozhikode", slug: "kozhikode" },
                 { name: "Thrissur", slug: "thrissur" },
                 { name: "Kollam", slug: "kollam" },
+                { name: "Hyderabad", slug: "hyderabad" },
+                { name: "Secunderabad", slug: "secunderabad" },
               ].map((loc) => (
                 <Link key={loc.slug} to={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   Appliance Repair {loc.name}

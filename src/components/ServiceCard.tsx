@@ -10,6 +10,7 @@ interface ServiceCardProps {
   slug: string;
   rating?: number;
   duration?: string;
+  linkPrefix?: string;
 }
 
 const colorMap = {
@@ -19,13 +20,14 @@ const colorMap = {
   blue: "bg-card-blue",
 };
 
-const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs" }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "" }: ServiceCardProps) => {
   const navigate = useNavigate();
+  const basePath = `${linkPrefix}/service/${slug}`;
 
   return (
     <div
       className={`${colorMap[color]} rounded-3xl p-5 flex gap-4 items-center cursor-pointer transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]`}
-      onClick={() => navigate(`/service/${slug}`)}
+      onClick={() => navigate(basePath)}
     >
       <div className="flex-1 space-y-2">
         <h3 className="font-semibold text-base text-foreground">{title}</h3>
@@ -42,7 +44,7 @@ const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, dur
           className="bg-primary text-primary-foreground text-xs font-medium px-4 py-2 rounded-full mt-1 hover:opacity-90 transition-opacity"
           onClick={(e) => {
             e.stopPropagation();
-            navigate(`/service/${slug}`);
+            navigate(basePath);
           }}
         >
           Book Now

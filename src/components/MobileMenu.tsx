@@ -25,6 +25,8 @@ const cityLinks = [
   { label: "Kozhikode", path: "/kozhikode" },
   { label: "Thrissur", path: "/thrissur" },
   { label: "Kollam", path: "/kollam" },
+  { label: "Hyderabad", path: "/hyderabad" },
+  { label: "Secunderabad", path: "/secunderabad" },
 ];
 
 const MobileMenu = () => {
@@ -116,7 +118,7 @@ const MobileMenu = () => {
               >
                 <span className="flex items-center gap-3">
                   <MapPin size={18} />
-                  Kerala
+                  Locations
                 </span>
                 <ChevronDown size={16} className={`text-muted-foreground transition-transform ${showCities ? "rotate-180" : ""}`} />
               </button>
