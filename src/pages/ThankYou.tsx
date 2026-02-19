@@ -1,14 +1,31 @@
+import { useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { CheckCircle, Phone, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const ThankYou = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const caseNumber = searchParams.get("case") || "AM0000";
   const name = searchParams.get("name") || "Customer";
+
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-17962306213",
+        event_category: "booking",
+        event_label: caseNumber,
+      });
+    }
+  }, [caseNumber]);
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-5">

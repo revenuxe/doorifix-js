@@ -6,6 +6,10 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Send SPA page view to Google Ads
+    if ((window as any).gtag) {
+      (window as any).gtag("config", "AW-17962306213", { page_path: pathname });
+    }
   }, [pathname]);
 
   return null;
