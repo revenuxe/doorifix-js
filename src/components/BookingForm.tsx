@@ -69,6 +69,19 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
       setSubmitting(false);
     } else {
       const caseNumber = data as string;
+
+      // Fire-and-forget email notification to founder
+      supabase.functions.invoke("send-booking-email", {
+        body: {
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          location: form.location.trim(),
+          appliance: form.appliance,
+          warranty: form.warranty,
+          caseNumber,
+        },
+      }).catch((err) => console.error("Email notification failed:", err));
+
       setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
       onOpenChange(false);
       navigate(`/thank-you?case=${encodeURIComponent(caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
