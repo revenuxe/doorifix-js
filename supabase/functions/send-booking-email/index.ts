@@ -35,7 +35,7 @@ serve(async (req) => {
     }
 
     const { error } = await resend.emails.send({
-      from: "Arrowmind Bookings <onboarding@resend.dev>",
+      from: "Arrowmind Bookings <bookings@arrowmind.in>",
       to: ["founder@arrowmind.in"],
       subject: `🔧 New Booking: ${appliance} – ${caseNumber}`,
       html: `
