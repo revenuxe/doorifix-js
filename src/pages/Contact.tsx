@@ -1,20 +1,56 @@
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
 const Contact = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const body = `Name: ${form.name}%0APhone: ${form.phone}%0AMessage: ${form.message}`;
-    window.open(`mailto:arrowmind.in@gmail.com?subject=Contact%20from%20${encodeURIComponent(form.name)}&body=${body}`);
+
+    if (!form.name.trim() || !form.phone.trim() || !form.message.trim()) {
+      toast({ title: "Please fill all required fields", variant: "destructive" });
+      return;
+    }
+
+    setSubmitting(true);
+
+    const { error } = await supabase.from("contact_leads").insert({
+      name: form.name.trim(),
+      email: form.email.trim() || null,
+      phone: form.phone.trim(),
+      message: form.message.trim(),
+    });
+
+    if (error) {
+      toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
+      setSubmitting(false);
+      return;
+    }
+
+    // Fire-and-forget email notification
+    supabase.functions.invoke("send-contact-email", {
+      body: {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        message: form.message.trim(),
+      },
+    }).catch((err) => console.error("Contact email failed:", err));
+
+    setForm({ name: "", email: "", phone: "", message: "" });
+    setSubmitting(false);
+    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
   };
 
   return (
@@ -93,7 +129,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border p-6 space-y-4">
               <h2 className="font-semibold text-lg text-foreground">Send us a Message</h2>
               <div>
-                <label className="text-sm font-medium text-foreground block mb-1.5">Name</label>
+                <label className="text-sm font-medium text-foreground block mb-1.5">Name *</label>
                 <input
                   type="text"
                   required
@@ -116,7 +152,7 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground block mb-1.5">Phone</label>
+                <label className="text-sm font-medium text-foreground block mb-1.5">Phone *</label>
                 <input
                   type="tel"
                   required
@@ -128,7 +164,7 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground block mb-1.5">Message</label>
+                <label className="text-sm font-medium text-foreground block mb-1.5">Message *</label>
                 <textarea
                   required
                   maxLength={1000}
@@ -139,8 +175,21 @@ const Contact = () => {
                   placeholder="Describe your issue or question..."
                 />
               </div>
-              <button type="submit" className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-xl text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-                <Send size={16} /> Send Message
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-xl text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} /> Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
