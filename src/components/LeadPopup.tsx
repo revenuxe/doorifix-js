@@ -98,8 +98,8 @@ const LeadPopup = () => {
         </button>
 
         <div className="mb-4">
-          <h3 className="text-lg font-bold text-foreground">Get Instant Quote</h3>
-          <p className="text-xs text-muted-foreground mt-0.5">Free diagnosis • 90-day warranty • Doorstep service</p>
+          <h3 className="text-lg font-bold text-foreground">Book a Service</h3>
+          <p className="text-xs text-muted-foreground mt-0.5">Free diagnosis • Doorstep service • Expert technicians</p>
         </div>
 
         <div className="space-y-2.5">
@@ -146,7 +146,7 @@ const LeadPopup = () => {
                 Submitting...
               </>
             ) : (
-              "Get Free Quote →"
+              "Book Service Now →"
             )}
           </button>
         </div>

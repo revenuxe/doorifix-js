@@ -87,7 +87,7 @@ export const cities: CityData[] = [
     faqs: [
       { q: "How fast is appliance repair service in Kozhikode?", a: "We reach most locations in Kozhikode within 60-90 minutes. Areas like Mavoor Road, Palayam, and Nadakkav get priority coverage." },
       { q: "Do you repair all brands in Calicut?", a: "Yes, we service all major brands including Samsung, LG, Whirlpool, Bosch, IFB, Haier, and more across Kozhikode." },
-      { q: "Is there warranty on repairs in Kozhikode?", a: "Yes, we offer a 90-day warranty on all repairs and replaced parts across Kozhikode." },
+      { q: "Is there warranty on repairs in Kozhikode?", a: "Yes, we offer a warranty on all repairs and replaced parts across Kozhikode." },
       { q: "Do you serve Feroke and Beypore areas?", a: "Yes, our service coverage includes Feroke, Beypore, Ramanattukara, and all areas within Kozhikode district." },
     ],
   },
@@ -138,7 +138,7 @@ export const cities: CityData[] = [
       { q: "Is appliance repair available in Kollam city?", a: "Yes, we provide comprehensive appliance repair services across Kollam city including Chinnakada, Asramam, and Kadappakada." },
       { q: "Do you cover Paravur and Punalur for repairs?", a: "Yes, our service area includes Paravur, Punalur, Karunagappally, and all major towns in Kollam district." },
       { q: "What is the response time in Kollam?", a: "We typically reach locations within Kollam city in 60-90 minutes and outer areas within 2 hours of booking." },
-      { q: "Do you offer warranty on parts in Kollam?", a: "Yes, all repairs come with a 90-day warranty on service and replaced parts across Kollam." },
+      { q: "Do you offer warranty on parts in Kollam?", a: "Yes, all repairs come with a warranty on service and replaced parts across Kollam." },
     ],
   },
   {
