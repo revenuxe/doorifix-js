@@ -65,7 +65,7 @@ const ServiceDetail = () => {
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 px-5 pt-6 pb-8">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
               className="w-9 h-9 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white"
             >
               <ChevronLeft size={18} />
