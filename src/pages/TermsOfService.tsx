@@ -46,10 +46,10 @@ const TermsOfService = () => {
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">5. Warranty on Repairs</h2>
-              <p>5.1. All repairs performed by Arrowmind technicians carry a 90-day warranty from the date of service completion.</p>
+              <p>5.1. All repairs performed by Arrowmind technicians carry a warranty from the date of service completion.</p>
               <p>5.2. The warranty covers the same issue that was repaired. It does not cover new issues, physical damage, water damage, electrical surges, or misuse of the appliance after repair.</p>
               <p>5.3. Warranty claims must be reported within the warranty period by contacting our customer support. The Company reserves the right to inspect the appliance before honoring any warranty claim.</p>
-              <p>5.4. Replaced parts carry the manufacturer's warranty, if any. Arrowmind does not provide additional warranty on third-party parts beyond the 90-day service warranty.</p>
+              <p>5.4. Replaced parts carry the manufacturer's warranty, if any. Arrowmind does not provide additional warranty on third-party parts beyond the service warranty.</p>
             </section>
 
             <section className="space-y-3">

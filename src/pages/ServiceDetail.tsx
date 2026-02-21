@@ -33,8 +33,8 @@ const ServiceDetail = () => {
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
-        title={`${service.title} Repair Near Me — ₹199 Onwards`}
-        description={`Book expert ${service.title.toLowerCase()} repair at your doorstep starting ₹199. Certified technicians, genuine parts, 90-day warranty. Same-day service in Bangalore.`}
+        title={`${service.title} Repair Near Me`}
+        description={`Book expert ${service.title.toLowerCase()} repair at your doorstep. Certified technicians, genuine parts. Same-day service in Bangalore.`}
         canonical={`/service/${service.slug}`}
         keywords={`${service.title} repair near me, ${service.title} service near me, fix ${service.title}, ${service.title} repair cost, ${service.title} repair Bangalore, ${service.title} technician, doorstep ${service.title} repair`}
         breadcrumbs={[
@@ -114,8 +114,8 @@ const ServiceDetail = () => {
             {/* Title & Discount */}
             <div className="flex items-start justify-between">
               <div>
-                <h1 className="text-xl md:text-2xl font-bold text-foreground">{service.title} Repair Near Me — ₹199</h1>
-                <p className="text-sm text-muted-foreground mt-0.5">Certified doorstep {service.title.toLowerCase()} repair with 90-day warranty</p>
+                <h1 className="text-xl md:text-2xl font-bold text-foreground">{service.title} Repair Near Me</h1>
+                <p className="text-sm text-muted-foreground mt-0.5">Certified doorstep {service.title.toLowerCase()} repair by expert technicians</p>
                 <div className="flex items-center gap-3 mt-2">
                   <div className="flex items-center gap-1">
                     {[1, 2, 3, 4, 5].map((s) => (

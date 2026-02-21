@@ -30,8 +30,8 @@ export const services: ServiceData[] = [
     color: "blue",
     rating: 4.9,
     duration: "1-2 hrs",
-    detailDescription: "Our certified technicians handle all washing machine issues — drum problems, water leakage, spin failures, and more. We use genuine spare parts and offer a 90-day warranty on all repairs.",
-    includes: ["Full machine inspection", "Drum & motor check", "Water inlet/outlet repair", "Belt & bearing replacement", "Performance testing", "90-day service warranty"],
+    detailDescription: "Our certified technicians handle all washing machine issues — drum problems, water leakage, spin failures, and more. We use genuine spare parts and offer a warranty on all repairs.",
+    includes: ["Full machine inspection", "Drum & motor check", "Water inlet/outlet repair", "Belt & bearing replacement", "Performance testing", "Service warranty"],
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ export const services: ServiceData[] = [
     rating: 4.8,
     duration: "1-3 hrs",
     detailDescription: "From cooling issues to compressor problems, our experts repair all refrigerator brands. We diagnose the root cause and fix it right, with genuine parts and transparent pricing.",
-    includes: ["Cooling system diagnosis", "Gas refilling & leak fix", "Compressor repair", "Thermostat calibration", "Door seal replacement", "90-day service warranty"],
+    includes: ["Cooling system diagnosis", "Gas refilling & leak fix", "Compressor repair", "Thermostat calibration", "Door seal replacement", "Service warranty"],
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ export const services: ServiceData[] = [
     rating: 4.7,
     duration: "1-2 hrs",
     detailDescription: "Stay cool with our professional AC servicing. We handle gas refills, deep cleaning, compressor repairs, and installation for all brands and models.",
-    includes: ["Deep coil cleaning", "Gas check & refill", "Compressor diagnosis", "Filter cleaning/replacement", "Electrical check", "90-day service warranty"],
+    includes: ["Deep coil cleaning", "Gas check & refill", "Compressor diagnosis", "Filter cleaning/replacement", "Electrical check", "Service warranty"],
   },
   {
     id: 4,
@@ -67,7 +67,7 @@ export const services: ServiceData[] = [
     rating: 4.9,
     duration: "1 hr",
     detailDescription: "Expert microwave repair for all brands. We fix heating issues, turntable problems, display malfunctions, and more with quick turnaround times.",
-    includes: ["Magnetron testing", "Turntable motor repair", "Control panel fix", "Door switch replacement", "Safety inspection", "90-day service warranty"],
+    includes: ["Magnetron testing", "Turntable motor repair", "Control panel fix", "Door switch replacement", "Safety inspection", "Service warranty"],
   },
   {
     id: 5,
@@ -79,7 +79,7 @@ export const services: ServiceData[] = [
     rating: 4.9,
     duration: "1-2 hrs",
     detailDescription: "Professional dryer repair service covering heating element failures, drum issues, ventilation problems, and more. Fast and reliable service at your doorstep.",
-    includes: ["Heating element check", "Drum & belt inspection", "Vent cleaning", "Thermostat repair", "Motor diagnosis", "90-day service warranty"],
+    includes: ["Heating element check", "Drum & belt inspection", "Vent cleaning", "Thermostat repair", "Motor diagnosis", "Service warranty"],
   },
   {
     id: 6,
@@ -90,7 +90,7 @@ export const services: ServiceData[] = [
     color: "green",
     rating: 4.8,
     duration: "1-2 hrs",
-    detailDescription: "Professional dishwasher repair for all brands. We fix drainage issues, spray arm problems, leaks, and electrical faults with genuine parts and a 90-day warranty.",
-    includes: ["Drainage system check", "Spray arm repair", "Door latch fix", "Pump & motor diagnosis", "Leak detection & repair", "90-day service warranty"],
+    detailDescription: "Professional dishwasher repair for all brands. We fix drainage issues, spray arm problems, leaks, and electrical faults with genuine parts and a warranty.",
+    includes: ["Drainage system check", "Spray arm repair", "Door latch fix", "Pump & motor diagnosis", "Leak detection & repair", "Service warranty"],
   },
 ];
