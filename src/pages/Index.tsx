@@ -40,8 +40,10 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   return <div className="bg-background min-h-screen flex flex-col">
       <SEO
+        title="Appliance Repair Service Near Me — ₹199 Onwards"
+        description="Book expert washing machine, refrigerator, AC, microwave & dryer repair at your doorstep starting ₹199. Certified technicians, 90-day warranty, same-day service in Bangalore."
         canonical="/"
-        keywords="appliance repair near me, washing machine repair, refrigerator repair, AC service, microwave repair, dryer repair, dishwasher repair, home appliance service, doorstep repair, Arrowmind"
+        keywords="appliance repair near me, washing machine repair near me, refrigerator repair, AC service near me, microwave repair, dryer repair, dishwasher repair, home appliance repair Bangalore, doorstep appliance repair, Arrowmind service center"
         structuredData={[
           {
             "@context": "https://schema.org",
@@ -88,11 +90,14 @@ const Index = () => {
             <div className="md:flex md:items-center md:justify-between md:gap-8">
               <div>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground italic">
-                  Smart Repairs,<br />
-                  Trusted Service
+                  Appliance Repair<br />
+                  at Your Doorstep
                 </h1>
+                <p className="text-sm text-muted-foreground mt-1 md:hidden">
+                  Washing Machine, Fridge, AC & More — ₹199 Onwards
+                </p>
                 <p className="hidden md:block text-muted-foreground mt-3 text-lg max-w-lg">
-                  Professional appliance repair & servicing at your fingertips. Book trusted technicians with just a tap.
+                  Washing machine, refrigerator, AC, microwave & dryer repair starting ₹199. Certified technicians, 90-day warranty, same-day service.
                 </p>
               </div>
 
@@ -139,13 +144,13 @@ const Index = () => {
               <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/70">
                   <Sparkle />
-                  <span className="text-xs">Fast, Reliable Repairs</span>
+                  <span className="text-xs">Same-Day Doorstep Service</span>
                 </div>
                 <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
-                  Quick Appliance<br />Repair Service
+                  Washing Machine &<br />Appliance Repair — ₹199
                 </h2>
                 <p className="hidden md:block text-sm text-white/70 max-w-xs">
-                  Professional appliance repair services at your doorstep. Book your service now!
+                  Book certified technicians for washing machine, fridge, AC, microwave repair. 90-day warranty included.
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={e => {
@@ -238,10 +243,10 @@ const Index = () => {
                     <span className="text-sm font-medium text-primary-foreground/80">Quick Turnaround</span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground leading-tight">
-                    Book in 10 Minutes,<br />Service Done in 1–2 Hours
+                    Same-Day Repair<br />Starting at Just ₹199
                   </h2>
                   <p className="text-sm text-primary-foreground/70 max-w-md">
-                    Our certified technicians arrive at your doorstep fully equipped. No waiting, no hassle — just fast, reliable repairs.
+                    Certified technicians at your doorstep in 60 minutes. Free diagnosis, genuine parts, 90-day warranty on every repair.
                   </p>
                 </div>
                 <div className="flex flex-col items-start md:items-center gap-3">
