@@ -30,9 +30,11 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <SplashScreen />
       <BrowserRouter>
         <ScrollToTop />
         <LeadPopup />
+        <FloatingWhatsApp />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
