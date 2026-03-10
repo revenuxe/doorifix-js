@@ -1,6 +1,15 @@
+import { useLocation } from "react-router-dom";
 import whatsappIcon from "@/assets/whatsapp.gif";
 
 const FloatingWhatsApp = () => {
+  const location = useLocation();
+
+  // Hide on service detail pages and admin pages
+  const hiddenPaths = ["/service/", "/admin"];
+  const shouldHide = hiddenPaths.some((p) => location.pathname.includes(p));
+
+  if (shouldHide) return null;
+
   return (
     <a
       href="https://wa.me/9109100038182"

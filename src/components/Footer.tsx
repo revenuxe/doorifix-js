@@ -2,6 +2,20 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
+const hyderabadAreas = [
+  "Gachibowli", "Madhapur", "HITEC City", "Kukatpally", "Kondapur",
+  "Banjara Hills", "Jubilee Hills", "Ameerpet", "Begumpet", "Miyapur",
+  "Manikonda", "Tolichowki", "Mehdipatnam", "Attapur", "Narsingi",
+  "Financial District", "Nallagandla", "Chandanagar", "LB Nagar", "Dilsukhnagar",
+  "Uppal", "Habsiguda", "Tarnaka", "Malkajgiri", "Sainikpuri",
+];
+
+const secunderabadAreas = [
+  "Bowenpally", "Trimulgherry", "Marredpally", "West Marredpally",
+  "Secunderabad East", "Tirumalagiri", "Alwal", "Bolaram",
+  "Karkhana", "Paradise", "Patny", "Ranigunj",
+  "Begumpet", "Picket", "Lal Bazaar", "Clock Tower",
+];
 
 const Footer = () => {
   return (
@@ -77,10 +91,47 @@ const Footer = () => {
               ))}
             </div>
           </div>
-
         </div>
 
-        <div className="border-t border-card/15 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        {/* Hyderabad Areas */}
+        <div className="border-t border-card/15 mt-8 pt-6">
+          <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <MapPin size={14} className="text-card/70" />
+            Appliance Repair in Hyderabad – Areas We Serve
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {hyderabadAreas.map((area) => (
+              <Link
+                key={area}
+                to="/hyderabad"
+                className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
+              >
+                {area}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Secunderabad Areas */}
+        <div className="border-t border-card/15 mt-6 pt-6">
+          <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <MapPin size={14} className="text-card/70" />
+            Appliance Repair in Secunderabad – Areas We Serve
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {secunderabadAreas.map((area) => (
+              <Link
+                key={area}
+                to="/secunderabad"
+                className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
+              >
+                {area}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-card/15 mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-card/50">
             © {new Date().getFullYear()} Arrowmind Service Center. All rights reserved.
           </p>
