@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChevronLeft, Star, Clock, CheckCircle, MapPin, Phone } from "lucide-react";
+import { ChevronLeft, Star, Clock, CheckCircle, Phone } from "lucide-react";
+import whatsappIcon from "@/assets/whatsapp.gif";
 import { useNavigate, useParams } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
