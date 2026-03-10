@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChevronLeft, Star, Clock, CheckCircle, MapPin, Phone } from "lucide-react";
+import { ChevronLeft, Star, Clock, CheckCircle, Phone } from "lucide-react";
+import whatsappIcon from "@/assets/whatsapp.gif";
 import { useNavigate, useParams, Navigate } from "react-router-dom";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
@@ -129,11 +130,16 @@ const CityServiceDetail = () => {
                 <p className="text-xs font-medium text-foreground">{service.duration}</p>
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
-              <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
-                <MapPin size={16} className="text-primary mx-auto mb-1" />
-                <p className="text-xs font-medium text-foreground">{cityData.name}</p>
-                <p className="text-[10px] text-muted-foreground">Location</p>
-              </div>
+              <a
+                href="https://wa.me/9109100038182"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-card rounded-xl p-3 border border-border text-center hover:shadow-md transition-shadow"
+              >
+                <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5 mx-auto mb-1 rounded-full" />
+                <p className="text-xs font-medium text-foreground">WhatsApp</p>
+                <p className="text-[10px] text-muted-foreground">Chat Now</p>
+              </a>
               <div className="flex-1 bg-card rounded-xl p-3 border border-border text-center">
                 <Star size={16} className="text-primary mx-auto mb-1" />
                 <p className="text-xs font-medium text-foreground">{service.rating}</p>
