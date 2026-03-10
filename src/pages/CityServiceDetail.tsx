@@ -51,7 +51,7 @@ const CityServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": `Arrowmind Service Center – ${cityData.name}`,
-            "telephone": "+918884647100",
+            "telephone": "+9109100038182",
             "areaServed": { "@type": "City", "name": cityData.name },
           },
           "areaServed": { "@type": "City", "name": cityData.name },
