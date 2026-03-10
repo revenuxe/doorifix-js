@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import LeadPopup from "./components/LeadPopup";
+import SplashScreen from "./components/SplashScreen";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
