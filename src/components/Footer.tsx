@@ -24,9 +24,9 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Contact Us</h3>
             <div className="space-y-3">
-              <a href="tel:+918884647100" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="tel:+9109100038182" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Phone size={14} className="mt-0.5 flex-shrink-0" />
-                +91 88846 47100
+                091 0003 8182
               </a>
               <a href="mailto:arrowmind.in@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Mail size={14} className="mt-0.5 flex-shrink-0" />

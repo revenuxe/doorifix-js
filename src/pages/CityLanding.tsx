@@ -55,7 +55,7 @@ const CityLanding = () => {
           "@type": "LocalBusiness",
           "name": `Arrowmind Service Center – ${cityData.name}`,
           "description": cityData.metaDescription,
-          "telephone": "+918884647100",
+          "telephone": "+9109100038182",
           "email": "arrowmind.in@gmail.com",
           "areaServed": { "@type": "City", "name": cityData.name },
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },

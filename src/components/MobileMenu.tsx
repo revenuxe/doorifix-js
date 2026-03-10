@@ -141,7 +141,7 @@ const MobileMenu = () => {
             {/* Footer CTA */}
             <div className="p-4 border-t border-border">
               <a
-                href="tel:+918884647100"
+                href="tel:+9109100038182"
                 className="flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-3 rounded-xl text-sm hover:opacity-90 transition-opacity"
               >
                 <Phone size={16} />
