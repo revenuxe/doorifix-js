@@ -33,7 +33,7 @@ const LeadPopup = () => {
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem(POPUP_KEY);
-    if (dismissed) return;
+    if (dismissed || location.pathname.startsWith("/admin")) return;
 
     const timer = setTimeout(() => setVisible(true), POPUP_DELAY);
     return () => clearTimeout(timer);
