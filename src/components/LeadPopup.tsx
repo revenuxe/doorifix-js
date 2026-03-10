@@ -23,6 +23,7 @@ const LeadPopup = () => {
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
   const [form, setForm] = useState({
     name: "",
     phone: "",
