@@ -55,7 +55,7 @@ const SEO = ({
     logo: `${BASE_URL}/favicon.ico`,
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+918884647100",
+      telephone: "+9109100038182",
       contactType: "customer service",
       areaServed: "IN",
       availableLanguage: ["English", "Hindi", "Kannada", "Malayalam"],

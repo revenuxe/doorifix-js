@@ -50,7 +50,7 @@ const Index = () => {
             "@type": "LocalBusiness",
             "name": "Arrowmind Service Center",
             "description": "Professional appliance repair & servicing at your doorstep",
-            "telephone": "+918884647100",
+            "telephone": "+9109100038182",
             "email": "arrowmind.in@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
             "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
