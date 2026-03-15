@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
@@ -70,7 +69,6 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
     } else {
       const caseNumber = data as string;
 
-      // Fire-and-forget email notification to founder
       supabase.functions.invoke("send-booking-email", {
         body: {
           name: form.name.trim(),
@@ -114,26 +112,26 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
             onChange={(e) => setForm({ ...form, location: e.target.value })}
             className="rounded-xl"
           />
-          <Select value={form.appliance} onValueChange={(v) => setForm({ ...form, appliance: v })}>
-            <SelectTrigger className="rounded-xl">
-              <SelectValue placeholder="Appliance Type" />
-            </SelectTrigger>
-            <SelectContent>
-              {applianceTypes.map((type) => (
-                <SelectItem key={type} value={type}>{type}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={form.warranty} onValueChange={(v) => setForm({ ...form, warranty: v })}>
-            <SelectTrigger className="rounded-xl">
-              <SelectValue placeholder="Warranty Type" />
-            </SelectTrigger>
-            <SelectContent>
-              {warrantyTypes.map((type) => (
-                <SelectItem key={type} value={type}>{type}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <select
+            value={form.appliance}
+            onChange={(e) => setForm({ ...form, appliance: e.target.value })}
+            className="flex h-10 w-full items-center rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground"
+          >
+            <option value="" disabled>Appliance Type</option>
+            {applianceTypes.map((type) => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+          <select
+            value={form.warranty}
+            onChange={(e) => setForm({ ...form, warranty: e.target.value })}
+            className="flex h-10 w-full items-center rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground"
+          >
+            <option value="" disabled>Warranty Type</option>
+            {warrantyTypes.map((type) => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
           <button
             onClick={handleSubmit}
             disabled={submitting}

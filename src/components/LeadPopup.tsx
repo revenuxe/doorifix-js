@@ -17,7 +17,6 @@ const applianceOptions = [
   "Dishwasher",
 ];
 
-// Map service slugs to appliance names for pre-fill
 const slugToAppliance: Record<string, string> = {
   "washing-machine-repair": "Washing Machine",
   "refrigerator-repair": "Refrigerator",
@@ -59,12 +58,15 @@ const LeadPopup = () => {
   }, [location.pathname]);
 
   useEffect(() => {
+    // Skip admin routes
+    if (location.pathname.startsWith("/admin")) return;
+
     const dismissed = sessionStorage.getItem(POPUP_KEY);
-    if (dismissed || location.pathname.startsWith("/admin")) return;
+    if (dismissed) return;
 
     const timer = setTimeout(() => setVisible(true), POPUP_DELAY);
     return () => clearTimeout(timer);
-  }, []);
+  }, [location.pathname]);
 
   const dismiss = () => {
     setVisible(false);

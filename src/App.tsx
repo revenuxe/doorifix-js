@@ -31,25 +31,26 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SplashScreen />
-        <ScrollToTop />
-        <LeadPopup />
-        <FloatingWhatsApp />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/service/:slug" element={<ServiceDetail />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/:city/service/:slug" element={<CityServiceDetail />} />
-          <Route path="/:city" element={<CityLanding />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <SplashScreen>
+          <ScrollToTop />
+          <LeadPopup />
+          <FloatingWhatsApp />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/service/:slug" element={<ServiceDetail />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/:city/service/:slug" element={<CityServiceDetail />} />
+            <Route path="/:city" element={<CityLanding />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </SplashScreen>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
