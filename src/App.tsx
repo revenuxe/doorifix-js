@@ -30,8 +30,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <SplashScreen />
       <BrowserRouter>
+        <SplashScreen />
         <ScrollToTop />
         <LeadPopup />
         <FloatingWhatsApp />
