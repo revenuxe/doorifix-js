@@ -1,18 +1,38 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import arrowmindLogo from "@/assets/arrowmind-logo.webp";
 
 const SplashScreen = () => {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
+  const location = useLocation();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
+  // Show on initial load
   useEffect(() => {
     const fadeTimer = setTimeout(() => setFadeOut(true), 1200);
-    const hideTimer = setTimeout(() => setVisible(false), 1600);
+    const hideTimer = setTimeout(() => {
+      setVisible(false);
+      setIsFirstLoad(false);
+    }, 1600);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
     };
   }, []);
+
+  // Show on route changes (after initial load)
+  useEffect(() => {
+    if (isFirstLoad) return;
+    setVisible(true);
+    setFadeOut(false);
+    const fadeTimer = setTimeout(() => setFadeOut(true), 600);
+    const hideTimer = setTimeout(() => setVisible(false), 900);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [location.pathname]);
 
   if (!visible) return null;
 

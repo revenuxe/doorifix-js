@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { X, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,18 +17,46 @@ const applianceOptions = [
   "Dishwasher",
 ];
 
+// Map service slugs to appliance names for pre-fill
+const slugToAppliance: Record<string, string> = {
+  "washing-machine-repair": "Washing Machine",
+  "refrigerator-repair": "Refrigerator",
+  "ac-repair-service": "AC",
+  "microwave-repair": "Microwave",
+  "dryer-repair": "Dryer",
+  "dishwasher-repair": "Dishwasher",
+};
+
+const getApplianceFromPath = (pathname: string): string => {
+  for (const [slug, appliance] of Object.entries(slugToAppliance)) {
+    if (pathname.includes(slug)) return appliance;
+  }
+  return "";
+};
+
 const LeadPopup = () => {
   const [visible, setVisible] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const detectedAppliance = getApplianceFromPath(location.pathname);
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    appliance: "",
+    appliance: detectedAppliance,
     pincode: "",
   });
+
+  // Update appliance when route changes
+  useEffect(() => {
+    const appliance = getApplianceFromPath(location.pathname);
+    if (appliance) {
+      setForm((prev) => ({ ...prev, appliance }));
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem(POPUP_KEY);
@@ -86,10 +113,8 @@ const LeadPopup = () => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center">
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={dismiss} />
 
-      {/* Popup */}
       <div className="relative bg-card rounded-t-3xl md:rounded-3xl w-full max-w-[400px] mx-auto p-5 pb-6 shadow-2xl border border-border animate-in slide-in-from-bottom-4 duration-300 z-10">
         <button
           onClick={dismiss}
@@ -117,16 +142,16 @@ const LeadPopup = () => {
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
             className="rounded-xl h-10 text-sm"
           />
-          <Select value={form.appliance} onValueChange={(v) => setForm({ ...form, appliance: v })}>
-            <SelectTrigger className="rounded-xl h-10 text-sm">
-              <SelectValue placeholder="Select Appliance" />
-            </SelectTrigger>
-            <SelectContent>
-              {applianceOptions.map((type) => (
-                <SelectItem key={type} value={type}>{type}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <select
+            value={form.appliance}
+            onChange={(e) => setForm({ ...form, appliance: e.target.value })}
+            className="flex h-10 w-full items-center rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground"
+          >
+            <option value="" disabled>Select Appliance</option>
+            {applianceOptions.map((type) => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
           <Input
             placeholder="Pincode"
             type="text"
