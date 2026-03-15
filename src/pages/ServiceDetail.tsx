@@ -103,7 +103,8 @@ const ServiceDetail = () => {
         {/* Mobile Hero */}
         <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
           <img src={service.image} alt={`${service.title} repair near me`} className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/15" />
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
           <div className="relative z-10 px-5 pt-6 pb-8">
             <button onClick={() => navigate("/")} className="w-9 h-9 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white">
               <ChevronLeft size={18} />
