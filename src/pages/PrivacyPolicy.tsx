@@ -127,7 +127,7 @@ const PrivacyPolicy = () => {
               <p>In accordance with the Information Technology Act, 2000, and the rules made thereunder, the Grievance Officer for the purpose of this Privacy Policy is:</p>
               <p><strong className="text-foreground">Arrowmind Service Center</strong></p>
               <p>Email: <a href="mailto:arrowmind.in@gmail.com" className="text-primary hover:underline">arrowmind.in@gmail.com</a></p>
-              <p>Phone: <a href="tel:+9109100038182" className="text-primary hover:underline">091 0003 8182</a></p>
+              <p>Phone: <a href="tel:+919100038182" className="text-primary hover:underline">9100 038 182</a></p>
               <p>Response time: Within 30 days of receiving a complaint.</p>
             </section>
 
