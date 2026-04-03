@@ -107,7 +107,22 @@ const About = () => {
             </button>
           </div>
         </div>
-      </div>
+          </div>
+
+          {/* Built By */}
+          <div className="mt-10 text-center">
+            <p className="text-xs text-muted-foreground">
+              Designed & Developed by{" "}
+              <a
+                href="https://revenuxe.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary hover:underline"
+              >
+                Revenuxe.com
+              </a>
+            </p>
+          </div>
 
       <Footer />
       <BottomNav />
