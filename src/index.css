@@ -15,10 +15,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 10%;
 
-    --primary: 222 65% 24%;
+    --primary: 20 90% 54%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 20 95% 95%;
+    --secondary: 222 50% 96%;
     --secondary-foreground: 222 65% 24%;
 
     --brand-orange: 20 90% 54%;
@@ -28,7 +28,7 @@
     --muted: 210 20% 94%;
     --muted-foreground: 210 15% 46%;
 
-    --accent: 20 90% 54%;
+    --accent: 222 65% 24%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -36,7 +36,7 @@
 
     --border: 220 15% 90%;
     --input: 220 15% 90%;
-    --ring: 222 65% 24%;
+    --ring: 20 90% 54%;
 
     --radius: 1rem;
 
@@ -48,11 +48,11 @@
 
     /* Pill / badge */
     --pill-bg: 210 20% 94%;
-    --pill-active-bg: 222 65% 24%;
+    --pill-active-bg: 20 90% 54%;
     --pill-active-fg: 0 0% 100%;
 
     /* Bottom nav */
-    --nav-active: 222 65% 24%;
+    --nav-active: 20 90% 54%;
     --nav-inactive: 210 15% 60%;
 
     /* Hero pink for detail page */
