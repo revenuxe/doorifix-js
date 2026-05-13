@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Home, Wrench, Phone, Info, MapPin, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const mainLinks = [
   { label: "Home", path: "/", icon: Home },
@@ -57,7 +57,7 @@ const MobileMenu = () => {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-border">
-              <img src={arrowmindLogo} alt="Arrowmind" className="h-8 object-contain" />
+              <img src={doorifixLogo} alt="Doorifix" className="h-8 object-contain" />
               <button
                 onClick={() => setOpen(false)}
                 className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground"

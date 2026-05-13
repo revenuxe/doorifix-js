@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { CheckCircle, Phone, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 declare global {
   interface Window {
@@ -31,7 +31,7 @@ const ThankYou = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-5">
       <SEO title="Booking Confirmed" description={`Your service request ${caseNumber} has been submitted. Our team will contact you shortly.`} />
       <div className="w-full max-w-sm text-center space-y-6">
-        <img src={arrowmindLogo} alt="Arrowmind" className="h-10 mx-auto" />
+        <img src={doorifixLogo} alt="Doorifix" className="h-10 mx-auto" />
 
         {/* Success icon */}
         <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mx-auto">

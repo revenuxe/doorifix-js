@@ -7,8 +7,8 @@ const TermsOfService = () => {
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
-        title="Terms of Service – Arrowmind Service Center"
-        description="Read the terms and conditions for using Arrowmind Service Center's appliance repair services."
+        title="Terms of Service – Doorifix"
+        description="Read the terms and conditions for using Doorifix's appliance repair services."
         canonical="/terms"
       />
       <DesktopHeader />
@@ -21,12 +21,12 @@ const TermsOfService = () => {
           <div className="prose prose-sm max-w-none space-y-6 text-muted-foreground">
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">1. Acceptance of Terms</h2>
-              <p>By accessing or using the Arrowmind Service Center website and services ("Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use the Services. These Terms constitute a legally binding agreement between you ("User", "Customer", or "you") and Arrowmind Service Center ("Company", "we", "us", or "our").</p>
+              <p>By accessing or using the Doorifix website and services ("Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use the Services. These Terms constitute a legally binding agreement between you ("User", "Customer", or "you") and Doorifix ("Company", "we", "us", or "our").</p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">2. Description of Services</h2>
-              <p>Arrowmind Service Center provides home appliance repair and servicing, including but not limited to washing machines, refrigerators, air conditioners, microwaves, dryers, and dishwashers. Services are provided at the customer's premises ("Doorstep Service") by our trained and certified technicians.</p>
+              <p>Doorifix provides home appliance repair and servicing, including but not limited to washing machines, refrigerators, air conditioners, microwaves, dryers, and dishwashers. Services are provided at the customer's premises ("Doorstep Service") by our trained and certified technicians.</p>
             </section>
 
             <section className="space-y-3">
@@ -46,10 +46,10 @@ const TermsOfService = () => {
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">5. Warranty on Repairs</h2>
-              <p>5.1. All repairs performed by Arrowmind technicians carry a warranty from the date of service completion.</p>
+              <p>5.1. All repairs performed by Doorifix technicians carry a warranty from the date of service completion.</p>
               <p>5.2. The warranty covers the same issue that was repaired. It does not cover new issues, physical damage, water damage, electrical surges, or misuse of the appliance after repair.</p>
               <p>5.3. Warranty claims must be reported within the warranty period by contacting our customer support. The Company reserves the right to inspect the appliance before honoring any warranty claim.</p>
-              <p>5.4. Replaced parts carry the manufacturer's warranty, if any. Arrowmind does not provide additional warranty on third-party parts beyond the service warranty.</p>
+              <p>5.4. Replaced parts carry the manufacturer's warranty, if any. Doorifix does not provide additional warranty on third-party parts beyond the service warranty.</p>
             </section>
 
             <section className="space-y-3">
@@ -76,12 +76,12 @@ const TermsOfService = () => {
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">9. Intellectual Property</h2>
-              <p>All content on the Arrowmind website, including text, graphics, logos, images, and software, is the property of Arrowmind Service Center and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our prior written consent.</p>
+              <p>All content on the Doorifix website, including text, graphics, logos, images, and software, is the property of Doorifix and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our prior written consent.</p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">10. Indemnification</h2>
-              <p>You agree to indemnify, defend, and hold harmless Arrowmind Service Center, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including legal fees) arising from your use of the Services, violation of these Terms, or infringement of any third-party rights.</p>
+              <p>You agree to indemnify, defend, and hold harmless Doorifix, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including legal fees) arising from your use of the Services, violation of these Terms, or infringement of any third-party rights.</p>
             </section>
 
             <section className="space-y-3">
@@ -104,7 +104,7 @@ const TermsOfService = () => {
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">14. Contact Information</h2>
               <p>For questions about these Terms, please contact us:</p>
-              <p>Email: <a href="mailto:arrowmind.in@gmail.com" className="text-primary hover:underline">arrowmind.in@gmail.com</a></p>
+              <p>Email: <a href="mailto:doorifix.in@gmail.com" className="text-primary hover:underline">doorifix.in@gmail.com</a></p>
               <p>Phone: <a href="tel:+919100038182" className="text-primary hover:underline">9100 038 182</a></p>
             </section>
           </div>

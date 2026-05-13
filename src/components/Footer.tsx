@@ -1,6 +1,6 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const hyderabadAreas = [
   "Gachibowli", "Madhapur", "HITEC City", "Kukatpally", "Kondapur",
@@ -24,9 +24,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-10 object-contain brightness-0 invert" />
+            <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain brightness-0 invert" />
             <p className="text-sm text-card/70 leading-relaxed">
-              Arrowmind Service Center — your trusted partner for expert appliance repair & servicing. Fast, reliable, and affordable.
+              Doorifix — your trusted partner for expert appliance repair & servicing. Fast, reliable, and affordable.
             </p>
             <div className="flex items-center gap-2 text-card/70">
               <Clock size={14} />
@@ -42,9 +42,9 @@ const Footer = () => {
                 <Phone size={14} className="mt-0.5 flex-shrink-0" />
                 9100 038 182
               </a>
-              <a href="mailto:arrowmind.in@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="mailto:doorifix.in@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Mail size={14} className="mt-0.5 flex-shrink-0" />
-                arrowmind.in@gmail.com
+                doorifix.in@gmail.com
               </a>
               <div className="flex items-start gap-2 text-sm text-card/70">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0" />
@@ -133,7 +133,7 @@ const Footer = () => {
 
         <div className="border-t border-card/15 mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-card/50">
-            © {new Date().getFullYear()} Arrowmind Service Center. All rights reserved.
+            © {new Date().getFullYear()} Doorifix. All rights reserved.
           </p>
           <div className="flex gap-4 text-xs text-card/50">
             <Link to="/privacy" className="hover:text-card/80 transition-colors">Privacy Policy</Link>

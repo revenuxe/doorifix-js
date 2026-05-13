@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -16,7 +16,7 @@ const DesktopHeader = () => {
     <header className="hidden md:flex items-center justify-between px-8 lg:px-12 py-4 bg-card border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-card/90">
       {/* Logo */}
       <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-        <img src={arrowmindLogo} alt="Arrowmind Service Center" className="h-14 object-contain" />
+        <img src={doorifixLogo} alt="Doorifix" className="h-14 object-contain" />
       </div>
 
       {/* Nav Links */}

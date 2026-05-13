@@ -35,8 +35,8 @@ serve(async (req) => {
     }
 
     const { error } = await resend.emails.send({
-      from: "Arrowmind Bookings <bookings@arrowmind.in>",
-      to: ["arrowmindservicecenter@gmail.com"],
+      from: "Doorifix Bookings <bookings@doorifix.in>",
+      to: ["doorifixservicecenter@gmail.com"],
       subject: `🔧 New Booking: ${appliance} – ${caseNumber}`,
       html: `
 <!DOCTYPE html>
@@ -104,7 +104,7 @@ serve(async (req) => {
         <tr>
           <td style="background:#f9fafb;padding:16px 32px;border-top:1px solid #eef0f2;">
             <p style="margin:0;color:#9ca3af;font-size:11px;text-align:center;">
-              Arrowmind Service Center • Automated Booking Notification
+              Doorifix • Automated Booking Notification
             </p>
           </td>
         </tr>

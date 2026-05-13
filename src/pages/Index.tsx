@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import cleanerHero from "@/assets/cleaner-hero.png";
 import repairHero from "@/assets/repair-hero.png";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 import washingMachine from "@/assets/washing-machine.png";
 import refrigerator from "@/assets/refrigerator.png";
 import acUnit from "@/assets/ac-unit.png";
@@ -43,15 +43,15 @@ const Index = () => {
         title="Appliance Repair Service Near Me"
         description="Book expert washing machine, refrigerator, AC, microwave & dryer repair at your doorstep. Certified technicians, same-day service in Bangalore."
         canonical="/"
-        keywords="appliance repair near me, washing machine repair near me, refrigerator repair, AC service near me, microwave repair, dryer repair, dishwasher repair, home appliance repair Bangalore, doorstep appliance repair, Arrowmind service center"
+        keywords="appliance repair near me, washing machine repair near me, refrigerator repair, AC service near me, microwave repair, dryer repair, dishwasher repair, home appliance repair Bangalore, doorstep appliance repair, Doorifix service center"
         structuredData={[
           {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Arrowmind Service Center",
+            "name": "Doorifix",
             "description": "Professional appliance repair & servicing at your doorstep",
             "telephone": "+919100038182",
-            "email": "arrowmind.in@gmail.com",
+            "email": "doorifix.in@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
             "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
             "openingHours": "Mo-Su 08:00-21:00",
@@ -81,7 +81,7 @@ const Index = () => {
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
               <div className="flex items-center gap-2">
-                <img src={arrowmindLogo} alt="Arrowmind" className="h-10 object-contain" />
+                <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain" />
               </div>
               <MobileMenu />
             </div>

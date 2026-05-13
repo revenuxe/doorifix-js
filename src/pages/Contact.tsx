@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -56,10 +56,10 @@ const Contact = () => {
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
-        title="Contact Us – Arrowmind Service Center"
-        description="Get in touch with Arrowmind Service Center for appliance repair queries, bookings, and support. Call, email, or visit us."
+        title="Contact Us – Doorifix"
+        description="Get in touch with Doorifix for appliance repair queries, bookings, and support. Call, email, or visit us."
         canonical="/contact"
-        keywords="contact arrowmind, appliance repair contact, customer support, service center phone number"
+        keywords="contact doorifix, appliance repair contact, customer support, service center phone number"
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Contact", url: "/contact" },
@@ -91,13 +91,13 @@ const Contact = () => {
                 </div>
               </a>
 
-              <a href="mailto:arrowmind.in@gmail.com" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
+              <a href="mailto:doorifix.in@gmail.com" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Mail size={22} className="text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Email Us</h3>
-                  <p className="text-sm text-primary font-medium mt-1">arrowmind.in@gmail.com</p>
+                  <p className="text-sm text-primary font-medium mt-1">doorifix.in@gmail.com</p>
                   <p className="text-xs text-muted-foreground mt-1">We typically respond within 30 minutes</p>
                 </div>
               </a>

@@ -51,7 +51,7 @@ const CityServiceDetail = () => {
           "description": `Expert ${service.title.toLowerCase()} repair service in ${cityData.name}. ${service.detailDescription}`,
           "provider": {
             "@type": "LocalBusiness",
-            "name": `Arrowmind Service Center – ${cityData.name}`,
+            "name": `Doorifix – ${cityData.name}`,
             "telephone": "+919100038182",
             "areaServed": { "@type": "City", "name": cityData.name },
           },
