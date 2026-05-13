@@ -10,7 +10,8 @@ import SplashScreen from "./components/SplashScreen";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
-import ServiceDetail from "./pages/ServiceDetail";
+import ServiceHome from "./pages/ServiceHome";
+import ServiceBooking from "./pages/ServiceBooking";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ThankYou from "./pages/ThankYou";
@@ -38,7 +39,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/service/:slug" element={<ServiceDetail />} />
+            <Route path="/service/:slug" element={<ServiceHome />} />
+            <Route path="/service/:slug/book" element={<ServiceBooking />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
