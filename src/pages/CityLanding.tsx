@@ -9,7 +9,7 @@ import ServiceCard from "@/components/ServiceCard";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { services } from "@/data/services";
 import { getCityBySlug } from "@/data/cities";
 
@@ -53,10 +53,10 @@ const CityLanding = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          "name": `Arrowmind Service Center – ${cityData.name}`,
+          "name": `Doorifix – ${cityData.name}`,
           "description": cityData.metaDescription,
           "telephone": "+919100038182",
-          "email": "arrowmind.in@gmail.com",
+          "email": "doorifix.in@gmail.com",
           "areaServed": { "@type": "City", "name": cityData.name },
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
           "openingHours": "Mo-Su 08:00-21:00",
@@ -72,7 +72,7 @@ const CityLanding = () => {
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
               <div className="flex items-center gap-2">
-                <img src={arrowmindLogo} alt="Arrowmind" className="h-10 object-contain" />
+                <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain" />
               </div>
               <MobileMenu />
             </div>

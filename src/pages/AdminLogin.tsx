@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Lock, Mail, Eye, EyeOff } from "lucide-react";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-sm space-y-8">
         {/* Logo & header */}
         <div className="text-center space-y-3">
-          <img src={arrowmindLogo} alt="Arrowmind" className="h-12 mx-auto" />
+          <img src={doorifixLogo} alt="Doorifix" className="h-12 mx-auto" />
           <div>
             <h1 className="text-2xl font-bold text-foreground">Admin Panel</h1>
             <p className="text-sm text-muted-foreground mt-1">Sign in to manage your leads</p>
@@ -64,7 +64,7 @@ const AdminLogin = () => {
             <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="email"
-              placeholder="admin@arrowmind.in"
+              placeholder="admin@doorifix.in"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="pl-10 rounded-xl h-12"

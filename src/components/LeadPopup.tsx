@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
-const POPUP_KEY = "arrowmind_lead_popup_dismissed";
+const POPUP_KEY = "doorifix_lead_popup_dismissed";
 const POPUP_DELAY = 4000;
 
 const applianceOptions = [

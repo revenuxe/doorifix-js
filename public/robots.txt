@@ -19,4 +19,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/login
 
-Sitemap: https://arrowmind.in/sitemap.xml
+Sitemap: https://doorifix.in/sitemap.xml

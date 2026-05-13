@@ -6,7 +6,7 @@ import { Eye, Trash2, LogOut, Phone, MapPin, Wrench, Shield, Calendar, Search, U
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 interface Booking {
   id: string;
@@ -152,7 +152,7 @@ const AdminDashboard = () => {
       <header className="sticky top-0 z-40 bg-card border-b border-border px-5 py-3">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={arrowmindLogo} alt="Arrowmind" className="h-8" />
+            <img src={doorifixLogo} alt="Doorifix" className="h-8" />
             <div className="hidden sm:block">
               <h1 className="text-sm font-bold text-foreground leading-none">Admin Panel</h1>
               <p className="text-[11px] text-muted-foreground">Lead Management</p>

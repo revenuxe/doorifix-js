@@ -33,8 +33,8 @@ serve(async (req) => {
     }
 
     const { error } = await resend.emails.send({
-      from: "Arrowmind Contact <bookings@arrowmind.in>",
-      to: ["arrowmindservicecenter@gmail.com"],
+      from: "Doorifix Contact <bookings@doorifix.in>",
+      to: ["doorifixservicecenter@gmail.com"],
       subject: `📩 New Contact Enquiry from ${name}`,
       html: `
 <!DOCTYPE html>
@@ -96,7 +96,7 @@ serve(async (req) => {
         <tr>
           <td style="background:#f9fafb;padding:16px 32px;border-top:1px solid #eef0f2;">
             <p style="margin:0;color:#9ca3af;font-size:11px;text-align:center;">
-              Arrowmind Service Center • Contact Form Submission
+              Doorifix • Contact Form Submission
             </p>
           </td>
         </tr>

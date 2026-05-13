@@ -16,8 +16,8 @@ interface SEOProps {
   breadcrumbs?: BreadcrumbItem[];
 }
 
-const SITE_NAME = "Arrowmind Service Center";
-const BASE_URL = "https://arrowmind.in";
+const SITE_NAME = "Doorifix";
+const BASE_URL = "https://doorifix.in";
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.ico`;
 
 const SEO = ({
@@ -50,7 +50,7 @@ const SEO = ({
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Arrowmind Service Center",
+    name: "Doorifix",
     url: BASE_URL,
     logo: `${BASE_URL}/favicon.ico`,
     contactPoint: {
@@ -69,7 +69,7 @@ const SEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <meta name="author" content="Arrowmind Service Center" />
+      <meta name="author" content="Doorifix" />
       <meta name="geo.region" content="IN-KA" />
       <meta name="geo.placename" content="Bangalore" />
 

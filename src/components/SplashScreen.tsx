@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 interface LoaderContextType {
   showLoader: () => void;
@@ -69,8 +69,8 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
           }`}
         >
           <img
-            src={arrowmindLogo}
-            alt="Arrowmind"
+            src={doorifixLogo}
+            alt="Doorifix"
             className="h-16 md:h-20 object-contain animate-in fade-in zoom-in-95 duration-500"
           />
           <div className="mt-6 flex gap-1.5">

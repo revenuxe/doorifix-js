@@ -7,8 +7,8 @@ const PrivacyPolicy = () => {
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
-        title="Privacy Policy – Arrowmind Service Center"
-        description="Learn how Arrowmind Service Center collects, uses, and protects your personal information."
+        title="Privacy Policy – Doorifix"
+        description="Learn how Doorifix collects, uses, and protects your personal information."
         canonical="/privacy"
       />
       <DesktopHeader />
@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
           <div className="prose prose-sm max-w-none space-y-6 text-muted-foreground">
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">1. Introduction</h2>
-              <p>Arrowmind Service Center ("Company", "we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use our website, mobile application, and services (collectively, "Services"). By using our Services, you consent to the practices described in this Policy.</p>
+              <p>Doorifix ("Company", "we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use our website, mobile application, and services (collectively, "Services"). By using our Services, you consent to the practices described in this Policy.</p>
             </section>
 
             <section className="space-y-3">
@@ -104,7 +104,7 @@ const PrivacyPolicy = () => {
                 <li><strong className="text-foreground">Portability:</strong> Request transfer of your data in a structured, commonly used format</li>
                 <li><strong className="text-foreground">Withdraw Consent:</strong> Withdraw consent for data processing at any time</li>
               </ul>
-              <p>To exercise any of these rights, contact us at <a href="mailto:arrowmind.in@gmail.com" className="text-primary hover:underline">arrowmind.in@gmail.com</a>. We will respond within 30 days.</p>
+              <p>To exercise any of these rights, contact us at <a href="mailto:doorifix.in@gmail.com" className="text-primary hover:underline">doorifix.in@gmail.com</a>. We will respond within 30 days.</p>
             </section>
 
             <section className="space-y-3">
@@ -125,8 +125,8 @@ const PrivacyPolicy = () => {
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">12. Grievance Officer</h2>
               <p>In accordance with the Information Technology Act, 2000, and the rules made thereunder, the Grievance Officer for the purpose of this Privacy Policy is:</p>
-              <p><strong className="text-foreground">Arrowmind Service Center</strong></p>
-              <p>Email: <a href="mailto:arrowmind.in@gmail.com" className="text-primary hover:underline">arrowmind.in@gmail.com</a></p>
+              <p><strong className="text-foreground">Doorifix</strong></p>
+              <p>Email: <a href="mailto:doorifix.in@gmail.com" className="text-primary hover:underline">doorifix.in@gmail.com</a></p>
               <p>Phone: <a href="tel:+919100038182" className="text-primary hover:underline">9100 038 182</a></p>
               <p>Response time: Within 30 days of receiving a complaint.</p>
             </section>

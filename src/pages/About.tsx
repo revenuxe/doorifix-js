@@ -4,10 +4,10 @@ import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import arrowmindLogo from "@/assets/arrowmind-logo.webp";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const timeline = [
-  { year: "2019", city: "Bangalore", description: "Arrowmind was founded in Bangalore with a mission to make appliance repair fast, transparent, and affordable. Started with a small team of 5 technicians." },
+  { year: "2019", city: "Bangalore", description: "Doorifix was founded in Bangalore with a mission to make appliance repair fast, transparent, and affordable. Started with a small team of 5 technicians." },
   { year: "2020", city: "Hyderabad", description: "Expanded to Hyderabad, bringing trusted doorstep appliance repair to the city. Crossed 500+ happy customers within months." },
   { year: "2022", city: "Mangalore", description: "Entered the Mangalore market, serving coastal Karnataka with expert technicians for all major appliance brands." },
   { year: "2023", city: "Mumbai", description: "Launched operations in Mumbai — India's largest metro. Scaled our team to 100+ certified technicians across all service areas." },
@@ -20,10 +20,10 @@ const About = () => {
   return (
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
-        title="About Us – Arrowmind Service Center | Since 2019"
-        description="Arrowmind Service Center has been providing expert appliance repair since 2019. From Bangalore to Kerala, we've served thousands of happy customers across India."
+        title="About Us – Doorifix | Since 2019"
+        description="Doorifix has been providing expert appliance repair since 2019. From Bangalore to Kerala, we've served thousands of happy customers across India."
         canonical="/about"
-        keywords="about arrowmind, appliance repair company, arrowmind history, home service company india"
+        keywords="about doorifix, appliance repair company, doorifix history, home service company india"
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "About Us", url: "/about" },
@@ -35,7 +35,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto px-5 md:px-8 py-10 md:py-16">
           {/* Header */}
           <div className="text-center mb-12">
-            <img src={arrowmindLogo} alt="Arrowmind" className="h-12 mx-auto mb-6" />
+            <img src={doorifixLogo} alt="Doorifix" className="h-12 mx-auto mb-6" />
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Our Story</h1>
             <p className="text-muted-foreground max-w-lg mx-auto text-lg">
               Since 2019, we've been on a mission to make appliance repair simple, fast, and trustworthy — one city at a time.
