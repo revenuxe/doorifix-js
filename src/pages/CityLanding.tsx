@@ -66,7 +66,6 @@ const CityLanding = () => {
           "telephone": "+919886579923",
           "email": "doorifix@gmail.com",
           "areaServed": { "@type": "City", "name": cityData.name },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
           "openingHours": "Mo-Su 08:00-21:00",
           "priceRange": "$$",
         }}

@@ -101,7 +101,6 @@ const ServiceDetail = () => {
             { "@type": "City", "name": "Secunderabad" },
             { "@type": "City", "name": "Kochi" },
           ],
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": String(service.rating), "reviewCount": "256" },
         }}
       />
       <DesktopHeader />

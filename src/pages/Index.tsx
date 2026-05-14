@@ -61,7 +61,6 @@ const Index = () => {
             "telephone": "+919886579923",
             "email": "doorifix@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
             "openingHours": "Mo-Su 08:00-21:00",
             "priceRange": "$$",
           },

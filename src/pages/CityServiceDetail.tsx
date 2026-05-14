@@ -63,7 +63,6 @@ const CityServiceDetail = () => {
             "areaServed": { "@type": "City", "name": cityData.name },
           },
           "areaServed": { "@type": "City", "name": cityData.name },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": String(service.rating), "reviewCount": "256" },
         }}
       />
       <DesktopHeader />

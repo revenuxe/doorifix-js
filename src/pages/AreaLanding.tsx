@@ -78,7 +78,6 @@ const AreaLanding = () => {
           "email": "doorifix@gmail.com",
           "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
           "address": { "@type": "PostalAddress", "addressLocality": areaName, "addressRegion": cityData.name, "addressCountry": "IN" },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
           "openingHours": "Mo-Su 08:00-21:00",
           "priceRange": "$$",
         }}

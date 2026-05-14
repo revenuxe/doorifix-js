@@ -209,11 +209,6 @@ export function serviceSchema(service: ServiceData, breadcrumbs?: BreadcrumbItem
       priceCurrency: "INR",
       url: absoluteUrl(`/service/${service.slug}`),
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: String(service.rating),
-      reviewCount: "256",
-    },
   };
 
   return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
@@ -248,11 +243,6 @@ export function localBusinessSchema(city: CityData, area?: string) {
           },
         }
       : {}),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "256",
-    },
     openingHours: "Mo-Su 08:00-21:00",
     priceRange: "$$",
     hasOfferCatalog: {
@@ -290,11 +280,6 @@ export function cityServiceSchema(city: CityData, service: ServiceData, breadcru
     areaServed: {
       "@type": "City",
       name: city.name,
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: String(service.rating),
-      reviewCount: "256",
     },
     offers: {
       "@type": "Offer",
