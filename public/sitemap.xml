@@ -40,37 +40,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Service Booking Pages -->
-  <url>
-    <loc>https://doorifix.in/service/washing-machine-repair/book</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://doorifix.in/service/refrigerator-repair/book</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://doorifix.in/service/ac-repair-service/book</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://doorifix.in/service/microwave-repair/book</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://doorifix.in/service/dryer-repair/book</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://doorifix.in/service/dishwasher-repair/book</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
   <url>
     <loc>https://doorifix.in/about</loc>
     <changefreq>monthly</changefreq>
