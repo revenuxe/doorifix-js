@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/integrations/supabase/server";
+import { emailLayout, mailField, sendResendEmail } from "@/lib/resend";
 
 interface ContactRequest {
   name?: string;
@@ -32,16 +33,36 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  supabase.functions
-    .invoke("send-contact-email", {
-      body: {
-        name,
-        email,
-        phone,
-        message,
-      },
-    })
-    .catch((err) => console.error("Contact email failed:", err));
+  let emailSent = true;
+  try {
+    const html = emailLayout(
+      "New Contact Enquiry",
+      `From ${name}`,
+      [
+        mailField("Name", name),
+        mailField("Phone", phone),
+        mailField("Email", email || "-"),
+        mailField("Message", message),
+      ].join(""),
+      { label: `Call ${name}`, href: `tel:${phone}` },
+    );
 
-  return NextResponse.json({ ok: true });
+    await sendResendEmail({
+      subject: `New Doorifix Contact Enquiry from ${name}`,
+      html,
+      text: [
+        "New Doorifix Contact Enquiry",
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Email: ${email || "-"}`,
+        `Message: ${message}`,
+      ].join("\n"),
+      replyTo: email,
+    });
+  } catch (err) {
+    emailSent = false;
+    console.error("Contact email failed:", err);
+  }
+
+  return NextResponse.json({ ok: true, emailSent });
 }

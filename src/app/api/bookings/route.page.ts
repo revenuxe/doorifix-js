@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/integrations/supabase/server";
+import { emailLayout, mailField, sendResendEmail } from "@/lib/resend";
 
 interface BookingRequest {
   name?: string;
@@ -38,18 +39,38 @@ export async function POST(request: Request) {
   const rawCaseNumber = data as string;
   const caseNumber = rawCaseNumber.replace(/^AM/i, "DF");
 
-  supabase.functions
-    .invoke("send-booking-email", {
-      body: {
-        name,
-        phone,
-        location,
-        appliance,
-        warranty,
-        caseNumber,
-      },
-    })
-    .catch((err) => console.error("Email notification failed:", err));
+  let emailSent = true;
+  try {
+    const html = emailLayout(
+      "New Service Booking",
+      `Case #${caseNumber}`,
+      [
+        mailField("Case Number", caseNumber),
+        mailField("Customer", name),
+        mailField("Phone", phone),
+        mailField("Location", location),
+        mailField("Appliance", appliance),
+        mailField("Warranty", warranty),
+      ].join(""),
+      { label: "Call Customer", href: `tel:${phone}` },
+    );
 
-  return NextResponse.json({ caseNumber });
+    await sendResendEmail({
+      subject: `New Doorifix Booking: ${appliance} - ${caseNumber}`,
+      html,
+      text: [
+        `New Doorifix Booking - ${caseNumber}`,
+        `Customer: ${name}`,
+        `Phone: ${phone}`,
+        `Location: ${location}`,
+        `Appliance: ${appliance}`,
+        `Warranty: ${warranty}`,
+      ].join("\n"),
+    });
+  } catch (err) {
+    emailSent = false;
+    console.error("Booking email failed:", err);
+  }
+
+  return NextResponse.json({ caseNumber, emailSent });
 }
