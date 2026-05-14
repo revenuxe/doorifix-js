@@ -8,6 +8,16 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async rewrites() {
+    return {
+      fallback: [
+        {
+          source: "/_next/static/chunks/:path*",
+          destination: "/stale-next-chunk.js",
+        },
+      ],
+    };
+  },
 };
 
 export default nextConfig;
