@@ -1,7 +1,7 @@
 "use client";
 
 import { Star, Clock } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { StaticImageData } from "next/image";
 
 interface ServiceCardProps {
@@ -24,14 +24,13 @@ const colorMap = {
 };
 
 const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "" }: ServiceCardProps) => {
-  const router = useRouter();
   const basePath = `${linkPrefix}/service/${slug}`;
   const imageSrc = typeof image === "string" ? image : image.src;
 
   return (
-    <div
+    <Link
+      href={basePath}
       className={`${colorMap[color]} rounded-3xl p-5 flex gap-4 items-center cursor-pointer transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]`}
-      onClick={() => router.push(basePath)}
     >
       <div className="flex-1 space-y-2">
         <h3 className="font-semibold text-base text-foreground">{title}</h3>
@@ -44,22 +43,18 @@ const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, dur
             <Clock size={12} /> {duration}
           </span>
         </div>
-        <button
+        <span
           className="bg-primary text-primary-foreground text-xs font-medium px-4 py-2 rounded-full mt-1 hover:opacity-90 transition-opacity"
-          onClick={(e) => {
-            e.stopPropagation();
-            router.push(basePath);
-          }}
         >
           Book Now
-        </button>
+        </span>
       </div>
       <img
         src={imageSrc}
         alt={title}
         className="w-28 h-28 md:w-32 md:h-32 object-cover rounded-2xl flex-shrink-0"
       />
-    </div>
+    </Link>
   );
 };
 

@@ -188,13 +188,13 @@ const AreaLanding = () => {
                   const title = item.title.replace(cityData.name, areaName);
                   const keywordsLine = `${svc?.title.toLowerCase() || "appliance"} repair near me ${areaName}, samsung ${svc?.title.toLowerCase() || ""} repair ${areaName}, lg ${svc?.title.toLowerCase() || ""} service ${areaName}, doorstep ${svc?.title.toLowerCase() || ""} fix ${areaName}`;
                   return (
-                    <div key={item.title} onClick={() => navigate(`/${cityData.slug}/service/${svc?.slug || ''}`)} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
+                    <Link key={item.title} href={`/${cityData.slug}/service/${svc?.slug || ""}`} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
                         {applianceIcons[i]}
                       </div>
                       <h3 className="font-semibold text-sm text-foreground leading-tight">{title}</h3>
                       <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{keywordsLine}</p>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
