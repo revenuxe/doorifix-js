@@ -94,7 +94,7 @@ const AdminLogin = () => {
             <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="email"
-              placeholder="admin@doorifix.in"
+              placeholder="admin@doorifix.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="pl-10 rounded-xl h-12"

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import { JsonLd } from "./_components/JsonLd";
-import { BASE_URL, DEFAULT_DESCRIPTION, organizationSchema } from "@/lib/seo";
+import { BASE_URL, DEFAULT_DESCRIPTION, organizationSchema, websiteSchema } from "@/lib/seo";
 import "../index.css";
 
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en-IN" suppressHydrationWarning>
       <body>
-        <JsonLd data={organizationSchema()} />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Providers>{children}</Providers>
       </body>
     </html>

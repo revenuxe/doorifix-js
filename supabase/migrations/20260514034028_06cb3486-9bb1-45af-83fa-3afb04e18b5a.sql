@@ -57,7 +57,7 @@ CREATE SEQUENCE public.booking_case_seq START 1001;
 CREATE OR REPLACE FUNCTION public.generate_case_number()
 RETURNS TRIGGER AS $$
 BEGIN
-  NEW.case_number := 'AM' || nextval('public.booking_case_seq')::TEXT;
+  NEW.case_number := 'DF' || nextval('public.booking_case_seq')::TEXT;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SET search_path = public;

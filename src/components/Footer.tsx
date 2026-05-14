@@ -33,6 +33,13 @@ const mangaloreAreas = [
   "Kulshekar", "Urwa", "Bikarnakatte", "Kulai", "Mulky",
 ];
 
+const citiesWeServe = [
+  { name: "Bangalore", slug: "bangalore" },
+  { name: "Mangalore", slug: "mangalore" },
+  { name: "Hyderabad", slug: "hyderabad" },
+  { name: "Kerala", slug: "kerala" },
+];
+
 const Footer = () => {
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
@@ -90,21 +97,11 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Locations */}
+          {/* Cities We Serve */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-base">Locations</h3>
+            <h3 className="font-semibold text-base">Cities We Serve</h3>
             <div className="space-y-2">
-              {[
-                { name: "Kochi", slug: "kochi" },
-                { name: "Trivandrum", slug: "trivandrum" },
-                { name: "Kozhikode", slug: "kozhikode" },
-                { name: "Thrissur", slug: "thrissur" },
-                { name: "Kollam", slug: "kollam" },
-                { name: "Hyderabad", slug: "hyderabad" },
-                { name: "Secunderabad", slug: "secunderabad" },
-                { name: "Bangalore", slug: "bangalore" },
-                { name: "Mangalore", slug: "mangalore" },
-              ].map((loc) => (
+              {citiesWeServe.map((loc) => (
                 <Link key={loc.slug} href={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   Appliance Repair {loc.name}
                 </Link>

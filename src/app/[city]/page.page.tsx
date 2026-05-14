@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CityLanding from "@/pages/CityLanding";
 import { JsonLd } from "../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
-import { breadcrumbSchema, buildMetadata, localBusinessSchema } from "@/lib/seo";
+import { breadcrumbSchema, cityMetadata, localBusinessSchema } from "@/lib/seo";
 
 interface CityPageProps {
   params: {
@@ -17,12 +17,7 @@ export function generateMetadata({ params }: CityPageProps): Metadata {
     return {};
   }
 
-  return buildMetadata({
-    title: city.metaTitle,
-    description: city.metaDescription,
-    canonical: `/${city.slug}`,
-    keywords: city.keywords,
-  });
+  return cityMetadata(city);
 }
 
 export default function CityPage({ params }: CityPageProps) {

@@ -5,9 +5,9 @@ import type { ServiceData } from "@/data/services";
 export const SITE_NAME = "Doorifix";
 export const BASE_URL = "https://doorifix.com";
 export const DEFAULT_DESCRIPTION =
-  "Professional appliance repair & servicing at your doorstep. Washing machine, refrigerator, AC, microwave, dryer & dishwasher repair by certified technicians.";
+  "Book same-day doorstep appliance repair near you for washing machines, refrigerators, ACs, microwaves, dryers and dishwashers by certified Doorifix technicians.";
 export const DEFAULT_KEYWORDS =
-  "appliance repair, washing machine repair, refrigerator repair, AC service, microwave repair, dryer repair, dishwasher repair, home appliance service, doorstep repair";
+  "appliance repair near me, washing machine repair near me, refrigerator repair near me, AC repair near me, microwave repair near me, dryer repair, dishwasher repair, doorstep appliance repair, same day appliance service";
 export const DEFAULT_IMAGE = `${BASE_URL}/favicon.ico`;
 
 export interface BreadcrumbItem {
@@ -84,6 +84,63 @@ export function buildMetadata({
   };
 }
 
+const primaryCities = ["Bangalore", "Mangalore", "Hyderabad", "Kerala"];
+const primaryServiceNames = [
+  "Washing Machine Repair",
+  "Refrigerator Repair",
+  "AC Repair & Service",
+  "Microwave Repair",
+  "Dryer Repair",
+  "Dishwasher Repair",
+];
+
+export function homeMetadata() {
+  return buildMetadata({
+    title: "Appliance Repair Near Me | Washing Machine, AC & Fridge Service",
+    description:
+      "Doorifix offers same-day appliance repair near you for washing machines, refrigerators, ACs, microwaves, dryers and dishwashers in Bangalore, Mangalore, Hyderabad and Kerala.",
+    canonical: "/",
+    keywords:
+      "appliance repair near me, washing machine repair near me, AC repair near me, fridge repair near me, refrigerator repair, doorstep appliance service, same day appliance repair, appliance repair Bangalore, appliance repair Hyderabad, appliance repair Kerala",
+  });
+}
+
+export function serviceMetadata(service: ServiceData) {
+  return buildMetadata({
+    title: `${service.title} Repair Near Me | Same-Day Doorstep Service`,
+    description: `Book expert ${service.title.toLowerCase()} repair near you with Doorifix. Same-day doorstep diagnosis, trained technicians, genuine parts and service warranty.`,
+    canonical: `/service/${service.slug}`,
+    keywords: `${service.title} repair near me, ${service.title} service near me, ${service.title} technician near me, doorstep ${service.title.toLowerCase()} repair, same day ${service.title.toLowerCase()} service, Doorifix ${service.title.toLowerCase()} repair`,
+  });
+}
+
+export function cityMetadata(city: CityData) {
+  return buildMetadata({
+    title: city.metaTitle,
+    description: city.metaDescription,
+    canonical: `/${city.slug}`,
+    keywords: city.keywords,
+  });
+}
+
+export function cityServiceMetadata(city: CityData, service: ServiceData) {
+  return buildMetadata({
+    title: `${service.title} Repair in ${city.name} | Same-Day Service Near Me`,
+    description: `Book ${service.title.toLowerCase()} repair in ${city.name} with Doorifix. Same-day doorstep service, certified technicians, genuine parts and transparent pricing.`,
+    canonical: `/${city.slug}/service/${service.slug}`,
+    keywords: `${service.title} repair ${city.name}, ${service.title} service ${city.name}, ${service.title} repair near me ${city.name}, doorstep ${service.title.toLowerCase()} repair ${city.name}, same day ${service.title.toLowerCase()} service ${city.name}`,
+  });
+}
+
+export function areaMetadata(city: CityData, area: string, areaSlug: string) {
+  return buildMetadata({
+    title: `Appliance Repair in ${area}, ${city.name} | Doorstep Service Near Me`,
+    description: `Same-day appliance repair in ${area}, ${city.name}. Book washing machine, refrigerator, AC, microwave, dryer and dishwasher repair by certified Doorifix technicians.`,
+    canonical: `/${city.slug}/${areaSlug}`,
+    keywords: `appliance repair ${area}, appliance repair near me ${area}, washing machine repair ${area}, fridge repair ${area}, refrigerator repair ${area}, AC repair ${area}, AC service ${area}, doorstep appliance repair ${area} ${city.name}, same day appliance service ${area}`,
+  });
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -91,6 +148,8 @@ export function organizationSchema() {
     name: SITE_NAME,
     url: BASE_URL,
     logo: DEFAULT_IMAGE,
+    image: DEFAULT_IMAGE,
+    email: "doorifix@gmail.com",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+919886579923",
@@ -99,6 +158,20 @@ export function organizationSchema() {
       availableLanguage: ["English", "Hindi", "Kannada", "Malayalam"],
     },
     sameAs: [],
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: BASE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${BASE_URL}/services?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -121,18 +194,21 @@ export function serviceSchema(service: ServiceData, breadcrumbs?: BreadcrumbItem
     "@type": "Service",
     name: `${service.title} Repair & Service`,
     description: service.detailDescription,
+    serviceType: `${service.title} Repair`,
     provider: {
       "@type": "LocalBusiness",
       name: SITE_NAME,
       telephone: "+919886579923",
       email: "doorifix@gmail.com",
+      url: BASE_URL,
     },
-    areaServed: [
-      { "@type": "City", name: "Bangalore" },
-      { "@type": "City", name: "Hyderabad" },
-      { "@type": "City", name: "Secunderabad" },
-      { "@type": "City", name: "Kochi" },
-    ],
+    areaServed: primaryCities.map((name) => ({ "@type": name === "Kerala" ? "State" : "City", name })),
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "INR",
+      url: absoluteUrl(`/service/${service.slug}`),
+    },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: String(service.rating),
@@ -151,8 +227,13 @@ export function localBusinessSchema(city: CityData, area?: string) {
     "@type": "LocalBusiness",
     name: area ? `${SITE_NAME} - ${placeName}` : `${SITE_NAME} - ${city.name}`,
     description: city.metaDescription,
+    url: absoluteUrl(`/${city.slug}${area ? `/${area.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}` : ""}`),
+    image: DEFAULT_IMAGE,
     telephone: "+919886579923",
     email: "doorifix@gmail.com",
+    paymentAccepted: ["Cash", "UPI", "Card"],
+    currenciesAccepted: "INR",
+    knowsAbout: primaryServiceNames,
     areaServed: {
       "@type": area ? "Place" : "City",
       name: placeName,
@@ -174,6 +255,17 @@ export function localBusinessSchema(city: CityData, area?: string) {
     },
     openingHours: "Mo-Su 08:00-21:00",
     priceRange: "$$",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `Doorifix appliance repair services in ${placeName}`,
+      itemListElement: primaryServiceNames.map((name) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name,
+        },
+      })),
+    },
   };
 }
 
@@ -183,10 +275,13 @@ export function cityServiceSchema(city: CityData, service: ServiceData, breadcru
     "@type": "Service",
     name: `${service.title} Repair & Service in ${city.name}`,
     description: `Expert ${service.title.toLowerCase()} repair service in ${city.name}. ${service.detailDescription}`,
+    serviceType: `${service.title} Repair in ${city.name}`,
     provider: {
       "@type": "LocalBusiness",
       name: `${SITE_NAME} - ${city.name}`,
       telephone: "+919886579923",
+      email: "doorifix@gmail.com",
+      url: absoluteUrl(`/${city.slug}`),
       areaServed: {
         "@type": "City",
         name: city.name,
@@ -200,6 +295,12 @@ export function cityServiceSchema(city: CityData, service: ServiceData, breadcru
       "@type": "AggregateRating",
       ratingValue: String(service.rating),
       reviewCount: "256",
+    },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "INR",
+      url: absoluteUrl(`/${city.slug}/service/${service.slug}`),
     },
   };
 

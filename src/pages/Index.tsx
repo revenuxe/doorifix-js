@@ -10,6 +10,7 @@ import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import Footer from "@/components/Footer";
+import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
 import cleanerHero from "@/assets/cleaner-hero.png";
 import repairHero from "@/assets/repair-hero.png";
@@ -307,6 +308,8 @@ const Index = () => {
                   </details>)}
               </div>
             </div>
+
+            <HomepageBookingForm />
           </div>
         </div>
       </div>

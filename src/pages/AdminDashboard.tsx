@@ -31,6 +31,8 @@ interface ContactLead {
   created_at: string;
 }
 
+const displayCaseNumber = (caseNumber?: string | null) => caseNumber?.replace(/^AM/i, "DF") || "DF0000";
+
 const AdminDashboard = () => {
   const router = useRouter();
   const navigate = (path: string | number, replace = false) => {
@@ -127,7 +129,7 @@ const AdminDashboard = () => {
       b.phone.includes(searchQuery) ||
       b.appliance.toLowerCase().includes(searchQuery.toLowerCase()) ||
       b.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (b.case_number && b.case_number.toLowerCase().includes(searchQuery.toLowerCase()))
+      (b.case_number && displayCaseNumber(b.case_number).toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const filteredContacts = contactLeads.filter(
@@ -251,7 +253,7 @@ const AdminDashboard = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <p className="font-semibold text-sm text-foreground truncate">{booking.name}</p>
-                      <span className="text-[10px] font-mono bg-primary/10 text-primary px-1.5 py-0.5 rounded-md shrink-0">{booking.case_number}</span>
+                      <span className="text-[10px] font-mono bg-primary/10 text-primary px-1.5 py-0.5 rounded-md shrink-0">{displayCaseNumber(booking.case_number)}</span>
                     </div>
                     <div className="flex items-center gap-2 mt-0.5">
                       <span className="text-[11px] text-muted-foreground">{booking.appliance}</span>
@@ -339,7 +341,7 @@ const AdminDashboard = () => {
             <div className="space-y-3 pt-1">
               {[
                 { icon: Users, label: "Name", value: selectedBooking.name },
-                { icon: Shield, label: "Case No.", value: selectedBooking.case_number },
+                { icon: Shield, label: "Case No.", value: displayCaseNumber(selectedBooking.case_number) },
                 { icon: Phone, label: "Phone", value: selectedBooking.phone },
                 { icon: MapPin, label: "Location", value: selectedBooking.location },
                 { icon: Wrench, label: "Appliance", value: selectedBooking.appliance },

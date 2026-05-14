@@ -35,7 +35,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const caseNumber = data as string;
+  const rawCaseNumber = data as string;
+  const caseNumber = rawCaseNumber.replace(/^AM/i, "DF");
 
   supabase.functions
     .invoke("send-booking-email", {

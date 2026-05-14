@@ -31,6 +31,11 @@ export const cityAreas: Record<string, string[]> = {
     "Eravipuram", "Vadakkevila", "Polayathode", "Kilikollur", "Thattamala",
     "Sasthamcotta", "Mukhathala", "Anchal", "Pathanapuram", "Kottarakkara",
   ],
+  kerala: [
+    "Kochi", "Trivandrum", "Kozhikode", "Thrissur", "Kollam",
+    "Alappuzha", "Kottayam", "Kannur", "Palakkad", "Malappuram",
+    "Pathanamthitta", "Idukki", "Wayanad", "Kasargod",
+  ],
   hyderabad: [
     "Gachibowli", "Madhapur", "HITEC City", "Kukatpally", "Kondapur",
     "Banjara Hills", "Jubilee Hills", "Ameerpet", "Begumpet", "Miyapur",

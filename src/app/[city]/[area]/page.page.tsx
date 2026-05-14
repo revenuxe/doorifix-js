@@ -3,7 +3,7 @@ import AreaLanding from "@/pages/AreaLanding";
 import { JsonLd } from "../../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
 import { getAreaByCityAndSlug } from "@/data/areas";
-import { breadcrumbSchema, buildMetadata, localBusinessSchema } from "@/lib/seo";
+import { areaMetadata, breadcrumbSchema, localBusinessSchema } from "@/lib/seo";
 
 interface AreaPageProps {
   params: {
@@ -20,12 +20,7 @@ export function generateMetadata({ params }: AreaPageProps): Metadata {
     return {};
   }
 
-  return buildMetadata({
-    title: `Appliance Repair in ${area}, ${city.name}`,
-    description: `Top-rated doorstep appliance repair in ${area}, ${city.name}. Same-day washing machine, refrigerator, AC, microwave, dryer & dishwasher repair by certified technicians in ${area}.`,
-    canonical: `/${city.slug}/${params.area}`,
-    keywords: `appliance repair ${area}, washing machine repair ${area}, fridge repair ${area}, AC service ${area}, appliance repair near me ${area}, doorstep appliance repair ${area} ${city.name}`,
-  });
+  return areaMetadata(city, area, params.area);
 }
 
 export default function AreaPage({ params }: AreaPageProps) {

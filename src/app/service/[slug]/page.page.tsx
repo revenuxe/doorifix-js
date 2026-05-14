@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ServiceDetail from "@/pages/ServiceDetail";
 import { JsonLd } from "../../_components/JsonLd";
 import { getServiceBySlug } from "@/data/services";
-import { buildMetadata, serviceSchema, type BreadcrumbItem } from "@/lib/seo";
+import { serviceMetadata, serviceSchema, type BreadcrumbItem } from "@/lib/seo";
 
 interface ServicePageProps {
   params: {
@@ -17,12 +17,7 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
     return {};
   }
 
-  return buildMetadata({
-    title: `${service.title} Repair Near Me`,
-    description: service.detailDescription,
-    canonical: `/service/${service.slug}`,
-    keywords: `${service.title} repair near me, ${service.title} service near me, doorstep ${service.title.toLowerCase()} repair`,
-  });
+  return serviceMetadata(service);
 }
 
 export default function ServicePage({ params }: ServicePageProps) {

@@ -1,10 +1,7 @@
-import { buildMetadata } from "@/lib/seo";
+import { homeMetadata } from "@/lib/seo";
 import Index from "@/pages/Index";
 
-export const metadata = buildMetadata({
-  title: "Doorifix - Expert Appliance Repair & Servicing",
-  canonical: "/",
-});
+export const metadata = homeMetadata();
 
 export default function HomePage() {
   return <Index />;

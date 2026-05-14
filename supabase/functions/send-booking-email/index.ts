@@ -35,7 +35,7 @@ serve(async (req) => {
     }
 
     const { error } = await resend.emails.send({
-      from: "Doorifix Bookings <bookings@doorifix.in>",
+      from: "Doorifix Bookings <doorifix@gmail.com>",
       to: ["doorifixservicecenter@gmail.com"],
       subject: `🔧 New Booking: ${appliance} – ${caseNumber}`,
       html: `

@@ -3,7 +3,7 @@ import CityServiceDetail from "@/pages/CityServiceDetail";
 import { JsonLd } from "../../../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
 import { getServiceBySlug } from "@/data/services";
-import { buildMetadata, cityServiceSchema, type BreadcrumbItem } from "@/lib/seo";
+import { cityServiceMetadata, cityServiceSchema, type BreadcrumbItem } from "@/lib/seo";
 
 interface CityServicePageProps {
   params: {
@@ -20,12 +20,7 @@ export function generateMetadata({ params }: CityServicePageProps): Metadata {
     return {};
   }
 
-  return buildMetadata({
-    title: `${service.title} Repair in ${city.name}`,
-    description: `Expert ${service.title.toLowerCase()} repair service in ${city.name}. ${service.detailDescription}`,
-    canonical: `/${city.slug}/service/${service.slug}`,
-    keywords: `${service.title} repair ${city.name}, ${service.title} service ${city.name}, ${service.title} repair near me ${city.name}`,
-  });
+  return cityServiceMetadata(city, service);
 }
 
 export default function CityServicePage({ params }: CityServicePageProps) {

@@ -14,7 +14,7 @@ const ThankYou = () => {
     if (typeof path === "number") router.back();
     else router.push(path);
   };
-  const caseNumber = searchParams.get("case") || "AM0000";
+  const caseNumber = searchParams.get("case") || "DF0000";
   const name = searchParams.get("name") || "Customer";
 
   return (

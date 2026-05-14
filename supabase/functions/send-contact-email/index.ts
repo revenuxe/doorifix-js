@@ -33,7 +33,7 @@ serve(async (req) => {
     }
 
     const { error } = await resend.emails.send({
-      from: "Doorifix Contact <bookings@doorifix.in>",
+      from: "Doorifix Contact <doorifix@gmail.com>",
       to: ["doorifixservicecenter@gmail.com"],
       subject: `📩 New Contact Enquiry from ${name}`,
       html: `
