@@ -72,7 +72,7 @@ const CityServiceDetail = () => {
         {/* Mobile Hero */}
         <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
           <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-primary/20" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
           <div className="relative z-10 px-5 pt-6 pb-8">
             <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white">
               <ChevronLeft size={18} />
@@ -85,7 +85,7 @@ const CityServiceDetail = () => {
           <div className="hidden md:block">
             <div className="rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px]">
               <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-primary/15 rounded-3xl" />
+              <div className="absolute inset-x-0 bottom-0 h-1/2 rounded-b-3xl bg-gradient-to-t from-primary/25 via-primary/10 to-transparent" />
             </div>
 
             <div className="mt-6 bg-card rounded-2xl p-6 border border-border">
