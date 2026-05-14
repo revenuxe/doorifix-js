@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import AreaLanding from "@/pages/AreaLanding";
 import { JsonLd } from "../../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
@@ -28,7 +29,7 @@ export default function AreaPage({ params }: AreaPageProps) {
   const area = city ? getAreaByCityAndSlug(city.slug, params.area) : undefined;
 
   if (!city || !area) {
-    return null;
+    notFound();
   }
 
   return (

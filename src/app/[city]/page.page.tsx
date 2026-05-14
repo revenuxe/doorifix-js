@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import CityLanding from "@/pages/CityLanding";
 import { JsonLd } from "../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
@@ -24,7 +25,7 @@ export default function CityPage({ params }: CityPageProps) {
   const city = getCityBySlug(params.city);
 
   if (!city) {
-    return null;
+    notFound();
   }
 
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import CityServiceDetail from "@/pages/CityServiceDetail";
 import { JsonLd } from "../../../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
@@ -28,7 +29,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
   const service = getServiceBySlug(params.slug);
 
   if (!city || !service) {
-    return null;
+    notFound();
   }
 
   const breadcrumbs: BreadcrumbItem[] = [

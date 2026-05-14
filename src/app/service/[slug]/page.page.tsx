@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import ServiceDetail from "@/pages/ServiceDetail";
 import { JsonLd } from "../../_components/JsonLd";
 import { getServiceBySlug } from "@/data/services";
@@ -24,7 +25,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   const service = getServiceBySlug(params.slug);
 
   if (!service) {
-    return null;
+    notFound();
   }
 
   const breadcrumbs: BreadcrumbItem[] = [
