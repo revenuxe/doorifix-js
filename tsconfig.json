@@ -1,6 +1,18 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2020"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "noImplicitAny": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -9,16 +21,35 @@
         "./src/*"
       ]
     },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strictNullChecks": false
+    "strict": false,
+    "strictNullChecks": false,
+    "target": "ES2020",
+    "noEmit": true
   },
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "src/components/**/*.ts",
+    "src/components/**/*.tsx",
+    "src/data/**/*.ts",
+    "src/hooks/**/*.ts",
+    "src/hooks/**/*.tsx",
+    "src/integrations/**/*.ts",
+    "src/lib/**/*.ts",
+    "src/pages/**/*.ts",
+    "src/pages/**/*.tsx",
+    "src/types/**/*.d.ts",
+    "src/app/**/*.ts",
+    "src/app/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

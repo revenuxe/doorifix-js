@@ -1,10 +1,13 @@
+"use client";
+
 import { Star, Clock } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import type { StaticImageData } from "next/image";
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  image: string;
+  image: string | StaticImageData;
   color: "pink" | "green" | "yellow" | "blue";
   id: number;
   slug: string;
@@ -21,13 +24,14 @@ const colorMap = {
 };
 
 const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "" }: ServiceCardProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const basePath = `${linkPrefix}/service/${slug}`;
+  const imageSrc = typeof image === "string" ? image : image.src;
 
   return (
     <div
       className={`${colorMap[color]} rounded-3xl p-5 flex gap-4 items-center cursor-pointer transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]`}
-      onClick={() => navigate(basePath)}
+      onClick={() => router.push(basePath)}
     >
       <div className="flex-1 space-y-2">
         <h3 className="font-semibold text-base text-foreground">{title}</h3>
@@ -44,14 +48,14 @@ const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, dur
           className="bg-primary text-primary-foreground text-xs font-medium px-4 py-2 rounded-full mt-1 hover:opacity-90 transition-opacity"
           onClick={(e) => {
             e.stopPropagation();
-            navigate(basePath);
+            router.push(basePath);
           }}
         >
           Book Now
         </button>
       </div>
       <img
-        src={image}
+        src={imageSrc}
         alt={title}
         className="w-28 h-28 md:w-32 md:h-32 object-cover rounded-2xl flex-shrink-0"
       />

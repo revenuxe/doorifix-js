@@ -1,5 +1,8 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+"use client";
+
+import { imageSrc } from "@/lib/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,12 +11,39 @@ import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const AdminLogin = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number, replace = false) => {
+    if (typeof path === "number") router.back();
+    else if (replace) router.replace(path);
+    else router.push(path);
+  };
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const redirectExistingAdmin = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) return;
+
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .eq("role", "admin");
+
+      if (roles && roles.length > 0) {
+        navigate("/admin", true);
+      }
+    };
+
+    redirectExistingAdmin();
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +72,7 @@ const AdminLogin = () => {
     }
 
     toast({ title: "Welcome back, Admin!" });
-    navigate("/admin");
+    navigate("/admin", true);
     setLoading(false);
   };
 
@@ -51,7 +81,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-sm space-y-8">
         {/* Logo & header */}
         <div className="text-center space-y-3">
-          <img src={doorifixLogo} alt="Doorifix" className="h-12 mx-auto" />
+          <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-12 mx-auto" />
           <div>
             <h1 className="text-2xl font-bold text-foreground">Admin Panel</h1>
             <p className="text-sm text-muted-foreground mt-1">Sign in to manage your leads</p>

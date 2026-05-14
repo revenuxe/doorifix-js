@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect, createContext, useContext, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 interface LoaderContextType {
@@ -13,9 +15,10 @@ export const useLoader = () => useContext(LoaderContext);
 const SplashScreen = ({ children }: { children: React.ReactNode }) => {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [manualTrigger, setManualTrigger] = useState(0);
+  const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
   const showLoader = useCallback(() => {
     setVisible(true);
@@ -47,7 +50,7 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
     };
-  }, [location.pathname]);
+  }, [pathname]);
 
   // Manual trigger (button clicks)
   useEffect(() => {
@@ -69,7 +72,7 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
           }`}
         >
           <img
-            src={doorifixLogo}
+            src={logoSrc}
             alt="Doorifix"
             className="h-16 md:h-20 object-contain animate-in fade-in zoom-in-95 duration-500"
           />

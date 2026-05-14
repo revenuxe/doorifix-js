@@ -1,6 +1,8 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import { ChevronLeft, Search } from "lucide-react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useRouter, useSearchParams } from "next/navigation";
 import ServiceCard from "@/components/ServiceCard";
 import CategoryPills from "@/components/CategoryPills";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -19,8 +21,12 @@ const categoryToTitle: Record<string, string[]> = {
 };
 
 const Services = () => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
+  const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "All");
 

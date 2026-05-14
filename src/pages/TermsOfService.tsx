@@ -1,3 +1,5 @@
+"use client";
+
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
@@ -104,8 +106,8 @@ const TermsOfService = () => {
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">14. Contact Information</h2>
               <p>For questions about these Terms, please contact us:</p>
-              <p>Email: <a href="mailto:doorifix.in@gmail.com" className="text-primary hover:underline">doorifix.in@gmail.com</a></p>
-              <p>Phone: <a href="tel:+919100038182" className="text-primary hover:underline">9100 038 182</a></p>
+              <p>Email: <a href="mailto:doorifix@gmail.com" className="text-primary hover:underline">doorifix@gmail.com</a></p>
+              <p>Phone: <a href="tel:+919886579923" className="text-primary hover:underline">9886 579 923</a></p>
             </section>
           </div>
         </div>

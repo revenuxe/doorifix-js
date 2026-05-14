@@ -1,5 +1,8 @@
+"use client";
+
+import { imageSrc } from "@/lib/image";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Eye, Trash2, LogOut, Phone, MapPin, Wrench, Shield, Calendar, Search, Users, Mail, MessageSquare } from "lucide-react";
@@ -29,7 +32,12 @@ interface ContactLead {
 }
 
 const AdminDashboard = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number, replace = false) => {
+    if (typeof path === "number") router.back();
+    else if (replace) router.replace(path);
+    else router.push(path);
+  };
   const { toast } = useToast();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [contactLeads, setContactLeads] = useState<ContactLead[]>([]);
@@ -46,7 +54,7 @@ const AdminDashboard = () => {
   const checkAdminAndFetch = async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
-      navigate("/admin/login");
+      navigate("/admin/login", true);
       return;
     }
 
@@ -58,7 +66,7 @@ const AdminDashboard = () => {
 
     if (!roles || roles.length === 0) {
       await supabase.auth.signOut();
-      navigate("/admin/login");
+      navigate("/admin/login", true);
       return;
     }
 
@@ -110,7 +118,7 @@ const AdminDashboard = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/admin/login");
+    navigate("/admin/login", true);
   };
 
   const filteredBookings = bookings.filter(
@@ -152,7 +160,7 @@ const AdminDashboard = () => {
       <header className="sticky top-0 z-40 bg-card border-b border-border px-5 py-3">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={doorifixLogo} alt="Doorifix" className="h-8" />
+            <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-8" />
             <div className="hidden sm:block">
               <h1 className="text-sm font-bold text-foreground leading-none">Admin Panel</h1>
               <p className="text-[11px] text-muted-foreground">Lead Management</p>

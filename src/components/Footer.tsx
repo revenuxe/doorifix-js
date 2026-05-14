@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { slugify } from "@/data/areas";
 
@@ -34,13 +34,15 @@ const mangaloreAreas = [
 ];
 
 const Footer = () => {
+  const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
+
   return (
     <footer className="bg-foreground text-card mt-8">
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain brightness-0 invert" />
+            <img src={logoSrc} alt="Doorifix" className="h-10 object-contain brightness-0 invert" />
             <p className="text-sm text-card/70 leading-relaxed">
               Doorifix — your trusted partner for expert appliance repair & servicing. Fast, reliable, and affordable.
             </p>
@@ -54,13 +56,13 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Contact Us</h3>
             <div className="space-y-3">
-              <a href="tel:+919100038182" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="tel:+919886579923" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Phone size={14} className="mt-0.5 flex-shrink-0" />
-                9100 038 182
+                9886 579 923
               </a>
-              <a href="mailto:doorifix.in@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="mailto:doorifix@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Mail size={14} className="mt-0.5 flex-shrink-0" />
-                doorifix.in@gmail.com
+                doorifix@gmail.com
               </a>
               <div className="flex items-start gap-2 text-sm text-card/70">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0" />
@@ -81,7 +83,7 @@ const Footer = () => {
                 { name: "Dryer Repair", slug: "dryer-repair" },
                 { name: "Dishwasher Repair", slug: "dishwasher-repair" },
               ].map((s) => (
-                <Link key={s.slug} to={`/service/${s.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
+                <Link key={s.slug} href={`/service/${s.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   {s.name}
                 </Link>
               ))}
@@ -103,7 +105,7 @@ const Footer = () => {
                 { name: "Bangalore", slug: "bangalore" },
                 { name: "Mangalore", slug: "mangalore" },
               ].map((loc) => (
-                <Link key={loc.slug} to={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
+                <Link key={loc.slug} href={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   Appliance Repair {loc.name}
                 </Link>
               ))}
@@ -121,7 +123,7 @@ const Footer = () => {
             {hyderabadAreas.map((area) => (
               <Link
                 key={area}
-                to={`/hyderabad/${slugify(area)}`}
+                href={`/hyderabad/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -140,7 +142,7 @@ const Footer = () => {
             {secunderabadAreas.map((area) => (
               <Link
                 key={area}
-                to={`/secunderabad/${slugify(area)}`}
+                href={`/secunderabad/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -159,7 +161,7 @@ const Footer = () => {
             {bangaloreAreas.map((area) => (
               <Link
                 key={area}
-                to={`/bangalore/${slugify(area)}`}
+                href={`/bangalore/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -178,7 +180,7 @@ const Footer = () => {
             {mangaloreAreas.map((area) => (
               <Link
                 key={area}
-                to={`/mangalore/${slugify(area)}`}
+                href={`/mangalore/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -192,10 +194,10 @@ const Footer = () => {
             © {new Date().getFullYear()} Doorifix. All rights reserved.
           </p>
           <div className="flex gap-4 text-xs text-card/50">
-            <Link to="/privacy" className="hover:text-card/80 transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-card/80 transition-colors">Terms of Service</Link>
-            <Link to="/about" className="hover:text-card/80 transition-colors">About Us</Link>
-            <Link to="/contact" className="hover:text-card/80 transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-card/80 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-card/80 transition-colors">Terms of Service</Link>
+            <Link href="/about" className="hover:text-card/80 transition-colors">About Us</Link>
+            <Link href="/contact" className="hover:text-card/80 transition-colors">Contact</Link>
           </div>
         </div>
       </div>

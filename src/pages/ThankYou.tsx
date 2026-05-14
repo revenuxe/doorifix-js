@@ -1,37 +1,27 @@
-import { useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+"use client";
+
+import { imageSrc } from "@/lib/image";
+import { useRouter, useSearchParams } from "next/navigation";
 import { CheckCircle, Phone, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
-
 const ThankYou = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
   const caseNumber = searchParams.get("case") || "AM0000";
   const name = searchParams.get("name") || "Customer";
-
-  useEffect(() => {
-    if (window.gtag) {
-      window.gtag("event", "conversion", {
-        send_to: "AW-17962306213",
-        event_category: "booking",
-        event_label: caseNumber,
-      });
-    }
-  }, [caseNumber]);
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-5">
       <SEO title="Booking Confirmed" description={`Your service request ${caseNumber} has been submitted. Our team will contact you shortly.`} />
       <div className="w-full max-w-sm text-center space-y-6">
-        <img src={doorifixLogo} alt="Doorifix" className="h-10 mx-auto" />
+        <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 mx-auto" />
 
         {/* Success icon */}
         <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mx-auto">
@@ -55,7 +45,7 @@ const ThankYou = () => {
         {/* Actions */}
         <div className="flex flex-col gap-3 pt-2">
           <Button
-            onClick={() => window.open("tel:+919100038182")}
+            onClick={() => window.open("tel:+919886579923")}
             className="w-full h-12 rounded-xl gap-2"
           >
             <Phone size={16} /> Call Us Now

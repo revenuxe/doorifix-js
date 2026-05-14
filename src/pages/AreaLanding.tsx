@@ -1,5 +1,9 @@
+"use client";
+
+import { imageSrc } from "@/lib/image";
 import { useState } from "react";
-import { useParams, useNavigate, Navigate, Link } from "react-router-dom";
+import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 import { Search, Clock, Star, ArrowRight, CheckCircle, Users, Award, MapPin, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
 import MobileMenu from "@/components/MobileMenu";
 import CategoryPills from "@/components/CategoryPills";
@@ -27,13 +31,17 @@ const applianceIcons = [
 
 const AreaLanding = () => {
   const { city, area } = useParams<{ city: string; area: string }>();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
   const [searchQuery, setSearchQuery] = useState("");
 
   const cityData = getCityBySlug(city || "");
   const areaName = cityData ? getAreaByCityAndSlug(city || "", area || "") : undefined;
 
-  if (!cityData || !areaName) return <Navigate to="/" replace />;
+  if (!cityData || !areaName) return null;
 
   const fullLocation = `${areaName}, ${cityData.name}`;
   const otherAreas = (cityAreas[cityData.slug] || []).filter((a) => a !== areaName).slice(0, 12);
@@ -66,8 +74,8 @@ const AreaLanding = () => {
           "@type": "LocalBusiness",
           "name": `Doorifix – ${areaName}, ${cityData.name}`,
           "description": metaDescription,
-          "telephone": "+919100038182",
-          "email": "doorifix.in@gmail.com",
+          "telephone": "+919886579923",
+          "email": "doorifix@gmail.com",
           "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
           "address": { "@type": "PostalAddress", "addressLocality": areaName, "addressRegion": cityData.name, "addressCountry": "IN" },
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
@@ -83,7 +91,7 @@ const AreaLanding = () => {
 
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
-              <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain" />
+              <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
               <MobileMenu />
             </div>
 
@@ -91,9 +99,9 @@ const AreaLanding = () => {
             <div className="md:flex md:items-center md:justify-between md:gap-8">
               <div>
                 <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <Link to="/" className="hover:text-foreground">Home</Link>
+                  <Link href="/" className="hover:text-foreground">Home</Link>
                   <span>/</span>
-                  <Link to={`/${cityData.slug}`} className="hover:text-foreground">{cityData.name}</Link>
+                  <Link href={`/${cityData.slug}`} className="hover:text-foreground">{cityData.name}</Link>
                   <span>/</span>
                   <span className="text-foreground">{areaName}</span>
                 </div>
@@ -135,7 +143,7 @@ const AreaLanding = () => {
 
             {/* Hero Card */}
             <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
-              <img src={repairHero} alt={`Appliance repair in ${fullLocation}`} className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imageSrc(repairHero)} alt={`Appliance repair in ${fullLocation}`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/50" />
               <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/70">
@@ -227,7 +235,7 @@ const AreaLanding = () => {
                 {otherAreas.map((a) => (
                   <Link
                     key={a}
-                    to={`/${cityData.slug}/${slugify(a)}`}
+                    href={`/${cityData.slug}/${slugify(a)}`}
                     className="text-xs text-foreground bg-card border border-border rounded-full px-3 py-1.5 hover:border-primary/40 hover:text-primary transition-colors"
                   >
                     {a}

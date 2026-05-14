@@ -1,7 +1,10 @@
+"use client";
+
+import { imageSrc } from "@/lib/image";
 import { useState } from "react";
 import { ChevronLeft, Star, Clock, CheckCircle, Phone } from "lucide-react";
 import whatsappIcon from "@/assets/whatsapp.gif";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useRouter } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
 import SEO from "@/components/SEO";
@@ -42,8 +45,12 @@ const seoKeywordMap: Record<string, { keywords: string; metaTitle: string; metaD
 };
 
 const ServiceDetail = () => {
-  const navigate = useNavigate();
-  const { slug } = useParams();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
+  const { slug } = useParams() as { slug?: string };
   const service = getServiceBySlug(slug || "");
   const [bookingOpen, setBookingOpen] = useState(false);
 
@@ -85,8 +92,8 @@ const ServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": "Doorifix",
-            "telephone": "+919100038182",
-            "email": "doorifix.in@gmail.com",
+            "telephone": "+919886579923",
+            "email": "doorifix@gmail.com",
           },
           "areaServed": [
             { "@type": "City", "name": "Bangalore" },
@@ -102,7 +109,7 @@ const ServiceDetail = () => {
       <div className="max-w-[430px] md:max-w-5xl mx-auto flex-1 w-full">
         {/* Mobile Hero */}
         <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
-          <img src={service.image} alt={`${service.title} repair near me`} className="absolute inset-0 w-full h-full object-cover" />
+          <img src={imageSrc(service.image)} alt={`${service.title} repair near me`} className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/15" />
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
           <div className="relative z-10 px-5 pt-6 pb-8">
@@ -116,7 +123,7 @@ const ServiceDetail = () => {
         <div className="md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:px-0 md:pt-8">
           <div className="hidden md:block">
             <div className="rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px]">
-              <img src={service.image} alt={`${service.title} repair service`} className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imageSrc(service.image)} alt={`${service.title} repair service`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/30 rounded-3xl" />
             </div>
 
@@ -157,7 +164,7 @@ const ServiceDetail = () => {
                 </div>
               </div>
               <a
-                href="tel:+919100038182"
+                href="tel:+919886579923"
                 className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0"
               >
                 <Phone size={14} />
@@ -173,12 +180,12 @@ const ServiceDetail = () => {
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
               <a
-                href="https://wa.me/919100038182"
+                href="https://wa.me/919886579923"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-card rounded-xl p-3 border border-border text-center hover:shadow-md transition-shadow"
               >
-                <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5 mx-auto mb-1 rounded-full" />
+                <img src={imageSrc(whatsappIcon)} alt="WhatsApp" className="w-5 h-5 mx-auto mb-1 rounded-full" />
                 <p className="text-xs font-medium text-foreground">WhatsApp</p>
                 <p className="text-[10px] text-muted-foreground">Chat Now</p>
               </a>

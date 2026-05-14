@@ -1,5 +1,8 @@
+"use client";
+
+import { imageSrc } from "@/lib/image";
 import { useState } from "react";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useRouter } from "next/navigation";
 import { Search, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
 import MobileMenu from "@/components/MobileMenu";
 import CategoryPills from "@/components/CategoryPills";
@@ -26,11 +29,15 @@ const applianceIcons = [
 
 const CityLanding = () => {
   const { city } = useParams<{ city: string }>();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
   const [searchQuery, setSearchQuery] = useState("");
 
   const cityData = getCityBySlug(city || "");
-  if (!cityData) return <Navigate to="/\" replace />;
+  if (!cityData) return null;
 
   const stats = [
     { icon: Users, value: "1000+", label: `Happy Clients in ${cityData.name}` },
@@ -55,8 +62,8 @@ const CityLanding = () => {
           "@type": "LocalBusiness",
           "name": `Doorifix – ${cityData.name}`,
           "description": cityData.metaDescription,
-          "telephone": "+919100038182",
-          "email": "doorifix.in@gmail.com",
+          "telephone": "+919886579923",
+          "email": "doorifix@gmail.com",
           "areaServed": { "@type": "City", "name": cityData.name },
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
           "openingHours": "Mo-Su 08:00-21:00",
@@ -72,7 +79,7 @@ const CityLanding = () => {
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
               <div className="flex items-center gap-2">
-                <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain" />
+                <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
               </div>
               <MobileMenu />
             </div>
@@ -136,7 +143,7 @@ const CityLanding = () => {
 
             {/* Hero Card */}
             <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
-              <img src={repairHero} alt={`Appliance repair service in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imageSrc(repairHero)} alt={`Appliance repair service in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/50" />
               <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/70">

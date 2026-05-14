@@ -1,9 +1,10 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { X, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate, useLocation } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { usePathname, useRouter } from "next/navigation";
 
 const POPUP_KEY = "doorifix_lead_popup_dismissed";
 const POPUP_DELAY = 4000;
@@ -37,10 +38,10 @@ const LeadPopup = () => {
   const [visible, setVisible] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const detectedAppliance = getApplianceFromPath(location.pathname);
+  const detectedAppliance = getApplianceFromPath(pathname);
 
   const [form, setForm] = useState({
     name: "",
@@ -51,22 +52,22 @@ const LeadPopup = () => {
 
   // Update appliance when route changes
   useEffect(() => {
-    const appliance = getApplianceFromPath(location.pathname);
+    const appliance = getApplianceFromPath(pathname);
     if (appliance) {
       setForm((prev) => ({ ...prev, appliance }));
     }
-  }, [location.pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     // Skip admin routes
-    if (location.pathname.startsWith("/admin")) return;
+    if (pathname.startsWith("/admin")) return;
 
     const dismissed = sessionStorage.getItem(POPUP_KEY);
     if (dismissed) return;
 
     const timer = setTimeout(() => setVisible(true), POPUP_DELAY);
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [pathname]);
 
   const dismiss = () => {
     setVisible(false);
@@ -80,34 +81,26 @@ const LeadPopup = () => {
     }
 
     setSubmitting(true);
-    const { data, error } = await supabase.rpc("create_booking", {
-      _name: form.name.trim(),
-      _phone: form.phone.trim(),
-      _location: form.pincode.trim(),
-      _appliance: form.appliance,
-      _warranty: "Not Sure",
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        location: form.pincode.trim(),
+        appliance: form.appliance,
+        warranty: "Not Sure",
+      }),
     });
+    const result = (await response.json().catch(() => ({}))) as { caseNumber?: string; error?: string };
 
-    if (error) {
-      toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
+    if (!response.ok || !result.caseNumber) {
+      toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
       setSubmitting(false);
     } else {
-      const caseNumber = data as string;
-
-      supabase.functions.invoke("send-booking-email", {
-        body: {
-          name: form.name.trim(),
-          phone: form.phone.trim(),
-          location: form.pincode.trim(),
-          appliance: form.appliance,
-          warranty: "Not Sure",
-          caseNumber,
-        },
-      }).catch((err) => console.error("Email notification failed:", err));
-
       sessionStorage.setItem(POPUP_KEY, "1");
       setVisible(false);
-      navigate(`/thank-you?case=${encodeURIComponent(caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
+      router.push(`/thank-you?case=${encodeURIComponent(result.caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
     }
   };
 

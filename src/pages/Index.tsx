@@ -1,7 +1,10 @@
+"use client";
+
+import { imageSrc } from "@/lib/image";
 import { useState } from "react";
 import { Search, MapPin, ShoppingCart, Clock, Star, ArrowRight, CheckCircle, Users, Award, Menu, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
 import MobileMenu from "@/components/MobileMenu";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -36,7 +39,11 @@ const stats = [{
   label: "Avg Rating"
 }];
 const Index = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
   const [searchQuery, setSearchQuery] = useState("");
   return <div className="bg-background min-h-screen flex flex-col">
       <SEO
@@ -50,8 +57,8 @@ const Index = () => {
             "@type": "LocalBusiness",
             "name": "Doorifix",
             "description": "Professional appliance repair & servicing at your doorstep",
-            "telephone": "+919100038182",
-            "email": "doorifix.in@gmail.com",
+            "telephone": "+919886579923",
+            "email": "doorifix@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
             "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "256" },
             "openingHours": "Mo-Su 08:00-21:00",
@@ -81,7 +88,7 @@ const Index = () => {
             {/* Mobile Header */}
             <div className="flex items-center justify-between md:hidden">
               <div className="flex items-center gap-2">
-                <img src={doorifixLogo} alt="Doorifix" className="h-10 object-contain" />
+                <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
               </div>
               <MobileMenu />
             </div>
@@ -139,7 +146,7 @@ const Index = () => {
 
             {/* Hero Card */}
             <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
-              <img src={repairHero} alt="Technician repairing washing machine" className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imageSrc(repairHero)} alt="Technician repairing washing machine" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/50" />
               <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/70">

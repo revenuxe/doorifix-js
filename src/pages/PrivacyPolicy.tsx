@@ -1,3 +1,5 @@
+"use client";
+
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
@@ -104,7 +106,7 @@ const PrivacyPolicy = () => {
                 <li><strong className="text-foreground">Portability:</strong> Request transfer of your data in a structured, commonly used format</li>
                 <li><strong className="text-foreground">Withdraw Consent:</strong> Withdraw consent for data processing at any time</li>
               </ul>
-              <p>To exercise any of these rights, contact us at <a href="mailto:doorifix.in@gmail.com" className="text-primary hover:underline">doorifix.in@gmail.com</a>. We will respond within 30 days.</p>
+              <p>To exercise any of these rights, contact us at <a href="mailto:doorifix@gmail.com" className="text-primary hover:underline">doorifix@gmail.com</a>. We will respond within 30 days.</p>
             </section>
 
             <section className="space-y-3">
@@ -126,8 +128,8 @@ const PrivacyPolicy = () => {
               <h2 className="text-lg font-semibold text-foreground">12. Grievance Officer</h2>
               <p>In accordance with the Information Technology Act, 2000, and the rules made thereunder, the Grievance Officer for the purpose of this Privacy Policy is:</p>
               <p><strong className="text-foreground">Doorifix</strong></p>
-              <p>Email: <a href="mailto:doorifix.in@gmail.com" className="text-primary hover:underline">doorifix.in@gmail.com</a></p>
-              <p>Phone: <a href="tel:+919100038182" className="text-primary hover:underline">9100 038 182</a></p>
+              <p>Email: <a href="mailto:doorifix@gmail.com" className="text-primary hover:underline">doorifix@gmail.com</a></p>
+              <p>Phone: <a href="tel:+919886579923" className="text-primary hover:underline">9886 579 923</a></p>
               <p>Response time: Within 30 days of receiving a complaint.</p>
             </section>
 

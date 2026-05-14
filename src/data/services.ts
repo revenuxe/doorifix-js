@@ -4,13 +4,14 @@ import acUnit from "@/assets/ac-unit.png";
 import microwave from "@/assets/microwave.png";
 import dryer from "@/assets/dryer.png";
 import dishwasher from "@/assets/dishwasher.png";
+import type { StaticImageData } from "next/image";
 
 export interface ServiceData {
   id: number;
   slug: string;
   title: string;
   description: string;
-  image: string;
+  image: string | StaticImageData;
   color: "pink" | "green" | "yellow" | "blue";
   rating: number;
   duration: string;

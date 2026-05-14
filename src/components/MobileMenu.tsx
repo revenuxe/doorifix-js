@@ -1,6 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { Menu, X, Home, Wrench, Phone, Info, MapPin, ChevronDown } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const mainLinks = [
@@ -33,7 +36,8 @@ const MobileMenu = () => {
   const [open, setOpen] = useState(false);
   const [showServices, setShowServices] = useState(false);
   const [showCities, setShowCities] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
+  const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
   return (
     <>
@@ -57,7 +61,7 @@ const MobileMenu = () => {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-border">
-              <img src={doorifixLogo} alt="Doorifix" className="h-8 object-contain" />
+              <img src={logoSrc} alt="Doorifix" className="h-8 object-contain" />
               <button
                 onClick={() => setOpen(false)}
                 className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground"
@@ -72,10 +76,10 @@ const MobileMenu = () => {
               {mainLinks.map((link) => (
                 <Link
                   key={link.label}
-                  to={link.path}
+                  href={link.path}
                   onClick={() => setOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                    location.pathname === link.path
+                    pathname === link.path
                       ? "bg-primary/10 text-primary"
                       : "text-foreground hover:bg-muted"
                   }`}
@@ -101,7 +105,7 @@ const MobileMenu = () => {
                   {serviceLinks.map((link) => (
                     <Link
                       key={link.path}
-                      to={link.path}
+                      href={link.path}
                       onClick={() => setOpen(false)}
                       className="block px-4 py-2.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                     >
@@ -127,7 +131,7 @@ const MobileMenu = () => {
                   {cityLinks.map((link) => (
                     <Link
                       key={link.path}
-                      to={link.path}
+                      href={link.path}
                       onClick={() => setOpen(false)}
                       className="block px-4 py-2.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                     >
@@ -141,7 +145,7 @@ const MobileMenu = () => {
             {/* Footer CTA */}
             <div className="p-4 border-t border-border">
               <a
-                href="tel:+919100038182"
+                href="tel:+919886579923"
                 className="flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-3 rounded-xl text-sm hover:opacity-90 transition-opacity"
               >
                 <Phone size={16} />

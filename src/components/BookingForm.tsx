@@ -1,9 +1,10 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
 
 const applianceTypes = [
@@ -30,7 +31,7 @@ interface BookingFormProps {
 
 const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormProps) => {
   const { toast } = useToast();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -55,34 +56,26 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
     }
 
     setSubmitting(true);
-    const { data, error } = await supabase.rpc("create_booking", {
-      _name: form.name.trim(),
-      _phone: form.phone.trim(),
-      _location: form.location.trim(),
-      _appliance: form.appliance,
-      _warranty: form.warranty,
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        location: form.location.trim(),
+        appliance: form.appliance,
+        warranty: form.warranty,
+      }),
     });
+    const result = (await response.json().catch(() => ({}))) as { caseNumber?: string; error?: string };
 
-    if (error) {
-      toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
+    if (!response.ok || !result.caseNumber) {
+      toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
       setSubmitting(false);
     } else {
-      const caseNumber = data as string;
-
-      supabase.functions.invoke("send-booking-email", {
-        body: {
-          name: form.name.trim(),
-          phone: form.phone.trim(),
-          location: form.location.trim(),
-          appliance: form.appliance,
-          warranty: form.warranty,
-          caseNumber,
-        },
-      }).catch((err) => console.error("Email notification failed:", err));
-
       setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
       onOpenChange(false);
-      navigate(`/thank-you?case=${encodeURIComponent(caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
+      router.push(`/thank-you?case=${encodeURIComponent(result.caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
     }
   };
 

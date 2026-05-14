@@ -1,5 +1,8 @@
+"use client";
+
+import { imageSrc } from "@/lib/image";
 import { CheckCircle, Users, Award, Star, MapPin, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
@@ -15,7 +18,11 @@ const timeline = [
 ];
 
 const About = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -35,7 +42,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto px-5 md:px-8 py-10 md:py-16">
           {/* Header */}
           <div className="text-center mb-12">
-            <img src={doorifixLogo} alt="Doorifix" className="h-12 mx-auto mb-6" />
+            <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-12 mx-auto mb-6" />
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Our Story</h1>
             <p className="text-muted-foreground max-w-lg mx-auto text-lg">
               Since 2019, we've been on a mission to make appliance repair simple, fast, and trustworthy — one city at a time.

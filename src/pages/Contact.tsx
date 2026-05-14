@@ -1,16 +1,21 @@
+"use client";
+
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const Contact = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const navigate = (path: string | number) => {
+    if (typeof path === "number") router.back();
+    else router.push(path);
+  };
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
@@ -25,28 +30,23 @@ const Contact = () => {
 
     setSubmitting(true);
 
-    const { error } = await supabase.from("contact_leads").insert({
-      name: form.name.trim(),
-      email: form.email.trim() || null,
-      phone: form.phone.trim(),
-      message: form.message.trim(),
-    });
-
-    if (error) {
-      toast({ title: "Something went wrong", description: error.message, variant: "destructive" });
-      setSubmitting(false);
-      return;
-    }
-
-    // Fire-and-forget email notification
-    supabase.functions.invoke("send-contact-email", {
-      body: {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
         message: form.message.trim(),
-      },
-    }).catch((err) => console.error("Contact email failed:", err));
+      }),
+    });
+    const result = (await response.json().catch(() => ({}))) as { error?: string };
+
+    if (!response.ok) {
+      toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
+      setSubmitting(false);
+      return;
+    }
 
     setForm({ name: "", email: "", phone: "", message: "" });
     setSubmitting(false);
@@ -80,24 +80,24 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Info Cards */}
             <div className="space-y-4">
-              <a href="tel:+919100038182" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
+              <a href="tel:+919886579923" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Phone size={22} className="text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Call Us</h3>
-                  <p className="text-sm text-primary font-medium mt-1">9100 038 182</p>
+                  <p className="text-sm text-primary font-medium mt-1">9886 579 923</p>
                   <p className="text-xs text-muted-foreground mt-1">Available Mon–Sun, 8 AM – 9 PM</p>
                 </div>
               </a>
 
-              <a href="mailto:doorifix.in@gmail.com" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
+              <a href="mailto:doorifix@gmail.com" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Mail size={22} className="text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Email Us</h3>
-                  <p className="text-sm text-primary font-medium mt-1">doorifix.in@gmail.com</p>
+                  <p className="text-sm text-primary font-medium mt-1">doorifix@gmail.com</p>
                   <p className="text-xs text-muted-foreground mt-1">We typically respond within 30 minutes</p>
                 </div>
               </a>
