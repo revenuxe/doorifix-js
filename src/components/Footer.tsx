@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
+import { slugify } from "@/data/areas";
 
 const hyderabadAreas = [
   "Gachibowli", "Madhapur", "HITEC City", "Kukatpally", "Kondapur",
