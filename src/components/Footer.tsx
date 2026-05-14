@@ -121,7 +121,7 @@ const Footer = () => {
             {hyderabadAreas.map((area) => (
               <Link
                 key={area}
-                to="/hyderabad"
+                to={`/hyderabad/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -140,7 +140,7 @@ const Footer = () => {
             {secunderabadAreas.map((area) => (
               <Link
                 key={area}
-                to="/secunderabad"
+                to={`/secunderabad/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -159,7 +159,7 @@ const Footer = () => {
             {bangaloreAreas.map((area) => (
               <Link
                 key={area}
-                to="/bangalore"
+                to={`/bangalore/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
@@ -178,7 +178,7 @@ const Footer = () => {
             {mangaloreAreas.map((area) => (
               <Link
                 key={area}
-                to="/mangalore"
+                to={`/mangalore/${slugify(area)}`}
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
