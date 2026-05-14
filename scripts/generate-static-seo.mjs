@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
-const baseUrl = "https://doorifix.com";
+const baseUrl = "https://www.doorifix.com";
 const staticRoutes = ["/", "/services", "/about", "/contact", "/terms", "/privacy"];
 
 function readSource(path) {
@@ -73,7 +73,7 @@ const cityRoutes = cities.map((city) => `/${city}`);
 const cityServiceRoutes = cities.flatMap((city) => services.map((slug) => `/${city}/service/${slug}`));
 const areaRoutes = cities.flatMap((city) => (cityAreas[city] || []).map((area) => `/${city}/${slugify(area)}`));
 const routes = unique([...staticRoutes, ...serviceRoutes, ...cityRoutes, ...cityServiceRoutes, ...areaRoutes]);
-const lastModified = new Date().toISOString();
+const lastModified = new Date().toISOString().slice(0, 10);
 
 const sitemapUrls = routes
   .map(

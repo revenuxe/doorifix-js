@@ -22,4 +22,4 @@ Disallow: /admin
 Disallow: /admin/login
 Disallow: /api
 
-Sitemap: https://doorifix.com/sitemap.xml
+Sitemap: https://www.doorifix.com/sitemap.xml

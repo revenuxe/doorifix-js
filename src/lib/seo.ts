@@ -3,7 +3,7 @@ import type { CityData } from "@/data/cities";
 import type { ServiceData } from "@/data/services";
 
 export const SITE_NAME = "Doorifix";
-export const BASE_URL = "https://doorifix.com";
+export const BASE_URL = "https://www.doorifix.com";
 export const DEFAULT_DESCRIPTION =
   "Book same-day doorstep appliance repair near you for washing machines, refrigerators, ACs, microwaves, dryers and dishwashers by certified Doorifix technicians.";
 export const DEFAULT_KEYWORDS =
