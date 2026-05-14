@@ -17,6 +17,21 @@ const secunderabadAreas = [
   "Begumpet", "Picket", "Lal Bazaar", "Clock Tower",
 ];
 
+const bangaloreAreas = [
+  "Whitefield", "Koramangala", "Indiranagar", "HSR Layout", "Marathahalli",
+  "Electronic City", "Jayanagar", "JP Nagar", "BTM Layout", "Hebbal",
+  "Yelahanka", "HBR Layout", "Banashankari", "Rajajinagar", "Malleshwaram",
+  "Sarjapur Road", "Bellandur", "Bommanahalli", "Kalyan Nagar", "Banaswadi",
+  "Frazer Town", "MG Road", "Domlur", "Kengeri", "RT Nagar",
+];
+
+const mangaloreAreas = [
+  "Hampankatta", "Kadri", "Bejai", "Kankanady", "Bunder",
+  "Surathkal", "Mangaladevi", "Bondel", "Pumpwell", "Falnir",
+  "Balmatta", "Lalbagh", "Attavar", "Derebail", "Bejai New Road",
+  "Kulshekar", "Urwa", "Bikarnakatte", "Kulai", "Mulky",
+];
+
 const Footer = () => {
   return (
     <footer className="bg-foreground text-card mt-8">
@@ -84,6 +99,8 @@ const Footer = () => {
                 { name: "Kollam", slug: "kollam" },
                 { name: "Hyderabad", slug: "hyderabad" },
                 { name: "Secunderabad", slug: "secunderabad" },
+                { name: "Bangalore", slug: "bangalore" },
+                { name: "Mangalore", slug: "mangalore" },
               ].map((loc) => (
                 <Link key={loc.slug} to={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   Appliance Repair {loc.name}
@@ -123,6 +140,44 @@ const Footer = () => {
               <Link
                 key={area}
                 to="/secunderabad"
+                className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
+              >
+                {area}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Bangalore Areas */}
+        <div className="border-t border-card/15 mt-6 pt-6">
+          <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <MapPin size={14} className="text-card/70" />
+            Appliance Repair in Bangalore – Areas We Serve
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {bangaloreAreas.map((area) => (
+              <Link
+                key={area}
+                to="/bangalore"
+                className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
+              >
+                {area}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Mangalore Areas */}
+        <div className="border-t border-card/15 mt-6 pt-6">
+          <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+            <MapPin size={14} className="text-card/70" />
+            Appliance Repair in Mangalore – Areas We Serve
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {mangaloreAreas.map((area) => (
+              <Link
+                key={area}
+                to="/mangalore"
                 className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
               >
                 {area}
