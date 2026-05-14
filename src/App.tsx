@@ -16,6 +16,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ThankYou from "./pages/ThankYou";
 import CityLanding from "./pages/CityLanding";
 import CityServiceDetail from "./pages/CityServiceDetail";
+import AreaLanding from "./pages/AreaLanding";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import TermsOfService from "./pages/TermsOfService";
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/:city/service/:slug" element={<CityServiceDetail />} />
+            <Route path="/:city/:area" element={<AreaLanding />} />
             <Route path="/:city" element={<CityLanding />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
