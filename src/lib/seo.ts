@@ -188,27 +188,47 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
+function serviceOfferSchema(service: ServiceData, url: string, city?: CityData) {
+  return {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceCurrency: "INR",
+    url,
+    itemOffered: {
+      "@type": "Service",
+      name: city ? `${service.title} Repair & Service in ${city.name}` : `${service.title} Repair & Service`,
+      description: city
+        ? `Expert ${service.title.toLowerCase()} repair service in ${city.name}. ${service.detailDescription}`
+        : service.detailDescription,
+      serviceType: city ? `${service.title} Repair in ${city.name}` : `${service.title} Repair`,
+      areaServed: city
+        ? {
+            "@type": "City",
+            name: city.name,
+          }
+        : primaryCities.map((name) => ({ "@type": name === "Kerala" ? "State" : "City", name })),
+    },
+  };
+}
+
 export function serviceSchema(service: ServiceData, breadcrumbs?: BreadcrumbItem[]) {
+  const url = absoluteUrl(`/service/${service.slug}`);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: `${service.title} Repair & Service`,
+    "@type": "LocalBusiness",
+    "@id": `${BASE_URL}/#localbusiness`,
+    name: SITE_NAME,
     description: service.detailDescription,
-    serviceType: `${service.title} Repair`,
-    provider: {
-      "@type": "LocalBusiness",
-      name: SITE_NAME,
-      telephone: "+919886579923",
-      email: "doorifix@gmail.com",
-      url: BASE_URL,
-    },
+    url,
+    image: DEFAULT_IMAGE,
+    telephone: "+919886579923",
+    email: "doorifix@gmail.com",
+    paymentAccepted: ["Cash", "UPI", "Card"],
+    currenciesAccepted: "INR",
+    openingHours: "Mo-Su 08:00-21:00",
+    priceRange: "$$",
     areaServed: primaryCities.map((name) => ({ "@type": name === "Kerala" ? "State" : "City", name })),
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "INR",
-      url: absoluteUrl(`/service/${service.slug}`),
-    },
+    makesOffer: serviceOfferSchema(service, url),
   };
 
   return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
@@ -260,33 +280,26 @@ export function localBusinessSchema(city: CityData, area?: string) {
 }
 
 export function cityServiceSchema(city: CityData, service: ServiceData, breadcrumbs?: BreadcrumbItem[]) {
+  const url = absoluteUrl(`/${city.slug}/service/${service.slug}`);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: `${service.title} Repair & Service in ${city.name}`,
+    "@type": "LocalBusiness",
+    "@id": `${BASE_URL}/${city.slug}#localbusiness`,
+    name: `${SITE_NAME} - ${city.name}`,
     description: `Expert ${service.title.toLowerCase()} repair service in ${city.name}. ${service.detailDescription}`,
-    serviceType: `${service.title} Repair in ${city.name}`,
-    provider: {
-      "@type": "LocalBusiness",
-      name: `${SITE_NAME} - ${city.name}`,
-      telephone: "+919886579923",
-      email: "doorifix@gmail.com",
-      url: absoluteUrl(`/${city.slug}`),
-      areaServed: {
-        "@type": "City",
-        name: city.name,
-      },
-    },
+    url,
+    image: DEFAULT_IMAGE,
+    telephone: "+919886579923",
+    email: "doorifix@gmail.com",
+    paymentAccepted: ["Cash", "UPI", "Card"],
+    currenciesAccepted: "INR",
+    openingHours: "Mo-Su 08:00-21:00",
+    priceRange: "$$",
     areaServed: {
       "@type": "City",
       name: city.name,
     },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "INR",
-      url: absoluteUrl(`/${city.slug}/service/${service.slug}`),
-    },
+    makesOffer: serviceOfferSchema(service, url, city),
   };
 
   return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
