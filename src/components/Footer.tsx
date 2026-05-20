@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { cityAreas, slugify } from "@/data/areas";
@@ -96,9 +96,28 @@ const Footer = () => {
           <p className="text-xs text-card/50">
             &copy; {new Date().getFullYear()} Doorifix. All rights reserved.
           </p>
-          <div className="flex gap-4 text-xs text-card/50">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-card/50">
+            <a
+              href="https://linkedin.com/company/doorifix"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Doorifix on LinkedIn"
+              className="hover:text-card/80 transition-colors"
+            >
+              <Linkedin size={16} />
+            </a>
+            <a
+              href="https://www.instagram.com/thedoorifix/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Doorifix on Instagram"
+              className="hover:text-card/80 transition-colors"
+            >
+              <Instagram size={16} />
+            </a>
             <Link href="/privacy" className="hover:text-card/80 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-card/80 transition-colors">Terms of Service</Link>
+            <Link href="/blog" className="hover:text-card/80 transition-colors">Blog</Link>
             <Link href="/about" className="hover:text-card/80 transition-colors">About Us</Link>
             <Link href="/contact" className="hover:text-card/80 transition-colors">Contact</Link>
           </div>

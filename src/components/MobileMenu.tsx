@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Home, Wrench, Phone, Info, MapPin, ChevronDown } from "lucide-react";
+import { Menu, X, Home, Wrench, Phone, Info, MapPin, ChevronDown, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
@@ -9,6 +9,7 @@ import doorifixLogo from "@/assets/doorifix-logo.webp";
 const mainLinks = [
   { label: "Home", path: "/", icon: Home },
   { label: "Services", path: "/services", icon: Wrench },
+  { label: "Blog", path: "/blog", icon: BookOpen },
   { label: "About Us", path: "/about", icon: Info },
   { label: "Contact", path: "/contact", icon: Phone },
 ];

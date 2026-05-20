@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const baseUrl = "https://www.doorifix.com";
-const staticRoutes = ["/", "/services", "/about", "/contact", "/terms", "/privacy"];
+const staticRoutes = ["/", "/services", "/blog", "/about", "/contact", "/terms", "/privacy"];
 
 function readSource(path) {
   return readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -42,6 +42,8 @@ function absoluteUrl(path) {
 function priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRoutes) {
   if (path === "/") return 1;
   if (path === "/services") return 0.9;
+  if (path === "/blog") return 0.8;
+  if (path.startsWith("/blog/")) return 0.7;
   if (cityRoutes.includes(path)) return path === "/hyderabad" ? 0.9 : 0.8;
   if (serviceRoutes.includes(path) || cityServiceRoutes.includes(path)) return 0.8;
   if (areaRoutes.includes(path)) return 0.7;
@@ -50,7 +52,7 @@ function priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRou
 }
 
 function changeFrequencyFor(path, cityRoutes) {
-  if (path === "/" || path === "/services" || cityRoutes.includes(path)) return "weekly";
+  if (path === "/" || path === "/services" || path === "/blog" || cityRoutes.includes(path)) return "weekly";
   if (path === "/terms" || path === "/privacy") return "yearly";
   return "monthly";
 }
@@ -65,14 +67,16 @@ function escapeXml(value) {
 }
 
 const services = extractSlugs(readSource("src/data/services.ts"));
+const blogPosts = extractSlugs(readSource("src/data/blogs.ts"));
 const cities = extractSlugs(readSource("src/data/cities.ts"));
 const cityAreas = extractCityAreas(readSource("src/data/areas.ts"));
 
 const serviceRoutes = services.map((slug) => `/service/${slug}`);
+const blogRoutes = blogPosts.map((slug) => `/blog/${slug}`);
 const cityRoutes = cities.map((city) => `/${city}`);
 const cityServiceRoutes = cities.flatMap((city) => services.map((slug) => `/${city}/service/${slug}`));
 const areaRoutes = cities.flatMap((city) => (cityAreas[city] || []).map((area) => `/${city}/${slugify(area)}`));
-const routes = unique([...staticRoutes, ...serviceRoutes, ...cityRoutes, ...cityServiceRoutes, ...areaRoutes]);
+const routes = unique([...staticRoutes, ...blogRoutes, ...serviceRoutes, ...cityRoutes, ...cityServiceRoutes, ...areaRoutes]);
 const lastModified = new Date().toISOString().slice(0, 10);
 
 const sitemapUrls = routes
