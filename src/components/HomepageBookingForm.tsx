@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -25,11 +25,27 @@ const initialForm = {
   warranty: "",
 };
 
-export default function HomepageBookingForm() {
+interface HomepageBookingFormProps {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  defaultAppliance?: string;
+}
+
+export default function HomepageBookingForm({
+  eyebrow = "Book Doorifix Service",
+  title = "Need appliance repair at home?",
+  description = "Share your details and our team will call back with a DF booking ID. Leads go directly to the Doorifix admin dashboard.",
+  defaultAppliance = "",
+}: HomepageBookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState({ ...initialForm, appliance: defaultAppliance });
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    setForm((current) => ({ ...current, appliance: defaultAppliance }));
+  }, [defaultAppliance]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,7 +80,7 @@ export default function HomepageBookingForm() {
       return;
     }
 
-    setForm(initialForm);
+    setForm({ ...initialForm, appliance: defaultAppliance });
     router.push(`/thank-you?case=${encodeURIComponent(result.caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
   };
 
@@ -72,12 +88,12 @@ export default function HomepageBookingForm() {
     <section className="bg-card border border-border rounded-3xl p-5 md:p-8">
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
-          <p className="text-sm font-semibold text-primary">Book Doorifix Service</p>
+          <p className="text-sm font-semibold text-primary">{eyebrow}</p>
           <h2 className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
-            Need appliance repair at home?
+            {title}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-            Share your details and our team will call back with a DF booking ID. Leads go directly to the Doorifix admin dashboard.
+            {description}
           </p>
         </div>
 
