@@ -10,9 +10,7 @@ import {
   Phone,
   Search,
   Shield,
-  Sparkles,
   Star,
-  Wrench,
 } from "lucide-react";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
@@ -163,7 +161,6 @@ const ServiceDetail = () => {
   const seoData = seoKeywordMap[service.slug];
   const copy = serviceCopy[service.slug];
   const defaultAppliance = applianceMap[service.title] || service.title;
-  const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -211,10 +208,6 @@ const ServiceDetail = () => {
               </div>
 
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 bg-card rounded-full px-4 py-2 border border-border">
-                  <Sparkles size={14} className="text-primary" />
-                  <span className="text-sm text-muted-foreground">Doorstep {serviceRepairTitle(service)}</span>
-                </div>
                 <div>
                   <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
                     {copy.headline}
@@ -281,23 +274,17 @@ const ServiceDetail = () => {
           <section className="mt-12 md:mt-16">
             <div className="flex items-end justify-between mb-5">
               <div>
-                <p className="text-sm text-primary font-semibold">Common Issues</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-1">{serviceRepairTitle(service)} support</h2>
+                <p className="text-sm text-primary font-semibold">Doorifix Services</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-1">Book any appliance repair</h2>
               </div>
               <button onClick={() => navigate("/services")} className="text-sm text-primary font-medium flex items-center gap-1 hover:underline">
                 All services <ArrowRight size={14} />
               </button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-              {copy.issues.map((issue) => (
-                <div key={issue} className="bg-card rounded-2xl p-4 border border-border hover:border-primary/30 transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                    <Wrench size={18} className="text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-sm text-foreground">{issue}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">Doorstep inspection and clear repair quote.</p>
-                </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {services.map((item) => (
+                <ServiceCard key={item.id} {...item} />
               ))}
             </div>
           </section>
@@ -316,10 +303,24 @@ const ServiceDetail = () => {
             </div>
 
             <div className="bg-card border border-border rounded-3xl p-5 md:p-7">
-              <h2 className="text-xl md:text-2xl font-bold text-foreground">How It Works</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-foreground">Issues We Handle</h2>
               <div className="grid gap-3 mt-5">
+                {copy.issues.map((issue) => (
+                  <div key={issue} className="flex items-center gap-3">
+                    <CheckCircle size={17} className="text-primary flex-shrink-0" />
+                    <span className="text-sm text-muted-foreground">{issue}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-4 md:mt-6">
+            <div className="bg-card border border-border rounded-3xl p-5 md:p-7">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground">How It Works</h2>
+              <div className="grid gap-3 mt-5 md:grid-cols-4">
                 {copy.steps.map((step, index) => (
-                  <div key={step} className="flex items-center gap-3">
+                  <div key={step} className="flex items-start gap-3">
                     <span className="w-7 h-7 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">
                       {index + 1}
                     </span>
@@ -356,20 +357,6 @@ const ServiceDetail = () => {
                   Submit Booking <ArrowRight size={16} />
                 </button>
               </div>
-            </div>
-          </section>
-
-          <section className="mt-12 md:mt-16">
-            <div className="flex items-end justify-between mb-5">
-              <div>
-                <p className="text-sm text-primary font-semibold">Related Services</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-1">More Doorifix repairs</h2>
-              </div>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {relatedServices.map((item) => (
-                <ServiceCard key={item.id} {...item} />
-              ))}
             </div>
           </section>
 
