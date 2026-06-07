@@ -14,6 +14,7 @@ interface ServiceCardProps {
   rating?: number;
   duration?: string;
   linkPrefix?: string;
+  href?: string;
 }
 
 const colorMap = {
@@ -23,8 +24,8 @@ const colorMap = {
   blue: "bg-card-blue",
 };
 
-const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "" }: ServiceCardProps) => {
-  const basePath = `${linkPrefix}/service/${slug}`;
+const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "", href }: ServiceCardProps) => {
+  const basePath = href || `${linkPrefix}/service/${slug}`;
   const imageSrc = typeof image === "string" ? image : image.src;
 
   return (

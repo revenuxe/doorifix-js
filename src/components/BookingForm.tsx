@@ -27,9 +27,10 @@ interface BookingFormProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   defaultAppliance?: string;
+  defaultIssue?: string;
 }
 
-const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormProps) => {
+const BookingForm = ({ open, onOpenChange, defaultAppliance = "", defaultIssue = "" }: BookingFormProps) => {
   const { toast } = useToast();
   const router = useRouter();
   const [form, setForm] = useState({
@@ -63,7 +64,7 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
         name: form.name.trim(),
         phone: form.phone.trim(),
         location: form.location.trim(),
-        appliance: form.appliance,
+        appliance: defaultIssue ? `${form.appliance} - ${defaultIssue}` : form.appliance,
         warranty: form.warranty,
       }),
     });
@@ -86,6 +87,12 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "" }: BookingFormP
           <SheetTitle className="text-lg font-bold text-foreground">Book a Service</SheetTitle>
         </SheetHeader>
         <div className="space-y-3">
+          {defaultIssue && (
+            <div className="rounded-xl border border-primary/20 bg-primary/5 px-3 py-2">
+              <p className="text-xs font-semibold text-primary">Selected issue</p>
+              <p className="text-sm text-foreground">{defaultIssue}</p>
+            </div>
+          )}
           <Input
             placeholder="Your Name"
             value={form.name}

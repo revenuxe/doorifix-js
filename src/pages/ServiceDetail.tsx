@@ -129,7 +129,12 @@ const serviceCopy: Record<string, {
   },
 };
 
-type ServiceIssueCard = Pick<ServiceData, "id" | "slug" | "title" | "description" | "image" | "color" | "rating" | "duration">;
+type ServiceIssueCard = Pick<ServiceData, "id" | "slug" | "title" | "description" | "image" | "color" | "rating" | "duration"> & {
+  href: string;
+};
+
+const slugifyIssue = (value: string) =>
+  value.toLowerCase().trim().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 const serviceIssueCards: Record<string, ServiceIssueCard[]> = Object.fromEntries(
   services.map((service) => [
@@ -143,6 +148,7 @@ const serviceIssueCards: Record<string, ServiceIssueCard[]> = Object.fromEntries
       color: service.color,
       rating: service.rating,
       duration: service.duration,
+      href: `/service/${service.slug}/${slugifyIssue(issue)}`,
     })),
   ]),
 );
@@ -157,7 +163,7 @@ const ServiceDetail = () => {
     if (typeof path === "number") router.back();
     else router.push(path);
   };
-  const { slug } = useParams() as { slug?: string };
+  const { slug, issue } = useParams() as { slug?: string; issue?: string };
   const service = getServiceBySlug(slug || "");
   const [bookingOpen, setBookingOpen] = useState(false);
 
@@ -173,6 +179,13 @@ const ServiceDetail = () => {
   const copy = serviceCopy[service.slug];
   const defaultAppliance = applianceMap[service.title] || service.title;
   const issueCards = serviceIssueCards[service.slug] || [];
+  const selectedIssue = copy.issues.find((item) => slugifyIssue(item) === issue);
+  const pageTitle = selectedIssue
+    ? `${selectedIssue} ${serviceRepairTitle(service)} in Bangalore`
+    : copy.headline;
+  const pageSubheadline = selectedIssue
+    ? `Book Doorifix support for ${selectedIssue.toLowerCase()} with ${serviceRepairTitle(service).toLowerCase()} technicians in Bangalore.`
+    : copy.subheadline;
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -222,10 +235,10 @@ const ServiceDetail = () => {
               <div className="space-y-4">
                 <div>
                   <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
-                    {copy.headline}
+                    {pageTitle}
                   </h1>
                   <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed">
-                    {copy.subheadline}
+                    {pageSubheadline}
                   </p>
                 </div>
               </div>
@@ -254,7 +267,7 @@ const ServiceDetail = () => {
                   <span className="text-sm font-medium">{service.rating} (256 reviews)</span>
                 </div>
                 <h2 className="text-2xl md:text-4xl font-bold text-white">
-                  {serviceRepairTitle(service)}<br />at Home
+                  {selectedIssue || serviceRepairTitle(service)}<br />at Home
                 </h2>
                 <p className="text-white/85 text-sm md:text-base max-w-md">
                   {copy.proof}
@@ -391,7 +404,12 @@ const ServiceDetail = () => {
 
       <Footer />
       <BottomNav />
-      <BookingForm open={bookingOpen} onOpenChange={setBookingOpen} defaultAppliance={defaultAppliance} />
+      <BookingForm
+        open={bookingOpen}
+        onOpenChange={setBookingOpen}
+        defaultAppliance={defaultAppliance}
+        defaultIssue={selectedIssue}
+      />
     </div>
   );
 };
