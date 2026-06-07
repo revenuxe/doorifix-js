@@ -44,7 +44,7 @@ function priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRou
   if (path === "/services") return 0.9;
   if (path === "/blog") return 0.8;
   if (path.startsWith("/blog/")) return 0.7;
-  if (cityRoutes.includes(path)) return path === "/hyderabad" ? 0.9 : 0.8;
+  if (cityRoutes.includes(path)) return path === "/bangalore" ? 0.9 : 0.8;
   if (serviceRoutes.includes(path) || cityServiceRoutes.includes(path)) return 0.8;
   if (areaRoutes.includes(path)) return 0.7;
   if (path === "/about" || path === "/contact") return 0.7;

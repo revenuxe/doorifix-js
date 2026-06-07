@@ -97,9 +97,7 @@ const ServiceDetail = () => {
           },
           "areaServed": [
             { "@type": "City", "name": "Bangalore" },
-            { "@type": "City", "name": "Hyderabad" },
-            { "@type": "City", "name": "Secunderabad" },
-            { "@type": "City", "name": "Kochi" },
+            { "@type": "City", "name": "Bengaluru" },
           ],
         }}
       />

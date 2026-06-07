@@ -24,13 +24,8 @@ const serviceLinks = [
 ];
 
 const cityLinks = [
-  { label: "Kochi", path: "/kochi" },
-  { label: "Trivandrum", path: "/trivandrum" },
-  { label: "Kozhikode", path: "/kozhikode" },
-  { label: "Thrissur", path: "/thrissur" },
-  { label: "Kollam", path: "/kollam" },
-  { label: "Hyderabad", path: "/hyderabad" },
-  { label: "Secunderabad", path: "/secunderabad" },
+  { label: "Bangalore", path: "/bangalore" },
+  { label: "Bengaluru", path: "/bengaluru" },
 ];
 
 const MobileMenu = () => {

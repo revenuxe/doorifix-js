@@ -119,8 +119,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Service Areas</h3>
-                  <p className="text-sm text-muted-foreground mt-1">Bangalore, Hyderabad, Mangalore, Mumbai & Kerala</p>
-                  <p className="text-xs text-muted-foreground mt-1">Doorstep service across all locations</p>
+                  <p className="text-sm text-muted-foreground mt-1">Bangalore & Bengaluru</p>
+                  <p className="text-xs text-muted-foreground mt-1">Doorstep service across all listed areas</p>
                 </div>
               </div>
             </div>

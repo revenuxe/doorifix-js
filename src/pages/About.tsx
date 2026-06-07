@@ -10,11 +10,10 @@ import SEO from "@/components/SEO";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
 const timeline = [
-  { year: "2019", city: "Bangalore", description: "Doorifix was founded in Bangalore with a mission to make appliance repair fast, transparent, and affordable. Started with a small team of 5 technicians." },
-  { year: "2020", city: "Hyderabad", description: "Expanded to Hyderabad, bringing trusted doorstep appliance repair to the city. Crossed 500+ happy customers within months." },
-  { year: "2022", city: "Mangalore", description: "Entered the Mangalore market, serving coastal Karnataka with expert technicians for all major appliance brands." },
-  { year: "2023", city: "Mumbai", description: "Launched operations in Mumbai — India's largest metro. Scaled our team to 100+ certified technicians across all service areas." },
-  { year: "2025", city: "Kerala", description: "Expanded across Kerala — Kochi, Trivandrum, Kozhikode, Thrissur & Kollam. And we're still growing." },
+  { year: "2019", city: "Bangalore", description: "Doorifix was founded in Bangalore with a mission to make appliance repair fast, transparent, and affordable." },
+  { year: "2020", city: "Bengaluru", description: "Expanded coverage across Bengaluru neighborhoods with trained doorstep appliance repair technicians." },
+  { year: "2023", city: "Bangalore", description: "Strengthened same-day repair coverage in key areas including Whitefield, Koramangala, Indiranagar, HSR Layout, Marathahalli, and Electronic City." },
+  { year: "2025", city: "Bengaluru", description: "Focused operations on Bangalore and Bengaluru localities to keep response times fast and service quality consistent." },
 ];
 
 const About = () => {
@@ -28,7 +27,7 @@ const About = () => {
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
         title="About Us – Doorifix | Since 2019"
-        description="Doorifix has been providing expert appliance repair since 2019. From Bangalore to Kerala, we've served thousands of happy customers across India."
+        description="Doorifix has been providing expert appliance repair in Bangalore and Bengaluru since 2019."
         canonical="/about"
         keywords="about doorifix, appliance repair company, doorifix history, home service company india"
         breadcrumbs={[
@@ -104,7 +103,7 @@ const About = () => {
               And We're Still Growing 🚀
             </h2>
             <p className="text-sm text-primary-foreground/70 max-w-md mx-auto mb-6">
-              From 5 technicians in Bangalore to 100+ across India — our commitment to quality service remains the same. Your trusted repair partner, wherever you are.
+              From our first Bangalore repairs to dedicated Bengaluru-area coverage, our commitment to fast, reliable service remains the same.
             </p>
             <button
               onClick={() => navigate("/services")}
