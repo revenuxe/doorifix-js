@@ -147,7 +147,8 @@ const Index = () => {
             {/* Hero Card */}
             <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
               <img src={imageSrc(repairHero)} alt="Technician repairing washing machine" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
               <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/70">
                   <Sparkle />
