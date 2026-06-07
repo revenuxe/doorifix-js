@@ -84,7 +84,7 @@ export function buildMetadata({
   };
 }
 
-const primaryCities = ["Bangalore", "Mangalore", "Hyderabad", "Kerala"];
+const primaryCities = ["Bangalore", "Bengaluru"];
 const primaryServiceNames = [
   "Washing Machine Repair",
   "Refrigerator Repair",
@@ -98,10 +98,10 @@ export function homeMetadata() {
   return buildMetadata({
     title: "Appliance Repair Near Me | Washing Machine, AC & Fridge Service",
     description:
-      "Doorifix offers same-day appliance repair near you for washing machines, refrigerators, ACs, microwaves, dryers and dishwashers in Bangalore, Mangalore, Hyderabad and Kerala.",
+      "Doorifix offers same-day appliance repair near you for washing machines, refrigerators, ACs, microwaves, dryers and dishwashers in Bangalore and Bengaluru.",
     canonical: "/",
     keywords:
-      "appliance repair near me, washing machine repair near me, AC repair near me, fridge repair near me, refrigerator repair, doorstep appliance service, same day appliance repair, appliance repair Bangalore, appliance repair Hyderabad, appliance repair Kerala",
+      "appliance repair near me, washing machine repair near me, AC repair near me, fridge repair near me, refrigerator repair, doorstep appliance service, same day appliance repair, appliance repair Bangalore, appliance repair Bengaluru",
   });
 }
 
@@ -206,7 +206,7 @@ function serviceOfferSchema(service: ServiceData, url: string, city?: CityData) 
             "@type": "City",
             name: city.name,
           }
-        : primaryCities.map((name) => ({ "@type": name === "Kerala" ? "State" : "City", name })),
+        : primaryCities.map((name) => ({ "@type": "City", name })),
     },
   };
 }
@@ -227,7 +227,7 @@ export function serviceSchema(service: ServiceData, breadcrumbs?: BreadcrumbItem
     currenciesAccepted: "INR",
     openingHours: "Mo-Su 08:00-21:00",
     priceRange: "$$",
-    areaServed: primaryCities.map((name) => ({ "@type": name === "Kerala" ? "State" : "City", name })),
+    areaServed: primaryCities.map((name) => ({ "@type": "City", name })),
     makesOffer: serviceOfferSchema(service, url),
   };
 
