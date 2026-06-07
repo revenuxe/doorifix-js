@@ -1,21 +1,20 @@
 "use client";
 
 import { imageSrc } from "@/lib/image";
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
   ArrowRight,
   CheckCircle,
   Clock,
-  MapPin,
   Phone,
   Search,
-  Shield,
   Star,
 } from "lucide-react";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
-import HomepageBookingForm from "@/components/HomepageBookingForm";
+import BookingForm from "@/components/BookingForm";
 import ServiceCard from "@/components/ServiceCard";
 import SEO from "@/components/SEO";
 import whatsappIcon from "@/assets/whatsapp.gif";
@@ -130,13 +129,6 @@ const serviceCopy: Record<string, {
   },
 };
 
-const stats = [
-  { icon: Shield, value: "Free", label: "Diagnosis" },
-  { icon: Clock, value: "60-90m", label: "Visit Slot" },
-  { icon: Star, value: "4.8+", label: "Rating" },
-  { icon: MapPin, value: "BLR", label: "Coverage" },
-];
-
 function serviceRepairTitle(service: ServiceData) {
   return service.title === "AC Service" ? "AC Repair & Service" : `${service.title} Repair`;
 }
@@ -149,6 +141,7 @@ const ServiceDetail = () => {
   };
   const { slug } = useParams() as { slug?: string };
   const service = getServiceBySlug(slug || "");
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   if (!service) {
     return (
@@ -230,18 +223,9 @@ const ServiceDetail = () => {
                 />
               </form>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="bg-card rounded-2xl p-4 border border-border text-center">
-                    <stat.icon size={20} className="mx-auto text-primary mb-1" />
-                    <span className="text-xl font-bold text-foreground">{stat.value}</span>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            <div className="relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[430px] cursor-pointer mt-6 md:mt-0" onClick={() => document.getElementById("book-service")?.scrollIntoView({ behavior: "smooth" })}>
+            <div className="relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[430px] cursor-pointer mt-6 md:mt-0" onClick={() => setBookingOpen(true)}>
               <img src={imageSrc(service.image)} alt={`${serviceRepairTitle(service)} in Bangalore`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/30" />
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
@@ -259,7 +243,7 @@ const ServiceDetail = () => {
                 <div className="flex items-center gap-3 pt-2">
                   <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(event) => {
                     event.stopPropagation();
-                    document.getElementById("book-service")?.scrollIntoView({ behavior: "smooth" });
+                    setBookingOpen(true);
                   }}>
                     Book Now <ArrowRight size={14} />
                   </button>
@@ -351,22 +335,13 @@ const ServiceDetail = () => {
                   </div>
                 </div>
                 <button
-                  onClick={() => document.getElementById("book-service")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={() => setBookingOpen(true)}
                   className="mt-6 md:mt-0 bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full text-sm hover:opacity-90 transition-opacity flex items-center gap-2 w-full md:w-auto justify-center"
                 >
                   Submit Booking <ArrowRight size={16} />
                 </button>
               </div>
             </div>
-          </section>
-
-          <section id="book-service" className="mt-12 md:mt-16 scroll-mt-24">
-            <HomepageBookingForm
-              eyebrow={`Book ${serviceRepairTitle(service)}`}
-              title={`Need ${service.title.toLowerCase()} help today?`}
-              description={`Share your Bangalore location and our team will call back with a DF booking ID for ${serviceRepairTitle(service).toLowerCase()}.`}
-              defaultAppliance={defaultAppliance}
-            />
           </section>
 
           <section className="mt-12 md:mt-16 grid gap-3 md:grid-cols-3">
@@ -397,6 +372,7 @@ const ServiceDetail = () => {
 
       <Footer />
       <BottomNav />
+      <BookingForm open={bookingOpen} onOpenChange={setBookingOpen} defaultAppliance={defaultAppliance} />
     </div>
   );
 };
