@@ -129,6 +129,24 @@ const serviceCopy: Record<string, {
   },
 };
 
+type ServiceIssueCard = Pick<ServiceData, "id" | "slug" | "title" | "description" | "image" | "color" | "rating" | "duration">;
+
+const serviceIssueCards: Record<string, ServiceIssueCard[]> = Object.fromEntries(
+  services.map((service) => [
+    service.slug,
+    (serviceCopy[service.slug]?.issues || []).map((issue, index) => ({
+      id: service.id * 100 + index,
+      slug: service.slug,
+      title: issue,
+      description: `${serviceRepairTitle(service)} for ${issue.toLowerCase()} in Bangalore.`,
+      image: service.image,
+      color: service.color,
+      rating: service.rating,
+      duration: service.duration,
+    })),
+  ]),
+);
+
 function serviceRepairTitle(service: ServiceData) {
   return service.title === "AC Service" ? "AC Repair & Service" : `${service.title} Repair`;
 }
@@ -154,6 +172,7 @@ const ServiceDetail = () => {
   const seoData = seoKeywordMap[service.slug];
   const copy = serviceCopy[service.slug];
   const defaultAppliance = applianceMap[service.title] || service.title;
+  const issueCards = serviceIssueCards[service.slug] || [];
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -258,8 +277,8 @@ const ServiceDetail = () => {
           <section className="mt-12 md:mt-16">
             <div className="flex items-end justify-between mb-5">
               <div>
-                <p className="text-sm text-primary font-semibold">Doorifix Services</p>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-1">Book any appliance repair</h2>
+                <p className="text-sm text-primary font-semibold">{serviceRepairTitle(service)}</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-1">Book by issue type</h2>
               </div>
               <button onClick={() => navigate("/services")} className="text-sm text-primary font-medium flex items-center gap-1 hover:underline">
                 All services <ArrowRight size={14} />
@@ -267,7 +286,7 @@ const ServiceDetail = () => {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              {services.map((item) => (
+              {issueCards.map((item) => (
                 <ServiceCard key={item.id} {...item} />
               ))}
             </div>
