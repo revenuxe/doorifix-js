@@ -30,6 +30,7 @@ interface HomepageBookingFormProps {
   title?: string;
   description?: string;
   defaultAppliance?: string;
+  defaultIssue?: string;
 }
 
 export default function HomepageBookingForm({
@@ -37,6 +38,7 @@ export default function HomepageBookingForm({
   title = "Need appliance repair at home?",
   description = "Share your details and our team will call back with a DF booking ID. Leads go directly to the Doorifix admin dashboard.",
   defaultAppliance = "",
+  defaultIssue = "",
 }: HomepageBookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
@@ -63,7 +65,7 @@ export default function HomepageBookingForm({
         name: form.name.trim(),
         phone: form.phone.trim(),
         location: form.location.trim(),
-        appliance: form.appliance,
+        appliance: defaultIssue ? `${form.appliance} - ${defaultIssue}` : form.appliance,
         warranty: form.warranty,
       }),
     });
@@ -98,6 +100,12 @@ export default function HomepageBookingForm({
         </div>
 
         <form onSubmit={handleSubmit} className="grid gap-3 md:grid-cols-2">
+          {defaultIssue && (
+            <div className="md:col-span-2 rounded-xl border border-primary/20 bg-primary/5 px-3 py-2">
+              <p className="text-xs font-semibold text-primary">Selected issue</p>
+              <p className="text-sm text-foreground">{defaultIssue}</p>
+            </div>
+          )}
           <Input
             placeholder="Your Name"
             value={form.name}

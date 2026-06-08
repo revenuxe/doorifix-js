@@ -7,6 +7,7 @@ import whatsappIcon from "@/assets/whatsapp.gif";
 import { useParams, useRouter } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
+import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
 import { getServiceBySlug } from "@/data/services";
 import { getCityBySlug } from "@/data/cities";
@@ -186,6 +187,15 @@ const CityServiceDetail = () => {
               </button>
             </div>
           </div>
+        </div>
+
+        <div className="px-5 md:px-8 lg:px-0 pb-8 md:pb-10">
+          <HomepageBookingForm
+            eyebrow={`Book in ${cityData.name}`}
+            title={`Book ${service.title} repair in ${cityData.name}`}
+            description="Submit your details and the Doorifix team will call back with your booking ID."
+            defaultAppliance={defaultAppliance}
+          />
         </div>
       </div>
 

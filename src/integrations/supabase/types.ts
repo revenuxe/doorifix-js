@@ -114,6 +114,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      keep_supabase_awake: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       app_role: "admin" | "user"

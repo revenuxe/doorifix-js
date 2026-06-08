@@ -15,6 +15,7 @@ import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import BookingForm from "@/components/BookingForm";
+import HomepageBookingForm from "@/components/HomepageBookingForm";
 import ServiceCard from "@/components/ServiceCard";
 import SEO from "@/components/SEO";
 import whatsappIcon from "@/assets/whatsapp.gif";
@@ -286,6 +287,16 @@ const ServiceDetail = () => {
               </div>
             </div>
           </section>
+
+          <div className="mt-8 md:mt-10">
+            <HomepageBookingForm
+              eyebrow={selectedIssue ? "Book This Issue" : "Book This Service"}
+              title={selectedIssue ? `${selectedIssue} service request` : `Book ${serviceRepairTitle(service)} at home`}
+              description="Submit your details and the Doorifix team will call back with your booking ID."
+              defaultAppliance={defaultAppliance}
+              defaultIssue={selectedIssue}
+            />
+          </div>
 
           <section className="mt-12 md:mt-16">
             <div className="flex items-end justify-between mb-5">
