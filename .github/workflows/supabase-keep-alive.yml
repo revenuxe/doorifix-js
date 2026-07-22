@@ -1,0 +1,24 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # Runs every 2 days at 03:00 UTC — well inside Supabase's 7-day
+    # inactivity window, and independent of the app's own hosting/uptime.
+    - cron: "0 3 */2 * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase RPC to reset the inactivity timer
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://tvzwqvemcspqxzqjizxd.supabase.co' }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2endxdmVtY3NwcXh6cWppenhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3Mjk1NjMsImV4cCI6MjA5NDMwNTU2M30.TNy0KmWmYTaH0egzSDWOAD-vkcStS5ybanUmSDnbZZo' }}
+        run: |
+          curl --fail --silent --show-error \
+            -X POST "$SUPABASE_URL/rest/v1/rpc/keep_supabase_awake" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{}"
