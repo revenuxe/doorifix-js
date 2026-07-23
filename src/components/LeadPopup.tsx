@@ -5,6 +5,7 @@ import { X, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { usePathname, useRouter } from "next/navigation";
+import { useVisualViewport } from "@/hooks/use-visual-viewport";
 
 const POPUP_KEY = "doorifix_lead_popup_dismissed";
 const POPUP_DELAY = 4000;
@@ -40,6 +41,7 @@ const LeadPopup = () => {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
+  const viewport = useVisualViewport();
 
   const detectedAppliance = getApplianceFromPath(pathname);
 
@@ -107,10 +109,13 @@ const LeadPopup = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center">
+    <div
+      className="fixed inset-x-0 z-[100] flex items-end md:items-center justify-center"
+      style={viewport ? { top: viewport.offsetTop, height: viewport.height } : { top: 0, bottom: 0 }}
+    >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={dismiss} />
 
-      <div className="relative bg-card rounded-t-3xl md:rounded-3xl w-full max-w-[400px] mx-auto p-5 pb-6 shadow-2xl border border-border animate-in slide-in-from-bottom-4 duration-300 z-10">
+      <div className="relative bg-card rounded-t-3xl md:rounded-3xl w-full max-w-[400px] mx-auto p-5 pb-6 shadow-2xl border border-border animate-in slide-in-from-bottom-4 duration-300 z-10 max-h-full overflow-y-auto">
         <button
           onClick={dismiss}
           className="absolute top-4 right-4 w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
