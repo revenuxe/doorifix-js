@@ -81,7 +81,7 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
           </div>
         </div>
 
-        {areaSections.map((city, index) => (
+        {!serviceContext && areaSections.map((city, index) => (
           <div key={city.slug} className={`border-t border-card/15 ${index === 0 ? "mt-8" : "mt-6"} pt-6`}>
             <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <MapPin size={14} className="text-card/70" />
