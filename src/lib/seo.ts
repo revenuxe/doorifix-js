@@ -141,6 +141,15 @@ export function areaMetadata(city: CityData, area: string, areaSlug: string) {
   });
 }
 
+export function areaServiceMetadata(city: CityData, area: string, areaSlug: string, service: ServiceData) {
+  return buildMetadata({
+    title: `${service.title} Repair in ${area}, ${city.name} | Same-Day Service Near Me`,
+    description: `Book ${service.title.toLowerCase()} repair in ${area}, ${city.name} with Doorifix. Same-day doorstep service, certified technicians, genuine parts and transparent pricing.`,
+    canonical: `/${city.slug}/${areaSlug}/service/${service.slug}`,
+    keywords: `${service.title} repair ${area}, ${service.title} repair near me ${area}, ${service.title} service ${area} ${city.name}, doorstep ${service.title.toLowerCase()} repair ${area}, same day ${service.title.toLowerCase()} service ${area} ${city.name}`,
+  });
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -298,6 +307,45 @@ export function cityServiceSchema(city: CityData, service: ServiceData, breadcru
     areaServed: {
       "@type": "City",
       name: city.name,
+    },
+    makesOffer: serviceOfferSchema(service, url, city),
+  };
+
+  return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
+}
+
+export function areaServiceSchema(
+  city: CityData,
+  area: string,
+  areaSlug: string,
+  service: ServiceData,
+  breadcrumbs?: BreadcrumbItem[],
+) {
+  const url = absoluteUrl(`/${city.slug}/${areaSlug}/service/${service.slug}`);
+  const placeName = `${area}, ${city.name}`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${BASE_URL}/${city.slug}/${areaSlug}#localbusiness`,
+    name: `${SITE_NAME} - ${placeName}`,
+    description: `Expert ${service.title.toLowerCase()} repair service in ${placeName}. ${service.detailDescription}`,
+    url,
+    image: DEFAULT_IMAGE,
+    telephone: "+919886579923",
+    email: "doorifix@gmail.com",
+    paymentAccepted: ["Cash", "UPI", "Card"],
+    currenciesAccepted: "INR",
+    openingHours: "Mo-Su 08:00-21:00",
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: area,
+      addressRegion: city.name,
+      addressCountry: "IN",
+    },
+    areaServed: {
+      "@type": "Place",
+      name: placeName,
     },
     makesOffer: serviceOfferSchema(service, url, city),
   };

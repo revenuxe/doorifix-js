@@ -13,7 +13,16 @@ const areaSections = cities
   }))
   .filter((city) => city.areas.length > 0);
 
-const Footer = () => {
+interface FooterProps {
+  // Set on a service detail page to add "<Service> in <Area>" links (and a
+  // "<Service> Near Me" link) to the footer for that specific service.
+  serviceContext?: {
+    slug: string;
+    title: string;
+  };
+}
+
+const Footer = ({ serviceContext }: FooterProps = {}) => {
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
   return (
@@ -91,6 +100,37 @@ const Footer = () => {
             </div>
           </div>
         ))}
+
+        {serviceContext && (
+          <div className="border-t border-card/15 mt-6 pt-6 space-y-6">
+            <Link
+              href={`/service/${serviceContext.slug}`}
+              className="inline-block text-sm font-semibold text-card hover:underline"
+            >
+              {serviceContext.title} Near Me
+            </Link>
+
+            {areaSections.map((city) => (
+              <div key={`${city.slug}-${serviceContext.slug}`}>
+                <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                  <MapPin size={14} className="text-card/70" />
+                  {serviceContext.title} in {city.name} - Book by Area
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {city.areas.map((area) => (
+                    <Link
+                      key={area}
+                      href={`/${city.slug}/${slugify(area)}/service/${serviceContext.slug}`}
+                      className="text-xs text-card/60 hover:text-card bg-card/5 hover:bg-card/10 rounded-full px-3 py-1 transition-colors"
+                    >
+                      {serviceContext.title} in {area}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="border-t border-card/15 mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-card/50">

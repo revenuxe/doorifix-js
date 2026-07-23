@@ -71,12 +71,29 @@ const blogPosts = extractSlugs(readSource("src/data/blogs.ts"));
 const cities = extractSlugs(readSource("src/data/cities.ts"));
 const cityAreas = extractCityAreas(readSource("src/data/areas.ts"));
 
+// Pilot for area+service pages — keep in sync with AREA_SERVICE_PILOT_SLUGS
+// in src/pages/ServiceDetail.tsx, expand once reviewed.
+const areaServicePilotSlugs = ["washing-machine-repair"];
+
 const serviceRoutes = services.map((slug) => `/service/${slug}`);
 const blogRoutes = blogPosts.map((slug) => `/blog/${slug}`);
 const cityRoutes = cities.map((city) => `/${city}`);
 const cityServiceRoutes = cities.flatMap((city) => services.map((slug) => `/${city}/service/${slug}`));
 const areaRoutes = cities.flatMap((city) => (cityAreas[city] || []).map((area) => `/${city}/${slugify(area)}`));
-const routes = unique([...staticRoutes, ...blogRoutes, ...serviceRoutes, ...cityRoutes, ...cityServiceRoutes, ...areaRoutes]);
+const areaServiceRoutes = cities.flatMap((city) =>
+  (cityAreas[city] || []).flatMap((area) =>
+    areaServicePilotSlugs.map((slug) => `/${city}/${slugify(area)}/service/${slug}`),
+  ),
+);
+const routes = unique([
+  ...staticRoutes,
+  ...blogRoutes,
+  ...serviceRoutes,
+  ...cityRoutes,
+  ...cityServiceRoutes,
+  ...areaRoutes,
+  ...areaServiceRoutes,
+]);
 const lastModified = new Date().toISOString().slice(0, 10);
 
 const sitemapUrls = routes

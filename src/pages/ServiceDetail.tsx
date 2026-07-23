@@ -134,6 +134,10 @@ type ServiceIssueCard = Pick<ServiceData, "id" | "slug" | "title" | "description
   href: string;
 };
 
+// Pilot for area+service footer links and pages — expand to the other
+// service slugs once this has been reviewed.
+const AREA_SERVICE_PILOT_SLUGS = ["washing-machine-repair"];
+
 const slugifyIssue = (value: string) =>
   value.toLowerCase().trim().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -413,7 +417,13 @@ const ServiceDetail = () => {
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        serviceContext={
+          AREA_SERVICE_PILOT_SLUGS.includes(service.slug)
+            ? { slug: service.slug, title: serviceRepairTitle(service) }
+            : undefined
+        }
+      />
       <BottomNav />
       <BookingForm
         open={bookingOpen}
