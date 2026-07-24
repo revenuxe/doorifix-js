@@ -132,6 +132,12 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
           </div>
         )}
 
+        <div className="border-t border-card/15 mt-6 pt-6">
+          <p className="text-xs text-card/50 leading-relaxed">
+            <span className="font-semibold text-card/70">Disclaimer:</span> Doorifix is an independent, third-party appliance repair service provider. We are not authorized, sponsored, or affiliated with any appliance manufacturer or brand, and we do not represent ourselves as an "authorized" or "brand-associated" service/customer care center. Brand names mentioned on this website are used solely to describe the appliances we service. We provide repairs only for appliances that are out of their standard manufacturer warranty period (i.e., after the first year from purchase); we do not handle in-warranty claims.
+          </p>
+        </div>
+
         <div className="border-t border-card/15 mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-card/50">
             &copy; {new Date().getFullYear()} Doorifix. All rights reserved.
