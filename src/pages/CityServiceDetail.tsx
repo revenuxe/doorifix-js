@@ -189,7 +189,7 @@ const CityServiceDetail = () => {
           </div>
         </div>
 
-        <div className="px-5 md:px-8 lg:px-0 pb-8 md:pb-10">
+        <div className="px-5 md:px-8 lg:px-0 pb-28 md:pb-10">
           <HomepageBookingForm
             eyebrow={`Book in ${cityData.name}`}
             title={`Book ${service.title} repair in ${cityData.name}`}
