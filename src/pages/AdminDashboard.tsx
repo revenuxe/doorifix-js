@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Eye, Trash2, LogOut, Phone, MapPin, Wrench, Shield, Calendar, Search, Users, Mail, MessageSquare } from "lucide-react";
+import { Eye, Trash2, LogOut, Phone, MapPin, Wrench, Shield, Calendar, Search, Users, Mail, MessageSquare, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -20,6 +20,7 @@ interface Booking {
   warranty: string;
   case_number: string;
   created_at: string;
+  source: string | null;
 }
 
 interface ContactLead {
@@ -129,6 +130,7 @@ const AdminDashboard = () => {
       b.phone.includes(searchQuery) ||
       b.appliance.toLowerCase().includes(searchQuery.toLowerCase()) ||
       b.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (b.source && b.source.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (b.case_number && displayCaseNumber(b.case_number).toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
@@ -259,6 +261,12 @@ const AdminDashboard = () => {
                       <span className="text-[11px] text-muted-foreground">{booking.appliance}</span>
                       <span className="text-[11px] text-muted-foreground/40">•</span>
                       <span className="text-[11px] text-muted-foreground">{formatDate(booking.created_at)}</span>
+                      {booking.source && (
+                        <>
+                          <span className="text-[11px] text-muted-foreground/40">•</span>
+                          <span className="text-[10px] font-medium bg-accent text-accent-foreground px-1.5 py-0.5 rounded-md">{booking.source}</span>
+                        </>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
@@ -346,6 +354,7 @@ const AdminDashboard = () => {
                 { icon: MapPin, label: "Location", value: selectedBooking.location },
                 { icon: Wrench, label: "Appliance", value: selectedBooking.appliance },
                 { icon: Shield, label: "Warranty", value: selectedBooking.warranty },
+                ...(selectedBooking.source ? [{ icon: Tag, label: "Source", value: selectedBooking.source }] : []),
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-3 bg-muted/50 rounded-xl px-3.5 py-2.5">
                   <item.icon size={15} className="text-primary mt-0.5 shrink-0" />

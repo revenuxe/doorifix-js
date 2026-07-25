@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const baseUrl = "https://www.doorifix.com";
-const staticRoutes = ["/", "/services", "/blog", "/about", "/contact", "/terms", "/privacy"];
+const staticRoutes = ["/", "/services", "/blog", "/about", "/contact", "/terms", "/privacy", "/brand/not-listed"];
 
 function readSource(path) {
   return readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -39,13 +39,14 @@ function absoluteUrl(path) {
   return new URL(path, baseUrl).toString();
 }
 
-function priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRoutes) {
+function priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRoutes, brandRoutes) {
   if (path === "/") return 1;
   if (path === "/services") return 0.9;
   if (path === "/blog") return 0.8;
   if (path.startsWith("/blog/")) return 0.7;
   if (cityRoutes.includes(path)) return path === "/bangalore" ? 0.9 : 0.8;
   if (serviceRoutes.includes(path) || cityServiceRoutes.includes(path)) return 0.8;
+  if (brandRoutes.includes(path)) return 0.7;
   if (areaRoutes.includes(path)) return 0.7;
   if (path === "/about" || path === "/contact") return 0.7;
   return 0.3;
@@ -70,6 +71,7 @@ const services = extractSlugs(readSource("src/data/services.ts"));
 const blogPosts = extractSlugs(readSource("src/data/blogs.ts"));
 const cities = extractSlugs(readSource("src/data/cities.ts"));
 const cityAreas = extractCityAreas(readSource("src/data/areas.ts"));
+const brands = extractSlugs(readSource("src/data/brands.ts"));
 
 // Pilot for area+service pages — keep in sync with AREA_SERVICE_PILOT_SLUGS
 // in src/pages/ServiceDetail.tsx, expand once reviewed.
@@ -77,6 +79,7 @@ const areaServicePilotSlugs = ["washing-machine-repair"];
 
 const serviceRoutes = services.map((slug) => `/service/${slug}`);
 const blogRoutes = blogPosts.map((slug) => `/blog/${slug}`);
+const brandRoutes = brands.map((slug) => `/brand/${slug}`);
 const cityRoutes = cities.map((city) => `/${city}`);
 const cityServiceRoutes = cities.flatMap((city) => services.map((slug) => `/${city}/service/${slug}`));
 const areaRoutes = cities.flatMap((city) => (cityAreas[city] || []).map((area) => `/${city}/${slugify(area)}`));
@@ -89,6 +92,7 @@ const routes = unique([
   ...staticRoutes,
   ...blogRoutes,
   ...serviceRoutes,
+  ...brandRoutes,
   ...cityRoutes,
   ...cityServiceRoutes,
   ...areaRoutes,
@@ -102,7 +106,7 @@ const sitemapUrls = routes
     <loc>${escapeXml(absoluteUrl(path))}</loc>
     <lastmod>${lastModified}</lastmod>
     <changefreq>${changeFrequencyFor(path, cityRoutes)}</changefreq>
-    <priority>${priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRoutes).toFixed(1)}</priority>
+    <priority>${priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRoutes, brandRoutes).toFixed(1)}</priority>
   </url>`,
   )
   .join("\n");

@@ -31,6 +31,9 @@ interface HomepageBookingFormProps {
   description?: string;
   defaultAppliance?: string;
   defaultIssue?: string;
+  // Where this form was booked from (e.g. a brand page like "Samsung"), shown
+  // in the admin dashboard so leads can be traced back to their source page.
+  source?: string;
 }
 
 export default function HomepageBookingForm({
@@ -39,6 +42,7 @@ export default function HomepageBookingForm({
   description = "Share your details and our team will call back with a DF booking ID. Leads go directly to the Doorifix admin dashboard.",
   defaultAppliance = "",
   defaultIssue = "",
+  source = "",
 }: HomepageBookingFormProps) {
   const router = useRouter();
   const { toast } = useToast();
@@ -67,6 +71,7 @@ export default function HomepageBookingForm({
         location: form.location.trim(),
         appliance: defaultIssue ? `${form.appliance} - ${defaultIssue}` : form.appliance,
         warranty: form.warranty,
+        source: source || undefined,
       }),
     });
 

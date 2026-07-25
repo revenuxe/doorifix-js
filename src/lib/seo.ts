@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CityData } from "@/data/cities";
 import type { ServiceData } from "@/data/services";
+import { brandFocusService, brandPrimaryServiceTitle, type BrandData } from "@/data/brands";
 
 export const SITE_NAME = "Doorifix";
 export const BASE_URL = "https://www.doorifix.com";
@@ -148,6 +149,39 @@ export function areaServiceMetadata(city: CityData, area: string, areaSlug: stri
     canonical: `/${city.slug}/${areaSlug}/service/${service.slug}`,
     keywords: `${service.title} repair ${area}, ${service.title} repair near me ${area}, ${service.title} service ${area} ${city.name}, doorstep ${service.title.toLowerCase()} repair ${area}, same day ${service.title.toLowerCase()} service ${area} ${city.name}`,
   });
+}
+
+export function brandMetadata(brand: BrandData) {
+  return buildMetadata({
+    title: `${brand.name} ${brandPrimaryServiceTitle(brand)} Near Me | Doorstep Service`,
+    description: `Book expert ${brand.name} appliance repair near you with Doorifix. Doorstep repair for ${brand.highlight}. Same-day service, certified technicians, genuine parts.`,
+    canonical: `/brand/${brand.slug}`,
+    keywords: brand.keywords,
+  });
+}
+
+export function brandSchema(brand: BrandData, breadcrumbs?: BreadcrumbItem[]) {
+  const url = absoluteUrl(`/brand/${brand.slug}`);
+  const focusService = brandFocusService(brand);
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${BASE_URL}/brand/${brand.slug}#localbusiness`,
+    name: `${SITE_NAME} - ${brand.name} ${brandPrimaryServiceTitle(brand)}`,
+    description: `Doorstep ${brand.name} ${(focusService?.title || "appliance").toLowerCase()} repair in Bangalore and Bengaluru.`,
+    url,
+    image: DEFAULT_IMAGE,
+    telephone: "+919886579923",
+    email: "doorifix@gmail.com",
+    paymentAccepted: ["Cash", "UPI", "Card"],
+    currenciesAccepted: "INR",
+    openingHours: "Mo-Su 08:00-21:00",
+    priceRange: "$$",
+    areaServed: primaryCities.map((name) => ({ "@type": "City", name })),
+    brand: { "@type": "Brand", name: brand.name },
+  };
+
+  return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
 }
 
 export function organizationSchema() {

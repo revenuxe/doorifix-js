@@ -23,6 +23,7 @@ export type Database = {
           location: string
           name: string
           phone: string
+          source: string | null
           warranty: string
         }
         Insert: {
@@ -33,6 +34,7 @@ export type Database = {
           location: string
           name: string
           phone: string
+          source?: string | null
           warranty: string
         }
         Update: {
@@ -43,6 +45,7 @@ export type Database = {
           location?: string
           name?: string
           phone?: string
+          source?: string | null
           warranty?: string
         }
         Relationships: []
@@ -103,6 +106,7 @@ export type Database = {
           _location: string
           _name: string
           _phone: string
+          _source?: string | null
           _warranty: string
         }
         Returns: string

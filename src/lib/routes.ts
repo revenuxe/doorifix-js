@@ -1,4 +1,5 @@
 import { cityAreas, slugify } from "@/data/areas";
+import { brands } from "@/data/brands";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
 
@@ -9,10 +10,15 @@ export const staticRoutes = [
   "/contact",
   "/terms",
   "/privacy",
+  "/brand/not-listed",
 ] as const;
 
 export const serviceParams = services.map((service) => ({
   slug: service.slug,
+}));
+
+export const brandParams = brands.map((brand) => ({
+  brand: brand.slug,
 }));
 
 export const cityParams = cities.map((city) => ({
@@ -34,6 +40,7 @@ export const areaParams = cities.flatMap((city) =>
 );
 
 export const serviceRoutes = serviceParams.map(({ slug }) => `/service/${slug}`);
+export const brandRoutes = brandParams.map(({ brand }) => `/brand/${brand}`);
 export const cityRoutes = cityParams.map(({ city }) => `/${city}`);
 export const cityServiceRoutes = cityServiceParams.map(({ city, slug }) => `/${city}/service/${slug}`);
 export const areaRoutes = areaParams.map(({ city, area }) => `/${city}/${area}`);
@@ -41,6 +48,7 @@ export const areaRoutes = areaParams.map(({ city, area }) => `/${city}/${area}`)
 export const seoRoutes = [
   ...staticRoutes,
   ...serviceRoutes,
+  ...brandRoutes,
   ...cityRoutes,
   ...cityServiceRoutes,
   ...areaRoutes,
@@ -49,6 +57,7 @@ export const seoRoutes = [
 export const routeCounts = {
   static: staticRoutes.length,
   services: serviceRoutes.length,
+  brands: brandRoutes.length,
   cities: cityRoutes.length,
   cityServices: cityServiceRoutes.length,
   areas: areaRoutes.length,

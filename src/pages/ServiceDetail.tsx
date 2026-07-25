@@ -17,10 +17,13 @@ import Footer from "@/components/Footer";
 import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import ServiceCard from "@/components/ServiceCard";
+import BrandCard from "@/components/BrandCard";
+import NotListedBrandCard from "@/components/NotListedBrandCard";
 import SEO from "@/components/SEO";
 import whatsappIcon from "@/assets/whatsapp.gif";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { services, getServiceBySlug, type ServiceData } from "@/data/services";
+import { brands } from "@/data/brands";
 
 // SEO keyword map per service slug for high-traffic terms
 const seoKeywordMap: Record<string, { keywords: string; metaTitle: string; metaDesc: string }> = {
@@ -184,6 +187,7 @@ const ServiceDetail = () => {
   const copy = serviceCopy[service.slug];
   const defaultAppliance = applianceMap[service.title] || service.title;
   const issueCards = serviceIssueCards[service.slug] || [];
+  const relevantBrands = brands.filter((brand) => brand.serviceSlugs.includes(service.slug));
   const selectedIssue = copy.issues.find((item) => slugifyIssue(item) === issue);
   const pageTitle = selectedIssue
     ? `${selectedIssue} ${serviceRepairTitle(service)} in Bangalore`
@@ -361,6 +365,23 @@ const ServiceDetail = () => {
               </div>
             </div>
           </section>
+
+          {relevantBrands.length > 0 && (
+            <section className="mt-12 md:mt-16">
+              <div className="flex items-end justify-between mb-5">
+                <div>
+                  <p className="text-sm text-primary font-semibold">{serviceRepairTitle(service)}</p>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-1">Brands We Repair</h2>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3">
+                {relevantBrands.map((brand) => (
+                  <BrandCard key={brand.slug} brand={brand} />
+                ))}
+                <NotListedBrandCard />
+              </div>
+            </section>
+          )}
 
           <section className="mt-12 md:mt-16">
             <div className="relative rounded-3xl overflow-hidden bg-primary p-6 md:p-10">

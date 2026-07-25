@@ -8,6 +8,7 @@ interface BookingRequest {
   location?: string;
   appliance?: string;
   warranty?: string;
+  source?: string;
 }
 
 export async function POST(request: Request) {
@@ -18,6 +19,7 @@ export async function POST(request: Request) {
   const location = body?.location?.trim();
   const appliance = body?.appliance?.trim();
   const warranty = body?.warranty?.trim();
+  const source = body?.source?.trim() || null;
 
   if (!name || !phone || !location || !appliance || !warranty) {
     return NextResponse.json({ error: "Please fill all fields" }, { status: 400 });
@@ -30,6 +32,7 @@ export async function POST(request: Request) {
     _location: location,
     _appliance: appliance,
     _warranty: warranty,
+    _source: source,
   });
 
   if (error) {
@@ -51,6 +54,7 @@ export async function POST(request: Request) {
         mailField("Location", location),
         mailField("Appliance", appliance),
         mailField("Warranty", warranty),
+        ...(source ? [mailField("Source", source)] : []),
       ].join(""),
       { label: "Call Customer", href: `tel:${phone}` },
     );
@@ -65,6 +69,7 @@ export async function POST(request: Request) {
         `Location: ${location}`,
         `Appliance: ${appliance}`,
         `Warranty: ${warranty}`,
+        ...(source ? [`Source: ${source}`] : []),
       ].join("\n"),
     });
   } catch (err) {
