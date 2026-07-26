@@ -18,6 +18,7 @@ interface ServiceCardProps {
   duration?: string;
   linkPrefix?: string;
   href?: string;
+  bookOnCardClick?: boolean;
 }
 
 const colorMap = {
@@ -38,7 +39,7 @@ const applianceMap: Record<string, string> = {
   Dishwasher: "Dishwasher",
 };
 
-const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "", href }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, duration = "2-3 hrs", linkPrefix = "", href, bookOnCardClick = false }: ServiceCardProps) => {
   const router = useRouter();
   const [bookingOpen, setBookingOpen] = useState(false);
   const basePath = href || `${linkPrefix}/service/${slug}`;
@@ -57,9 +58,12 @@ const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, dur
       <div
         role="link"
         tabIndex={0}
-        onClick={() => router.push(basePath)}
+        onClick={() => (bookOnCardClick ? setBookingOpen(true) : router.push(basePath))}
         onKeyDown={(e) => {
-          if (e.key === "Enter") router.push(basePath);
+          if (e.key === "Enter") {
+            if (bookOnCardClick) setBookingOpen(true);
+            else router.push(basePath);
+          }
         }}
         className={`${colorMap[color]} rounded-3xl p-5 flex gap-4 items-center cursor-pointer transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]`}
       >

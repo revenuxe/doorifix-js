@@ -11,6 +11,7 @@ import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import Footer from "@/components/Footer";
+import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
@@ -57,6 +58,8 @@ const BrandDetail = () => {
     else router.push(path);
   };
   const [searchQuery, setSearchQuery] = useState("");
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [bookingIssue, setBookingIssue] = useState("");
 
   const brand = getBrandBySlug(brandSlug || "");
   if (!brand) return null;
@@ -162,7 +165,7 @@ const BrandDetail = () => {
             }} />
 
             {/* Hero Card */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
+            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => { setBookingIssue(""); setBookingOpen(true); }}>
               <img src={imageSrc(repairHero)} alt={`${brand.name} appliance repair in Bangalore`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/50" />
 
@@ -185,7 +188,7 @@ const BrandDetail = () => {
                   {copy.subheadline}
                 </p>
                 <div className="flex items-center gap-3 pt-2">
-                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); navigate("/services"); }}>
+                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); setBookingIssue(""); setBookingOpen(true); }}>
                     Book {brand.name} Repair
                   </button>
                 </div>
@@ -202,7 +205,7 @@ const BrandDetail = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
                 {relevantServices.map((service) => (
-                  <ServiceCard key={service.id} {...service} description={`${brand.name} ${service.description.toLowerCase()}`} />
+                  <ServiceCard key={service.id} {...service} description={`${brand.name} ${service.description.toLowerCase()}`} bookOnCardClick />
                 ))}
               </div>
             </div>
@@ -215,7 +218,7 @@ const BrandDetail = () => {
                   {focusIssues.map((issue) => (
                     <div
                       key={issue}
-                      onClick={() => navigate(`/service/${focusService.slug}`)}
+                      onClick={() => { setBookingIssue(issue); setBookingOpen(true); }}
                       className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30"
                     >
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
@@ -259,7 +262,7 @@ const BrandDetail = () => {
                       <p className="text-[10px] text-primary-foreground/60 uppercase">Hours</p>
                     </div>
                   </div>
-                  <button onClick={() => navigate("/services")} className="bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full text-sm hover:opacity-90 transition-opacity flex items-center gap-2 w-full md:w-auto justify-center">
+                  <button onClick={() => { setBookingIssue(""); setBookingOpen(true); }} className="bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full text-sm hover:opacity-90 transition-opacity flex items-center gap-2 w-full md:w-auto justify-center">
                     Book {brand.name} Repair
                   </button>
                 </div>
@@ -311,6 +314,13 @@ const BrandDetail = () => {
 
       <Footer />
       <BottomNav />
+
+      <BookingForm
+        open={bookingOpen}
+        onOpenChange={setBookingOpen}
+        defaultAppliance={defaultAppliance}
+        defaultIssue={bookingIssue}
+      />
     </div>
   );
 };
