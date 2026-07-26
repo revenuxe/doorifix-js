@@ -88,7 +88,7 @@ const BrandDetail = () => {
             "@type": "LocalBusiness",
             "name": `Doorifix - ${copy.headline}`,
             "description": copy.subheadline,
-            "telephone": "+919886579923",
+            "telephone": "+919886285028",
             "email": "doorifix@gmail.com",
             "areaServed": [
               { "@type": "City", "name": "Bangalore" },

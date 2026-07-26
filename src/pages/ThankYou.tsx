@@ -45,7 +45,7 @@ const ThankYou = () => {
         {/* Actions */}
         <div className="flex flex-col gap-3 pt-2">
           <Button
-            onClick={() => window.open("tel:+919886579923")}
+            onClick={() => window.open("tel:+919886285028")}
             className="w-full h-12 rounded-xl gap-2"
           >
             <Phone size={16} /> Call Us Now

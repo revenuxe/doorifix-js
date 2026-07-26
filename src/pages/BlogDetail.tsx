@@ -141,7 +141,7 @@ const BlogDetail = () => {
                       </p>
                     </div>
                     <div className="mt-5 md:mt-0 flex flex-col sm:flex-row gap-3">
-                      <a href="tel:+919886579923" className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-primary rounded-full px-6 py-3 text-sm font-semibold">
+                      <a href="tel:+919886285028" className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-primary rounded-full px-6 py-3 text-sm font-semibold">
                         <Phone size={16} />
                         Call Now
                       </a>

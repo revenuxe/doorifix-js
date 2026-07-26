@@ -54,9 +54,9 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Contact Us</h3>
             <div className="space-y-3">
-              <a href="tel:+919886579923" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
+              <a href="tel:+919886285028" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Phone size={14} className="mt-0.5 flex-shrink-0" />
-                9886 579 923
+                9886 285 028
               </a>
               <a href="mailto:doorifix@gmail.com" className="flex items-start gap-2 text-sm text-card/70 hover:text-card transition-colors">
                 <Mail size={14} className="mt-0.5 flex-shrink-0" />

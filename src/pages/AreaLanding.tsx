@@ -74,7 +74,7 @@ const AreaLanding = () => {
           "@type": "LocalBusiness",
           "name": `Doorifix – ${areaName}, ${cityData.name}`,
           "description": metaDescription,
-          "telephone": "+919886579923",
+          "telephone": "+919886285028",
           "email": "doorifix@gmail.com",
           "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
           "address": { "@type": "PostalAddress", "addressLocality": areaName, "addressRegion": cityData.name, "addressCountry": "IN" },

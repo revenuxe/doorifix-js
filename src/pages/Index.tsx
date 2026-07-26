@@ -20,10 +20,7 @@ import refrigerator from "@/assets/refrigerator.png";
 import acUnit from "@/assets/ac-unit.png";
 import microwave from "@/assets/microwave.png";
 import dryer from "@/assets/dryer.png";
-import BrandCard from "@/components/BrandCard";
-import NotListedBrandCard from "@/components/NotListedBrandCard";
 import { services } from "@/data/services";
-import { brands } from "@/data/brands";
 const featuredServices = services.slice(0, 4);
 const stats = [{
   icon: Users,
@@ -61,7 +58,7 @@ const Index = () => {
             "@type": "LocalBusiness",
             "name": "Doorifix",
             "description": "Professional appliance repair & servicing at your doorstep",
-            "telephone": "+919886579923",
+            "telephone": "+919886285028",
             "email": "doorifix@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
             "openingHours": "Mo-Su 08:00-21:00",
@@ -240,17 +237,6 @@ const Index = () => {
                     <p className="text-xs text-primary font-medium mt-1">{item.subtitle}</p>
                     <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{item.keywords}</p>
                   </div>)}
-              </div>
-            </div>
-
-            {/* Brands We Serve */}
-            <div>
-              <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Brands We Serve</h2>
-              <div className="grid grid-cols-3 md:grid-cols-5 xl:grid-cols-10 gap-3">
-                {brands.map((brand) => (
-                  <BrandCard key={brand.slug} brand={brand} />
-                ))}
-                <NotListedBrandCard />
               </div>
             </div>
 
