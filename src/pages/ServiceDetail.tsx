@@ -18,7 +18,6 @@ import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import ServiceCard from "@/components/ServiceCard";
 import BrandCard from "@/components/BrandCard";
-import NotListedBrandCard from "@/components/NotListedBrandCard";
 import SEO from "@/components/SEO";
 import whatsappIcon from "@/assets/whatsapp.gif";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
@@ -378,7 +377,6 @@ const ServiceDetail = () => {
                 {relevantBrands.map((brand) => (
                   <BrandCard key={brand.slug} brand={brand} />
                 ))}
-                <NotListedBrandCard />
               </div>
             </section>
           )}
