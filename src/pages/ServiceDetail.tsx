@@ -365,7 +365,7 @@ const ServiceDetail = () => {
             </div>
           </section>
 
-          {relevantBrands.length > 0 && (
+          {service.slug === "washing-machine-repair" && relevantBrands.length > 0 && (
             <section className="mt-12 md:mt-16">
               <div className="flex items-end justify-between mb-5">
                 <div>
