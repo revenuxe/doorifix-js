@@ -44,7 +44,14 @@ const AreaLanding = () => {
   if (!cityData || !areaName) return null;
 
   const fullLocation = `${areaName}, ${cityData.name}`;
-  const otherAreas = (cityAreas[cityData.slug] || []).filter((a) => a !== areaName).slice(0, 12);
+  // Rotate the window per area (instead of always slicing the first 12) so
+  // every locality page gets cross-linked by others, not just the first
+  // dozen entries in cityAreas — otherwise most area pages end up orphaned.
+  const allAreas = cityAreas[cityData.slug] || [];
+  const currentIndex = Math.max(allAreas.indexOf(areaName), 0);
+  const otherAreas = Array.from({ length: Math.min(12, allAreas.length - 1) }, (_, i) =>
+    allAreas[(currentIndex + 1 + i) % allAreas.length]
+  ).filter((a) => a !== areaName);
 
   const stats = [
     { icon: Users, value: "1000+", label: `Happy Clients in ${cityData.name}` },
@@ -187,7 +194,7 @@ const AreaLanding = () => {
                   const title = item.title.replace(cityData.name, areaName);
                   const keywordsLine = `${svc?.title.toLowerCase() || "appliance"} repair near me ${areaName}, samsung ${svc?.title.toLowerCase() || ""} repair ${areaName}, lg ${svc?.title.toLowerCase() || ""} service ${areaName}, doorstep ${svc?.title.toLowerCase() || ""} fix ${areaName}`;
                   return (
-                    <Link key={item.title} href={`/${cityData.slug}/service/${svc?.slug || ""}`} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
+                    <Link key={item.title} href={`/${cityData.slug}/${area}/service/${svc?.slug || ""}`} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
                         {applianceIcons[i]}
                       </div>

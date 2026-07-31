@@ -2,6 +2,7 @@
 
 import { imageSrc } from "@/lib/image";
 import { useState } from "react";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import {
   ArrowRight,
@@ -22,7 +23,7 @@ import SEO from "@/components/SEO";
 import whatsappIcon from "@/assets/whatsapp.gif";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { services, getServiceBySlug, type ServiceData } from "@/data/services";
-import { brands } from "@/data/brands";
+import { brands, NOT_LISTED_BRAND_SLUG } from "@/data/brands";
 
 // SEO keyword map per service slug for high-traffic terms
 const seoKeywordMap: Record<string, { keywords: string; metaTitle: string; metaDesc: string }> = {
@@ -378,6 +379,12 @@ const ServiceDetail = () => {
                   <BrandCard key={brand.slug} brand={brand} />
                 ))}
               </div>
+              <Link
+                href={`/brand/${NOT_LISTED_BRAND_SLUG}`}
+                className="inline-block mt-4 text-sm font-medium text-primary hover:underline"
+              >
+                Don't see your brand? We repair it anyway →
+              </Link>
             </section>
           )}
 

@@ -7,22 +7,17 @@ import { services } from "@/data/services";
 
 const citiesWeServe = cities.map(({ name, slug }) => ({ name, slug }));
 
-// Bangalore and Bengaluru share the same area list (kept as separate city
-// pages for SEO), so only render the area pills once to avoid a duplicate
-// block in the footer. Bangalore is the canonical one for these links.
-const seenAreaLists = new Set<string>();
+// Bangalore and Bengaluru are separate city page clusters (kept distinct for
+// SEO) that happen to share the same area list. Both need their own footer
+// links — every /bengaluru/:area page is otherwise unreachable from the rest
+// of the site — so we deliberately don't dedupe by area-list content here,
+// even though the two blocks look similar.
 const areaSections = cities
   .map((city) => ({
     ...city,
     areas: cityAreas[city.slug] || [],
   }))
-  .filter((city) => {
-    if (city.areas.length === 0) return false;
-    const key = city.areas.join("|");
-    if (seenAreaLists.has(key)) return false;
-    seenAreaLists.add(key);
-    return true;
-  });
+  .filter((city) => city.areas.length > 0);
 
 interface FooterProps {
   // Set on a service detail page to add "<Service> in <Area>" links (and a
