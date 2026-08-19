@@ -129,7 +129,7 @@ const PrivacyPolicy = () => {
               <p>In accordance with the Information Technology Act, 2000, and the rules made thereunder, the Grievance Officer for the purpose of this Privacy Policy is:</p>
               <p><strong className="text-foreground">Doorifix</strong></p>
               <p>Email: <a href="mailto:doorifix@gmail.com" className="text-primary hover:underline">doorifix@gmail.com</a></p>
-              <p>Phone: <a href="tel:+919886285028" className="text-primary hover:underline">9886 285 028</a></p>
+              <p>Phone: <a href="tel:+919886579923" className="text-primary hover:underline">9886 579 923</a></p>
               <p>Response time: Within 30 days of receiving a complaint.</p>
             </section>
 

@@ -80,13 +80,13 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Info Cards */}
             <div className="space-y-4">
-              <a href="tel:+919886285028" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
+              <a href="tel:+919886579923" className="flex items-start gap-4 bg-card rounded-2xl border border-border p-5 hover:border-primary/30 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Phone size={22} className="text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Call Us</h3>
-                  <p className="text-sm text-primary font-medium mt-1">9886 285 028</p>
+                  <p className="text-sm text-primary font-medium mt-1">9886 579 923</p>
                   <p className="text-xs text-muted-foreground mt-1">Available Mon–Sun, 8 AM – 9 PM</p>
                 </div>
               </a>

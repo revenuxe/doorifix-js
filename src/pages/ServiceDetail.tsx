@@ -216,7 +216,7 @@ const ServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": "Doorifix",
-            "telephone": "+919886285028",
+            "telephone": "+919886579923",
             "email": "doorifix@gmail.com",
           },
           "areaServed": [
@@ -236,7 +236,7 @@ const ServiceDetail = () => {
                   <ArrowRight size={18} className="rotate-180" />
                 </button>
                 <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
-                <a href="tel:+919886285028" className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <a href="tel:+919886579923" className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                   <Phone size={16} />
                 </a>
               </div>
@@ -288,7 +288,7 @@ const ServiceDetail = () => {
                   }}>
                     Book Now <ArrowRight size={14} />
                   </button>
-                  <a href="tel:+919886285028" className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 text-white text-sm" onClick={(event) => event.stopPropagation()}>
+                  <a href="tel:+919886579923" className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 text-white text-sm" onClick={(event) => event.stopPropagation()}>
                     <Phone size={14} /> Call Now
                   </a>
                 </div>
@@ -418,14 +418,14 @@ const ServiceDetail = () => {
           </section>
 
           <section className="mt-12 md:mt-16 grid gap-3 md:grid-cols-3">
-            <a href="tel:+919886285028" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
+            <a href="tel:+919886579923" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
               <Phone size={20} className="text-primary" />
               <div>
                 <p className="text-sm font-semibold text-foreground">Call Now</p>
-                <p className="text-xs text-muted-foreground">9886 285 028</p>
+                <p className="text-xs text-muted-foreground">9886 579 923</p>
               </div>
             </a>
-            <a href="https://wa.me/919886285028" target="_blank" rel="noopener noreferrer" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
+            <a href="https://wa.me/919886579923" target="_blank" rel="noopener noreferrer" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
               <img src={imageSrc(whatsappIcon)} alt="WhatsApp" className="w-5 h-5 rounded-full" />
               <div>
                 <p className="text-sm font-semibold text-foreground">WhatsApp</p>

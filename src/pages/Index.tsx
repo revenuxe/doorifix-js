@@ -58,7 +58,7 @@ const Index = () => {
             "@type": "LocalBusiness",
             "name": "Doorifix",
             "description": "Professional appliance repair & servicing at your doorstep",
-            "telephone": "+919886285028",
+            "telephone": "+919886579923",
             "email": "doorifix@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "HBR Layout", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "postalCode": "560043", "addressCountry": "IN" },
             "openingHours": "Mo-Su 08:00-21:00",

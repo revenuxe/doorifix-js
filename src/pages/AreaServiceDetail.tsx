@@ -65,7 +65,7 @@ const AreaServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": `Doorifix – ${areaName}, ${cityData.name}`,
-            "telephone": "+919886285028",
+            "telephone": "+919886579923",
             "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
           },
           "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
@@ -131,7 +131,7 @@ const AreaServiceDetail = () => {
                   </div>
                 </div>
               </div>
-              <a href="tel:+919886285028" className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0">
+              <a href="tel:+919886579923" className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0">
                 <Phone size={14} />
                 Call Now
               </a>
@@ -145,7 +145,7 @@ const AreaServiceDetail = () => {
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
               <a
-                href="https://wa.me/919886285028"
+                href="https://wa.me/919886579923"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-card rounded-xl p-3 border border-border text-center hover:shadow-md transition-shadow"
