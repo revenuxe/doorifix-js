@@ -36,7 +36,7 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <img src={logoSrc} alt="Doorifix" className="h-10 object-contain brightness-0 invert" />
+            <img src={logoSrc} alt="Doorifix" className="h-10 rounded bg-white px-2 py-1 object-contain" />
             <p className="text-sm text-card/70 leading-relaxed">
               Doorifix - your trusted partner for expert appliance repair and servicing. Fast, reliable, and affordable.
             </p>

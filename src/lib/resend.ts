@@ -22,9 +22,9 @@ function escapeHtml(value: string) {
 function field(label: string, value?: string | null) {
   return `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #eef0f2;">
-        <span style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;">${escapeHtml(label)}</span><br/>
-        <span style="color:#111827;font-size:15px;font-weight:600;">${escapeHtml(value || "-")}</span>
+      <td style="padding:10px 0;border-bottom:1px solid #dbe7f7;">
+        <span style="color:#526b8f;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;">${escapeHtml(label)}</span><br/>
+        <span style="color:#061a43;font-size:15px;font-weight:600;">${escapeHtml(value || "-")}</span>
       </td>
     </tr>`;
 }
@@ -33,14 +33,14 @@ export function emailLayout(title: string, intro: string, rows: string, cta?: { 
   return `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#f4f6f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f8;padding:32px 16px;">
+<body style="margin:0;padding:0;background:#f5f9ff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f9ff;padding:32px 16px;">
     <tr><td align="center">
       <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
         <tr>
-          <td style="background:#1e3a5f;padding:24px 32px;">
+          <td style="background:#061a43;padding:24px 32px;">
             <h1 style="margin:0;color:#ffffff;font-size:20px;font-weight:700;">${escapeHtml(title)}</h1>
-            <p style="margin:6px 0 0;color:#94b8db;font-size:13px;">${escapeHtml(intro)}</p>
+            <p style="margin:6px 0 0;color:#b6d4ff;font-size:13px;">${escapeHtml(intro)}</p>
           </td>
         </tr>
         <tr>
@@ -49,7 +49,7 @@ export function emailLayout(title: string, intro: string, rows: string, cta?: { 
             ${cta ? `<table width="100%" cellpadding="0" cellspacing="0" style="margin-top:24px;">
               <tr>
                 <td align="center">
-                  <a href="${escapeHtml(cta.href)}" style="display:inline-block;background:#1e3a5f;color:#ffffff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
+                  <a href="${escapeHtml(cta.href)}" style="display:inline-block;background:#1558e0;color:#ffffff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
                     ${escapeHtml(cta.label)}
                   </a>
                 </td>
@@ -58,8 +58,8 @@ export function emailLayout(title: string, intro: string, rows: string, cta?: { 
           </td>
         </tr>
         <tr>
-          <td style="background:#f9fafb;padding:16px 32px;border-top:1px solid #eef0f2;">
-            <p style="margin:0;color:#9ca3af;font-size:11px;text-align:center;">Doorifix automated website notification</p>
+          <td style="background:#f5f9ff;padding:16px 32px;border-top:1px solid #dbe7f7;">
+            <p style="margin:0;color:#6d82a3;font-size:11px;text-align:center;">Doorifix automated website notification</p>
           </td>
         </tr>
       </table>

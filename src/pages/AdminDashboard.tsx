@@ -182,9 +182,9 @@ const AdminDashboard = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { label: "Total Leads", value: totalLeads, icon: Users, color: "bg-primary/10 text-primary" },
-            { label: "Today", value: todayLeads, icon: Calendar, color: "bg-green-500/10 text-green-600" },
-            { label: "This Week", value: weekLeads, icon: Wrench, color: "bg-amber-500/10 text-amber-600" },
-            { label: "This Month", value: monthLeads, icon: Shield, color: "bg-purple-500/10 text-purple-600" },
+            { label: "Today", value: todayLeads, icon: Calendar, color: "bg-primary/10 text-primary" },
+            { label: "This Week", value: weekLeads, icon: Wrench, color: "bg-primary/10 text-primary" },
+            { label: "This Month", value: monthLeads, icon: Shield, color: "bg-primary/10 text-primary" },
           ].map((stat) => (
             <div key={stat.label} className="bg-card rounded-2xl border border-border p-4">
               <div className={`w-8 h-8 rounded-lg ${stat.color} flex items-center justify-center mb-2`}>
@@ -302,8 +302,8 @@ const AdminDashboard = () => {
                   key={contact.id}
                   className="bg-card rounded-2xl border border-border p-4 flex items-center gap-3 hover:border-primary/30 transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
-                    <span className="text-sm font-bold text-amber-600">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <span className="text-sm font-bold text-primary">
                       {contact.name.charAt(0).toUpperCase()}
                     </span>
                   </div>

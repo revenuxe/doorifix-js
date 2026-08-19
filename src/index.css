@@ -6,70 +6,70 @@
 
 @layer base {
   :root {
-    --background: 30 20% 97%;
-    --foreground: 240 10% 10%;
+    --background: 216 50% 98%;
+    --foreground: 220 70% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 220 70% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 220 70% 10%;
 
-    --primary: 20 90% 54%;
+    --primary: 220 82% 49%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 50% 96%;
-    --secondary-foreground: 222 65% 24%;
+    --secondary: 218 70% 95%;
+    --secondary-foreground: 220 70% 16%;
 
-    --brand-orange: 20 90% 54%;
-    --brand-blue: 210 80% 50%;
-    --brand-navy: 222 65% 24%;
+    --brand-orange: 220 82% 49%;
+    --brand-blue: 220 82% 49%;
+    --brand-navy: 220 70% 10%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 210 15% 46%;
+    --muted: 216 35% 94%;
+    --muted-foreground: 216 20% 42%;
 
-    --accent: 222 65% 24%;
+    --accent: 220 70% 10%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 90%;
-    --input: 220 15% 90%;
-    --ring: 20 90% 54%;
+    --border: 216 30% 88%;
+    --input: 216 30% 88%;
+    --ring: 220 82% 49%;
 
     --radius: 1rem;
 
     /* Custom service card colors */
-    --card-pink: 330 80% 92%;
-    --card-green: 140 45% 88%;
-    --card-yellow: 45 80% 90%;
-    --card-blue: 195 70% 90%;
+    --card-pink: 220 85% 94%;
+    --card-green: 210 75% 93%;
+    --card-yellow: 215 70% 91%;
+    --card-blue: 220 75% 90%;
 
     /* Pill / badge */
-    --pill-bg: 210 20% 94%;
-    --pill-active-bg: 20 90% 54%;
+    --pill-bg: 218 70% 95%;
+    --pill-active-bg: 220 82% 49%;
     --pill-active-fg: 0 0% 100%;
 
     /* Bottom nav */
-    --nav-active: 20 90% 54%;
-    --nav-inactive: 210 15% 60%;
+    --nav-active: 220 82% 49%;
+    --nav-inactive: 216 20% 48%;
 
     /* Hero pink for detail page */
-    --hero-pink: 20 95% 90%;
+    --hero-pink: 220 85% 92%;
 
     /* Book button */
-    --book-btn: 20 90% 54%;
+    --book-btn: 220 82% 49%;
     --book-btn-fg: 0 0% 100%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 216 50% 98%;
+    --sidebar-foreground: 220 70% 10%;
+    --sidebar-primary: 220 82% 49%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 218 70% 95%;
+    --sidebar-accent-foreground: 220 70% 10%;
+    --sidebar-border: 216 30% 88%;
+    --sidebar-ring: 220 82% 49%;
   }
 }
 

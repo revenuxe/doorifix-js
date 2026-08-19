@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   other: {
-    "theme-color": "#1e3a5f",
+    "theme-color": "#061a43",
   },
 };
 

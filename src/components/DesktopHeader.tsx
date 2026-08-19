@@ -18,7 +18,7 @@ const DesktopHeader = () => {
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
   return (
-    <header className="hidden md:flex items-center justify-between px-8 lg:px-12 py-4 bg-card border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-card/90">
+    <header className="hidden md:flex items-center justify-between px-8 lg:px-12 py-4 bg-card border-b border-primary/15 sticky top-0 z-50 backdrop-blur-lg bg-card/90">
       {/* Logo */}
       <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push("/")}>
         <img src={logoSrc} alt="Doorifix" className="h-14 object-contain" />
