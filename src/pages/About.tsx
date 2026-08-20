@@ -1,13 +1,15 @@
 "use client";
 
 import { imageSrc } from "@/lib/image";
-import { CheckCircle, Users, Award, Star, MapPin, ArrowRight } from "lucide-react";
+import { CheckCircle, Users, Award, Star, MapPin, ArrowRight, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
+import numunixLogo from "@/assets/numunix-logo.webp";
+import hulumartLogo from "@/assets/hulumart-logo.webp";
 
 const timeline = [
   { year: "2019", city: "Bangalore", description: "Doorifix was founded in Bangalore with a mission to make appliance repair fast, transparent, and affordable." },
@@ -96,6 +98,55 @@ const About = () => {
               </div>
             </div>
           </div>
+
+          {/* Platforms */}
+          <section className="mb-14" aria-labelledby="platforms-heading">
+            <div className="text-center mb-8">
+              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Our ecosystem</p>
+              <h2 id="platforms-heading" className="text-2xl md:text-3xl font-bold text-foreground mb-3">Explore Our Platforms</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Discover more doorstep services from the team behind Doorifix, built to make everyday needs simpler.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-5">
+              <a
+                href="https://www.numunix.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-card rounded-3xl border border-border p-6 md:p-7 hover:border-primary/40 hover:shadow-lg transition-all"
+              >
+                <div className="h-14 flex items-center mb-5">
+                  <img src={imageSrc(numinuxLogo)} alt="Numunix" className="max-h-12 max-w-[220px] object-contain object-left" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">Doorstep IT Repair & Hardware Services</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                  Get dependable IT repair and hardware support at your doorstep. Numunix also helps keep your home and workplace running smoothly with CCTV installation and electrician services.
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  Visit Numunix <ExternalLink size={15} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </a>
+
+              <a
+                href="https://www.hulumart.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-card rounded-3xl border border-border p-6 md:p-7 hover:border-primary/40 hover:shadow-lg transition-all"
+              >
+                <div className="h-14 flex items-center mb-5">
+                  <img src={imageSrc(hulumartLogo)} alt="Hulumart" className="max-h-12 max-w-[220px] object-contain object-left" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">Doorstep Scrap Pickup & Laptop Buyback</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                  Turn unused items into value with convenient doorstep scrap pickup and used laptop buyback. Hulumart makes it easy to clear space responsibly while giving pre-owned tech a second life.
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  Visit Hulumart <ExternalLink size={15} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </a>
+            </div>
+          </section>
 
           {/* Growing Banner */}
           <div className="bg-primary rounded-3xl p-8 md:p-10 text-center">
