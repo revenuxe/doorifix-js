@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ChevronLeft, Search } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Search } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import ServiceCard from "@/components/ServiceCard";
 import CategoryPills from "@/components/CategoryPills";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -21,11 +21,6 @@ const categoryToTitle: Record<string, string[]> = {
 };
 
 const Services = () => {
-  const router = useRouter();
-  const navigate = (path: string | number) => {
-    if (typeof path === "number") router.back();
-    else router.push(path);
-  };
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "All");
@@ -69,17 +64,7 @@ const Services = () => {
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-none mx-auto flex-1 w-full">
-        {/* Mobile Header */}
-        <div className="flex items-center justify-between px-5 pt-6 pb-4 md:hidden">
-          <button
-            onClick={() => navigate(-1)}
-            className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-foreground"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <h1 className="font-semibold text-lg text-foreground">Services</h1>
-          <div className="w-9" />
-        </div>
+        <h1 className="px-5 pt-6 pb-4 text-2xl font-bold text-foreground md:hidden">Services</h1>
 
         {/* Mobile Search */}
         <div className="px-5 pb-3 md:hidden">

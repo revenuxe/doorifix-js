@@ -1,19 +1,16 @@
 "use client";
 
 import { imageSrc } from "@/lib/image";
-import { ArrowRight, Calendar, CheckCircle, ChevronLeft, Clock, ExternalLink, Phone } from "lucide-react";
+import { ArrowRight, Calendar, CheckCircle, Clock, ExternalLink, Phone } from "lucide-react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
-import MobileMenu from "@/components/MobileMenu";
 import SEO from "@/components/SEO";
-import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { getBlogBySlug } from "@/data/blogs";
 
 const BlogDetail = () => {
-  const router = useRouter();
   const { slug } = useParams() as { slug?: string };
   const post = getBlogBySlug(slug || "");
 
@@ -32,18 +29,6 @@ const BlogDetail = () => {
 
       <main className="flex-1">
         <div className="max-w-[430px] md:max-w-6xl mx-auto px-5 md:px-8 lg:px-12 py-6 md:py-10">
-          <div className="flex items-center justify-between md:hidden mb-6">
-            <button
-              onClick={() => router.back()}
-              className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-foreground"
-              aria-label="Go back"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-9 object-contain" />
-            <MobileMenu />
-          </div>
-
           <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground mb-6">
             <Link href="/" className="hover:text-foreground">Home</Link>
             <span>/</span>

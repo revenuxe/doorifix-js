@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, ArrowRight, CheckCircle, HelpCircle, ShieldCheck, Cog, MapPin } from "lucide-react";
-import MobileMenu from "@/components/MobileMenu";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -13,7 +12,6 @@ import Footer from "@/components/Footer";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
-import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { brands } from "@/data/brands";
 
 const reasons = [
@@ -102,13 +100,7 @@ const BrandNotListed = () => {
 
       <div className="flex-1">
         <div className="max-w-[430px] md:max-w-none mx-auto">
-          <div className="px-5 md:px-8 lg:px-12 pt-6 pb-4 space-y-5 md:space-y-8">
-
-            {/* Mobile Header */}
-            <div className="flex items-center justify-between md:hidden">
-              <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
-              <MobileMenu />
-            </div>
+          <div className="px-5 md:px-8 lg:px-12 pt-6 pb-4 space-y-6 md:space-y-8">
 
             {/* Title */}
             <div className="md:flex md:items-center md:justify-between md:gap-8">

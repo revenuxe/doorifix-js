@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Search, Clock, Star, ArrowRight, CheckCircle, Users, Award, ShieldCheck, WashingMachine, Refrigerator, AirVent, Microwave, Fan, Droplets } from "lucide-react";
-import MobileMenu from "@/components/MobileMenu";
 import CategoryPills from "@/components/CategoryPills";
 import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -15,7 +14,6 @@ import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
-import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { brands, brandFocusService, buildBrandCopy, getBrandBySlug } from "@/data/brands";
 import { applianceIssues } from "@/data/applianceIssues";
 import type { ServiceData } from "@/data/services";
@@ -112,13 +110,7 @@ const BrandDetail = () => {
 
       <div className="flex-1">
         <div className="max-w-[430px] md:max-w-none mx-auto">
-          <div className="px-5 md:px-8 lg:px-12 pt-0 md:pt-4 pb-4 space-y-6 md:space-y-8">
-
-            {/* Mobile Header */}
-            <div className="-mx-5 flex items-center justify-between border-b border-primary/15 bg-card/95 px-5 py-3 md:hidden">
-              <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
-              <MobileMenu />
-            </div>
+          <div className="px-5 md:px-8 lg:px-12 pt-6 md:pt-4 pb-4 space-y-6 md:space-y-8">
 
             {/* Title */}
             <div className="md:flex md:items-center md:justify-between md:gap-8">
