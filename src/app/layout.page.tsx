@@ -42,8 +42,8 @@ export default function RootLayout({
   return (
     <html lang="en-IN" suppressHydrationWarning>
       <body>
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`} strategy="afterInteractive" />
-        <Script id="google-tag-init" strategy="afterInteractive">
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`} strategy="beforeInteractive" />
+        <Script id="google-tag-init" strategy="beforeInteractive">
           {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false }); gtag('config', '${GOOGLE_SHARED_TAG_ID}', { send_page_view: false }); gtag('config', '${GOOGLE_ADS_ID}', { send_page_view: false }); gtag('config', '${GOOGLE_ADS_CALL_ID}', { send_page_view: false });`}
         </Script>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
