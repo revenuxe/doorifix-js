@@ -112,10 +112,10 @@ const BrandDetail = () => {
 
       <div className="flex-1">
         <div className="max-w-[430px] md:max-w-none mx-auto">
-          <div className="px-5 md:px-8 lg:px-12 pt-6 pb-4 space-y-5 md:space-y-8">
+          <div className="px-5 md:px-8 lg:px-12 pt-0 md:pt-4 pb-4 space-y-6 md:space-y-8">
 
             {/* Mobile Header */}
-            <div className="flex items-center justify-between md:hidden">
+            <div className="-mx-5 flex items-center justify-between border-b border-primary/15 bg-card/95 px-5 py-3 md:hidden">
               <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
               <MobileMenu />
             </div>
