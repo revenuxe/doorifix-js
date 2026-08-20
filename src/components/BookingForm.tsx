@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -146,6 +147,11 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "", defaultIssue =
               "Submit Booking"
             )}
           </button>
+          <p className="text-center text-xs leading-relaxed text-muted-foreground">
+            By submitting, you agree that Doorifix may contact you about this service request and acknowledge our{" "}
+            <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link> and{" "}
+            <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>.
+          </p>
         </div>
       </SheetContent>
     </Sheet>

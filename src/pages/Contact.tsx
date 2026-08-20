@@ -3,6 +3,7 @@
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
@@ -191,6 +192,11 @@ const Contact = () => {
                   </>
                 )}
               </button>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                By sending this message, you agree that Doorifix may contact you about your enquiry and acknowledge our{" "}
+                <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link> and{" "}
+                <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>.
+              </p>
             </form>
           </div>
         </div>

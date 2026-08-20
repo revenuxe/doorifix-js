@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Loader2, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -167,6 +168,11 @@ export default function HomepageBookingForm({
               </>
             )}
           </button>
+          <p className="md:col-span-2 text-xs leading-relaxed text-muted-foreground">
+            By submitting, you agree that Doorifix may contact you about this service request and acknowledge our{" "}
+            <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link> and{" "}
+            <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>.
+          </p>
         </form>
       </div>
     </section>
