@@ -268,7 +268,7 @@ const ServiceDetail = () => {
 
             <div className="relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[430px] cursor-pointer mt-6 md:mt-0" onClick={() => setBookingOpen(true)}>
               <img src={imageSrc(service.image)} alt={`${serviceRepairTitle(service)} in Bangalore`} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/45" />
+              <div className="absolute inset-0 bg-black/55" />
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
               <div className="relative z-10 p-5 md:p-8 space-y-3 h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/80">
