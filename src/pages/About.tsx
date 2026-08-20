@@ -7,7 +7,6 @@ import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import doorifixLogo from "@/assets/doorifix-logo.webp";
 import platformLogo from "@/assets/numunix-logo.webp";
 import hulumartLogo from "@/assets/hulumart-logo.webp";
 
@@ -43,7 +42,6 @@ const About = () => {
         <div className="max-w-4xl mx-auto px-5 md:px-8 py-10 md:py-16">
           {/* Header */}
           <div className="text-center mb-12">
-            <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-12 mx-auto mb-6" />
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">Our Story</h1>
             <p className="text-muted-foreground max-w-lg mx-auto text-lg">
               Since 2019, we've been on a mission to make appliance repair simple, fast, and trustworthy — one city at a time.

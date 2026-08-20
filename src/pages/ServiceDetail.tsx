@@ -21,7 +21,6 @@ import ServiceCard from "@/components/ServiceCard";
 import BrandCard from "@/components/BrandCard";
 import SEO from "@/components/SEO";
 import whatsappIcon from "@/assets/whatsapp.gif";
-import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { services, getServiceBySlug, type ServiceData } from "@/data/services";
 import { brands, NOT_LISTED_BRAND_SLUG } from "@/data/brands";
 
@@ -235,7 +234,6 @@ const ServiceDetail = () => {
                 <button onClick={() => navigate("/")} className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-foreground">
                   <ArrowRight size={18} className="rotate-180" />
                 </button>
-                <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 object-contain" />
                 <a href="tel:+919886579923" className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                   <Phone size={16} />
                 </a>
