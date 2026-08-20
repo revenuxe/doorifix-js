@@ -37,8 +37,13 @@ export function buildMetadata({
   image = DEFAULT_IMAGE,
   robots,
 }: MetadataInput = {}): Metadata {
-  const pageTitle = title || `${SITE_NAME} - Expert Appliance Repair & Servicing`;
-  const absoluteTitle = pageTitle.includes(SITE_NAME) ? pageTitle : `${pageTitle} | ${SITE_NAME}`;
+  const pageTitle = (title || "Expert Appliance Repair & Servicing")
+    .replace(/\s(?:[:–—-])\s/g, " | ")
+    .replace(/\s\|\s+/g, " | ")
+    .trim();
+  const absoluteTitle = pageTitle.includes(SITE_NAME)
+    ? pageTitle
+    : `${SITE_NAME} | ${pageTitle}`;
   const url = absoluteUrl(canonical);
 
   return {

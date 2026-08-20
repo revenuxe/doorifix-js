@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Doorifix - Expert Appliance Repair & Servicing",
+    default: "Doorifix | Expert Appliance Repair & Servicing",
     template: "%s | Doorifix",
   },
   description: DEFAULT_DESCRIPTION,
