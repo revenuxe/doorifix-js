@@ -365,7 +365,7 @@ const ServiceDetail = () => {
               </div>
               <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3">
                 {relevantBrands.map((brand) => (
-                  <BrandCard key={brand.slug} brand={brand} />
+                  <BrandCard key={brand.slug} brand={brand} href={`/washing-machine/brands/${brand.slug}`} />
                 ))}
               </div>
               <Link

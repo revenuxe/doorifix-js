@@ -4,12 +4,13 @@ import type { BrandData } from "@/data/brands";
 
 interface BrandCardProps {
   brand: BrandData;
+  href?: string;
 }
 
-const BrandCard = ({ brand }: BrandCardProps) => {
+const BrandCard = ({ brand, href = `/brand/${brand.slug}` }: BrandCardProps) => {
   return (
     <Link
-      href={`/brand/${brand.slug}`}
+      href={href}
       className="bg-card rounded-2xl border border-border p-4 flex flex-col items-center justify-center gap-2 text-center hover:shadow-md hover:border-primary/30 transition-all"
     >
       <span className="w-14 h-14 rounded-xl bg-white flex items-center justify-center overflow-hidden">

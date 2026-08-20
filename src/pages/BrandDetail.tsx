@@ -48,7 +48,11 @@ const stats = [
 const brandIssueKeywords = (brandName: string, service: ServiceData, issue: string) =>
   `${brandName} ${service.title.toLowerCase()} ${issue.toLowerCase()} repair near me, ${issue.toLowerCase()} fix, genuine ${brandName} parts, doorstep ${service.title.toLowerCase()} service`;
 
-const BrandDetail = () => {
+interface BrandDetailProps {
+  brandRoutePrefix?: string;
+}
+
+const BrandDetail = ({ brandRoutePrefix }: BrandDetailProps) => {
   const { brand: brandSlug } = useParams<{ brand: string }>();
   const router = useRouter();
   const navigate = (path: string | number) => {
@@ -284,7 +288,7 @@ const BrandDetail = () => {
                 {otherBrands.map((b) => (
                   <Link
                     key={b.slug}
-                    href={`/brand/${b.slug}`}
+                    href={brandRoutePrefix && b.serviceSlugs.includes("washing-machine-repair") ? `${brandRoutePrefix}/${b.slug}` : `/brand/${b.slug}`}
                     className="text-xs text-foreground bg-card border border-border rounded-full px-3 py-1.5 hover:border-primary/40 hover:text-primary transition-colors"
                   >
                     {b.name} Repair
