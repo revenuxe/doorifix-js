@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { trackEvent } from "@/lib/analytics";
+import { GOOGLE_ADS_CALL_CONVERSION, trackEvent, trackGoogleAdsConversion } from "@/lib/analytics";
 
 const CTA_PATTERN = /\b(book|call|contact|submit|send|whatsapp|schedule|enquir|request)\b/i;
 
@@ -34,7 +34,22 @@ export function GoogleAdsTracking() {
       const link = target.closest("a[href]");
       const href = link?.getAttribute("href") || "";
       if (href.startsWith("tel:")) {
+        // Briefly defer the native dialer so Google Ads can dispatch the exact
+        // click-to-call conversion event. The fallback still opens the dialer
+        // promptly when a blocker prevents the tag from responding.
+        event.preventDefault();
+        let navigated = false;
+        const continueToPhone = () => {
+          if (navigated) return;
+          navigated = true;
+          window.location.href = href;
+        };
+        const fallback = window.setTimeout(continueToPhone, 500);
         trackEvent("phone_call", { contact_method: "phone", cta_label: elementLabel(link) });
+        trackGoogleAdsConversion(GOOGLE_ADS_CALL_CONVERSION, () => {
+          window.clearTimeout(fallback);
+          continueToPhone();
+        });
         return;
       }
       if (/^(https?:)?\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href)) {
