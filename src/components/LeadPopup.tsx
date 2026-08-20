@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { usePathname, useRouter } from "next/navigation";
 import { useVisualViewport } from "@/hooks/use-visual-viewport";
+import { trackEvent } from "@/lib/analytics";
 
 const POPUP_KEY = "doorifix_lead_popup_dismissed";
 const POPUP_DELAY = 4000;
@@ -100,6 +101,7 @@ const LeadPopup = () => {
       toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
       setSubmitting(false);
     } else {
+      trackEvent("generate_lead", { form_type: "booking_popup" });
       sessionStorage.setItem(POPUP_KEY, "1");
       setVisible(false);
       router.push(`/thank-you?case=${encodeURIComponent(result.caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);

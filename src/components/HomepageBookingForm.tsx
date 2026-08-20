@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Loader2, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/lib/analytics";
 
 const applianceTypes = [
   "Washing Machine",
@@ -88,6 +89,7 @@ export default function HomepageBookingForm({
       return;
     }
 
+    trackEvent("generate_lead", { form_type: "booking_page" });
     setForm({ ...initialForm, appliance: defaultAppliance });
     router.push(`/thank-you?case=${encodeURIComponent(result.caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
   };

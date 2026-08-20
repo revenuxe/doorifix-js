@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { useToast } from "@/hooks/use-toast";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
+import { trackEvent } from "@/lib/analytics";
 
 const Contact = () => {
   const router = useRouter();
@@ -51,6 +52,7 @@ const Contact = () => {
 
     setForm({ name: "", email: "", phone: "", message: "" });
     setSubmitting(false);
+    trackEvent("generate_lead", { form_type: "contact" });
     toast({ title: "Message sent!", description: "We'll get back to you shortly." });
   };
 

@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const applianceTypes = [
   "Washing Machine",
@@ -75,6 +76,7 @@ const BookingForm = ({ open, onOpenChange, defaultAppliance = "", defaultIssue =
       toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
       setSubmitting(false);
     } else {
+      trackEvent("generate_lead", { form_type: "booking_sheet" });
       setForm({ name: "", phone: "", location: "", appliance: defaultAppliance, warranty: "" });
       onOpenChange(false);
       router.push(`/thank-you?case=${encodeURIComponent(result.caseNumber)}&name=${encodeURIComponent(form.name.trim())}`);
