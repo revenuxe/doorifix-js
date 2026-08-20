@@ -177,7 +177,7 @@ const BrandDetail = () => {
                   </span>
                   <span className="text-[11px] font-semibold text-foreground flex items-center gap-1 whitespace-nowrap">
                     <ShieldCheck size={12} className="text-primary" />
-                    Certified {brand.name} Repair
+                    Certified Technician {brand.name} Repair
                   </span>
                 </div>
 
