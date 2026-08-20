@@ -79,8 +79,12 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
             <h3 className="font-semibold text-base">Cities We Serve</h3>
             <div className="space-y-2">
               {citiesWeServe.map((loc) => (
-                <Link key={loc.slug} href={`/${loc.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
-                  Appliance Repair {loc.name}
+                <Link
+                  key={loc.slug}
+                  href={serviceContext ? `/${loc.slug}/service/${serviceContext.slug}` : `/${loc.slug}`}
+                  className="block text-sm text-card/70 hover:text-card transition-colors"
+                >
+                  {serviceContext ? `${serviceContext.title} in ${loc.name}` : `Appliance Repair ${loc.name}`}
                 </Link>
               ))}
             </div>

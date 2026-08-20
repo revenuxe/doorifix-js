@@ -312,7 +312,13 @@ const BrandDetail = () => {
         </div>
       </div>
 
-      <Footer />
+      <Footer
+        serviceContext={
+          focusService?.slug === "washing-machine-repair"
+            ? { slug: focusService.slug, title: `${focusService.title} Repair` }
+            : undefined
+        }
+      />
       <BottomNav />
 
       <BookingForm

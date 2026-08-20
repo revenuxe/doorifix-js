@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, createContext, useContext, useCallback } from "react";
+import { useState, useEffect, createContext, useContext, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
 
@@ -13,10 +13,13 @@ const LoaderContext = createContext<LoaderContextType>({ showLoader: () => {} })
 export const useLoader = () => useContext(LoaderContext);
 
 const SplashScreen = ({ children }: { children: React.ReactNode }) => {
-  const [visible, setVisible] = useState(true);
+  // Never block the first page render. The loader is reserved for client-side
+  // navigation and explicit actions after the site has opened.
+  const [visible, setVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const pathname = usePathname();
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const initialPathname = useRef(pathname);
+  const hasNavigated = useRef(false);
   const [manualTrigger, setManualTrigger] = useState(0);
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
@@ -26,22 +29,11 @@ const SplashScreen = ({ children }: { children: React.ReactNode }) => {
     setManualTrigger((p) => p + 1);
   }, []);
 
-  // Initial load
+  // Route changes only. The initial pathname is intentionally skipped so the
+  // first page render is never covered by the splash screen.
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setFadeOut(true), 1200);
-    const hideTimer = setTimeout(() => {
-      setVisible(false);
-      setIsFirstLoad(false);
-    }, 1600);
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(hideTimer);
-    };
-  }, []);
-
-  // Route changes (after initial load)
-  useEffect(() => {
-    if (isFirstLoad) return;
+    if (pathname !== initialPathname.current) hasNavigated.current = true;
+    if (!hasNavigated.current) return;
     setVisible(true);
     setFadeOut(false);
     const fadeTimer = setTimeout(() => setFadeOut(true), 600);
