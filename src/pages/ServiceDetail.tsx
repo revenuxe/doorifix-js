@@ -230,15 +230,6 @@ const ServiceDetail = () => {
         <div className="max-w-[430px] md:max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-6 md:py-10 pb-24 md:pb-12">
           <section className="md:grid md:grid-cols-[0.95fr_1.05fr] md:gap-10 md:items-center">
             <div className="space-y-6">
-              <div className="flex items-center justify-between md:hidden">
-                <button onClick={() => navigate("/")} className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-foreground">
-                  <ArrowRight size={18} className="rotate-180" />
-                </button>
-                <a href="tel:+919886579923" className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <Phone size={16} />
-                </a>
-              </div>
-
               <div className="space-y-4">
                 <div>
                   <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">
