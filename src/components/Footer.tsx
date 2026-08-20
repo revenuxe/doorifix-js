@@ -59,7 +59,7 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
               </a>
               <div className="flex items-start gap-2 text-sm text-card/70">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0" />
-                <span>HBR Layout, Bangalore,<br />Karnataka 560043</span>
+                <span>6, 1st Cross, Nagawara Main Rd,<br />Umar Nagar, Bengaluru, Karnataka 560045</span>
               </div>
             </div>
           </div>

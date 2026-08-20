@@ -305,8 +305,10 @@ export function localBusinessSchema(city: CityData, area?: string) {
       ? {
           address: {
             "@type": "PostalAddress",
-            addressLocality: area,
-            addressRegion: city.name,
+            streetAddress: "6, 1st Cross, Nagawara Main Rd, Umar Nagar",
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            postalCode: "560045",
             addressCountry: "IN",
           },
         }
@@ -378,8 +380,10 @@ export function areaServiceSchema(
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
-      addressLocality: area,
-      addressRegion: city.name,
+      streetAddress: "6, 1st Cross, Nagawara Main Rd, Umar Nagar",
+      addressLocality: "Bengaluru",
+      addressRegion: "Karnataka",
+      postalCode: "560045",
       addressCountry: "IN",
     },
     areaServed: {

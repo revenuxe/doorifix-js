@@ -118,9 +118,9 @@ const Contact = () => {
                   <MapPin size={22} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Service Areas</h3>
-                  <p className="text-sm text-muted-foreground mt-1">Bangalore & Bengaluru</p>
-                  <p className="text-xs text-muted-foreground mt-1">Doorstep service across all listed areas</p>
+                  <h3 className="font-semibold text-foreground">Our Address</h3>
+                  <p className="text-sm text-muted-foreground mt-1">6, 1st Cross, Nagawara Main Rd</p>
+                  <p className="text-xs text-muted-foreground mt-1">Umar Nagar, Bengaluru, Karnataka 560045</p>
                 </div>
               </div>
             </div>
