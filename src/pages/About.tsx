@@ -8,7 +8,7 @@ import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
-import numunixLogo from "@/assets/numunix-logo.webp";
+import platformLogo from "@/assets/numunix-logo.webp";
 import hulumartLogo from "@/assets/hulumart-logo.webp";
 
 const timeline = [
@@ -117,7 +117,7 @@ const About = () => {
                 className="group bg-card rounded-3xl border border-border p-6 md:p-7 hover:border-primary/40 hover:shadow-lg transition-all"
               >
                 <div className="h-14 flex items-center mb-5">
-                  <img src={imageSrc(numinuxLogo)} alt="Numunix" className="max-h-12 max-w-[220px] object-contain object-left" />
+                  <img src={imageSrc(platformLogo)} alt="Numunix" className="max-h-12 max-w-[220px] object-contain object-left" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">Doorstep IT Repair & Hardware Services</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-5">
