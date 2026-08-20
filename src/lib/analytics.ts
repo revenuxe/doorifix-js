@@ -1,5 +1,6 @@
 export const GOOGLE_ADS_ID = "AW-18401373752";
 export const GOOGLE_ANALYTICS_ID = "G-ZLZMP5Y3DK";
+export const GOOGLE_SHARED_TAG_ID = "G-CS8DWTJQPC";
 
 type EventParameters = Record<string, string | number | boolean | undefined>;
 

@@ -3,7 +3,7 @@ import Script from "next/script";
 import { Providers } from "./providers";
 import { JsonLd } from "./_components/JsonLd";
 import { GoogleAdsTracking } from "./_components/GoogleAdsTracking";
-import { GOOGLE_ADS_ID, GOOGLE_ANALYTICS_ID } from "@/lib/analytics";
+import { GOOGLE_ADS_ID, GOOGLE_ANALYTICS_ID, GOOGLE_SHARED_TAG_ID } from "@/lib/analytics";
 import { BASE_URL, DEFAULT_DESCRIPTION, organizationSchema, websiteSchema } from "@/lib/seo";
 import "../index.css";
 
@@ -44,7 +44,7 @@ export default function RootLayout({
       <body>
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`} strategy="afterInteractive" />
         <Script id="google-tag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false }); gtag('config', '${GOOGLE_ADS_ID}', { send_page_view: false });`}
+          {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false }); gtag('config', '${GOOGLE_SHARED_TAG_ID}', { send_page_view: false }); gtag('config', '${GOOGLE_ADS_ID}', { send_page_view: false });`}
         </Script>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Providers>
