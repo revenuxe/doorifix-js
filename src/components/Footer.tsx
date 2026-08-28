@@ -5,7 +5,11 @@ import { cityAreas, slugify } from "@/data/areas";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
 
-const citiesWeServe = cities.map(({ name, slug }) => ({ name, slug }));
+// Mangalore has its own washing-machine repair menu item above; omitting the
+// generic city entry prevents two Mangalore links in the footer.
+const citiesWeServe = cities
+  .filter(({ slug }) => slug !== "mangalore")
+  .map(({ name, slug }) => ({ name, slug }));
 
 // Bangalore and Bengaluru are separate city page clusters (kept distinct for
 // SEO) that happen to share the same area list. Both need their own footer
@@ -26,10 +30,16 @@ interface FooterProps {
     slug: string;
     title: string;
   };
+  // Area links are intentionally limited to the matching city landing page.
+  // In particular, Mangalore localities must not appear in Bangalore footers.
+  areaCitySlug?: string;
 }
 
-const Footer = ({ serviceContext }: FooterProps = {}) => {
+const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
+  const visibleAreaSections = areaCitySlug
+    ? areaSections.filter((city) => city.slug === areaCitySlug)
+    : areaSections.filter((city) => city.slug !== "mangalore");
 
   return (
     <footer className="bg-foreground text-card mt-8">
@@ -67,6 +77,9 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Our Services</h3>
             <div className="space-y-2">
+              <Link href="/mangalore/service/washing-machine-repair" className="block text-sm text-card/70 hover:text-card transition-colors">
+                Washing Machine Repair in Mangalore
+              </Link>
               {services.map((service) => (
                 <Link key={service.slug} href={`/service/${service.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   {service.title} Repair
@@ -91,7 +104,7 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
           </div>
         </div>
 
-        {!serviceContext && areaSections.map((city, index) => (
+        {!serviceContext && visibleAreaSections.map((city, index) => (
           <div key={city.slug} className={`border-t border-card/15 ${index === 0 ? "mt-8" : "mt-6"} pt-6`}>
             <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <MapPin size={14} className="text-card/70" />
@@ -120,7 +133,7 @@ const Footer = ({ serviceContext }: FooterProps = {}) => {
               {serviceContext.title} Near Me
             </Link>
 
-            {areaSections.map((city) => (
+            {visibleAreaSections.map((city) => (
               <div key={`${city.slug}-${serviceContext.slug}`}>
                 <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
                   <MapPin size={14} className="text-card/70" />

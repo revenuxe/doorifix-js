@@ -90,7 +90,34 @@ const bengaluruCity: CityData = {
   ctaText: "Book a Repair in Bengaluru",
 };
 
-export const cities: CityData[] = [bangaloreCity, bengaluruCity];
+const mangaloreCity: CityData = {
+  slug: "mangalore",
+  name: "Mangalore",
+  headline: "Washing Machine Repair at\nYour Doorstep in Mangalore",
+  subheadline: "Trusted doorstep washing machine and home appliance repair across Mangalore - Kadri, Kankanady, Bejai, Surathkal, Derebail, Hampankatta, Valencia, Kavoor, Panambur, Ullal and nearby areas.",
+  metaTitle: "Washing Machine Repair in Mangalore | Doorstep Service Near Me - Doorifix",
+  metaDescription: "Book expert washing machine repair in Mangalore. Doorstep service for front load, top load, fully automatic and semi-automatic machines, plus refrigerator, AC, microwave, dryer and dishwasher repair.",
+  keywords: "washing machine repair mangalore, washing machine service mangalore, washing machine repair near me mangalore, front load washing machine repair mangalore, top load washing machine service mangalore, appliance repair mangalore, fridge repair mangalore, AC service mangalore, washing machine technician mangalore, doorstep washing machine repair mangalore, LG washing machine repair mangalore, Samsung washing machine repair mangalore, IFB washing machine service mangalore, Bosch washing machine repair mangalore, Whirlpool washing machine repair mangalore",
+  heroText: "Mangalore's reliable doorstep repair team for washing machines and home appliances - fast diagnosis, clear pricing and trained technicians.",
+  ctaText: "Book Washing Machine Repair in Mangalore",
+  appliances: [
+    { title: "Washing Machine Repair Mangalore", keywords: "washing machine repair near me mangalore, front load washing machine repair mangalore, top load washing machine service mangalore, LG, Samsung, IFB, Bosch and Whirlpool washing machine repair mangalore" },
+    { title: "Refrigerator Repair Mangalore", keywords: "fridge repair mangalore, refrigerator not cooling mangalore, double door fridge service mangalore, compressor and gas refill repair" },
+    { title: "AC Repair & Service Mangalore", keywords: "AC repair mangalore, AC service near me mangalore, split AC service, AC not cooling and gas refill" },
+    { title: "Microwave Repair Mangalore", keywords: "microwave repair mangalore, microwave not heating, convection microwave service near me" },
+    { title: "Dryer Repair Mangalore", keywords: "dryer repair mangalore, dryer not drying, heating element and belt repair" },
+    { title: "Dishwasher Repair Mangalore", keywords: "dishwasher repair mangalore, dishwasher not draining, pump and leak repair" },
+  ],
+  faqs: [
+    { q: "Do you provide washing machine repair in Mangalore?", a: "Yes. Doorifix provides doorstep washing machine repair across Mangalore for front load, top load, fully automatic, semi-automatic and inverter models." },
+    { q: "Which washing machine brands do you repair in Mangalore?", a: "We repair major brands including Samsung, LG, IFB, Bosch, Whirlpool, Haier, Godrej, Panasonic and Siemens in Mangalore." },
+    { q: "Which Mangalore areas do you cover?", a: "We serve Kadri, Kankanady, Bejai, Surathkal, Derebail, Hampankatta, Valencia, Kavoor, Panambur, Ullal and other Mangalore localities." },
+    { q: "What washing machine issues can be repaired at home?", a: "Our technicians diagnose common drainage, spin, water-leak, inlet, door-lock, motor, drum, bearing and control-board issues at your doorstep." },
+    { q: "Is the repair price shared before work begins?", a: "Yes. After diagnosis, we explain the fault and provide a transparent repair quote before any work is started." },
+  ],
+};
+
+export const cities: CityData[] = [bangaloreCity, bengaluruCity, mangaloreCity];
 
 export const getCityBySlug = (slug: string): CityData | undefined =>
   cities.find((c) => c.slug === slug);

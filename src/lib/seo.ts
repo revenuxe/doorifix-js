@@ -90,7 +90,7 @@ export function buildMetadata({
   };
 }
 
-const primaryCities = ["Bangalore", "Bengaluru"];
+const primaryCities = ["Bangalore", "Bengaluru", "Mangalore"];
 const primaryServiceNames = [
   "Washing Machine Repair",
   "Refrigerator Repair",

@@ -60,6 +60,9 @@ export const cityAreas: Record<string, string[]> = {
     "Ulsoor", "Uttarahalli", "Varthur", "Vasanth Nagar", "Vidyaranyapura",
     "Vijayanagar", "Vittal Mallya Road", "Wilson Garden", "Yeshwanthpur",
   ],
+  mangalore: [
+    "Kadri", "Kankanady", "Bejai", "Surathkal", "Derebail", "Hampankatta", "Valencia", "Kavoor", "Panambur", "Ullal", "Bajpe", "Bondel", "Bolar", "Mannagudda", "Kodialbail", "Lalbagh", "Balmatta", "Car Street", "Jeppu", "Attavar", "Falnir", "Konchady", "Kuloor", "Maroli", "Padil", "Pachchanady", "Vamanjoor", "Yeyyadi", "Ashok Nagar", "Shaktinagar", "Bikarnakatte", "Kottara", "Kottara Chowki", "Urwa", "Kadri Kambla", "Moodabidri", "Mulki", "Kateel", "Thokkottu", "Kotekar", "Someshwar", "Kulasekhar", "Bendoorwell", "Kudroli", "Lady Hill", "Mangaladevi",
+  ],
 };
 
 export const slugify = (s: string) =>

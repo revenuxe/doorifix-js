@@ -14,7 +14,7 @@ import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
-import { brands, brandFocusService, buildBrandCopy, getBrandBySlug } from "@/data/brands";
+import { brands, brandFocusService, brandPrimaryServiceTitle, buildBrandCopy, getBrandBySlug } from "@/data/brands";
 import { applianceIssues } from "@/data/applianceIssues";
 import type { ServiceData } from "@/data/services";
 
@@ -50,9 +50,10 @@ const brandIssueKeywords = (brandName: string, service: ServiceData, issue: stri
 
 interface BrandDetailProps {
   brandRoutePrefix?: string;
+  cityName?: string;
 }
 
-const BrandDetail = ({ brandRoutePrefix }: BrandDetailProps) => {
+const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
   const { brand: brandSlug } = useParams<{ brand: string }>();
   const router = useRouter();
   const navigate = (path: string | number) => {
@@ -66,7 +67,14 @@ const BrandDetail = ({ brandRoutePrefix }: BrandDetailProps) => {
   const brand = getBrandBySlug(brandSlug || "");
   if (!brand) return null;
 
-  const copy = buildBrandCopy(brand);
+  const copy = {
+    ...buildBrandCopy(brand, cityName),
+    ...(cityName ? {
+      headline: `${brand.name} ${brandPrimaryServiceTitle(brand)} in ${cityName}`,
+      subheadline: `Doorstep ${brand.name} ${brandPrimaryServiceTitle(brand).toLowerCase()} with certified technicians, genuine parts and same-day service across ${cityName}.`,
+    } : {}),
+  };
+  const canonical = brandRoutePrefix ? `${brandRoutePrefix}/${brand.slug}` : `/brand/${brand.slug}`;
   const focusService = brandFocusService(brand);
   const relevantServices = focusService ? [focusService] : [];
   const focusIssues = focusService ? applianceIssues[focusService.slug] || [] : [];
@@ -78,11 +86,11 @@ const BrandDetail = ({ brandRoutePrefix }: BrandDetailProps) => {
       <SEO
         title={`${copy.headline} Near Me | Doorifix`}
         description={copy.subheadline}
-        canonical={`/brand/${brand.slug}`}
-        keywords={brand.keywords}
+        canonical={canonical}
+        keywords={`${brand.keywords}${cityName ? `, ${brand.name} washing machine repair ${cityName}, ${brand.name} washing machine service ${cityName}` : ""}`}
         breadcrumbs={[
           { name: "Home", url: "/" },
-          { name: copy.headline, url: `/brand/${brand.slug}` },
+          { name: copy.headline, url: canonical },
         ]}
         structuredData={[
           {
@@ -93,8 +101,8 @@ const BrandDetail = ({ brandRoutePrefix }: BrandDetailProps) => {
             "telephone": "+919886579923",
             "email": "doorifix@gmail.com",
             "areaServed": [
-              { "@type": "City", "name": "Bangalore" },
-              { "@type": "City", "name": "Bengaluru" },
+              { "@type": "City", "name": cityName || "Bangalore" },
+              ...(cityName ? [] : [{ "@type": "City", "name": "Bengaluru" }]),
             ],
             "openingHours": "Mo-Su 08:00-21:00",
             "priceRange": "$$",
@@ -162,7 +170,7 @@ const BrandDetail = ({ brandRoutePrefix }: BrandDetailProps) => {
 
             {/* Hero Card */}
             <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => { setBookingIssue(""); setBookingOpen(true); }}>
-              <img src={imageSrc(repairHero)} alt={`${brand.name} appliance repair in Bangalore`} className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imageSrc(repairHero)} alt={`${brand.name} appliance repair in ${cityName || "Bangalore"}`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/50" />
 
               <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">

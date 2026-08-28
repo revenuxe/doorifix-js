@@ -14,8 +14,10 @@ import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
 import { services } from "@/data/services";
 import { getCityBySlug } from "@/data/cities";
+import { brands } from "@/data/brands";
 
 const featuredServices = services.slice(0, 4);
+const washingMachineBrands = brands.filter((brand) => brand.serviceSlugs.includes("washing-machine-repair"));
 
 const applianceIcons = [
   <WashingMachine size={24} className="text-primary" />,
@@ -184,6 +186,28 @@ const CityLanding = () => {
                     </div>
                     <h3 className="font-semibold text-sm text-foreground leading-tight">{item.title}</h3>
                     <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{item.keywords}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Washing Machine Brands */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h2 className="font-semibold text-lg md:text-xl text-foreground">Washing Machine Brands We Repair in {cityData.name}</h2>
+                  <p className="text-sm text-muted-foreground mt-1">Brand-specific doorstep diagnosis for front load, top load and automatic washing machines.</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {washingMachineBrands.map((brand) => (
+                  <Link
+                    key={brand.slug}
+                    href={cityData.slug === "mangalore" ? `/${cityData.slug}/washing-machine/brands/${brand.slug}` : `/washing-machine/brands/${brand.slug}`}
+                    className="flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 text-sm text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                  >
+                    <img src={imageSrc(brand.logo)} alt={`${brand.name} logo`} className="h-5 w-5 object-contain" />
+                    {brand.name} Washing Machine Repair
                   </Link>
                 ))}
               </div>

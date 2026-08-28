@@ -83,6 +83,9 @@ const brandRoutes = brands.map((slug) => `/brand/${slug}`);
 const washingMachineBrandRoutes = brands
   .filter((slug) => slug !== "voltas")
   .map((slug) => `/washing-machine/brands/${slug}`);
+const cityWashingMachineBrandRoutes = brands
+  .filter((slug) => slug !== "voltas")
+  .map((slug) => `/mangalore/washing-machine/brands/${slug}`);
 const cityRoutes = cities.map((city) => `/${city}`);
 const cityServiceRoutes = cities.flatMap((city) => services.map((slug) => `/${city}/service/${slug}`));
 const areaRoutes = cities.flatMap((city) => (cityAreas[city] || []).map((area) => `/${city}/${slugify(area)}`));
@@ -97,6 +100,7 @@ const routes = unique([
   ...serviceRoutes,
   ...brandRoutes,
   ...washingMachineBrandRoutes,
+  ...cityWashingMachineBrandRoutes,
   ...cityRoutes,
   ...cityServiceRoutes,
   ...areaRoutes,

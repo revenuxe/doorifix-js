@@ -156,7 +156,7 @@ export interface BrandCopy {
   faqs: { q: string; a: string }[];
 }
 
-export function buildBrandCopy(brand: BrandData): BrandCopy {
+export function buildBrandCopy(brand: BrandData, cityName = "Bangalore"): BrandCopy {
   const focusService = brandFocusService(brand);
   const focusTitle = (focusService?.title || "Appliance").toLowerCase();
   const focusPlural = pluralAppliance(focusService?.title || "Appliance").toLowerCase();
@@ -165,11 +165,11 @@ export function buildBrandCopy(brand: BrandData): BrandCopy {
   return {
     headline: `${brand.name} ${repairTitle}`,
     subheadline: `Doorstep ${brand.name} ${repairTitle.toLowerCase()} — certified technicians, genuine parts and same-day service across Bangalore and Bengaluru.`,
-    intro: `Doorifix repairs ${brand.name} ${focusPlural} at your doorstep in Bangalore. Our certified technicians are trained on ${brand.name}'s common fault patterns and carry genuine or certified-compatible parts, so most ${brand.name} ${focusTitle} repairs are diagnosed and fixed in a single visit.`,
+    intro: `Doorifix repairs ${brand.name} ${focusPlural} at your doorstep in ${cityName}. Our certified technicians are trained on ${brand.name}'s common fault patterns and carry genuine or certified-compatible parts, so most ${brand.name} ${focusTitle} repairs are diagnosed and fixed in a single visit.`,
     faqs: [
       {
-        q: `Do you repair ${brand.name} ${focusPlural} in Bangalore?`,
-        a: `Yes. Doorifix repairs ${brand.name} ${focusPlural} with certified technicians and free doorstep diagnosis anywhere in Bangalore and Bengaluru.`,
+        q: `Do you repair ${brand.name} ${focusPlural} in ${cityName}?`,
+        a: `Yes. Doorifix repairs ${brand.name} ${focusPlural} with certified technicians and free doorstep diagnosis across ${cityName}.`,
       },
       {
         q: `Do you use genuine ${brand.name} spare parts?`,
