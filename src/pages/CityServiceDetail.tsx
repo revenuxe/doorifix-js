@@ -2,7 +2,7 @@
 
 import { imageSrc } from "@/lib/image";
 import { useState } from "react";
-import { ChevronLeft, Star, Clock, CheckCircle, Phone, ArrowRight, Search } from "lucide-react";
+import { ChevronLeft, Star, Clock, CheckCircle, Phone, ArrowRight, Search, MapPin } from "lucide-react";
 import Link from "next/link";
 import whatsappIcon from "@/assets/whatsapp.gif";
 import { useParams, useRouter } from "next/navigation";
@@ -55,6 +55,7 @@ const CityServiceDetail = () => {
     : [];
   const isMangaloreWashingMachine = cityData.slug === "mangalore" && service.slug === "washing-machine-repair";
   const isMangaloreWashingMachineLanding = isMangaloreWashingMachine && !selectedIssue;
+  const isBangaloreWashingMachineLanding = cityData.slug === "bangalore" && service.slug === "washing-machine-repair" && !selectedIssue;
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -85,6 +86,31 @@ const CityServiceDetail = () => {
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-5xl mx-auto flex-1 w-full">
+        {isBangaloreWashingMachineLanding && (
+          <nav
+            aria-label="Washing machine repair locations"
+            className="mx-5 md:mx-8 lg:mx-0 mt-5 flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-card p-3"
+          >
+            <span className="flex items-center gap-1.5 px-2 text-sm font-medium text-foreground">
+              <MapPin size={15} className="text-primary" />
+              Choose location:
+            </span>
+            <Link
+              href="/bangalore/service/washing-machine-repair"
+              aria-current="page"
+              className="rounded-full bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
+            >
+              Bangalore
+            </Link>
+            <Link
+              href="/mangalore/service/washing-machine-repair"
+              className="rounded-full border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Mangalore
+            </Link>
+          </nav>
+        )}
+
         {isMangaloreWashingMachineLanding && (
           <section className="px-5 md:px-8 lg:px-0 pt-8 md:pt-12 pb-8 md:pb-12 md:grid md:grid-cols-[0.95fr_1.05fr] md:gap-10 md:items-center">
             <div className="space-y-6">

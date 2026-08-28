@@ -16,6 +16,7 @@ const mainLinks = [
 
 const serviceLinks = [
   { label: "Washing Machine Repair", path: "/service/washing-machine-repair" },
+  { label: "Washing Machine Repair in Mangalore", path: "/mangalore/service/washing-machine-repair" },
   { label: "Refrigerator Repair", path: "/service/refrigerator-repair" },
   { label: "AC Repair & Service", path: "/service/ac-repair-service" },
   { label: "Microwave Repair", path: "/service/microwave-repair" },
