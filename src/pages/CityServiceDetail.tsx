@@ -2,7 +2,7 @@
 
 import { imageSrc } from "@/lib/image";
 import { useState } from "react";
-import { ChevronLeft, Star, Clock, CheckCircle, Phone, ArrowRight } from "lucide-react";
+import { ChevronLeft, Star, Clock, CheckCircle, Phone, ArrowRight, Search } from "lucide-react";
 import Link from "next/link";
 import whatsappIcon from "@/assets/whatsapp.gif";
 import { useParams, useRouter } from "next/navigation";
@@ -85,8 +85,35 @@ const CityServiceDetail = () => {
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-5xl mx-auto flex-1 w-full">
+        {isMangaloreWashingMachineLanding && (
+          <section className="px-5 md:px-8 lg:px-0 pt-8 md:pt-12 pb-8 md:pb-12 md:grid md:grid-cols-[0.95fr_1.05fr] md:gap-10 md:items-center">
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-[1.05]">Washing Machine Repair in Mangalore</h1>
+                <p className="text-muted-foreground mt-4 text-base md:text-lg leading-relaxed">Front load, top load, fully automatic and semi-automatic washing machine repair by trained doorstep technicians in Mangalore.</p>
+              </div>
+              <form className="flex items-center gap-3 bg-card rounded-2xl px-4 py-3 border border-border" onSubmit={(event) => { event.preventDefault(); setBookingOpen(true); }}>
+                <Search size={18} className="text-muted-foreground" />
+                <input type="text" placeholder="Search washing machine issue..." className="bg-transparent outline-none flex-1 text-sm text-foreground placeholder:text-muted-foreground" />
+              </form>
+            </div>
+            <div className="relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[430px] cursor-pointer mt-6 md:mt-0" onClick={() => setBookingOpen(true)}>
+              <img src={imageSrc(service.image)} alt="Washing machine repair in Mangalore" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-black/15" />
+              <div className="relative z-10 p-5 md:p-8 space-y-3 h-full flex flex-col justify-end">
+                <div className="flex items-center gap-1 text-white/80"><Star size={16} className="fill-amber-400 text-amber-400" /><span className="text-sm font-medium">{service.rating} (256 reviews)</span></div>
+                <h2 className="text-2xl md:text-4xl font-bold text-white">Washing Machine Repair<br />at Home</h2>
+                <p className="text-white/85 text-sm md:text-base max-w-md">Drum noise, water leakage, spin failure, drainage issue, inlet valve fault and PCB diagnosis handled at home.</p>
+                <div className="flex items-center gap-3 pt-2">
+                  <a href="tel:+919886579923" className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(event) => event.stopPropagation()}><Phone size={14} /> Call Now</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Mobile Hero */}
-        <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
+        {!isMangaloreWashingMachineLanding && <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
           <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
           <div className="relative z-10 px-5 pt-6 pb-8">
@@ -94,10 +121,10 @@ const CityServiceDetail = () => {
               <ChevronLeft size={18} />
             </button>
           </div>
-        </div>
+        </div>}
 
         {/* Desktop Layout */}
-        <div className="md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:px-0 md:pt-8">
+        {!isMangaloreWashingMachineLanding && <div className="md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:px-0 md:pt-8">
           <div className="hidden md:block">
             <div className="rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px]">
               <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
@@ -170,15 +197,6 @@ const CityServiceDetail = () => {
               </div>
             </div>
 
-            {isMangaloreWashingMachineLanding && (
-              <button
-                onClick={() => setBookingOpen(true)}
-                className="w-full bg-primary text-primary-foreground font-semibold py-3.5 rounded-full text-sm hover:opacity-90 transition-opacity"
-              >
-                Book Washing Machine Repair Now
-              </button>
-            )}
-
             {/* Description */}
             <div>
               <h2 className="font-semibold text-base text-foreground mb-2">
@@ -212,7 +230,7 @@ const CityServiceDetail = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div>}
 
         {selectedIssue && isMangaloreWashingMachine && (
           <section className="px-5 md:px-8 lg:px-0 pb-8 md:pb-12 grid gap-4 md:grid-cols-2">
