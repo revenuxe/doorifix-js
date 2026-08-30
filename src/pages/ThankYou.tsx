@@ -6,6 +6,7 @@ import { CheckCircle, Phone, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
 import doorifixLogo from "@/assets/doorifix-logo.webp";
+import Footer from "@/components/Footer";
 
 const ThankYou = () => {
   const searchParams = useSearchParams();
@@ -18,9 +19,10 @@ const ThankYou = () => {
   const name = searchParams.get("name") || "Customer";
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-5">
+    <div className="min-h-screen bg-background flex flex-col">
       <SEO title="Booking Confirmed" description={`Your service request ${caseNumber} has been submitted. Our team will contact you shortly.`} />
-      <div className="w-full max-w-sm text-center space-y-6">
+      <div className="flex-1 flex items-center justify-center px-5">
+        <div className="w-full max-w-sm text-center space-y-6">
         <img src={imageSrc(doorifixLogo)} alt="Doorifix" className="h-10 mx-auto" />
 
         {/* Success icon */}
@@ -62,7 +64,9 @@ const ThankYou = () => {
         <p className="text-[11px] text-muted-foreground">
           Expected response time: 15–30 minutes
         </p>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

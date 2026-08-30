@@ -4,6 +4,7 @@ import doorifixLogo from "@/assets/doorifix-logo.webp";
 import { cityAreas, slugify } from "@/data/areas";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
+import Disclaimer from "@/components/Disclaimer";
 
 // Mangalore has its own washing-machine repair menu item above; omitting the
 // generic city entry prevents two Mangalore links in the footer.
@@ -42,7 +43,9 @@ const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
     : areaSections.filter((city) => city.slug !== "mangalore");
 
   return (
-    <footer className="bg-foreground text-card mt-8">
+    <>
+      <Disclaimer />
+      <footer className="bg-foreground text-card">
       <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -155,12 +158,6 @@ const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
           </div>
         )}
 
-        <div className="border-t border-card/15 mt-6 pt-6">
-          <p className="text-xs text-card/50 leading-relaxed">
-            <span className="font-semibold text-card/70">Disclaimer:</span> Doorifix is an independent, third-party appliance repair service provider. We are not authorized, sponsored, or affiliated with any appliance manufacturer or brand, and we do not represent ourselves as an "authorized" or "brand-associated" service/customer care center. Brand names mentioned on this website are used solely to describe the appliances we service. We provide repairs only for appliances that are out of their standard manufacturer warranty period (i.e., after the first year from purchase); we do not handle in-warranty claims.
-          </p>
-        </div>
-
         <div className="border-t border-card/15 mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-card/50">
             &copy; {new Date().getFullYear()} Doorifix. All rights reserved.
@@ -192,7 +189,8 @@ const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

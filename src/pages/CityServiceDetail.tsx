@@ -320,7 +320,7 @@ const CityServiceDetail = () => {
         </div>
       </div>
 
-      {isMangaloreWashingMachineLanding && <Footer areaCitySlug="mangalore" />}
+      <Footer serviceContext={{ slug: service.slug, title: service.title }} areaCitySlug={cityData.slug} />
       <BottomNav />
 
       <BookingForm open={bookingOpen} onOpenChange={setBookingOpen} defaultAppliance={defaultAppliance} />

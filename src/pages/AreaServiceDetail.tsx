@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
+import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { getServiceBySlug } from "@/data/services";
 import { getCityBySlug } from "@/data/cities";
@@ -205,6 +206,8 @@ const AreaServiceDetail = () => {
           />
         </div>
       </div>
+
+      <Footer serviceContext={{ slug: service.slug, title: service.title }} areaCitySlug={cityData.slug} />
 
       {/* Mobile Bottom CTA */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 z-50">
