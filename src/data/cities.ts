@@ -26,7 +26,7 @@ const bangaloreCity: CityData = {
   keywords:
     "appliance repair bangalore, appliance repair bengaluru, washing machine repair bangalore, washing machine repair bengaluru, fridge repair bangalore, AC service bangalore, microwave repair bangalore, appliance repair near me bangalore, home appliance repair whitefield, doorstep repair koramangala, appliance service indiranagar, washing machine repair near me bangalore, refrigerator repair near me bangalore, AC repair near me bengaluru, appliance repair electronic city, appliance service hsr layout, fridge repair jayanagar, AC service marathahalli, washing machine repair hebbal, appliance repair HBR layout, repair near me bangalore, best appliance repair bangalore, cheapest appliance repair bangalore, same day repair bangalore",
   heroText:
-    "Bangalore's trusted appliance repair experts - serving Whitefield, Koramangala, Indiranagar, HSR Layout, Marathahalli, Electronic City, Jayanagar, JP Nagar, Hebbal & nearby Bengaluru areas.",
+    "Fast doorstep appliance repair across Bangalore and nearby neighbourhoods.",
   ctaText: "Book a Repair in Bangalore",
   appliances: [
     {
@@ -100,7 +100,7 @@ const mangaloreCity: CityData = {
   metaTitle: "Appliance Repair in Mangalore | AC, Fridge & Washer | Doorifix",
   metaDescription: "Book doorstep appliance repair in Mangalore. Washing machine, refrigerator, AC, microwave, dryer and dishwasher service in Kadri, Bejai, Surathkal and more.",
   keywords: "washing machine repair mangalore, washing machine service mangalore, washing machine repair near me mangalore, front load washing machine repair mangalore, top load washing machine service mangalore, appliance repair mangalore, fridge repair mangalore, AC service mangalore, washing machine technician mangalore, doorstep washing machine repair mangalore, LG washing machine repair mangalore, Samsung washing machine repair mangalore, IFB washing machine service mangalore, Bosch washing machine repair mangalore, Whirlpool washing machine repair mangalore",
-  heroText: "Mangalore's reliable doorstep repair team for washing machines and home appliances - fast diagnosis, clear pricing and trained technicians.",
+  heroText: "Quick doorstep repair for washing machines, refrigerators and ACs in Mangalore.",
   ctaText: "Book a Repair in Mangalore",
   appliances: [
     { title: "Washing Machine Repair Mangalore", keywords: "washing machine repair near me mangalore, front load washing machine repair mangalore, top load washing machine service mangalore, LG, Samsung, IFB, Bosch and Whirlpool washing machine repair mangalore" },
@@ -127,7 +127,7 @@ const chennaiCity: CityData = {
   metaTitle: "Appliance Repair in Chennai | AC, Fridge & Washer | Doorifix",
   metaDescription: "Book doorstep appliance repair in Chennai. Washing machine, AC, fridge, microwave, dryer and dishwasher service in Anna Nagar, Adyar, Velachery and more.",
   keywords: "appliance repair Chennai, washing machine repair Chennai, AC service Chennai, refrigerator repair Chennai, doorstep appliance repair Chennai",
-  heroText: "From washing machine drainage faults to refrigerators that stop cooling, arrange home appliance diagnosis and repair in your Chennai neighbourhood.",
+  heroText: "Trusted appliance repair and doorstep service across Chennai neighbourhoods.",
   ctaText: "Book a Repair in Chennai",
   appliances: [
     { title: "Washing Machine Repair Chennai", keywords: "front load, top load and semi-automatic washing machine diagnosis, drainage faults, spin problems and water leaks" },
@@ -157,7 +157,11 @@ export const cities: CityData[] = [bangaloreCity, bengaluruCity, mangaloreCity, 
         ? "Book appliance diagnosis in Mangalore and surrounding localities. Explore washing machine, fridge, AC and kitchen appliance repair with quote guidance."
         : "Find appliance repair in Bangalore by service and locality. Get help with washing machine, refrigerator, AC and kitchen appliance faults at home.",
     subheadline: guide.intro,
-    heroText: guide.planning,
+    heroText: city.slug === "chennai"
+      ? "Trusted appliance repair and doorstep service across Chennai neighbourhoods."
+      : city.slug === "mangalore"
+        ? "Quick doorstep repair for washing machines, refrigerators and ACs in Mangalore."
+        : "Fast doorstep appliance repair across Bangalore and nearby neighbourhoods.",
     faqs: guide.questions,
   };
 });

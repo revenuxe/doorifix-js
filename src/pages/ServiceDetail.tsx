@@ -280,14 +280,14 @@ const ServiceDetail = () => {
                 <p className="text-white/85 text-sm md:text-base max-w-md">
                   {localServiceCopy(contentCity, service).advice}
                 </p>
-                <div className="flex items-center gap-3 pt-2">
+                <div className="flex flex-wrap items-center gap-3 pt-2">
                   <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(event) => {
                     event.stopPropagation();
                     setBookingOpen(true);
                   }}>
                     Book Now <ArrowRight size={14} />
                   </button>
-                  <a href="tel:+919886579923" className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 text-white text-sm" onClick={(event) => event.stopPropagation()}>
+                  <a href="tel:+919886579923" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-5 py-2.5 text-xs md:text-sm font-semibold shadow-sm hover:opacity-95 transition-opacity" onClick={(event) => event.stopPropagation()}>
                     <Phone size={14} /> Call Now
                   </a>
                 </div>

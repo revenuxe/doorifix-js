@@ -82,13 +82,34 @@ const CityServiceDetail = () => {
 
       <div className="max-w-[430px] md:max-w-5xl mx-auto flex-1 w-full">
         {/* Mobile Hero */}
-        <div className="md:hidden relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
-          <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
-          <div className="relative z-10 px-5 pt-6 pb-8">
-            <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-primary">
-              <ChevronLeft size={18} />
-            </button>
+        <div className="md:hidden relative">
+          <div className="relative rounded-b-[2rem] overflow-hidden min-h-[280px]">
+            <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+            <div className="relative z-10 px-5 pt-6 pb-8">
+              <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-primary">
+                <ChevronLeft size={18} />
+              </button>
+            </div>
+          </div>
+
+          <div className="px-4 -mt-6 relative z-10">
+            <div className="rounded-[28px] border border-border bg-card/95 p-3.5 shadow-[0_12px_35px_rgba(15,23,42,0.18)] backdrop-blur-sm">
+              <h1 className="text-[1.55rem] leading-[0.96] font-bold tracking-[-0.04em] text-foreground">{pageTitle}</h1>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">{selectedIssue ? `Doorstep diagnosis and repair for ${service.title.toLowerCase()} ${selectedIssue.toLowerCase()} in ${cityData.name}.` : service.description}</p>
+              <div className="mt-3 flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1.5 border border-amber-200">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Star key={s} size={13} className={s <= Math.floor(service.rating) ? "text-amber-500 fill-amber-500" : "text-amber-300"} />
+                  ))}
+                </div>
+                <span className="text-sm font-medium text-foreground">Visit by appointment</span>
+              </div>
+              <a href="tel:+919886579923" className="mt-3 inline-flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity">
+                <Phone size={18} />
+                Call Now
+              </a>
+            </div>
           </div>
         </div>
 
@@ -97,7 +118,24 @@ const CityServiceDetail = () => {
           <div className="hidden md:block">
             <div className="rounded-3xl overflow-hidden relative min-h-[400px] lg:min-h-[500px]">
               <img src={imageSrc(service.image)} alt={`${service.title} repair in ${cityData.name}`} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-x-0 bottom-0 h-1/2 rounded-b-3xl bg-gradient-to-t from-primary/25 via-primary/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+            </div>
+
+            <div className="-mt-6 relative z-10 mx-6 rounded-[28px] border border-border bg-card/95 p-4 shadow-[0_12px_35px_rgba(15,23,42,0.18)] backdrop-blur-sm">
+              <h1 className="text-[1.8rem] leading-[0.96] font-bold tracking-[-0.04em] text-foreground">{pageTitle}</h1>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">{selectedIssue ? `Doorstep diagnosis and repair for ${service.title.toLowerCase()} ${selectedIssue.toLowerCase()} in ${cityData.name}.` : service.description}</p>
+              <div className="mt-3 flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1.5 border border-amber-200">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Star key={s} size={13} className={s <= Math.floor(service.rating) ? "text-amber-500 fill-amber-500" : "text-amber-300"} />
+                  ))}
+                </div>
+                <span className="text-sm font-medium text-foreground">Visit by appointment</span>
+              </div>
+              <a href="tel:+919886579923" className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity w-full">
+                <Phone size={18} />
+                Call Now
+              </a>
             </div>
 
             <div className="mt-6 bg-card rounded-2xl p-6 border border-border">
@@ -121,25 +159,6 @@ const CityServiceDetail = () => {
               <button onClick={() => navigate(`/${cityData.slug}`)} className="hover:text-foreground">{cityData.name}</button>
               <span>/</span>
               <span className="text-foreground">{service.title} Repair</span>
-            </div>
-
-            <div className="flex items-start justify-between">
-              <div>
-                <h1 className="text-xl md:text-2xl font-bold text-foreground">{pageTitle}</h1>
-                <p className="text-sm text-muted-foreground mt-0.5">{selectedIssue ? `Doorstep diagnosis and repair for ${service.title.toLowerCase()} ${selectedIssue.toLowerCase()} in ${cityData.name}.` : service.description}</p>
-                <div className="flex items-center gap-3 mt-2">
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={14} className={s <= Math.floor(service.rating) ? "text-amber-500 fill-amber-500" : "text-amber-500"} />
-                    ))}
-                    <span className="text-xs text-muted-foreground ml-1">Visit by appointment</span>
-                  </div>
-                </div>
-              </div>
-              <a href="tel:+919886579923" className="bg-primary text-primary-foreground rounded-xl px-4 py-2.5 text-sm font-semibold flex items-center gap-1.5 hover:opacity-90 transition-opacity flex-shrink-0">
-                <Phone size={14} />
-                Call Now
-              </a>
             </div>
 
             {/* Quick Info */}
