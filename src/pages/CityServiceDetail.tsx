@@ -191,8 +191,30 @@ const CityServiceDetail = () => {
                 {service.title} Service in {cityData.name}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">{service.detailDescription}</p>
-
             </div>
+
+            {issues.length > 0 && (
+              <div className="hidden md:block rounded-[24px] border border-border bg-card p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-semibold text-base text-foreground">Common faults we fix</h3>
+                  <Link href={`/${cityData.slug}/service/${service.slug}`} className="text-xs font-medium text-primary hover:underline">
+                    View all
+                  </Link>
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {issues.slice(0, 4).map((item) => (
+                    <Link
+                      key={item}
+                      href={`/${cityData.slug}/service/${service.slug}/${slugify(item)}`}
+                      className="rounded-2xl border border-border bg-muted/50 p-3 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                    >
+                      <span className="block text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Issue</span>
+                      <span className="mt-1 block text-sm font-semibold text-foreground">{item}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Mobile What's Included */}
             <div className="md:hidden">

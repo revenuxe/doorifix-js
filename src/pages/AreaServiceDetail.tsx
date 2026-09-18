@@ -44,9 +44,20 @@ const AreaServiceDetail = () => {
 
   const defaultAppliance = applianceMap[service.title] || service.title;
 
+  const commonFaultsByService: Record<string, string[]> = {
+    "washing-machine-repair": ["Not spinning", "Water leakage", "Drainage problem", "Drum noise"],
+    "refrigerator-repair": ["Not cooling", "Water leakage", "Compressor issue", "Door seal problem"],
+    "ac-repair-service": ["Not cooling", "Water dripping", "Gas refill", "Compressor issue"],
+    "microwave-repair": ["Not heating", "Sparking", "Turntable issue", "Door switch fault"],
+    "dryer-repair": ["Not drying", "No heat", "Drum noise", "Vent blockage"],
+    "dishwasher-repair": ["Not draining", "Not cleaning", "Water leakage", "Pump fault"],
+  };
+
   const cityAppliance = cityData.appliances.find((a) =>
     a.title.toLowerCase().includes(service.title.toLowerCase())
   );
+
+  const faultCards = commonFaultsByService[service.slug] || [];
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -190,8 +201,30 @@ const AreaServiceDetail = () => {
                 {service.title} Service in {areaName}, {cityData.name}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">{service.detailDescription}</p>
-
             </div>
+
+            {faultCards.length > 0 && (
+              <div className="hidden md:block rounded-[24px] border border-border bg-card p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-semibold text-base text-foreground">Common faults we fix</h3>
+                  <button onClick={() => setBookingOpen(true)} className="text-xs font-medium text-primary hover:underline">
+                    Book now
+                  </button>
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {faultCards.slice(0, 4).map((item) => (
+                    <button
+                      key={item}
+                      onClick={() => setBookingOpen(true)}
+                      className="rounded-2xl border border-border bg-muted/50 p-3 text-left hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                    >
+                      <span className="block text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Issue</span>
+                      <span className="mt-1 block text-sm font-semibold text-foreground">{item}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Mobile What's Included */}
             <div className="md:hidden">
