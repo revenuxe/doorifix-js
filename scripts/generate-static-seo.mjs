@@ -101,6 +101,7 @@ const cityIssueRoutes = [...issueSource.matchAll(/"([^"\n]+)":\s*\[([^\]]+)\]/g)
 const routes = unique([
   ...cityIssueRoutes,
   ...staticRoutes,
+  ...serviceRoutes,
   ...blogRoutes,
   ...brandRoutes,
   ...washingMachineBrandRoutes,

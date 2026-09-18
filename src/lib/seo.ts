@@ -29,7 +29,7 @@ interface MetadataInput {
 }
 
 export function absoluteUrl(path = "/") {
-  return new URL(path.replace(/^\/bengaluru(?=\/|$)/, "/bangalore").replace(/^\/service\//, "/bangalore/service/"), BASE_URL).toString();
+  return new URL(path.replace(/^\/bengaluru(?=\/|$)/, "/bangalore"), BASE_URL).toString();
 }
 
 export function buildMetadata({
