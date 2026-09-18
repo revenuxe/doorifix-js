@@ -21,18 +21,18 @@ export const brandParams = brands.map((brand) => ({
   brand: brand.slug,
 }));
 
-export const cityParams = cities.map((city) => ({
+export const cityParams = cities.filter((city) => city.slug !== "bengaluru").map((city) => ({
   city: city.slug,
 }));
 
-export const cityServiceParams = cities.flatMap((city) =>
+export const cityServiceParams = cities.filter((city) => city.slug !== "bengaluru").flatMap((city) =>
   services.map((service) => ({
     city: city.slug,
     slug: service.slug,
   })),
 );
 
-export const areaParams = cities.flatMap((city) =>
+export const areaParams = cities.filter((city) => city.slug !== "bengaluru").flatMap((city) =>
   (cityAreas[city.slug] || []).map((area) => ({
     city: city.slug,
     area: slugify(area),
@@ -47,7 +47,6 @@ export const areaRoutes = areaParams.map(({ city, area }) => `/${city}/${area}`)
 
 export const seoRoutes = [
   ...staticRoutes,
-  ...serviceRoutes,
   ...brandRoutes,
   ...cityRoutes,
   ...cityServiceRoutes,

@@ -15,6 +15,11 @@ import {
 import DesktopHeader from "@/components/DesktopHeader";
 import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
+import LocalRepairContent from "@/components/LocalRepairContent";
+import { getLocalGuide, localServiceCopy } from "@/data/local-content";
+import { issueGuides } from "@/data/issue-guides";
+import { getCityBySlug } from "@/data/cities";
+import CityBrandSection from "@/components/CityBrandSection";
 import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import ServiceCard from "@/components/ServiceCard";
@@ -168,9 +173,13 @@ const ServiceDetail = () => {
   const router = useRouter();
   const navigate = (path: string | number) => {
     if (typeof path === "number") router.back();
-    else router.push(path);
+    else router.push(city && path.startsWith("/services") ? `/${city.slug}${path}` : path);
   };
-  const { slug, issue } = useParams() as { slug?: string; issue?: string };
+  const { slug, issue, city: citySlug } = useParams() as { slug?: string; issue?: string; city?: string };
+  const city = getCityBySlug(citySlug || "");
+  const contentCity = city || getCityBySlug("bangalore")!;
+  const cityName = contentCity.name;
+  const prefix = city ? `/${city.slug}` : "";
   const service = getServiceBySlug(slug || "");
   const [bookingOpen, setBookingOpen] = useState(false);
 
@@ -185,15 +194,16 @@ const ServiceDetail = () => {
   const seoData = seoKeywordMap[service.slug];
   const copy = serviceCopy[service.slug];
   const defaultAppliance = applianceMap[service.title] || service.title;
-  const issueCards = serviceIssueCards[service.slug] || [];
+  const issueCards = (serviceIssueCards[service.slug] || []).map((card) => ({ ...card, href: `${prefix}${card.href}`, description: card.description.replace("Bangalore", cityName) }));
   const relevantBrands = brands.filter((brand) => brand.serviceSlugs.includes(service.slug));
   const selectedIssue = copy.issues.find((item) => slugifyIssue(item) === issue);
+  const issueGuide = selectedIssue ? issueGuides[service.slug]?.[selectedIssue] : undefined;
   const pageTitle = selectedIssue
-    ? `${selectedIssue} ${serviceRepairTitle(service)} in Bangalore`
-    : copy.headline;
+    ? `${selectedIssue} ${serviceRepairTitle(service)} in ${cityName}`
+    : copy.headline.replace("Bangalore", cityName);
   const pageSubheadline = selectedIssue
-    ? `Book Doorifix support for ${selectedIssue.toLowerCase()} with ${serviceRepairTitle(service).toLowerCase()} technicians in Bangalore.`
-    : copy.subheadline;
+    ? `Book Doorifix support for ${selectedIssue.toLowerCase()} with ${serviceRepairTitle(service).toLowerCase()} technicians in ${cityName}.`
+    : localServiceCopy(contentCity, service).summary;
 
   return (
     <div className="bg-background min-h-screen flex flex-col">
@@ -210,7 +220,7 @@ const ServiceDetail = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "name": `${serviceRepairTitle(service)} in Bangalore`,
+          "name": `${serviceRepairTitle(service)} in ${cityName}`,
           "description": seoData?.metaDesc || service.detailDescription,
           "provider": {
             "@type": "LocalBusiness",
@@ -256,19 +266,19 @@ const ServiceDetail = () => {
             </div>
 
             <div className="relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[430px] cursor-pointer mt-6 md:mt-0" onClick={() => setBookingOpen(true)}>
-              <img src={imageSrc(service.image)} alt={`${serviceRepairTitle(service)} in Bangalore`} className="absolute inset-0 w-full h-full object-cover" />
+              <img src={imageSrc(service.image)} alt={`${serviceRepairTitle(service)} in ${cityName}`} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-black/15" />
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
               <div className="relative z-10 p-5 md:p-8 space-y-3 h-full flex flex-col justify-end">
                 <div className="flex items-center gap-1 text-white/80">
                   <Star size={16} className="fill-amber-400 text-amber-400" />
-                  <span className="text-sm font-medium">{service.rating} (256 reviews)</span>
+                  <span className="text-sm font-medium">Visit by appointment</span>
                 </div>
                 <h2 className="text-2xl md:text-4xl font-bold text-white">
                   {selectedIssue || serviceRepairTitle(service)}<br />at Home
                 </h2>
                 <p className="text-white/85 text-sm md:text-base max-w-md">
-                  {copy.proof}
+                  {localServiceCopy(contentCity, service).advice}
                 </p>
                 <div className="flex items-center gap-3 pt-2">
                   <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(event) => {
@@ -284,6 +294,15 @@ const ServiceDetail = () => {
               </div>
             </div>
           </section>
+
+          {issueGuide && <section className="mt-8 rounded-3xl border border-border bg-card p-5 md:p-8 space-y-4">
+            <h2 className="text-2xl font-bold">Understanding {selectedIssue?.toLowerCase()} on a {service.title.toLowerCase()}</h2>
+            <p className="text-muted-foreground leading-relaxed">{issueGuide.explanation}</p>
+            <h3 className="text-lg font-semibold">What to report when booking in {cityName}</h3>
+            <p className="text-muted-foreground leading-relaxed">{issueGuide.report}</p>
+            <Link href={`/${contentCity.slug}/service/${service.slug}`} className="inline-block text-primary hover:underline">All {service.title.toLowerCase()} repair options in {cityName}</Link>
+          </section>}
+          <LocalRepairContent city={contentCity} service={service} />
 
           <div className="mt-8 md:mt-10">
             <HomepageBookingForm
@@ -355,7 +374,7 @@ const ServiceDetail = () => {
             </div>
           </section>
 
-          {service.slug === "washing-machine-repair" && relevantBrands.length > 0 && (
+          {city && service.slug === "washing-machine-repair" ? <CityBrandSection citySlug={city.slug} /> : service.slug === "washing-machine-repair" && relevantBrands.length > 0 && (
             <section className="mt-12 md:mt-16">
               <div className="flex items-end justify-between mb-5">
                 <div>
@@ -365,7 +384,7 @@ const ServiceDetail = () => {
               </div>
               <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3">
                 {relevantBrands.map((brand) => (
-                  <BrandCard key={brand.slug} brand={brand} href={`/washing-machine/brands/${brand.slug}`} />
+                  <BrandCard key={brand.slug} brand={brand} href={`${prefix}/washing-machine/brands/${brand.slug}`} />
                 ))}
               </div>
               <Link
@@ -382,7 +401,7 @@ const ServiceDetail = () => {
               <div className="relative z-10 md:flex items-center justify-between gap-8">
                 <div>
                   <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground">
-                    Book {serviceRepairTitle(service)} in Bangalore
+                    Book {serviceRepairTitle(service)} in {cityName}
                   </h2>
                   <p className="text-primary-foreground/75 mt-2 max-w-xl">
                     {service.detailDescription}
@@ -433,6 +452,7 @@ const ServiceDetail = () => {
       </main>
 
       <Footer
+        areaCitySlug={city?.slug}
         serviceContext={
           AREA_SERVICE_PILOT_SLUGS.includes(service.slug)
             ? { slug: service.slug, title: serviceRepairTitle(service) }

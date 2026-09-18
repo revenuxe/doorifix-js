@@ -83,6 +83,38 @@ const Index = () => {
         <div className="max-w-[430px] md:max-w-none mx-auto">
           <div className="px-5 md:px-8 lg:px-12 pt-6 md:pt-4 pb-4 space-y-6 md:space-y-8">
 
+            {/* Hero Card */}
+            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
+              <img src={imageSrc(repairHero)} alt="Technician repairing washing machine" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/30" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
+              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
+                <div className="flex items-center gap-1 text-white/70">
+                  <Sparkle />
+                  <span className="text-xs">Same-Day Doorstep Service</span>
+                </div>
+                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
+                  Washing Machine &<br />Appliance Repair
+                </h2>
+                <p className="hidden md:block text-sm text-white/70 max-w-xs">
+                  Book certified technicians for washing machine, fridge, AC, microwave repair. Doorstep service available.
+                </p>
+                <div className="flex items-center gap-3 pt-2">
+                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={e => {
+                  e.stopPropagation();
+                  navigate("/services");
+                }}>
+                    
+                    Book Now
+                  </button>
+                  <div className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2">
+                    <Clock size={14} className="text-white/70" />
+                    <span className="text-xs font-medium text-white">24/7 Support</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Title */}
             <div className="md:flex md:items-center md:justify-between md:gap-8">
               <div>
@@ -132,38 +164,6 @@ const Index = () => {
               <button onClick={() => navigate("/services")} className="bg-primary text-primary-foreground text-xs font-medium px-5 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity">
                 Book Now
               </button>
-            </div>
-
-            {/* Hero Card */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
-              <img src={imageSrc(repairHero)} alt="Technician repairing washing machine" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/30" />
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary/30 via-primary/10 to-transparent" />
-              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-sm h-full flex flex-col justify-end">
-                <div className="flex items-center gap-1 text-white/70">
-                  <Sparkle />
-                  <span className="text-xs">Same-Day Doorstep Service</span>
-                </div>
-                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
-                  Washing Machine &<br />Appliance Repair
-                </h2>
-                <p className="hidden md:block text-sm text-white/70 max-w-xs">
-                  Book certified technicians for washing machine, fridge, AC, microwave repair. Doorstep service available.
-                </p>
-                <div className="flex items-center gap-3 pt-2">
-                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={e => {
-                  e.stopPropagation();
-                  navigate("/services");
-                }}>
-                    
-                    Book Now
-                  </button>
-                  <div className="hidden md:flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2">
-                    <Clock size={14} className="text-white/70" />
-                    <span className="text-xs font-medium text-white">24/7 Support</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Featured Services Section */}

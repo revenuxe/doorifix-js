@@ -69,7 +69,7 @@ function escapeXml(value) {
 
 const services = extractSlugs(readSource("src/data/services.ts"));
 const blogPosts = extractSlugs(readSource("src/data/blogs.ts"));
-const cities = extractSlugs(readSource("src/data/cities.ts"));
+const cities = extractSlugs(readSource("src/data/cities.ts")).filter((city) => city !== "bengaluru");
 const cityAreas = extractCityAreas(readSource("src/data/areas.ts"));
 const brands = extractSlugs(readSource("src/data/brands.ts"));
 
@@ -85,34 +85,38 @@ const washingMachineBrandRoutes = brands
   .map((slug) => `/washing-machine/brands/${slug}`);
 const cityWashingMachineBrandRoutes = brands
   .filter((slug) => slug !== "voltas")
-  .map((slug) => `/mangalore/washing-machine/brands/${slug}`);
+  .flatMap((slug) => ["mangalore", "chennai"].map((city) => `/${city}/washing-machine/brands/${slug}`));
 const cityRoutes = cities.map((city) => `/${city}`);
 const cityServiceRoutes = cities.flatMap((city) => services.map((slug) => `/${city}/service/${slug}`));
 const areaRoutes = cities.flatMap((city) => (cityAreas[city] || []).map((area) => `/${city}/${slugify(area)}`));
 const areaServiceRoutes = cities.flatMap((city) =>
   (cityAreas[city] || []).flatMap((area) =>
-    areaServicePilotSlugs.map((slug) => `/${city}/${slugify(area)}/service/${slug}`),
+    services.map((slug) => `/${city}/${slugify(area)}/service/${slug}`),
   ),
 );
+const issueSource = readSource("src/data/applianceIssues.ts");
+const cityIssueRoutes = [...issueSource.matchAll(/"([^"\n]+)":\s*\[([^\]]+)\]/g)].flatMap(([, service, block]) =>
+  [...block.matchAll(/"([^"\n]+)"/g)].flatMap(([, issue]) => cities.map((city) => `/${city}/service/${service}/${slugify(issue)}`)),
+);
 const routes = unique([
+  ...cityIssueRoutes,
   ...staticRoutes,
   ...blogRoutes,
-  ...serviceRoutes,
   ...brandRoutes,
   ...washingMachineBrandRoutes,
   ...cityWashingMachineBrandRoutes,
   ...cityRoutes,
+  ...cities.map((city) => `/${city}/services`),
   ...cityServiceRoutes,
   ...areaRoutes,
   ...areaServiceRoutes,
 ]);
-const lastModified = new Date().toISOString().slice(0, 10);
+// Omit lastmod until a per-page editorial date is available; build time is not a content update.
 
 const sitemapUrls = routes
   .map(
     (path) => `  <url>
     <loc>${escapeXml(absoluteUrl(path))}</loc>
-    <lastmod>${lastModified}</lastmod>
     <changefreq>${changeFrequencyFor(path, cityRoutes)}</changefreq>
     <priority>${priorityFor(path, cityRoutes, serviceRoutes, cityServiceRoutes, areaRoutes, brandRoutes).toFixed(1)}</priority>
   </url>`,

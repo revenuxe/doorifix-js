@@ -10,6 +10,12 @@ import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import Footer from "@/components/Footer";
+import { issueGuides } from "@/data/issue-guides";
+import { getCityBySlug } from "@/data/cities";
+import LocalRepairContent from "@/components/LocalRepairContent";
+import { getLocalGuide, localServiceCopy } from "@/data/local-content";
+import { useLocationLinks } from "@/hooks/use-location-links";
+import CityBrandSection from "@/components/CityBrandSection";
 import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import SEO from "@/components/SEO";
@@ -39,10 +45,10 @@ const applianceMap: Record<string, string> = {
 };
 
 const stats = [
-  { icon: Users, value: "1000+", label: "Happy Clients" },
-  { icon: Award, value: "100+", label: "Expert Technicians" },
-  { icon: CheckCircle, value: "2000+", label: "Repairs Done" },
-  { icon: Star, value: "4.9", label: "Avg Rating" },
+  { icon: Users, value: "Model", label: "Specific diagnosis" },
+  { icon: Award, value: "Parts", label: "Confirm compatibility" },
+  { icon: CheckCircle, value: "Quote", label: "Before repair" },
+  { icon: Star, value: "Visit", label: "By appointment" },
 ];
 
 const brandIssueKeywords = (brandName: string, service: ServiceData, issue: string) =>
@@ -56,9 +62,13 @@ interface BrandDetailProps {
 const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
   const { brand: brandSlug } = useParams<{ brand: string }>();
   const router = useRouter();
+  const locationLink = useLocationLinks();
   const navigate = (path: string | number) => {
     if (typeof path === "number") router.back();
-    else router.push(path);
+    else {
+      const [base, query] = path.split("?");
+      router.push(locationLink(base) + (query ? `?${query}` : ""));
+    }
   };
   const [searchQuery, setSearchQuery] = useState("");
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -71,7 +81,7 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
     ...buildBrandCopy(brand, cityName),
     ...(cityName ? {
       headline: `${brand.name} ${brandPrimaryServiceTitle(brand)} in ${cityName}`,
-      subheadline: `Doorstep ${brand.name} ${brandPrimaryServiceTitle(brand).toLowerCase()} with certified technicians, genuine parts and same-day service across ${cityName}.`,
+      subheadline: `Doorstep ${brand.name} ${brandPrimaryServiceTitle(brand).toLowerCase()} with model-specific diagnosis and appointment confirmation in ${cityName}.`,
     } : {}),
   };
   const canonical = brandRoutePrefix ? `${brandRoutePrefix}/${brand.slug}` : `/brand/${brand.slug}`;
@@ -124,6 +134,37 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
         <div className="max-w-[430px] md:max-w-none mx-auto">
           <div className="px-5 md:px-8 lg:px-12 pt-6 md:pt-4 pb-4 space-y-6 md:space-y-8">
 
+            {/* Hero Card */}
+            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => { setBookingIssue(""); setBookingOpen(true); }}>
+              <img src={imageSrc(repairHero)} alt={`${brand.name} appliance repair in ${cityName || "Bangalore"}`} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/50" />
+
+              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
+                {/* Small brand logo badge */}
+                <div className="self-start flex items-center gap-2 bg-white/95 backdrop-blur rounded-full pl-1.5 pr-3 py-1.5 shadow-sm mb-1">
+                  <span className="w-7 h-7 rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img src={imageSrc(brand.logo)} alt={`${brand.name} logo`} className="w-full h-full object-contain p-1" />
+                  </span>
+                  <span className="text-[11px] font-semibold text-foreground flex items-center gap-1 whitespace-nowrap">
+                    <ShieldCheck size={12} className="text-primary" />
+                    Certified Technician {brand.name} Repair
+                  </span>
+                </div>
+
+                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
+                  {copy.headline}<br />at Your Doorstep
+                </h2>
+                <p className="hidden md:block text-sm text-white/70 max-w-sm">
+                  {copy.subheadline}
+                </p>
+                <div className="flex items-center gap-3 pt-2">
+                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); setBookingIssue(""); setBookingOpen(true); }}>
+                    Book {brand.name} Repair
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* Title */}
             <div className="md:flex md:items-center md:justify-between md:gap-8">
               <div>
@@ -168,37 +209,6 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
               else navigate(`/services?category=${encodeURIComponent(cat)}`);
             }} />
 
-            {/* Hero Card */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => { setBookingIssue(""); setBookingOpen(true); }}>
-              <img src={imageSrc(repairHero)} alt={`${brand.name} appliance repair in ${cityName || "Bangalore"}`} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/50" />
-
-              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
-                {/* Small brand logo badge */}
-                <div className="self-start flex items-center gap-2 bg-white/95 backdrop-blur rounded-full pl-1.5 pr-3 py-1.5 shadow-sm mb-1">
-                  <span className="w-7 h-7 rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0">
-                    <img src={imageSrc(brand.logo)} alt={`${brand.name} logo`} className="w-full h-full object-contain p-1" />
-                  </span>
-                  <span className="text-[11px] font-semibold text-foreground flex items-center gap-1 whitespace-nowrap">
-                    <ShieldCheck size={12} className="text-primary" />
-                    Certified Technician {brand.name} Repair
-                  </span>
-                </div>
-
-                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
-                  {copy.headline}<br />at Your Doorstep
-                </h2>
-                <p className="hidden md:block text-sm text-white/70 max-w-sm">
-                  {copy.subheadline}
-                </p>
-                <div className="flex items-center gap-3 pt-2">
-                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); setBookingIssue(""); setBookingOpen(true); }}>
-                    Book {brand.name} Repair
-                  </button>
-                </div>
-              </div>
-            </div>
-
             {/* Popular Services */}
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -230,7 +240,7 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
                       </div>
                       <h3 className="font-semibold text-sm text-foreground leading-tight">{brand.name} {focusService.title} {issue}</h3>
                       <p className="text-xs text-primary font-medium mt-1">Certified Expert</p>
-                      <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{brandIssueKeywords(brand.name, focusService, issue)}</p>
+                      <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{issueGuides[focusService.slug]?.[issue]?.explanation}</p>
                     </div>
                   ))}
                 </div>
@@ -289,8 +299,9 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
               </div>
             </div>
 
+            {brandRoutePrefix && getCityBySlug(brandRoutePrefix.split("/")[1]) && <LocalRepairContent city={getCityBySlug(brandRoutePrefix.split("/")[1])!} service={focusService} />}
             {/* Other Brands */}
-            <div className="pb-8">
+            {brandRoutePrefix && ["mangalore", "chennai"].includes(brandRoutePrefix.split("/")[1]) ? <CityBrandSection citySlug={brandRoutePrefix.split("/")[1]} excludeBrand={brand.slug} /> : <div className="pb-8">
               <h2 className="font-semibold text-lg md:text-xl text-foreground mb-3">Other Brands We Repair</h2>
               <div className="flex flex-wrap gap-2">
                 {otherBrands.map((b) => (
@@ -303,7 +314,7 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
                   </Link>
                 ))}
               </div>
-            </div>
+            </div>}
 
             <HomepageBookingForm
               eyebrow={`Book ${brand.name} Repair`}
@@ -317,6 +328,7 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
       </div>
 
       <Footer
+        areaCitySlug={brandRoutePrefix?.split("/")[1]}
         serviceContext={
           focusService?.slug === "washing-machine-repair"
             ? { slug: focusService.slug, title: `${focusService.title} Repair` }

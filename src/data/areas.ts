@@ -1,5 +1,19 @@
 // Areas served per city. Drives /:city/:area dynamic landing pages.
 export const cityAreas: Record<string, string[]> = {
+  chennai: [
+    "Anna Nagar", "Adyar", "T Nagar", "Velachery", "Porur", "Ambattur",
+    "Mylapore", "Nungambakkam", "Perungudi", "Sholinganallur", "Thiruvanmiyur",
+    "Besant Nagar", "Guindy", "Saidapet", "Kodambakkam", "Ashok Nagar",
+    "KK Nagar", "Vadapalani", "Valasaravakkam", "Virugambakkam", "Saligramam",
+    "Koyambedu", "Arumbakkam", "Aminjikarai", "Shenoy Nagar", "Kilpauk",
+    "Egmore", "Chetpet", "Purasawalkam", "Ayanavaram", "Perambur", "Kolathur",
+    "Villivakkam", "Mogappair", "Padi", "Korattur", "Maduravoyal",
+    "Madhavaram", "Tondiarpet", "Royapuram", "Washermanpet", "Tiruvottiyur",
+    "Teynampet", "Alwarpet", "Mandaveli", "Raja Annamalaipuram", "Kotturpuram",
+    "Triplicane", "Royapettah", "West Mambalam", "Nandanam", "Alandur",
+    "Nanganallur", "Adambakkam", "Madipakkam", "Pallikaranai", "Taramani",
+    "Thoraipakkam", "Karapakkam", "Neelankarai", "Palavakkam", "Kottivakkam",
+  ],
   bangalore: [
     "Whitefield", "Koramangala", "Indiranagar", "HSR Layout", "Marathahalli",
     "Electronic City", "Jayanagar", "JP Nagar", "BTM Layout", "Hebbal",

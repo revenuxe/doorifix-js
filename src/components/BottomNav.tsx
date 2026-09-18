@@ -1,4 +1,5 @@
 "use client";
+import { useLocationLinks } from "@/hooks/use-location-links";
 
 import { Home, Phone } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -6,13 +7,14 @@ import whatsappIcon from "@/assets/whatsapp.gif";
 import { imageSrc } from "@/lib/image";
 
 const BottomNav = () => {
+  const locationLink = useLocationLinks();
   const pathname = usePathname();
   const router = useRouter();
 
   return (
     <div className="md:hidden sticky bottom-0 left-0 right-0 bg-card/80 backdrop-blur-lg border-t border-border px-4 py-3 flex items-center gap-3 z-50">
       <button
-        onClick={() => router.push("/")}
+        onClick={() => router.push(locationLink("/"))}
         className={`w-11 h-11 rounded-full flex items-center justify-center transition-colors flex-shrink-0 ${
           pathname === "/"
             ? "bg-primary text-primary-foreground"

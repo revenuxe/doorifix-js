@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Search } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import ServiceCard from "@/components/ServiceCard";
 import CategoryPills from "@/components/CategoryPills";
 import DesktopHeader from "@/components/DesktopHeader";
@@ -10,6 +10,9 @@ import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { services } from "@/data/services";
+import { getLocalGuide } from "@/data/local-content";
+import { getCityBySlug } from "@/data/cities";
+import { getAreaByCityAndSlug } from "@/data/areas";
 
 const categoryToTitle: Record<string, string[]> = {
   "Washing Machine": ["Washing Machine"],
@@ -22,6 +25,12 @@ const categoryToTitle: Record<string, string[]> = {
 
 const Services = () => {
   const searchParams = useSearchParams();
+  const params = useParams<{ city?: string }>();
+  const city = getCityBySlug(params.city || searchParams.get("city") || "");
+  const areaSlug = searchParams.get("area") || "";
+  const area = city ? getAreaByCityAndSlug(city.slug, areaSlug) : undefined;
+  const location = city ? [area, city.name].filter(Boolean).join(", ") : "";
+  const linkPrefix = city ? `/${city.slug}${area ? `/${areaSlug}` : ""}` : "";
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "All");
 
@@ -64,7 +73,7 @@ const Services = () => {
       <DesktopHeader />
 
       <div className="max-w-[430px] md:max-w-none mx-auto flex-1 w-full">
-        <h1 className="px-5 pt-6 pb-4 text-2xl font-bold text-foreground md:hidden">Services</h1>
+        <h1 className="px-5 pt-6 pb-4 text-2xl font-bold text-foreground md:hidden">Services{location ? ` in ${location}` : ""}</h1>
 
         {/* Mobile Search */}
         <div className="px-5 pb-3 md:hidden">
@@ -83,8 +92,8 @@ const Services = () => {
         {/* Desktop Title & Search */}
         <div className="hidden md:flex items-center justify-between px-8 lg:px-12 pt-8 pb-2">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Appliance Services</h1>
-            <p className="text-muted-foreground mt-1">Browse our professional repair & servicing</p>
+            <h1 className="text-3xl font-bold text-foreground">Appliance Services{location ? ` in ${location}` : ""}</h1>
+            <p className="text-muted-foreground mt-1">{city ? getLocalGuide(city.slug).intro : "Choose your appliance and describe the problem to arrange a repair visit."}</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 bg-card rounded-full px-4 py-2.5 border border-border w-72">
@@ -115,14 +124,14 @@ const Services = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {filtered.map((service) => (
-                <ServiceCard key={service.id} {...service} />
+                <ServiceCard key={service.id} {...service} linkPrefix={linkPrefix} />
               ))}
             </div>
           )}
         </div>
       </div>
 
-      <Footer />
+      <Footer areaCitySlug={city?.slug} />
       <BottomNav />
     </div>
   );

@@ -1,3 +1,5 @@
+import { getLocalGuide } from "@/data/local-content";
+
 export interface CityData {
   slug: string;
   name: string;
@@ -93,13 +95,13 @@ const bengaluruCity: CityData = {
 const mangaloreCity: CityData = {
   slug: "mangalore",
   name: "Mangalore",
-  headline: "Washing Machine Repair at\nYour Doorstep in Mangalore",
-  subheadline: "Trusted doorstep washing machine and home appliance repair across Mangalore - Kadri, Kankanady, Bejai, Surathkal, Derebail, Hampankatta, Valencia, Kavoor, Panambur, Ullal and nearby areas.",
-  metaTitle: "Washing Machine Repair in Mangalore | Doorstep Service Near Me - Doorifix",
-  metaDescription: "Book expert washing machine repair in Mangalore. Doorstep service for front load, top load, fully automatic and semi-automatic machines, plus refrigerator, AC, microwave, dryer and dishwasher repair.",
+  headline: "Appliance Repair at\nYour Doorstep in Mangalore",
+  subheadline: "Trusted doorstep home appliance repair across Mangalore - Kadri, Kankanady, Bejai, Surathkal, Derebail, Hampankatta, Valencia, Kavoor, Panambur, Ullal and nearby areas.",
+  metaTitle: "Appliance Repair in Mangalore | AC, Fridge & Washer | Doorifix",
+  metaDescription: "Book doorstep appliance repair in Mangalore. Washing machine, refrigerator, AC, microwave, dryer and dishwasher service in Kadri, Bejai, Surathkal and more.",
   keywords: "washing machine repair mangalore, washing machine service mangalore, washing machine repair near me mangalore, front load washing machine repair mangalore, top load washing machine service mangalore, appliance repair mangalore, fridge repair mangalore, AC service mangalore, washing machine technician mangalore, doorstep washing machine repair mangalore, LG washing machine repair mangalore, Samsung washing machine repair mangalore, IFB washing machine service mangalore, Bosch washing machine repair mangalore, Whirlpool washing machine repair mangalore",
   heroText: "Mangalore's reliable doorstep repair team for washing machines and home appliances - fast diagnosis, clear pricing and trained technicians.",
-  ctaText: "Book Washing Machine Repair in Mangalore",
+  ctaText: "Book a Repair in Mangalore",
   appliances: [
     { title: "Washing Machine Repair Mangalore", keywords: "washing machine repair near me mangalore, front load washing machine repair mangalore, top load washing machine service mangalore, LG, Samsung, IFB, Bosch and Whirlpool washing machine repair mangalore" },
     { title: "Refrigerator Repair Mangalore", keywords: "fridge repair mangalore, refrigerator not cooling mangalore, double door fridge service mangalore, compressor and gas refill repair" },
@@ -109,7 +111,7 @@ const mangaloreCity: CityData = {
     { title: "Dishwasher Repair Mangalore", keywords: "dishwasher repair mangalore, dishwasher not draining, pump and leak repair" },
   ],
   faqs: [
-    { q: "Do you provide washing machine repair in Mangalore?", a: "Yes. Doorifix provides doorstep washing machine repair across Mangalore for front load, top load, fully automatic, semi-automatic and inverter models." },
+    { q: "Which appliances do you repair in Mangalore?", a: "Doorifix provides doorstep washing machine, refrigerator, AC, microwave, dryer and dishwasher repair across Mangalore. Select your appliance and locality to arrange a technician visit." },
     { q: "Which washing machine brands do you repair in Mangalore?", a: "We repair major brands including Samsung, LG, IFB, Bosch, Whirlpool, Haier, Godrej, Panasonic and Siemens in Mangalore." },
     { q: "Which Mangalore areas do you cover?", a: "We serve Kadri, Kankanady, Bejai, Surathkal, Derebail, Hampankatta, Valencia, Kavoor, Panambur, Ullal and other Mangalore localities." },
     { q: "What washing machine issues can be repaired at home?", a: "Our technicians diagnose common drainage, spin, water-leak, inlet, door-lock, motor, drum, bearing and control-board issues at your doorstep." },
@@ -117,7 +119,48 @@ const mangaloreCity: CityData = {
   ],
 };
 
-export const cities: CityData[] = [bangaloreCity, bengaluruCity, mangaloreCity];
+const chennaiCity: CityData = {
+  slug: "chennai",
+  name: "Chennai",
+  headline: "Appliance Repair at\nYour Doorstep in Chennai",
+  subheadline: "Doorstep home appliance repair across Chennai, including Anna Nagar, Adyar, T Nagar, Velachery, Porur, Ambattur, Perungudi and Sholinganallur. Choose your appliance and locality to arrange a technician visit.",
+  metaTitle: "Appliance Repair in Chennai | AC, Fridge & Washer | Doorifix",
+  metaDescription: "Book doorstep appliance repair in Chennai. Washing machine, AC, fridge, microwave, dryer and dishwasher service in Anna Nagar, Adyar, Velachery and more.",
+  keywords: "appliance repair Chennai, washing machine repair Chennai, AC service Chennai, refrigerator repair Chennai, doorstep appliance repair Chennai",
+  heroText: "From washing machine drainage faults to refrigerators that stop cooling, arrange home appliance diagnosis and repair in your Chennai neighbourhood.",
+  ctaText: "Book a Repair in Chennai",
+  appliances: [
+    { title: "Washing Machine Repair Chennai", keywords: "front load, top load and semi-automatic washing machine diagnosis, drainage faults, spin problems and water leaks" },
+    { title: "Refrigerator Repair Chennai", keywords: "single door, double door and side-by-side refrigerator diagnosis, cooling problems, frost buildup and water leaks" },
+    { title: "AC Repair & Service Chennai", keywords: "split and window AC servicing, cooling checks, filter cleaning, drainage problems and refrigerant leak diagnosis" },
+    { title: "Microwave Repair Chennai", keywords: "solo, grill and convection microwave diagnosis, heating faults, turntable problems and control panel repairs" },
+    { title: "Dryer Repair Chennai", keywords: "tumble dryer diagnosis, heating faults, drum noise, airflow problems and drying cycle issues" },
+    { title: "Dishwasher Repair Chennai", keywords: "dishwasher diagnosis, drainage faults, spray arm blockages, poor cleaning and water leaks" },
+  ],
+  faqs: [
+    { q: "Which appliances can I book for repair in Chennai?", a: "Book washing machine, refrigerator, AC, microwave, dryer and dishwasher repair. Select the appliance service page, describe the fault and share your Chennai address when booking." },
+    { q: "Which Chennai localities can I select?", a: "Our Chennai area pages include Anna Nagar, Adyar, T Nagar, Velachery, Porur, Ambattur, Mylapore, Nungambakkam, Perungudi and Sholinganallur. Check the area list below and confirm your address and appointment availability with the team." },
+    { q: "Can I arrange same-day appliance repair in Chennai?", a: "Contact the team with your locality, appliance model and fault. Same-day visits depend on technician availability; the appointment time is confirmed when you book." },
+    { q: "How is the repair cost decided?", a: "The technician checks the appliance and explains the fault, required parts and repair quote before work begins. Share the model number and any error code to help prepare for the visit." },
+    { q: "What should I prepare before a technician visits?", a: "Keep the appliance model number, error codes and a description of the problem ready. Share your full address, landmark and access instructions for your Chennai apartment or house." },
+  ],
+};
+
+export const cities: CityData[] = [bangaloreCity, bengaluruCity, mangaloreCity, chennaiCity].map((city) => {
+  const guide = getLocalGuide(city.slug);
+  return {
+    ...city,
+    metaTitle: `Appliance Repair in ${city.name} | Doorifix`,
+    metaDescription: city.slug === "chennai"
+      ? "Arrange AC, fridge and home appliance repair in Chennai. Compare service options, check locality coverage and prepare for a doorstep diagnosis."
+      : city.slug === "mangalore"
+        ? "Book appliance diagnosis in Mangalore and surrounding localities. Explore washing machine, fridge, AC and kitchen appliance repair with quote guidance."
+        : "Find appliance repair in Bangalore by service and locality. Get help with washing machine, refrigerator, AC and kitchen appliance faults at home.",
+    subheadline: guide.intro,
+    heroText: guide.planning,
+    faqs: guide.questions,
+  };
+});
 
 export const getCityBySlug = (slug: string): CityData | undefined =>
   cities.find((c) => c.slug === slug);

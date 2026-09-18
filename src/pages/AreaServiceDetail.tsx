@@ -9,6 +9,9 @@ import DesktopHeader from "@/components/DesktopHeader";
 import BookingForm from "@/components/BookingForm";
 import HomepageBookingForm from "@/components/HomepageBookingForm";
 import Footer from "@/components/Footer";
+import LocalRepairContent from "@/components/LocalRepairContent";
+import { getLocalGuide, localServiceCopy } from "@/data/local-content";
+import CityBrandSection from "@/components/CityBrandSection";
 import SEO from "@/components/SEO";
 import { getServiceBySlug } from "@/data/services";
 import { getCityBySlug } from "@/data/cities";
@@ -49,7 +52,7 @@ const AreaServiceDetail = () => {
     <div className="bg-background min-h-screen flex flex-col">
       <SEO
         title={`${service.title} Repair in ${areaName}, ${cityData.name}`}
-        description={`Expert ${service.title.toLowerCase()} repair service in ${areaName}, ${cityData.name}. ${service.detailDescription}`}
+        description={`Expert ${service.title.toLowerCase()} repair service in ${areaName}, ${cityData.name}. ${localServiceCopy(cityData, service).summary}`}
         canonical={`/${cityData.slug}/${area}/service/${service.slug}`}
         keywords={`${service.title} repair ${areaName}, ${service.title} service ${areaName}, fix ${service.title} ${areaName}, ${cityAppliance?.keywords || ""}`}
         breadcrumbs={[
@@ -128,7 +131,7 @@ const AreaServiceDetail = () => {
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} size={14} className={s <= Math.floor(service.rating) ? "text-amber-500 fill-amber-500" : "text-amber-500"} />
                     ))}
-                    <span className="text-xs text-muted-foreground ml-1">{service.rating} (256 reviews)</span>
+                    <span className="text-xs text-muted-foreground ml-1">Visit by appointment</span>
                   </div>
                 </div>
               </div>
@@ -168,11 +171,7 @@ const AreaServiceDetail = () => {
                 {service.title} Service in {areaName}, {cityData.name}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">{service.detailDescription}</p>
-              {cityAppliance && (
-                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
-                  Looking for <strong>{cityAppliance.title}</strong>? Our certified technicians in {areaName} specialize in {cityAppliance.keywords}.
-                </p>
-              )}
+
             </div>
 
             {/* Mobile What's Included */}
@@ -197,6 +196,16 @@ const AreaServiceDetail = () => {
           </div>
         </div>
 
+        <div className="px-5 md:px-8 lg:px-0 pb-8">
+          <LocalRepairContent city={cityData} area={areaName} service={service} />
+        </div>
+
+        {service.slug === "washing-machine-repair" && ["mangalore", "chennai"].includes(cityData.slug) && (
+          <div className="px-5 md:px-8 lg:px-0 pb-8">
+            <CityBrandSection citySlug={cityData.slug} />
+          </div>
+        )}
+
         <div className="px-5 md:px-8 lg:px-0 pb-28 md:pb-10">
           <HomepageBookingForm
             eyebrow={`Book in ${areaName}, ${cityData.name}`}
@@ -211,9 +220,13 @@ const AreaServiceDetail = () => {
 
       {/* Mobile Bottom CTA */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 z-50">
-        <button onClick={() => setBookingOpen(true)} className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-sm">
-          Book Now in {areaName}
-        </button>
+        <a
+          href="tel:+919886579923"
+          className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-base flex items-center justify-center gap-2 shadow-sm tracking-wide"
+        >
+          <Phone size={18} />
+          +91 98865 79923
+        </a>
       </div>
 
       <BookingForm open={bookingOpen} onOpenChange={setBookingOpen} defaultAppliance={defaultAppliance} />

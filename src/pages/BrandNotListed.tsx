@@ -102,6 +102,33 @@ const BrandNotListed = () => {
         <div className="max-w-[430px] md:max-w-none mx-auto">
           <div className="px-5 md:px-8 lg:px-12 pt-6 pb-4 space-y-6 md:space-y-8">
 
+            {/* Hero Card */}
+            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
+              <img src={imageSrc(repairHero)} alt="Appliance repair for any brand in Bangalore" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/50" />
+
+              <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/95 backdrop-blur rounded-full pl-1.5 pr-3 py-1.5 shadow-sm">
+                <span className="w-7 h-7 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                  <HelpCircle size={14} className="text-muted-foreground" />
+                </span>
+                <span className="text-[11px] font-semibold text-foreground">Any Brand, Any Model</span>
+              </div>
+
+              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
+                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
+                  Any Appliance Brand,<br />Repaired at Your Doorstep
+                </h2>
+                <p className="hidden md:block text-sm text-white/70 max-w-sm">
+                  Free diagnosis, transparent pricing, and a warranty on every repair — whatever the brand.
+                </p>
+                <div className="flex items-center gap-3 pt-2">
+                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); navigate("/services"); }}>
+                    Book a Repair
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* Title */}
             <div className="md:flex md:items-center md:justify-between md:gap-8">
               <div>
@@ -135,33 +162,6 @@ const BrandNotListed = () => {
               if (cat === "All") navigate("/services");
               else navigate(`/services?category=${encodeURIComponent(cat)}`);
             }} />
-
-            {/* Hero Card */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
-              <img src={imageSrc(repairHero)} alt="Appliance repair for any brand in Bangalore" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/50" />
-
-              <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/95 backdrop-blur rounded-full pl-1.5 pr-3 py-1.5 shadow-sm">
-                <span className="w-7 h-7 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                  <HelpCircle size={14} className="text-muted-foreground" />
-                </span>
-                <span className="text-[11px] font-semibold text-foreground">Any Brand, Any Model</span>
-              </div>
-
-              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
-                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
-                  Any Appliance Brand,<br />Repaired at Your Doorstep
-                </h2>
-                <p className="hidden md:block text-sm text-white/70 max-w-sm">
-                  Free diagnosis, transparent pricing, and a warranty on every repair — whatever the brand.
-                </p>
-                <div className="flex items-center gap-3 pt-2">
-                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); navigate("/services"); }}>
-                    Book a Repair
-                  </button>
-                </div>
-              </div>
-            </div>
 
             {/* Reasons */}
             <div>

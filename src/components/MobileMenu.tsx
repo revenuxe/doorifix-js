@@ -1,4 +1,5 @@
 "use client";
+import { useLocationLinks } from "@/hooks/use-location-links";
 
 import { useState } from "react";
 import { Menu, X, Home, Wrench, Phone, Info, MapPin, ChevronDown, BookOpen } from "lucide-react";
@@ -16,7 +17,6 @@ const mainLinks = [
 
 const serviceLinks = [
   { label: "Washing Machine Repair", path: "/service/washing-machine-repair" },
-  { label: "Washing Machine Repair in Mangalore", path: "/mangalore/service/washing-machine-repair" },
   { label: "Refrigerator Repair", path: "/service/refrigerator-repair" },
   { label: "AC Repair & Service", path: "/service/ac-repair-service" },
   { label: "Microwave Repair", path: "/service/microwave-repair" },
@@ -25,11 +25,13 @@ const serviceLinks = [
 ];
 
 const cityLinks = [
+  { label: "Mangalore", path: "/mangalore" },
   { label: "Bangalore", path: "/bangalore" },
-  { label: "Bengaluru", path: "/bengaluru" },
+  { label: "Chennai", path: "/chennai" },
 ];
 
 const MobileMenu = () => {
+  const locationLink = useLocationLinks();
   const [open, setOpen] = useState(false);
   const [showServices, setShowServices] = useState(false);
   const [showCities, setShowCities] = useState(false);
@@ -73,7 +75,7 @@ const MobileMenu = () => {
               {mainLinks.map((link) => (
                 <Link
                   key={link.label}
-                  href={link.path}
+                  href={locationLink(link.path)}
                   onClick={() => setOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                     pathname === link.path
@@ -102,7 +104,7 @@ const MobileMenu = () => {
                   {serviceLinks.map((link) => (
                     <Link
                       key={link.path}
-                      href={link.path}
+                      href={locationLink(link.path)}
                       onClick={() => setOpen(false)}
                       className="block px-4 py-2.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                     >
@@ -128,7 +130,7 @@ const MobileMenu = () => {
                   {cityLinks.map((link) => (
                     <Link
                       key={link.path}
-                      href={link.path}
+                      href={locationLink(link.path)}
                       onClick={() => setOpen(false)}
                       className="block px-4 py-2.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                     >

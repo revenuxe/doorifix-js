@@ -1,5 +1,8 @@
+import { localServiceCopy, repairName, getLocalGuide } from "@/data/local-content";
+import repairHero from "@/assets/repair-hero.png";
+import doorifixLogo from "@/assets/doorifix-logo.webp";
 import type { Metadata } from "next";
-import type { CityData } from "@/data/cities";
+import { cities, type CityData } from "@/data/cities";
 import type { ServiceData } from "@/data/services";
 import { brandFocusService, brandPrimaryServiceTitle, type BrandData } from "@/data/brands";
 
@@ -9,7 +12,7 @@ export const DEFAULT_DESCRIPTION =
   "Book same-day doorstep appliance repair near you for washing machines, refrigerators, ACs, microwaves, dryers and dishwashers by certified Doorifix technicians.";
 export const DEFAULT_KEYWORDS =
   "appliance repair near me, washing machine repair near me, refrigerator repair near me, AC repair near me, microwave repair near me, dryer repair, dishwasher repair, doorstep appliance repair, same day appliance service";
-export const DEFAULT_IMAGE = `${BASE_URL}/favicon.ico`;
+export const DEFAULT_IMAGE = new URL(typeof repairHero === "string" ? repairHero : repairHero.src, BASE_URL).toString();
 
 export interface BreadcrumbItem {
   name: string;
@@ -26,7 +29,7 @@ interface MetadataInput {
 }
 
 export function absoluteUrl(path = "/") {
-  return new URL(path, BASE_URL).toString();
+  return new URL(path.replace(/^\/bengaluru(?=\/|$)/, "/bangalore").replace(/^\/service\//, "/bangalore/service/"), BASE_URL).toString();
 }
 
 export function buildMetadata({
@@ -45,6 +48,7 @@ export function buildMetadata({
     ? pageTitle
     : `${SITE_NAME} | ${pageTitle}`;
   const url = absoluteUrl(canonical);
+  const location = cities.find((city) => city.slug === canonical.split("/")[1]);
 
   return {
     title: {
@@ -84,13 +88,13 @@ export function buildMetadata({
     },
     authors: [{ name: SITE_NAME }],
     other: {
-      "geo.region": "IN-KA",
-      "geo.placename": "Bangalore",
+      "geo.region": location?.slug === "chennai" ? "IN-TN" : "IN-KA",
+      "geo.placename": location?.name || "Bangalore",
     },
   };
 }
 
-const primaryCities = ["Bangalore", "Bengaluru", "Mangalore"];
+const primaryCities = cities.map((city) => city.name);
 const primaryServiceNames = [
   "Washing Machine Repair",
   "Refrigerator Repair",
@@ -131,8 +135,8 @@ export function cityMetadata(city: CityData) {
 
 export function cityServiceMetadata(city: CityData, service: ServiceData) {
   return buildMetadata({
-    title: `${service.title} Repair in ${city.name} | Same-Day Service Near Me`,
-    description: `Book ${service.title.toLowerCase()} repair in ${city.name} with Doorifix. Same-day doorstep service, certified technicians, genuine parts and transparent pricing.`,
+    title: `${repairName(service)} in ${city.name} | Doorifix`,
+    description: localServiceCopy(city, service).summary,
     canonical: `/${city.slug}/service/${service.slug}`,
     keywords: `${service.title} repair ${city.name}, ${service.title} service ${city.name}, ${service.title} repair near me ${city.name}, doorstep ${service.title.toLowerCase()} repair ${city.name}, same day ${service.title.toLowerCase()} service ${city.name}`,
   });
@@ -140,8 +144,8 @@ export function cityServiceMetadata(city: CityData, service: ServiceData) {
 
 export function areaMetadata(city: CityData, area: string, areaSlug: string) {
   return buildMetadata({
-    title: `Appliance Repair in ${area}, ${city.name} | Doorstep Service Near Me`,
-    description: `Same-day appliance repair in ${area}, ${city.name}. Book washing machine, refrigerator, AC, microwave, dryer and dishwasher repair by certified Doorifix technicians.`,
+    title: `Appliance Repair in ${area}, ${city.name} | Doorifix`,
+    description: `Arrange appliance repair in ${area}, ${city.name}. Choose your appliance, describe the fault and confirm address-specific visit availability and charges.`,
     canonical: `/${city.slug}/${areaSlug}`,
     keywords: `appliance repair ${area}, appliance repair near me ${area}, washing machine repair ${area}, fridge repair ${area}, refrigerator repair ${area}, AC repair ${area}, AC service ${area}, doorstep appliance repair ${area} ${city.name}, same day appliance service ${area}`,
   });
@@ -149,8 +153,8 @@ export function areaMetadata(city: CityData, area: string, areaSlug: string) {
 
 export function areaServiceMetadata(city: CityData, area: string, areaSlug: string, service: ServiceData) {
   return buildMetadata({
-    title: `${service.title} Repair in ${area}, ${city.name} | Same-Day Service Near Me`,
-    description: `Book ${service.title.toLowerCase()} repair in ${area}, ${city.name} with Doorifix. Same-day doorstep service, certified technicians, genuine parts and transparent pricing.`,
+    title: `${repairName(service)} in ${area}, ${city.name}`,
+    description: `${repairName(service)} in ${area}, ${city.name}. Get diagnosis, an itemised repair quote and appointment guidance for your appliance model.`,
     canonical: `/${city.slug}/${areaSlug}/service/${service.slug}`,
     keywords: `${service.title} repair ${area}, ${service.title} repair near me ${area}, ${service.title} service ${area} ${city.name}, doorstep ${service.title.toLowerCase()} repair ${area}, same day ${service.title.toLowerCase()} service ${area} ${city.name}`,
   });
@@ -193,9 +197,10 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${BASE_URL}/#organization`,
     name: SITE_NAME,
     url: BASE_URL,
-    logo: DEFAULT_IMAGE,
+    logo: new URL(typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src, BASE_URL).toString(),
     image: DEFAULT_IMAGE,
     email: "doorifix@gmail.com",
     contactPoint: {
@@ -284,47 +289,18 @@ export function serviceSchema(service: ServiceData, breadcrumbs?: BreadcrumbItem
 
 export function localBusinessSchema(city: CityData, area?: string) {
   const placeName = area ? `${area}, ${city.name}` : city.name;
-
+  const path = `/${city.slug}${area ? `/${area.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}` : ""}`;
   return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: area ? `${SITE_NAME} - ${placeName}` : `${SITE_NAME} - ${city.name}`,
-    description: city.metaDescription,
-    url: absoluteUrl(`/${city.slug}${area ? `/${area.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}` : ""}`),
-    image: DEFAULT_IMAGE,
-    telephone: "+919886579923",
-    email: "doorifix@gmail.com",
-    paymentAccepted: ["Cash", "UPI", "Card"],
-    currenciesAccepted: "INR",
-    knowsAbout: primaryServiceNames,
-    areaServed: {
-      "@type": area ? "Place" : "City",
-      name: placeName,
-    },
-    ...(area
-      ? {
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "6, 1st Cross, Nagawara Main Rd, Umar Nagar",
-            addressLocality: "Bengaluru",
-            addressRegion: "Karnataka",
-            postalCode: "560045",
-            addressCountry: "IN",
-          },
-        }
-      : {}),
-    openingHours: "Mo-Su 08:00-21:00",
-    priceRange: "$$",
+    "@context": "https://schema.org", "@type": "Service",
+    "@id": `${absoluteUrl(path)}#service`,
+    name: `Appliance repair in ${placeName}`,
+    description: area ? `Doorstep appliance diagnosis and repair in ${placeName}. Confirm availability for the exact address.` : city.metaDescription,
+    url: absoluteUrl(path),
+    provider: { "@id": `${BASE_URL}/#organization` },
+    areaServed: { "@type": area ? "Place" : "City", name: placeName },
     hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: `Doorifix appliance repair services in ${placeName}`,
-      itemListElement: primaryServiceNames.map((name) => ({
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name,
-        },
-      })),
+      "@type": "OfferCatalog", name: `Appliance services in ${placeName}`,
+      itemListElement: primaryServiceNames.map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
     },
   };
 }
@@ -332,66 +308,22 @@ export function localBusinessSchema(city: CityData, area?: string) {
 export function cityServiceSchema(city: CityData, service: ServiceData, breadcrumbs?: BreadcrumbItem[]) {
   const url = absoluteUrl(`/${city.slug}/service/${service.slug}`);
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `${BASE_URL}/${city.slug}#localbusiness`,
-    name: `${SITE_NAME} - ${city.name}`,
-    description: `Expert ${service.title.toLowerCase()} repair service in ${city.name}. ${service.detailDescription}`,
-    url,
-    image: DEFAULT_IMAGE,
-    telephone: "+919886579923",
-    email: "doorifix@gmail.com",
-    paymentAccepted: ["Cash", "UPI", "Card"],
-    currenciesAccepted: "INR",
-    openingHours: "Mo-Su 08:00-21:00",
-    priceRange: "$$",
-    areaServed: {
-      "@type": "City",
-      name: city.name,
-    },
-    makesOffer: serviceOfferSchema(service, url, city),
+    "@context": "https://schema.org", "@type": "Service", "@id": `${url}#service`,
+    name: `${repairName(service)} in ${city.name}`,
+    description: localServiceCopy(city, service).summary,
+    url, serviceType: repairName(service),
+    provider: { "@id": `${BASE_URL}/#organization` },
+    areaServed: { "@type": "City", name: city.name },
   };
-
   return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
 }
 
-export function areaServiceSchema(
-  city: CityData,
-  area: string,
-  areaSlug: string,
-  service: ServiceData,
-  breadcrumbs?: BreadcrumbItem[],
-) {
+export function areaServiceSchema(city: CityData, area: string, areaSlug: string, service: ServiceData, breadcrumbs?: BreadcrumbItem[]) {
   const url = absoluteUrl(`/${city.slug}/${areaSlug}/service/${service.slug}`);
-  const placeName = `${area}, ${city.name}`;
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `${BASE_URL}/${city.slug}/${areaSlug}#localbusiness`,
-    name: `${SITE_NAME} - ${placeName}`,
-    description: `Expert ${service.title.toLowerCase()} repair service in ${placeName}. ${service.detailDescription}`,
-    url,
-    image: DEFAULT_IMAGE,
-    telephone: "+919886579923",
-    email: "doorifix@gmail.com",
-    paymentAccepted: ["Cash", "UPI", "Card"],
-    currenciesAccepted: "INR",
-    openingHours: "Mo-Su 08:00-21:00",
-    priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "6, 1st Cross, Nagawara Main Rd, Umar Nagar",
-      addressLocality: "Bengaluru",
-      addressRegion: "Karnataka",
-      postalCode: "560045",
-      addressCountry: "IN",
-    },
-    areaServed: {
-      "@type": "Place",
-      name: placeName,
-    },
-    makesOffer: serviceOfferSchema(service, url, city),
+    ...cityServiceSchema(city, service), "@id": `${url}#service`, url,
+    name: `${repairName(service)} in ${area}, ${city.name}`,
+    areaServed: { "@type": "Place", name: `${area}, ${city.name}` },
   };
-
   return breadcrumbs ? [schema, breadcrumbSchema(breadcrumbs)] : schema;
 }

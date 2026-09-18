@@ -1,4 +1,5 @@
 "use client";
+import { useLocationLinks } from "@/hooks/use-location-links";
 
 import { Search } from "lucide-react";
 import Link from "next/link";
@@ -15,13 +16,14 @@ const navLinks = [
 ];
 
 const DesktopHeader = () => {
+  const locationLink = useLocationLinks();
   const router = useRouter();
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
 
   return (
     <>
       <header className="flex md:hidden items-center justify-between border-b border-primary/15 bg-card/95 px-5 py-3">
-        <button className="flex items-center" onClick={() => router.push("/")} aria-label="Go to home page">
+        <button className="flex items-center" onClick={() => router.push(locationLink("/"))} aria-label="Go to home page">
           <img src={logoSrc} alt="Doorifix" className="h-10 object-contain" />
         </button>
         <MobileMenu />
@@ -29,7 +31,7 @@ const DesktopHeader = () => {
 
       <header className="hidden md:flex items-center justify-between px-8 lg:px-12 py-4 bg-card border-b border-primary/15 sticky top-0 z-50 backdrop-blur-lg bg-card/90">
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push("/")}>
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push(locationLink("/"))}>
           <img src={logoSrc} alt="Doorifix" className="h-14 object-contain" />
         </div>
 
@@ -38,7 +40,7 @@ const DesktopHeader = () => {
           {navLinks.map((link) => (
             <Link
               key={link.label}
-              href={link.path}
+              href={locationLink(link.path)}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}

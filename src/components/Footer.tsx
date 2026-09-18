@@ -6,18 +6,14 @@ import { cities } from "@/data/cities";
 import { services } from "@/data/services";
 import Disclaimer from "@/components/Disclaimer";
 
-// Mangalore has its own washing-machine repair menu item above; omitting the
-// generic city entry prevents two Mangalore links in the footer.
-const citiesWeServe = cities
-  .filter(({ slug }) => slug !== "mangalore")
-  .map(({ name, slug }) => ({ name, slug }));
+const citiesWeServe = cities.filter((city) => city.slug !== "bengaluru").map(({ name, slug }) => ({ name, slug }));
 
 // Bangalore and Bengaluru are separate city page clusters (kept distinct for
 // SEO) that happen to share the same area list. Both need their own footer
 // links — every /bengaluru/:area page is otherwise unreachable from the rest
 // of the site — so we deliberately don't dedupe by area-list content here,
 // even though the two blocks look similar.
-const areaSections = cities
+const areaSections = cities.filter((city) => city.slug !== "bengaluru")
   .map((city) => ({
     ...city,
     areas: cityAreas[city.slug] || [],
@@ -40,7 +36,7 @@ const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
   const logoSrc = typeof doorifixLogo === "string" ? doorifixLogo : doorifixLogo.src;
   const visibleAreaSections = areaCitySlug
     ? areaSections.filter((city) => city.slug === areaCitySlug)
-    : areaSections.filter((city) => city.slug !== "mangalore");
+    : [];
 
   return (
     <>
@@ -80,11 +76,8 @@ const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
           <div className="space-y-4">
             <h3 className="font-semibold text-base">Our Services</h3>
             <div className="space-y-2">
-              <Link href="/mangalore/service/washing-machine-repair" className="block text-sm text-card/70 hover:text-card transition-colors">
-                Washing Machine Repair in Mangalore
-              </Link>
               {services.map((service) => (
-                <Link key={service.slug} href={`/service/${service.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
+                <Link key={service.slug} href={areaCitySlug ? `/${areaCitySlug}/service/${service.slug}` : `/service/${service.slug}`} className="block text-sm text-card/70 hover:text-card transition-colors">
                   {service.title} Repair
                 </Link>
               ))}
@@ -97,10 +90,10 @@ const Footer = ({ serviceContext, areaCitySlug }: FooterProps = {}) => {
               {citiesWeServe.map((loc) => (
                 <Link
                   key={loc.slug}
-                  href={serviceContext ? `/${loc.slug}/service/${serviceContext.slug}` : `/${loc.slug}`}
+                  href={serviceContext && !["chennai", "mangalore"].includes(loc.slug) ? `/${loc.slug}/service/${serviceContext.slug}` : `/${loc.slug}`}
                   className="block text-sm text-card/70 hover:text-card transition-colors"
                 >
-                  {serviceContext ? `${serviceContext.title} in ${loc.name}` : `Appliance Repair ${loc.name}`}
+                  {serviceContext && !["chennai", "mangalore"].includes(loc.slug) ? `${serviceContext.title} in ${loc.name}` : `Appliance Repair ${loc.name}`}
                 </Link>
               ))}
             </div>

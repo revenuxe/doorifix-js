@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Star, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -56,35 +57,28 @@ const ServiceCard = ({ title, description, image, color, slug, rating = 4.8, dur
   return (
     <>
       <div
-        role="link"
-        tabIndex={0}
+        role={bookOnCardClick ? "button" : undefined}
+        tabIndex={bookOnCardClick ? 0 : undefined}
         onClick={() => (bookOnCardClick ? setBookingOpen(true) : router.push(basePath))}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && e.target === e.currentTarget) {
             if (bookOnCardClick) setBookingOpen(true);
             else router.push(basePath);
           }
         }}
-        className={`${colorMap[color]} rounded-3xl p-5 flex gap-4 items-center cursor-pointer transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]`}
+        className={`relative ${colorMap[color]} rounded-3xl p-5 flex gap-4 items-center cursor-pointer transition-all hover:shadow-lg hover:scale-[1.01] active:scale-[0.98]`}
       >
         <div className="flex-1 flex flex-col items-start">
-          <h3 className="font-semibold text-base text-foreground">{title}</h3>
+          <h3 className="font-semibold text-base text-foreground">{bookOnCardClick ? title : <Link href={basePath} onClick={(event) => event.stopPropagation()} className="after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-primary">{title}</Link>}</h3>
           <p className="text-sm text-muted-foreground leading-snug mt-2">{description}</p>
-          <div className="flex items-center gap-3 text-xs text-muted-foreground mt-3">
-            <span className="flex items-center gap-1">
-              <Star size={12} className="text-amber-500 fill-amber-500" /> {rating}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock size={12} /> {duration}
-            </span>
-          </div>
+          <p className="text-xs text-muted-foreground mt-3">Diagnosis before repair approval</p>
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               setBookingOpen(true);
             }}
-            className="inline-flex bg-primary text-primary-foreground text-xs font-medium px-4 py-2 rounded-full mt-3 hover:opacity-90 transition-opacity"
+            className="relative z-10 inline-flex bg-primary text-primary-foreground text-xs font-medium px-4 py-2 rounded-full mt-3 hover:opacity-90 transition-opacity"
           >
             Book Now
           </button>

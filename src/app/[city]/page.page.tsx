@@ -33,6 +33,14 @@ export default function CityPage({ params }: CityPageProps) {
       <JsonLd
         data={[
           localBusinessSchema(city),
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: city.faqs.map((faq) => ({
+              "@type": "Question", name: faq.q,
+              acceptedAnswer: { "@type": "Answer", text: faq.a },
+            })),
+          },
           breadcrumbSchema([
             { name: "Home", url: "/" },
             { name: city.name, url: `/${city.slug}` },

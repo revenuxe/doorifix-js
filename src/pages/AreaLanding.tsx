@@ -10,13 +10,15 @@ import BottomNav from "@/components/BottomNav";
 import DesktopHeader from "@/components/DesktopHeader";
 import ServiceCard from "@/components/ServiceCard";
 import Footer from "@/components/Footer";
+import LocalRepairContent from "@/components/LocalRepairContent";
+import { getLocalGuide, localServiceCopy } from "@/data/local-content";
+import CityBrandSection from "@/components/CityBrandSection";
 import SEO from "@/components/SEO";
 import repairHero from "@/assets/repair-hero.png";
 import { services } from "@/data/services";
 import { getCityBySlug } from "@/data/cities";
 import { cityAreas, getAreaByCityAndSlug, slugify } from "@/data/areas";
 
-const featuredServices = services.slice(0, 4);
 
 const applianceIcons = [
   <WashingMachine size={24} className="text-primary" />,
@@ -32,9 +34,22 @@ const AreaLanding = () => {
   const router = useRouter();
   const navigate = (path: string | number) => {
     if (typeof path === "number") router.back();
-    else router.push(path);
+    else if (path === "/services" || path.startsWith("/services?")) {
+      const destination = new URL(path, "https://www.doorifix.com");
+      destination.searchParams.set("city", city);
+      destination.searchParams.set("area", area);
+      router.push(`/${city}/services${destination.search}`);
+    } else router.push(path);
   };
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const featuredServices = services.filter((service) =>
+    activeCategory === "All" || service.title === (activeCategory === "AC" ? "AC Service" : activeCategory),
+  );
+  const selectCategory = (category: string) => {
+    setActiveCategory(category);
+    document.getElementById("location-services")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const cityData = getCityBySlug(city || "");
   const areaName = cityData ? getAreaByCityAndSlug(city || "", area || "") : undefined;
@@ -52,10 +67,10 @@ const AreaLanding = () => {
   ).filter((a) => a !== areaName);
 
   const stats = [
-    { icon: Users, value: "1000+", label: `Happy Clients in ${cityData.name}` },
-    { icon: Award, value: "100+", label: "Expert Technicians" },
-    { icon: CheckCircle, value: "2000+", label: "Repairs Done" },
-    { icon: Star, value: "4.9", label: "Avg Rating" },
+    { icon: Users, value: "6", label: "Appliance categories" },
+    { icon: Award, value: "Model", label: "Specific diagnosis" },
+    { icon: CheckCircle, value: "Quote", label: "Before repair" },
+    { icon: Star, value: "Visit", label: "By appointment" },
   ];
 
   const metaTitle = `Appliance Repair in ${areaName}, ${cityData.name} | Washing Machine, AC, Fridge Repair Near Me – Doorifix`;
@@ -89,9 +104,32 @@ const AreaLanding = () => {
       />
       <DesktopHeader />
 
-      <div className="flex-1">
+      <main className="flex-1">
         <div className="max-w-[430px] md:max-w-none mx-auto">
           <div className="px-5 md:px-8 lg:px-12 pt-6 pb-4 space-y-6 md:space-y-8">
+
+            {/* Hero Card */}
+            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
+              <img src={imageSrc(repairHero)} alt={`Appliance repair in ${fullLocation}`} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
+                <div className="flex items-center gap-1 text-white/70">
+                  <MapPin size={14} />
+                  <span className="text-xs">Serving {areaName}, {cityData.name}</span>
+                </div>
+                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
+                  Appliance Repair at<br />Your Doorstep in {areaName}
+                </h2>
+                <p className="hidden md:block text-sm text-white/70 max-w-sm">
+                  Certified technicians arrive in 60–90 minutes anywhere in {areaName}. Free diagnosis, transparent pricing.
+                </p>
+                <div className="flex items-center gap-3 pt-2">
+                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); navigate("/services"); }}>
+                    Book Repair in {areaName}
+                  </button>
+                </div>
+              </div>
+            </div>
 
             {/* Title */}
             <div className="md:flex md:items-center md:justify-between md:gap-8">
@@ -107,7 +145,7 @@ const AreaLanding = () => {
                   Appliance Repair in<br />{areaName}, {cityData.name}
                 </h1>
                 <p className="hidden md:block text-muted-foreground mt-3 text-lg max-w-lg">
-                  Doorstep washing machine, refrigerator, AC, microwave & dryer repair in {areaName} — fast, affordable, and backed by certified technicians.
+                  Choose appliance diagnosis in {areaName}, {cityData.name}. Confirm the visit window, access details and charges for your address.
                 </p>
               </div>
 
@@ -134,36 +172,10 @@ const AreaLanding = () => {
               <input type="text" placeholder={`Search repairs in ${areaName}`} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="bg-transparent text-sm outline-none flex-1 text-foreground placeholder:text-muted-foreground" />
             </form>
 
-            <CategoryPills active="All" onSelect={(cat) => {
-              if (cat === "All") navigate("/services");
-              else navigate(`/services?category=${encodeURIComponent(cat)}`);
-            }} />
-
-            {/* Hero Card */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[280px] md:min-h-[320px] cursor-pointer" onClick={() => navigate("/services")}>
-              <img src={imageSrc(repairHero)} alt={`Appliance repair in ${fullLocation}`} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/50" />
-              <div className="relative z-10 p-5 md:p-8 space-y-2 max-w-md h-full flex flex-col justify-end">
-                <div className="flex items-center gap-1 text-white/70">
-                  <MapPin size={14} />
-                  <span className="text-xs">Serving {areaName}, {cityData.name}</span>
-                </div>
-                <h2 className="text-xl md:text-3xl font-bold text-white leading-snug">
-                  Appliance Repair at<br />Your Doorstep in {areaName}
-                </h2>
-                <p className="hidden md:block text-sm text-white/70 max-w-sm">
-                  Certified technicians arrive in 60–90 minutes anywhere in {areaName}. Free diagnosis, transparent pricing.
-                </p>
-                <div className="flex items-center gap-3 pt-2">
-                  <button className="bg-white text-foreground text-xs md:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity" onClick={(e) => { e.stopPropagation(); navigate("/services"); }}>
-                    Book Repair in {areaName}
-                  </button>
-                </div>
-              </div>
-            </div>
+            <CategoryPills active={activeCategory} onSelect={selectCategory} />
 
             {/* Featured Services */}
-            <div>
+            <div id="location-services" className="scroll-mt-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-semibold text-lg md:text-xl text-foreground">Popular Services in {areaName}</h2>
                 <button onClick={() => navigate("/services")} className="text-sm text-primary font-medium flex items-center gap-1 hover:underline">
@@ -172,31 +184,14 @@ const AreaLanding = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
                 {featuredServices.map((service) => (
-                  <ServiceCard key={service.id} {...service} linkPrefix={`/${cityData.slug}`} />
+                  <ServiceCard key={service.id} {...service} linkPrefix={`/${cityData.slug}/${area}`} />
                 ))}
               </div>
             </div>
 
-            {/* Area-specific SEO Cards */}
-            <div>
-              <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Expert Appliance Repair in {areaName}</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
-                {cityData.appliances.map((item, i) => {
-                  const svc = services[i];
-                  const title = item.title.replace(cityData.name, areaName);
-                  const keywordsLine = `${svc?.title.toLowerCase() || "appliance"} repair near me ${areaName}, samsung ${svc?.title.toLowerCase() || ""} repair ${areaName}, lg ${svc?.title.toLowerCase() || ""} service ${areaName}, doorstep ${svc?.title.toLowerCase() || ""} fix ${areaName}`;
-                  return (
-                    <Link key={item.title} href={`/${cityData.slug}/${area}/service/${svc?.slug || ""}`} className="bg-card rounded-2xl p-4 border border-border hover:shadow-md transition-all cursor-pointer hover:border-primary/30">
-                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
-                        {applianceIcons[i]}
-                      </div>
-                      <h3 className="font-semibold text-sm text-foreground leading-tight">{title}</h3>
-                      <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">{keywordsLine}</p>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+            <CityBrandSection citySlug={cityData.slug} />
+
+            <LocalRepairContent city={cityData} area={areaName} />
 
             {/* CTA Section */}
             <div className="relative rounded-3xl overflow-hidden bg-primary p-6 md:p-10">
@@ -209,10 +204,10 @@ const AreaLanding = () => {
                     <span className="text-sm font-medium text-primary-foreground/80">Quick Turnaround in {areaName}</span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground leading-tight">
-                    Book in 10 Minutes,<br />Service Done in 1–2 Hours
+                    Describe the Fault,<br />Confirm Your Visit
                   </h2>
                   <p className="text-sm text-primary-foreground/70 max-w-md">
-                    Our certified technicians in {areaName}, {cityData.name} arrive at your doorstep fully equipped. No waiting, no hassle — just fast, reliable repairs.
+                    Share your appliance model, symptoms and address. The team confirms the appointment window, access requirements and the next steps.
                   </p>
                 </div>
                 <div className="flex flex-col items-start md:items-center gap-3">
@@ -246,12 +241,7 @@ const AreaLanding = () => {
             <div className="pb-8">
               <h2 className="font-semibold text-lg md:text-xl text-foreground mb-4">Frequently Asked Questions – {areaName}</h2>
               <div className="space-y-3">
-                {[
-                  { q: `How quickly can I get appliance repair in ${areaName}?`, a: `We typically arrive within 60–90 minutes anywhere in ${areaName}, ${cityData.name}.` },
-                  { q: `Do you offer doorstep repair in ${areaName}?`, a: `Yes — our certified technicians come to your home or office in ${areaName} with all the tools needed for on-spot diagnosis and repair.` },
-                  { q: `Which brands do you service in ${areaName}?`, a: `We service Samsung, LG, Whirlpool, Bosch, IFB, Haier, Godrej, Voltas, Daikin and all other major brands across ${areaName}.` },
-                  { q: `Is there any service charge in ${areaName}?`, a: `Free diagnosis. You only pay for the repair and parts — no hidden charges in ${areaName}.` },
-                ].map((faq) => (
+                {getLocalGuide(cityData.slug).questions.map((faq) => (
                   <details key={faq.q} className="bg-card rounded-2xl border border-border group">
                     <summary className="px-4 py-3 cursor-pointer font-medium text-sm text-foreground list-none flex items-center justify-between">
                       {faq.q}
@@ -265,9 +255,9 @@ const AreaLanding = () => {
 
           </div>
         </div>
-      </div>
+      </main>
 
-      <Footer />
+      <Footer areaCitySlug={cityData.slug} />
       <BottomNav />
     </div>
   );

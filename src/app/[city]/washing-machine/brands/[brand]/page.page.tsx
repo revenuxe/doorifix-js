@@ -13,7 +13,7 @@ interface CityWashingMachineBrandPageProps {
 function getPageData(params: CityWashingMachineBrandPageProps["params"]) {
   const city = getCityBySlug(params.city);
   const brand = getBrandBySlug(params.brand);
-  return city?.slug === "mangalore" && brand?.serviceSlugs.includes("washing-machine-repair") ? { city, brand } : undefined;
+  return city && ["mangalore", "chennai"].includes(city.slug) && brand?.serviceSlugs.includes("washing-machine-repair") ? { city, brand } : undefined;
 }
 
 export function generateMetadata({ params }: CityWashingMachineBrandPageProps): Metadata {

@@ -164,20 +164,20 @@ export function buildBrandCopy(brand: BrandData, cityName = "Bangalore"): BrandC
 
   return {
     headline: `${brand.name} ${repairTitle}`,
-    subheadline: `Doorstep ${brand.name} ${repairTitle.toLowerCase()} — certified technicians, genuine parts and same-day service across Bangalore and Bengaluru.`,
-    intro: `Doorifix repairs ${brand.name} ${focusPlural} at your doorstep in ${cityName}. Our certified technicians are trained on ${brand.name}'s common fault patterns and carry genuine or certified-compatible parts, so most ${brand.name} ${focusTitle} repairs are diagnosed and fixed in a single visit.`,
+    subheadline: `Doorstep ${brand.name} ${repairTitle.toLowerCase()} — independent diagnosis and repair appointments in ${cityName}.`,
+    intro: `Doorifix offers independent ${brand.name} ${focusTitle} repair in ${cityName}. Share the full model number, error code and symptoms so the team can confirm the diagnostic scope and check compatible parts. Manufacturer warranty work should be confirmed with the brand before booking third-party service.`,
     faqs: [
       {
         q: `Do you repair ${brand.name} ${focusPlural} in ${cityName}?`,
-        a: `Yes. Doorifix repairs ${brand.name} ${focusPlural} with certified technicians and free doorstep diagnosis across ${cityName}.`,
+        a: `Doorifix accepts repair enquiries for ${brand.name} ${focusPlural} in ${cityName}. Share your address and model to confirm visit availability and charges.`,
       },
       {
         q: `Do you use genuine ${brand.name} spare parts?`,
-        a: `We use genuine or certified-compatible ${brand.name} parts for every repair, and back the work with a service warranty.`,
+        a: `Ask the technician to specify whether the proposed ${brand.name} replacement is an original or compatible part and to provide its warranty terms before you approve it.`,
       },
       {
         q: `How much does ${brand.name} ${focusTitle} repair cost?`,
-        a: `Cost depends on the exact fault. We provide a free diagnosis and a transparent quote before starting any work — no hidden charges.`,
+        a: `Cost depends on the exact fault. Ask for diagnosis charges and an itemised quote before starting any work — no hidden charges.`,
       },
       {
         q: `Do you offer doorstep ${brand.name} appliance repair?`,

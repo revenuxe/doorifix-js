@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CityServiceDetail from "@/pages/CityServiceDetail";
+import ServiceDetail from "@/pages/ServiceDetail";
 import { JsonLd } from "../../../_components/JsonLd";
 import { getCityBySlug } from "@/data/cities";
 import { getServiceBySlug } from "@/data/services";
@@ -41,7 +42,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
   return (
     <>
       <JsonLd data={cityServiceSchema(city, service, breadcrumbs)} />
-      <CityServiceDetail />
+      <ServiceDetail />
     </>
   );
 }
