@@ -1,12 +1,15 @@
 import washingMachine from "@/assets/washing-machine.png";
 import acUnit from "@/assets/ac-unit.png";
 import type { StaticImageData } from "next/image";
+import { washingMachineGuide } from "./washing-machine-guide";
 
 export interface BlogSection {
   id: string;
   title: string;
   body: string[];
   bullets?: string[];
+  cards?: { title: string; text: string }[];
+  link?: { label: string; href: string };
 }
 
 export interface BlogFaq {
@@ -30,9 +33,16 @@ export interface BlogPost {
   sections: BlogSection[];
   faqs: BlogFaq[];
   sources: { label: string; url: string }[];
+  template?: "service-guide";
+  seoTitle?: string;
+  metaDescription?: string;
+  imageAlt?: string;
+  serviceSlug?: string;
+  serviceAreas?: string[];
 }
 
 export const blogPosts: BlogPost[] = [
+  washingMachineGuide,
   {
     slug: "washing-machine-repair-services-bangalore",
     title: "Washing Machine Repair & Services in Bangalore: Complete Guide",

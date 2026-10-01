@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogDetail from "@/pages/BlogDetail";
+import ServiceBlogArticle from "@/components/ServiceBlogArticle";
+import { imageSrc } from "@/lib/image";
 import { JsonLd } from "../../_components/JsonLd";
 import { absoluteUrl, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { blogPosts, getBlogBySlug } from "@/data/blogs";
@@ -22,12 +24,15 @@ export function generateMetadata({ params }: BlogPostPageProps): Metadata {
     return {};
   }
 
-  return buildMetadata({
-    title: post.title,
-    description: post.excerpt,
+  const image = absoluteUrl(imageSrc(post.image));
+  const metadata = buildMetadata({
+    title: post.seoTitle || post.title,
+    description: post.metaDescription || post.excerpt,
     canonical: `/blog/${post.slug}`,
     keywords: post.keywords,
+    image,
   });
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", publishedTime: post.publishedAt, modifiedTime: post.updatedAt, authors: [post.author], section: post.category } };
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
@@ -54,6 +59,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             description: post.excerpt,
             datePublished: post.publishedAt,
             dateModified: post.updatedAt,
+            image: absoluteUrl(imageSrc(post.image)),
             author: {
               "@type": "Organization",
               name: post.author,
@@ -81,7 +87,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
           breadcrumbSchema(breadcrumbs),
         ]}
       />
-      <BlogDetail />
+      {post.template === "service-guide" ? <ServiceBlogArticle post={post} /> : <BlogDetail />}
     </>
   );
 }

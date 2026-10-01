@@ -68,7 +68,7 @@ function escapeXml(value) {
 }
 
 const services = extractSlugs(readSource("src/data/services.ts"));
-const blogPosts = extractSlugs(readSource("src/data/blogs.ts"));
+const blogPosts = unique([...extractSlugs(readSource("src/data/blogs.ts")), ...extractSlugs(readSource("src/data/washing-machine-guide.ts"))]);
 const cities = extractSlugs(readSource("src/data/cities.ts")).filter((city) => city !== "bengaluru");
 const cityAreas = extractCityAreas(readSource("src/data/areas.ts"));
 const brands = extractSlugs(readSource("src/data/brands.ts"));
