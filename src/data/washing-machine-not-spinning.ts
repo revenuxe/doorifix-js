@@ -1,0 +1,128 @@
+import washingMachine from "@/assets/washing-machine.png";
+import type { BlogPost } from "./blogs";
+
+export const washingMachineNotSpinning: BlogPost = {
+  template: "service-guide",
+  slug: "washing-machine-not-spinning",
+  title: "Washing Machine Not Spinning? Causes, Safe Checks and When to Call a Technician",
+  seoTitle: "Washing Machine Not Spinning? Causes & Safe Checks",
+  metaDescription: "Washing machine not spinning or leaving clothes wet? Check the load, settings and drainage safely, and learn when to book a Doorifix repair visit.",
+  excerpt: "Clothes still soaking wet after a wash? Use the symptoms to narrow down a spin problem, try the checks your manual allows, and know when professional diagnosis is needed.",
+  category: "Washing Machine Repair",
+  publishedAt: "2026-10-02",
+  updatedAt: "2026-10-02",
+  author: "Doorifix Service Team",
+  readTime: "7 min read",
+  image: washingMachine,
+  imageAlt: "Front-load washing machine with its door open",
+  serviceSlug: "washing-machine-repair",
+  serviceAreas: ["bangalore", "mangalore", "chennai"],
+  keywords: "washing machine not spinning, washing machine not draining or spinning, washing machine leaving clothes wet, washer spin cycle not working",
+  summary: [
+    "Start with the load, selected spin setting and any water left in the drum.",
+    "Follow your model's manual for accessible checks and error-code meanings.",
+    "Recurring faults or electrical warning signs need professional attention.",
+  ],
+  highlights: ["Load and cycle checks", "Drainage versus spin faults", "Front-load and top-load symptoms", "When to request repair"],
+  sections: [
+    {
+      id: "quick-answer",
+      title: "Why Is My Washing Machine Not Spinning?",
+      body: ["A washing machine may skip or reduce its spin because the laundry is unevenly distributed, the selected programme limits spin, or water has not drained. A door-lock, drive or control fault can also interrupt the cycle. Start by recording any error code and checking whether water remains in the drum. Wait for the machine to stop and unlock before touching the load. If there are no warning signs, follow the owner's manual for a load adjustment or a drain-and-spin cycle. A repeated failure needs diagnosis rather than repeated restarts."],
+      link: { label: "Request help with a washing machine spin problem", href: "/contact" },
+    },
+    {
+      id: "identify-the-symptom",
+      title: "First, Identify What Happens During the Cycle",
+      body: ["Washing, draining and spinning are different stages. A drum that turns slowly during washing but never reaches fast spin gives a different clue from a drum that never moves. Describe what you can observe without removing covers."],
+      cards: [
+        { title: "Water remains in the drum", text: "Report a possible drainage problem as well as the missing spin. Note whether you hear the pump and whether an error appears." },
+        { title: "Water drains, but clothes stay wet", text: "Check the programme and selected spin speed. Tell the technician whether this affects every load or only bulky items." },
+        { title: "The machine repeatedly tries to spin", text: "Note whether laundry bunches on one side or the machine shakes. Record any balance warning and the type of load." },
+        { title: "The drum does not turn at any stage", text: "Share whether the machine fills and responds to controls. A technician should assess the lock, drive and controls before recommending parts." },
+      ],
+    },
+    {
+      id: "safe-checks",
+      title: "Safe Checks Before Booking a Repair",
+      body: ["Check the owner's manual for your exact model. Controls, filter access and drain-hose requirements vary; a procedure for another washer may be unsuitable for yours."],
+      bullets: [
+        "Pause the cycle and wait until the drum stops and the door or lid unlocks normally. Never force a locked door or bypass a lid switch.",
+        "Check whether no-spin, rinse-hold or a low spin speed is selected. Some delicate programmes deliberately leave laundry wetter.",
+        "If the machine permits access, untangle laundry and reduce a packed load. Check whether bulky items are suitable for machine washing.",
+        "Check that no garment is trapped in the door or lid, then close it normally. Stop if the latch is damaged.",
+        "Look at the visible drain hose for a kink or crushing without pulling out or tilting the washer. Compare its installation with the manual.",
+        "If your manual allows it and there are no leaks, electrical warnings or severe noises, try one appropriate drain-and-spin cycle after correcting the load or settings. Stop if the problem returns.",
+      ],
+    },
+    {
+      id: "load-and-settings",
+      title: "Uneven Loads, Overloading and Spin Settings",
+      body: ["A single heavy item can collect on one side of the drum. A tightly packed load can also be difficult to balance. Many washers respond by slowing down or trying again, so the remaining time may change. Follow the rated capacity and programme-specific loading instructions rather than filling every available space.", "Check the selected programme before assuming a mechanical fault. A gentle cycle or reduced spin setting can leave clothes damp by design. If an ordinary, correctly loaded cycle still fails after a permitted adjustment, record what happened and request inspection."],
+    },
+    {
+      id: "not-draining-or-spinning",
+      title: "Washing Machine Not Draining or Spinning",
+      body: ["Standing water is an important clue: investigate drainage before assuming the spin motor has failed. A restricted hose, blocked accessible filter or pump fault can prevent the cycle from progressing. Tell the service team if you hear humming, see a drainage code or find water left after the programme ends.", "Only clean a filter if your model has a user-accessible one and the manual describes the procedure. Switch off and unplug from a dry, safely accessible connection, let hot water cool, and follow the stated draining steps before loosening a filter. Opening it while the drum is full can release substantial water. If safe draining or access is uncertain, leave it to a technician. Never remove internal panels to reach the pump."],
+    },
+    {
+      id: "machine-types",
+      title: "Front-Load, Top-Load and Semi-Automatic Spin Problems",
+      body: ["Give the technician the machine type and model number when booking. Similar symptoms can involve different mechanisms."],
+      cards: [
+        { title: "Front-load washing machine", text: "Describe whether it tumbles during washing, drains fully and unlocks afterward. Mention spin noise, leaks or a door-lock warning." },
+        { title: "Top-load washing machine", text: "Explain whether washing works but spin stops, and whether a lid or balance warning appears. Keep the lid safety mechanism intact." },
+        { title: "Semi-automatic washing machine", text: "Specify whether the wash tub works while the separate spin tub fails. Follow the manual for laundry placement and the spin-tub safety cover." },
+      ],
+    },
+    {
+      id: "error-codes",
+      title: "What If an Error Code Appears?",
+      body: ["Photograph the full display before restarting. Record the brand, model and cycle stage, then check the model's manual or official support page. A code is a diagnostic clue; it does not prove that a particular part needs replacing. Share the photo when requesting help so the technician can assess it alongside the symptoms."],
+      link: { label: "Read our washing machine repair service guide", href: "/blog/washing-machine-repair-near-me" },
+    },
+    {
+      id: "when-to-stop",
+      title: "When Should You Stop and Call a Technician?",
+      body: ["Stop using the washer if it smells of burning, sparks, repeatedly trips the power, leaks near electrical connections, grinds loudly or moves violently. Isolate power only from a dry, safely accessible switch; do not touch a wet plug. Close the water tap if safe. Smoke or fire requires emergency assistance.", "Book diagnosis if the spin fault repeats with suitable loads and settings, water remains trapped, the latch fails or the drum appears displaced. Internal electrical, motor, bearing and control checks require suitable expertise. Do not bypass safety locks or keep restarting a machine with warning signs."],
+      link: { label: "Contact Doorifix about a recurring spin fault", href: "/contact" },
+    },
+    {
+      id: "repair-quote",
+      title: "What Should a Spin-Problem Repair Quote Include?",
+      body: ["There is no reliable fixed price for 'not spinning' before the cause is known. Ask whether the inspection charge is separate, what fault was found, and how the quote divides labour and parts. Confirm part compatibility, availability and any warranty terms before approving work.", "Ask what checks will follow the repair, including drainage and an appropriate spin test. If a major repair is proposed, compare the full quote with replacement and installation costs, taking the washer's age, condition and existing warranty into account."],
+    },
+    {
+      id: "book-local-repair",
+      title: "Book Washing Machine Repair with Doorifix",
+      body: ["Share your city, locality, pin code, brand, model number, any error-code photo and whether water drains. Explain whether the drum turns during washing and when the spin stops. Confirm address coverage, inspection charges and the available appointment with the service team."],
+      link: { label: "Washing machine repair in Bangalore", href: "/bangalore/service/washing-machine-repair" },
+    },
+    {
+      id: "mangalore-service",
+      title: "Request a Visit in Mangalore",
+      body: ["Use the Mangalore service page to start your enquiry. Mention access instructions and any trapped water or electrical warning signs before the appointment."],
+      link: { label: "Washing machine repair in Mangalore", href: "/mangalore/service/washing-machine-repair" },
+    },
+    {
+      id: "chennai-service",
+      title: "Request a Visit in Chennai",
+      body: ["Use the Chennai service page and confirm the exact address and visit window with the team. Keep the model details and symptom notes available for the technician."],
+      link: { label: "Washing machine repair in Chennai", href: "/chennai/service/washing-machine-repair" },
+    },
+  ],
+  faqs: [
+    { question: "Why does my washing machine wash but not spin?", answer: "Check the selected spin setting and whether water drains. Note any load-balance or lock warning. If the problem persists with suitable settings and laundry, request diagnosis." },
+    { question: "Why are my clothes still wet after the spin cycle?", answer: "A low spin setting, uneven load or incomplete drainage may be involved. Report whether water remains in the drum and whether the problem affects all loads." },
+    { question: "Can I run spin only to check the machine?", answer: "Use only the cycle your model's manual permits, after checking the settings and load. Do not test a machine with leaks, burning smells, electrical warnings, severe vibration or grinding." },
+    { question: "Should I force open the door if the washer will not spin?", answer: "No. Wait for the normal unlock and follow the manual if water is trapped. Forcing the door can damage the latch and release water." },
+    { question: "Does a spin problem mean the motor needs replacing?", answer: "No. Several faults can interrupt spin. Ask for an explanation of the diagnosis before agreeing to a motor, pump or control-board replacement." },
+    { question: "Can Doorifix help in Bangalore, Mangalore or Chennai?", answer: "Doorifix has washing machine service pages for all three cities. Contact the team with your pin code and model to confirm coverage, appointment availability and inspection charges." },
+  ],
+  sources: [
+    { label: "Samsung: washing machine not spinning", url: "https://www.samsung.com/uk/support/home-appliances/what-to-do-if-your-washing-machine-is-not-spinning/" },
+    { label: "LG: washer does not drain or spin", url: "https://www.lg.com/us/support/help-library/lg-washer-troubleshooting-washer-does-not-drain-or-spin-clothes-too-wet-CT00000305-1337717767769TWW" },
+    { label: "Samsung: washing machine does not spin at all", url: "https://www.samsung.com/us/support/troubleshoot/TSG10003486/" },
+    { label: "LG: washing machine drum not spinning", url: "https://www.lg.com/us/support/help-library/lg-washer-troubleshooting-washing-machine-drum-not-spinning-CT10000012-20150584818000" },
+  ],
+};

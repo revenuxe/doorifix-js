@@ -2,6 +2,7 @@ import washingMachine from "@/assets/washing-machine.png";
 import acUnit from "@/assets/ac-unit.png";
 import type { StaticImageData } from "next/image";
 import { washingMachineGuide } from "./washing-machine-guide";
+import { washingMachineNotSpinning } from "./washing-machine-not-spinning";
 
 export interface BlogSection {
   id: string;
@@ -42,6 +43,7 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  washingMachineNotSpinning,
   washingMachineGuide,
   {
     slug: "washing-machine-repair-services-bangalore",
