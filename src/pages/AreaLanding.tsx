@@ -94,7 +94,7 @@ const AreaLanding = () => {
           "@type": "LocalBusiness",
           "name": `Doorifix – ${areaName}, ${cityData.name}`,
           "description": metaDescription,
-          "telephone": "+919886579923",
+          "telephone": "+918884647100",
           "email": "doorifix@gmail.com",
           "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
           "address": { "@type": "PostalAddress", "streetAddress": "6, 1st Cross, Nagawara Main Rd, Umar Nagar", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560045", "addressCountry": "IN" },

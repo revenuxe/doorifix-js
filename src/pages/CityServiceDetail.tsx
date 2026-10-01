@@ -72,7 +72,7 @@ const CityServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": `Doorifix – ${cityData.name}`,
-            "telephone": "+919886579923",
+            "telephone": "+918884647100",
             "areaServed": { "@type": "City", "name": cityData.name },
           },
           "areaServed": { "@type": "City", "name": cityData.name },
@@ -105,7 +105,7 @@ const CityServiceDetail = () => {
                 </div>
                 <span className="text-sm font-medium text-foreground">Visit by appointment</span>
               </div>
-              <a href="tel:+919886579923" className="mt-3 inline-flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity">
+              <a href="tel:+918884647100" className="mt-3 inline-flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity">
                 <Phone size={18} />
                 Call Now
               </a>
@@ -132,7 +132,7 @@ const CityServiceDetail = () => {
                 </div>
                 <span className="text-sm font-medium text-foreground">Visit by appointment</span>
               </div>
-              <a href="tel:+919886579923" className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity w-full">
+              <a href="tel:+918884647100" className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity w-full">
                 <Phone size={18} />
                 Call Now
               </a>
@@ -169,7 +169,7 @@ const CityServiceDetail = () => {
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
               <a
-                href="https://wa.me/919886579923"
+                href="https://wa.me/918884647100"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-card rounded-xl p-3 border border-border text-center hover:shadow-md transition-shadow"

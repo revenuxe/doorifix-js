@@ -52,7 +52,7 @@ export default function CityWashingMachineBrandPage({ params }: CityWashingMachi
             name: `${brand.name} Washing Machine Repair in ${city.name}`,
             description: `Doorstep ${brand.name} washing machine repair in ${city.name}.`,
             url: `${BASE_URL}${path}`,
-            provider: { "@type": "LocalBusiness", name: "Doorifix", telephone: "+919886579923" },
+            provider: { "@type": "LocalBusiness", name: "Doorifix", telephone: "+918884647100" },
             areaServed: { "@type": "City", name: city.name },
             brand: { "@type": "Brand", name: brand.name },
           },

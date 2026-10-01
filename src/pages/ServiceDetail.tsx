@@ -225,7 +225,7 @@ const ServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": "Doorifix",
-            "telephone": "+919886579923",
+            "telephone": "+918884647100",
             "email": "doorifix@gmail.com",
           },
           "areaServed": [
@@ -287,7 +287,7 @@ const ServiceDetail = () => {
                   }}>
                     Book Now <ArrowRight size={14} />
                   </button>
-                  <a href="tel:+919886579923" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-5 py-2.5 text-xs md:text-sm font-semibold shadow-sm hover:opacity-95 transition-opacity" onClick={(event) => event.stopPropagation()}>
+                  <a href="tel:+918884647100" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-5 py-2.5 text-xs md:text-sm font-semibold shadow-sm hover:opacity-95 transition-opacity" onClick={(event) => event.stopPropagation()}>
                     <Phone size={14} /> Call Now
                   </a>
                 </div>
@@ -426,14 +426,14 @@ const ServiceDetail = () => {
           </section>
 
           <section className="mt-12 md:mt-16 grid gap-3 md:grid-cols-3">
-            <a href="tel:+919886579923" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
+            <a href="tel:+918884647100" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
               <Phone size={20} className="text-primary" />
               <div>
                 <p className="text-sm font-semibold text-foreground">Call Now</p>
-                <p className="text-xs text-muted-foreground">9886 579 923</p>
+                <p className="text-xs text-muted-foreground">+91 8884647100</p>
               </div>
             </a>
-            <a href="https://wa.me/919886579923" target="_blank" rel="noopener noreferrer" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
+            <a href="https://wa.me/918884647100" target="_blank" rel="noopener noreferrer" className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 hover:border-primary/30 transition-colors">
               <img src={imageSrc(whatsappIcon)} alt="WhatsApp" className="w-5 h-5 rounded-full" />
               <div>
                 <p className="text-sm font-semibold text-foreground">WhatsApp</p>

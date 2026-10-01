@@ -47,7 +47,7 @@ export default function WashingMachineBrandPage({ params }: WashingMachineBrandP
             name: `${brand.name} Washing Machine Repair`,
             description: `Doorstep ${brand.name} washing machine repair in Bangalore and Bengaluru.`,
             url,
-            provider: { "@type": "LocalBusiness", name: "Doorifix", telephone: "+919886579923" },
+            provider: { "@type": "LocalBusiness", name: "Doorifix", telephone: "+918884647100" },
             brand: { "@type": "Brand", name: brand.name },
           },
           {

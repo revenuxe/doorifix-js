@@ -56,7 +56,7 @@ const Index = () => {
             "@type": "LocalBusiness",
             "name": "Doorifix",
             "description": "Professional appliance repair & servicing at your doorstep",
-            "telephone": "+919886579923",
+            "telephone": "+918884647100",
             "email": "doorifix@gmail.com",
             "address": { "@type": "PostalAddress", "streetAddress": "6, 1st Cross, Nagawara Main Rd, Umar Nagar", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560045", "addressCountry": "IN" },
             "openingHours": "Mo-Su 08:00-21:00",

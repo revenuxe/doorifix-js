@@ -108,7 +108,7 @@ const BrandDetail = ({ brandRoutePrefix, cityName }: BrandDetailProps) => {
             "@type": "LocalBusiness",
             "name": `Doorifix - ${copy.headline}`,
             "description": copy.subheadline,
-            "telephone": "+919886579923",
+            "telephone": "+918884647100",
             "email": "doorifix@gmail.com",
             "areaServed": [
               { "@type": "City", "name": cityName || "Bangalore" },

@@ -80,7 +80,7 @@ const AreaServiceDetail = () => {
           "provider": {
             "@type": "LocalBusiness",
             "name": `Doorifix – ${areaName}, ${cityData.name}`,
-            "telephone": "+919886579923",
+            "telephone": "+918884647100",
             "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
           },
           "areaServed": { "@type": "Place", "name": `${areaName}, ${cityData.name}` },
@@ -113,7 +113,7 @@ const AreaServiceDetail = () => {
                 </div>
                 <span className="text-sm font-medium text-foreground">Visit by appointment</span>
               </div>
-              <a href="tel:+919886579923" className="mt-3 inline-flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity">
+              <a href="tel:+918884647100" className="mt-3 inline-flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity">
                 <Phone size={18} />
                 Call Now
               </a>
@@ -140,7 +140,7 @@ const AreaServiceDetail = () => {
                 </div>
                 <span className="text-sm font-medium text-foreground">Visit by appointment</span>
               </div>
-              <a href="tel:+919886579923" className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity w-full">
+              <a href="tel:+918884647100" className="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground rounded-2xl px-5 py-3 text-base font-semibold shadow-[0_8px_18px_rgba(37,99,235,0.28)] hover:opacity-95 transition-opacity w-full">
                 <Phone size={18} />
                 Call Now
               </a>
@@ -179,7 +179,7 @@ const AreaServiceDetail = () => {
                 <p className="text-[10px] text-muted-foreground">Duration</p>
               </div>
               <a
-                href="https://wa.me/919886579923"
+                href="https://wa.me/918884647100"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-card rounded-xl p-3 border border-border text-center hover:shadow-md transition-shadow"
@@ -273,11 +273,11 @@ const AreaServiceDetail = () => {
       {/* Mobile Bottom CTA */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-card/90 backdrop-blur-lg border-t border-border px-5 py-4 z-50">
         <a
-          href="tel:+919886579923"
+          href="tel:+918884647100"
           className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-full text-base flex items-center justify-center gap-2 shadow-sm tracking-wide"
         >
           <Phone size={18} />
-          +91 98865 79923
+          +91 8884647100
         </a>
       </div>
 

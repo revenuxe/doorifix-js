@@ -77,7 +77,7 @@ const CityLanding = () => {
           "@type": "LocalBusiness",
           "name": `Doorifix – ${cityData.name}`,
           "description": cityData.metaDescription,
-          "telephone": "+919886579923",
+          "telephone": "+918884647100",
           "email": "doorifix@gmail.com",
           "areaServed": { "@type": "City", "name": cityData.name },
           "openingHours": "Mo-Su 08:00-21:00",

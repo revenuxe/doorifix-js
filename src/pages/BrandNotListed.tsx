@@ -76,7 +76,7 @@ const BrandNotListed = () => {
             "@type": "LocalBusiness",
             "name": "Doorifix - Any Brand Appliance Repair",
             "description": "Certified appliance repair for any brand, including manufacturers not listed on the website, with doorstep service in Bangalore.",
-            "telephone": "+919886579923",
+            "telephone": "+918884647100",
             "email": "doorifix@gmail.com",
             "areaServed": [
               { "@type": "City", "name": "Bangalore" },

@@ -107,7 +107,7 @@ const TermsOfService = () => {
               <h2 className="text-lg font-semibold text-foreground">14. Contact Information</h2>
               <p>For questions about these Terms, please contact us:</p>
               <p>Email: <a href="mailto:doorifix@gmail.com" className="text-primary hover:underline">doorifix@gmail.com</a></p>
-              <p>Phone: <a href="tel:+919886579923" className="text-primary hover:underline">9886 579 923</a></p>
+              <p>Phone: <a href="tel:+918884647100" className="text-primary hover:underline">+91 8884647100</a></p>
             </section>
           </div>
         </div>
